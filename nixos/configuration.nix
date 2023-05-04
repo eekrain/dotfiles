@@ -12,7 +12,7 @@
 
     # Add custom config here
     ./hardware/vivobook-15.nix
-    ./gnome
+    ./hyprland
   ];
 
   home-manager = {
