@@ -4,7 +4,7 @@
 { inputs, lib, config, pkgs, ... }: {
   # You can import other NixOS modules here
   imports = [
-    ./bluetooth.nix
+    ./hardware/vivobook-15.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
