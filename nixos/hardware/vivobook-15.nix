@@ -7,6 +7,7 @@
     ./networking.nix
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-pc-laptop-ssd
+    inputs.hardware.nixosModules.common-gpu-amd
   ];
 
   # use latest kernel

@@ -4,7 +4,6 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   # You can import other home-manager modules here
   imports = [
-    inputs.hyprland.homeManagerModules.default
     ./hyprland
   ];
 
@@ -46,7 +45,7 @@
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+  # programs.git.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

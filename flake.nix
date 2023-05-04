@@ -16,11 +16,9 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprpicker.url = "github:hyprwm/hyprpicker";
-    hypr-contrib.url = "github:hyprwm/contrib";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -55,6 +53,9 @@
         eka-laptop = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
+            hyprland.nixosModules.default
+            # To rebuild home manager with the system
+            inputs.home-manager.nixosModules.home-manager
             # > Our main nixos configuration file <
             ./nixos/configuration.nix
           ];
@@ -69,6 +70,7 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
+            hyprland.homeManagerModules.default
             # > Our main home-manager configuration file <
             ./home-manager/home.nix
           ];
