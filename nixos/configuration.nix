@@ -6,6 +6,7 @@
   imports = [
     # To rebuild home manager with the system
     inputs.home-manager.nixosModules.home-manager
+    inputs.hyprland.nixosModules.default
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
