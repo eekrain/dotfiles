@@ -1,5 +1,8 @@
 { inputs, config, pkgs, ... }:
 {
+  imports = [
+    ./fonts.nix
+  ];
   # Configure keymap in X11
   services.xserver = {
     layout = "us";

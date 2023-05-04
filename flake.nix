@@ -55,7 +55,7 @@
           modules = [
             hyprland.nixosModules.default
             # To rebuild home manager with the system
-            inputs.home-manager.nixosModules.home-manager
+            home-manager.nixosModules.home-manager
             # > Our main nixos configuration file <
             ./nixos/configuration.nix
           ];
@@ -70,7 +70,6 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            hyprland.homeManagerModules.default
             # > Our main home-manager configuration file <
             ./home-manager/home.nix
           ];

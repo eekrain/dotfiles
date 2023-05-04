@@ -1,16 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  programs = {
-    bash = {
-      initExtra = ''
-        if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-           exec  Hyprland
-        fi
-      '';
-    };
-  };
-  systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
+  imports = [
+    ./theme/catppuccin-dark
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     systemdIntegration = true;
