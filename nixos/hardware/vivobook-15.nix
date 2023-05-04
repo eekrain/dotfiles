@@ -1,7 +1,10 @@
 { config, inputs, pkgs, ... }:
 {
   imports = [
-    ./bluetooth
+    ./bootloader.nix
+    ./bluetooth.nix
+    ./audio.nix
+    ./networking.nix
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-pc-laptop-ssd
   ];
