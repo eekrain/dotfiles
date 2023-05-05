@@ -1,13 +1,15 @@
 { config, inputs, pkgs, ... }:
 {
   imports = [
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-cpu-amd-pstate
+    inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
     ./bootloader.nix
     ./bluetooth.nix
     ./audio.nix
     ./networking.nix
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-pc-laptop-ssd
-    inputs.hardware.nixosModules.common-gpu-amd
+    ./power-management.nix
   ];
 
   # use latest kernel

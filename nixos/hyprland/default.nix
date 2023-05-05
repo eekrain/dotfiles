@@ -15,12 +15,6 @@
   services = {
     dbus.packages = [ pkgs.gcr ];
     gvfs.enable = true;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
   };
 
   programs = {

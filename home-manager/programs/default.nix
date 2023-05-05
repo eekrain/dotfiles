@@ -15,5 +15,6 @@
     spicetify-cli
     chromium
     ferdium
+    pavucontrol
   ];
 }
