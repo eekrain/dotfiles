@@ -7,7 +7,6 @@ let
 
     # waybar
     waybar&
-    $scripts/tools/dynamic &
 
     # wallpaper
     $scripts/wall $config/wallpapers/4.jpg &

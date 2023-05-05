@@ -5,5 +5,6 @@
     exa
     fzf
     python39
+    jq
   ];
 }
