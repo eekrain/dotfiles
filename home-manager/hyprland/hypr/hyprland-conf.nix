@@ -121,7 +121,7 @@
     bind = $mainMod,Y,pin
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, J, togglesplit, # dwindle
-
+    bind = $mainMod, D, exec, wofi --show drun
 
     #-----------------------#
     # Toggle grouped layout #
