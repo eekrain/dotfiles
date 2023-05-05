@@ -1,6 +1,7 @@
 { inputs, config, pkgs, ... }:
 {
   imports = [
+    ./core.nix
     ./fonts.nix
   ];
   # Configure keymap in X11
@@ -23,6 +24,7 @@
   };
 
   programs = {
+    zsh.enable = true;
     dconf.enable = true;
     light.enable = true;
   };

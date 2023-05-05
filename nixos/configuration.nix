@@ -70,6 +70,7 @@
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = [ "wheel" "vboxsf" "adbusers" "libvirtd" "networkmanager" "video" "docker" ];
+      shell = pkgs.zsh;
     };
   };
 
