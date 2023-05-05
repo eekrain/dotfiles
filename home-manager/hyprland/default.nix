@@ -3,6 +3,7 @@
 {
   imports = [
     ./theme/catppuccin-dark
+    ./programs
   ];
 
   wayland.windowManager.hyprland = {
@@ -19,7 +20,7 @@
       monitor=,highres,auto,2
       # sets xwayland scale
       exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
-
+      exec-once=hypr_autostart
       # toolkit-specific scale
       env = GDK_SCALE,2
       env = XCURSOR_SIZE,32
