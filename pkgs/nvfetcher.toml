@@ -1,0 +1,4 @@
+# nvfetcher.toml
+[waybar-mpris]
+src.git = "https://git.hrfee.pw/hrfee/waybar-mpris"
+fetch.git = "https://git.hrfee.pw/hrfee/waybar-mpris.git"
