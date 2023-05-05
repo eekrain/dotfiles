@@ -2,7 +2,7 @@
 
 let
   hypr_autostart = pkgs.writeShellScriptBin "hypr_autostart" ''
-    waybar&
+    # waybar&
   '';
 in
 {
