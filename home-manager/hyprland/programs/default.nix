@@ -1,3 +1,4 @@
+{ config, pkgs, ... }:
 {
   imports = [
     ./waybar
@@ -8,4 +9,6 @@
     ./cava
     ./dunst
   ];
+
+  home.packages = [ pkgs.mpvpaper ];
 }

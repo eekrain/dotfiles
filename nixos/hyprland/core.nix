@@ -1,10 +1,14 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+let
+  inherit (lib) fileContents;
+in
 {
   environment.systemPackages = with pkgs; [
     # hyprland spesificsystemPackages = with pkgs; [
     libsForQt5.qt5.qtwayland
     libsForQt5.qt5ct
     wev
+    wlr-randr
     #other pkgs
     exa
     fzf

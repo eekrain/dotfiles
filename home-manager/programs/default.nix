@@ -12,7 +12,6 @@
     cava
     spotify
     spicetify-cli
-    chromium
     ferdium
     pavucontrol
   ];
