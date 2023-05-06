@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./hypr-variables.nix
     ./hyprland-conf.nix
     ./autostart.nix
   ];

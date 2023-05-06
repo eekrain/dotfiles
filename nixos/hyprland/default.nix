@@ -10,7 +10,14 @@
     xkbVariant = "";
   };
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland = {
+      enable = true;
+      hidpi = true;
+    };
+    nvidiaPatches = true;
+  };
 
   services = {
     dbus.packages = [ pkgs.gcr ];

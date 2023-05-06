@@ -7,8 +7,10 @@
     exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
     exec-once=hypr_autostart
     # toolkit-specific scale
+    env = LIBSEAT_BACKEND,logind
     env = GDK_SCALE,2
     env = XCURSOR_SIZE,32
+
 
     input {
       kb_layout = us
@@ -110,7 +112,6 @@
       swallow_regex =
       focus_on_activate = true
     }
-
 
     bind = $mainMod, Return, exec, kitty zsh
     bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat" zsh
