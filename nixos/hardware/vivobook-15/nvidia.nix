@@ -13,8 +13,8 @@ in
   services.xserver.videoDrivers = [ "nvidia" ];
 
   boot.kernelParams = [
-    "quiet"
-    "splash"
+    # "quiet"
+    # "splash"
     "nvidia-drm.modeset=1"
   ];
 
