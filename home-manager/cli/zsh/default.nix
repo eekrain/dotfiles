@@ -24,6 +24,7 @@ in
       r-hist = "python ${config.xdg.configHome}/zsh/zhist_bkp/index.py -r -p $HOME/.zsh_history";
       kill-gradle = "pkill -f '.*GradleDaemon.*'";
       relog = "sh $HOME/.config/eww/scripts/exitScreenActions.sh logout";
+      rage = ''mpvpaper -v eDP-1 -o "loop profile=mpvpaper"'';
     };
 
     loginExtra = ''
