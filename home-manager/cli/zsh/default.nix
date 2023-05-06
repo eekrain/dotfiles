@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
-let
-  text = "+_comps";
-in
 {
-  home.packages = with pkgs; [ zinit awscli2 nodejs-16_x yarn ];
+  home.packages = with pkgs; [ zi awscli2 nodejs-16_x yarn nitch krabby ];
 
   xdg.configFile."zsh/zhist_bkp".source = ./zhist_bkp;
 
@@ -32,16 +29,20 @@ in
     '';
 
     initExtraBeforeCompInit = ''
-      export ZINIT_HOME="${pkgs.zinit}/share/zinit"
-      source "''${ZINIT_HOME}/zinit.zsh"
+      typeset -A ZI
+      ZI[HOME_DIR]=$HOME/.zi
+      ZI[BIN_DIR]=${pkgs.zi}
+      ZI[CACHE_DIR]=$HOME/.cache/zi
+      ZI[CONFIG_DIR]=$HOME/.config/zi
+      source ${pkgs.zi}/zi.zsh
     '';
 
     # Enable Zi completions
     completionInit = ''
-      autoload -Uz _zinit
-      (( ''${${text}} )) && _comps[zinit]=_zinit
-      autoload bashcompinit && bashcompinit
-      autoload -Uz compinit && compinit
+      autoload -Uz _zi
+      (( ''${+_comps} )) && _comps[zi]=_zi
+      # autoload bashcompinit && bashcompinit
+      # autoload -Uz compinit && compinit
     '';
 
 
@@ -53,33 +54,35 @@ in
         bindkey '^[[B' history-substring-search-down
       }
       export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
+      
+      zstyle ":history-search-multi-word" page-size "11"
+      zi ice wait lucid
+      zi load z-shell/H-S-MW
+      
+      zi ice atload"unalias gco gbd gm"
+      zi light davidde/git
 
       zinit wait lucid light-mode for \
-        blockf\
-          rupa/z\
-          changyuheng/fz\
-          andrewferrier/fzf-z\
-          changyuheng/zsh-interactive-cd\
-        atload'__bind_history_keys'\
-          zsh-users/zsh-history-substring-search\
-        atload'_zsh_autosuggest_start'\
-          zsh-users/zsh-autosuggestions\
-        blockf atpull'zinit creinstall -q .'\
-          zsh-users/zsh-completions\
-        atload'unalias gco gbd gm'\
-          davidde/git\
-          Schroefdop/git-branches\
-          TwoPizza9621536/zsh-exa\
-          aubreypwd/zsh-plugin-fd\
-        atinit'SHOW_AWS_PROMPT=false'\
-          eekrain/zsh-aws\
-        atinit'zpcompinit; zpcdreplay'\
-          zdharma/fast-syntax-highlighting
+        rupa/z\
+        changyuheng/fz\
+        andrewferrier/fzf-z\
+        changyuheng/zsh-interactive-cd\
+        aubreypwd/zsh-plugin-fd\
+        Schroefdop/git-branches\
+        TwoPizza9621536/zsh-exa\
+        has'zsh-aws' atinit'SHOW_AWS_PROMPT=false'\
+          eekrain/zsh-aws
+
+      zi ice wait lucid atload"!_zsh_autosuggest_start"
+      zi load zsh-users/zsh-autosuggestions
+
+      # Syntax highlighting
+      zi ice wait lucid atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
+      zi light z-shell/F-Sy-H
 
       eval "$(${pkgs.starship}/bin/starship init zsh)"
-      eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
       
-      macchina
+      nitch
     '';
   };
 }
