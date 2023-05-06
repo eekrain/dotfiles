@@ -9,7 +9,6 @@
     vscode
     discord
     winbox
-    mpv
     cava
     spotify
     spicetify-cli
