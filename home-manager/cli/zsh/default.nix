@@ -41,8 +41,6 @@
     completionInit = ''
       autoload -Uz _zi
       (( ''${+_comps} )) && _comps[zi]=_zi
-      # autoload bashcompinit && bashcompinit
-      # autoload -Uz compinit && compinit
     '';
 
 
@@ -77,7 +75,7 @@
       zi load zsh-users/zsh-autosuggestions
 
       # Syntax highlighting
-      zi ice wait lucid atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
+      zi ice wait lucid atinit"ZI[COMPINIT_OPTS]=-C; autoload bashcompinit && bashcompinit; zicompinit; zicdreplay"
       zi light z-shell/F-Sy-H
 
       eval "$(${pkgs.starship}/bin/starship init zsh)"
