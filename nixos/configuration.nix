@@ -8,7 +8,7 @@
     ./hardware-configuration.nix
 
     # Add custom config here
-    ./hardware/vivobook-15.nix
+    ./hardware/vivobook-15
     ./hyprland
   ];
 
