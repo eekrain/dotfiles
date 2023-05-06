@@ -16,7 +16,7 @@
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
       # Import your home-manager configuration
-      eekrain = import ../home-manager/home.nix;
+      eekrain = import ../home-manager/eekrain.nix;
     };
   };
 
