@@ -13,93 +13,17 @@
 
 
     input {
-      kb_layout = us
-    }
+      kb_layout=us
+      kb_variant=ffffff
+      kb_model=
+      kb_options=
+      kb_rules=
 
-    general {
-      gaps_in = 3
-      gaps_out = 5
-      border_size = 3
-      col.active_border = rgb(ffc0cb)
-      col.inactive_border = rgba(595959aa)
+      follow_mouse=1
 
-      layout = dwindle # master|dwindle 
-    }
-
-    dwindle {
-      no_gaps_when_only = false
-      force_split = 0 
-      special_scale_factor = 0.8
-      split_width_multiplier = 1.0 
-      use_active_for_splits = true
-      pseudotile = yes 
-      preserve_split = yes 
-    }
-
-    master {
-      new_is_master = true
-      special_scale_factor = 0.8
-      new_is_master = true
-      no_gaps_when_only = false
-    }
-
-    # cursor_inactive_timeout = 0
-    decoration {
-      multisample_edges = true
-      active_opacity = 1.0
-      inactive_opacity = 1.0
-      fullscreen_opacity = 1.0
-      rounding = 0
-      blur = yes 
-      blur_size = 3
-      blur_passes = 1
-      blur_new_optimizations = true
-      blur_xray = true
-
-      drop_shadow = false
-      shadow_range = 4
-      shadow_render_power = 3
-      shadow_ignore_window = true
-    # col.shadow = 
-    # col.shadow_inactive
-    # shadow_offset
-      dim_inactive = false
-    # dim_strength = #0.0 ~ 1.0
-      blur_ignore_opacity = false
-      col.shadow = rgba(1a1a1aee)
-    }
-
-    # animations {
-    #   enabled = yes
-    #
-    #   bezier = easeOutElastic, 0.05, 0.9, 0.1, 1.05
-    #   # bezier=overshot,0.05,0.9,0.1,1.1
-    #
-    #   animation = windows, 1, 5, easeOutElastic
-    #   animation = windowsOut, 1, 5, default, popin 80%
-    #   animation = border, 1, 8, default
-    #   animation = fade, 1, 5, default
-    #   animation = workspaces, 1, 6, default
-    # }
-    animations {
-      enabled=1
-      bezier = overshot, 0.13, 0.99, 0.29, 1.1
-      animation = windows, 1, 4, overshot, slide
-      animation = windowsOut, 1, 5, default, popin 80%
-      animation = border, 1, 5, default
-      animation = fade, 1, 8, default
-      animation = workspaces, 1, 6, overshot, slidevert
-    }
-
-
-    gestures {
-      workspace_swipe = true
-      workspace_swipe_fingers = 4
-      workspace_swipe_distance = 250
-      workspace_swipe_invert = true
-      workspace_swipe_min_speed_to_force = 15
-      workspace_swipe_cancel_ratio = 0.5
-      workspace_swipe_create_new = false
+      touchpad {
+          natural_scroll=no
+      }
     }
 
     misc {
@@ -113,6 +37,71 @@
       focus_on_activate = true
     }
 
+    general {
+      sensitivity=1.0 # for mouse cursor    
+      gaps_in=8
+      gaps_out=15
+      border_size=3
+      col.active_border=rgba(cba6f7ff) rgba(89b4faff) rgba(94e2d5ff) 10deg
+      col.inactive_border=0xff45475a
+      apply_sens_to_raw=0 # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
+      col.group_border=0xff89dceb
+      col.group_border_active=0xfff9e2af
+      layout = dwindle # master|dwindle 
+    }
+
+    decoration {
+      blur_new_optimizations = true
+      drop_shadow = true
+      shadow_range=100
+      shadow_render_power=5
+      col.shadow= 0x33000000
+      col.shadow_inactive=0x22000000
+      rounding=15
+      blur=0
+      blur_size=1 # minimum 1
+      blur_passes=1 # minimum 1, more passes = more resource intensive.
+      # Your blur "amount" is blur_size * blur_passes, but high blur_size (over around 5-ish) will produce artifacts.
+      # if you want heavy blur, you need to up the blur_passes.
+      # the more passes, the more you can up the blur_size without noticing artifacts.
+    }
+
+    animations {
+      enabled=1
+      # bezier=overshot,0.05,0.9,0.1,1.1
+      bezier=overshot,0.13,0.99,0.29,1.1
+      animation=windows,1,4,overshot,slide
+      animation=border,1,10,default
+      animation=fade,1,10,default
+      animation=workspaces,1,6,overshot,slidevert
+    }
+
+    
+    dwindle {
+        pseudotile=1 # enable pseudotiling on dwindle
+        force_split=0
+    }
+
+    master{
+        
+    }
+
+    gestures {
+      workspace_swipe = true
+      workspace_swipe_fingers = 4
+      workspace_swipe_distance = 250
+      workspace_swipe_invert = true
+      workspace_swipe_min_speed_to_force = 15
+      workspace_swipe_cancel_ratio = 0.5
+      workspace_swipe_create_new = false
+    }
+
+
+    #-----------------------#
+    # Keybind #
+    #-----------------------#
+    bindm = $mainMod,mouse:272,movewindow
+    bindm = $mainMod,mouse:273,resizewindow
     bind = $mainMod, Return, exec, kitty zsh
     bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat" zsh
     bind = $mainMod, Q, killactive,
@@ -161,8 +150,6 @@
     bind = $mainMod, H, workspace, -1
     bind = $mainMod, period, workspace, e+1
     bind = $mainMod, comma, workspace,e-1
-    bind = $mainMod, Q, workspace,QQ
-    bind = $mainMod, T, workspace,TG
     bind = $mainMod, M, workspace,Music
 
     #-------------------------------#
@@ -174,37 +161,26 @@
     #----------------------------------#
     # move window in current workspace #
     #----------------------------------#
-    bind = $mainMod SHIFT,left ,movewindow, l
-    bind = $mainMod SHIFT,right ,movewindow, r
-    bind = $mainMod SHIFT,up ,movewindow, u
-    bind = $mainMod SHIFT,down ,movewindow, d
+    bind = $mainMod SHIFT,left ,movewindow, h
+    bind = $mainMod SHIFT,up ,movewindow, j
+    bind = $mainMod SHIFT,down ,movewindow, k
+    bind = $mainMod SHIFT,right ,movewindow, l
 
-    #---------------------------------------------------------------#
-    # Move active window to a workspace with mainMod + ctrl + [0-9] #
-    #---------------------------------------------------------------#
-    bind = $mainMod CTRL, 1, movetoworkspace, 1
-    bind = $mainMod CTRL, 2, movetoworkspace, 2
-    bind = $mainMod CTRL, 3, movetoworkspace, 3
-    bind = $mainMod CTRL, 4, movetoworkspace, 4
-    bind = $mainMod CTRL, 5, movetoworkspace, 5
-    bind = $mainMod CTRL, 6, movetoworkspace, 6
-    bind = $mainMod CTRL, 7, movetoworkspace, 7
-    bind = $mainMod CTRL, 8, movetoworkspace, 8
-    bind = $mainMod CTRL, 9, movetoworkspace, 9
-    bind = $mainMod CTRL, 0, movetoworkspace, 10
-    bind = $mainMod CTRL, left, movetoworkspace, -1
-    bind = $mainMod CTRL, right, movetoworkspace, +1
-    # same as above, but doesnt switch to the workspace
-    bind = $mainMod SHIFT, 1, movetoworkspacesilent, 1
-    bind = $mainMod SHIFT, 2, movetoworkspacesilent, 2
-    bind = $mainMod SHIFT, 3, movetoworkspacesilent, 3
-    bind = $mainMod SHIFT, 4, movetoworkspacesilent, 4
-    bind = $mainMod SHIFT, 5, movetoworkspacesilent, 5
-    bind = $mainMod SHIFT, 6, movetoworkspacesilent, 6
-    bind = $mainMod SHIFT, 7, movetoworkspacesilent, 7
-    bind = $mainMod SHIFT, 8, movetoworkspacesilent, 8
-    bind = $mainMod SHIFT, 9, movetoworkspacesilent, 9
-    bind = $mainMod SHIFT, 0, movetoworkspacesilent, 10
+    #-----------------------------------#
+    # Move active window to a workspace #
+    #-----------------------------------#
+    bind = $mainMod SHIFT, 1, movetoworkspace, 1
+    bind = $mainMod SHIFT, 2, movetoworkspace, 2
+    bind = $mainMod SHIFT, 3, movetoworkspace, 3
+    bind = $mainMod SHIFT, 4, movetoworkspace, 4
+    bind = $mainMod SHIFT, 5, movetoworkspace, 5
+    bind = $mainMod SHIFT, 6, movetoworkspace, 6
+    bind = $mainMod SHIFT, 7, movetoworkspace, 7
+    bind = $mainMod SHIFT, 8, movetoworkspace, 8
+    bind = $mainMod SHIFT, 9, movetoworkspace, 9
+    bind = $mainMod SHIFT, 0, movetoworkspace, 10
+    bind = $mainMod SHIFT, left, movetoworkspace, -1
+    bind = $mainMod SHIFT, right, movetoworkspace, +1
     # Scroll through existing workspaces with mainMod + scroll
     bind = $mainMod, mouse_down, workspace, e+1
     bind = $mainMod, mouse_up, workspace, e-1
