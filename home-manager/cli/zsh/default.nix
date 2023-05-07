@@ -26,6 +26,13 @@
 
     loginExtra = ''
       mkdir -p $HOME/.zi
+      hypr_store=$HOME/.config/hypr/store
+      mkdir -p $hypr_store
+      
+      if [ ! -f $hypr_store/dynamic_out.txt ]
+      then
+        touch $hypr_store/dynamic_out.txt $hypr_store/latest_notif $hypr_store/prev.txt
+      fi
       python ${config.xdg.configHome}/zsh/zhist_bkp/index.py -b -p $HOME/.zsh_history
     '';
 
