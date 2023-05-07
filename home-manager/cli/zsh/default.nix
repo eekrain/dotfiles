@@ -8,7 +8,6 @@
     enable = true;
 
     history = {
-
       size = 10000;
       save = 10000;
     };
@@ -25,6 +24,7 @@
     };
 
     loginExtra = ''
+      mkdir -p $HOME/.zi
       python ${config.xdg.configHome}/zsh/zhist_bkp/index.py -b -p $HOME/.zsh_history
     '';
 
@@ -60,7 +60,7 @@
       zi ice atload"unalias gco gbd gm"
       zi light davidde/git
 
-      zinit wait lucid light-mode for \
+      zi wait lucid light-mode for \
         rupa/z\
         changyuheng/fz\
         andrewferrier/fzf-z\
@@ -68,7 +68,7 @@
         aubreypwd/zsh-plugin-fd\
         Schroefdop/git-branches\
         TwoPizza9621536/zsh-exa\
-        has'zsh-aws' atinit'SHOW_AWS_PROMPT=false'\
+        has'zsh-aws' blockf atinit'SHOW_AWS_PROMPT=false'\
           eekrain/zsh-aws
 
       zi ice wait lucid atload"!_zsh_autosuggest_start"

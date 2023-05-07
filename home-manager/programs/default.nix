@@ -14,5 +14,6 @@
     spicetify-cli
     ferdium
     pavucontrol
+    nixpkgs-fmt
   ];
 }

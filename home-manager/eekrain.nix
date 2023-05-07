@@ -48,6 +48,13 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
+
+  #home default user dir and auto create the directories
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 }
