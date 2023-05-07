@@ -35,4 +35,11 @@
     enable = true;
     wlr.enable = true;
   };
+
+  security.doas = {
+    enable = true;
+    extraConfig = ''
+      permit nopass :wheel
+    '';
+  };
 }
