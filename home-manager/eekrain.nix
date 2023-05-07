@@ -7,7 +7,7 @@
     inputs.hyprland.homeManagerModules.default
     ./hyprland
     ./cli
-    ./programs
+    ./addons
   ];
 
   nixpkgs = {
