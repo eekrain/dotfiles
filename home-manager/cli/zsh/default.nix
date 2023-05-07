@@ -33,6 +33,12 @@
       then
         touch $hypr_store/dynamic_out.txt $hypr_store/latest_notif $hypr_store/prev.txt
       fi
+
+      if [ -f /run/user/1000/swww.socket ]
+      then
+        rm -rf /run/user/1000/swww.socket
+      fi
+      
       python ${config.xdg.configHome}/zsh/zhist_bkp/index.py -b -p $HOME/.zsh_history
     '';
 
