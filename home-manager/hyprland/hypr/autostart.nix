@@ -9,7 +9,6 @@ let
     waybar&
 
     # wallpaper
-    rm -rf $HOME/.cache/swww/
     $scripts/wall $config/wallpapers/4.jpg &
   '';
 in

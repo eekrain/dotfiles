@@ -21,6 +21,7 @@
       kill-gradle = "pkill -f '.*GradleDaemon.*'";
       relog = "sh $HOME/.config/eww/scripts/exitScreenActions.sh logout";
       rage = ''mpvpaper -v eDP-1 -o "profile=mpvpaper"'';
+      fix-swww = "pkill swww-daemon && rm -rf $HOME/.cache/swww/";
     };
 
     loginExtra = ''
