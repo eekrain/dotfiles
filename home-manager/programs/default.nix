@@ -15,5 +15,6 @@
     ferdium
     pavucontrol
     nixpkgs-fmt
+    pamixer
   ];
 }
