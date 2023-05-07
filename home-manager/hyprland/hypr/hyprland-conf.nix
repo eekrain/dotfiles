@@ -200,5 +200,12 @@
     bind=,XF86AudioPlay,exec, mpc -q toggle 
     bind=,XF86AudioNext,exec, mpc -q next 
     bind=,XF86AudioPrev,exec, mpc -q prev
+
+
+    #---------------#
+    # windows rules #
+    #---------------#
+    #`hyprctl clients` get class、title...
+    windowrule=fullscreen,title:^(WinBox)$
   '';
 }
