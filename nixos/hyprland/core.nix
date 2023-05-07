@@ -15,6 +15,11 @@ in
     libsForQt5.qt5.qtwayland
     libsForQt5.qt5.qtgraphicaleffects
     libsForQt5.qt5ct
+    glib # gsettings
+    xdg-utils # for opening default programs when clicking links
+    grim # screenshot functionality
+    slurp # screenshot functionality
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     #other pkgs
     sddm-sugar-candy
     wev
