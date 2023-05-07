@@ -23,6 +23,11 @@
       rm /run/user/1000/swww.socket
     fi
   '';
+  # limit timeout, cus using sddm while executing shutdown via command 
+  # (without exiting hyprland first) took so long idk why
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=10s
+  '';
 
   programs.hyprland = {
     enable = true;
