@@ -4,6 +4,7 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" =
     {
@@ -28,6 +29,12 @@
       device = "/dev/mapper/main-home";
       fsType = "ext4";
     };
+
+  fileSystems."/home/eekrain/Windows" = {
+    device = "/dev/disk/by-uuid/B6DE0F9EDE0F55D1";
+    fsType = "ntfs3";
+    options = [ "rw" "uid=1000" ];
+  };
 
   swapDevices =
     [{ device = "/dev/mapper/main-swap"; }];
