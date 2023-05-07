@@ -14,9 +14,6 @@ def print(ar):
     with open(OUT,"w") as f:
         f.write(json.dumps(ar))
 
-# with open(f"{Path.home()}/.config/hypr/im_here","w") as f:
-#     f.write("")
-
 global PAUSE_MEDIA
 PAUSE_MEDIA = False
 
@@ -61,7 +58,7 @@ def debug():
 t = threading.Thread(target=start_watcher)
 d = threading.Thread(target=debug)
 t.start()
-# d.start()
+d.start()
 
 
 
@@ -81,5 +78,5 @@ with open("test.log", "wb") as f:
                 print({"class":"none","text":""})
 
 t.join()
-# d.join()
+d.join()
         

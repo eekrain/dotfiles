@@ -5,11 +5,18 @@ let
     config=$HOME/.config/hypr
     scripts=$config/scripts
 
+    # notification daemon
+    # dunst &
+
     # waybar
     waybar&
+    $scripts/tools/dynamic &
 
     # wallpaper
     $scripts/wall $config/wallpapers/4.jpg &
+
+    # other
+    notify-send -a aurora "hello $(whoami)" &
   '';
 in
 {

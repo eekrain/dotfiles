@@ -2,6 +2,7 @@
 {
   wayland.windowManager.hyprland.extraConfig = ''
     $mainMod = WIN
+    $scripts = $HOME/.config/hypr/scripts
     monitor=,highres,auto,2
     # sets xwayland scale
     exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
@@ -10,7 +11,6 @@
     env = LIBSEAT_BACKEND,logind
     env = GDK_SCALE,2
     env = XCURSOR_SIZE,32
-
 
     input {
       kb_layout=us
@@ -200,6 +200,7 @@
     bind=,XF86AudioPlay,exec, mpc -q toggle 
     bind=,XF86AudioNext,exec, mpc -q next 
     bind=,XF86AudioPrev,exec, mpc -q prev
+    bind=,XF86TouchpadToggle,exec, $scripts/toggleTouchpad
 
 
     #---------------#

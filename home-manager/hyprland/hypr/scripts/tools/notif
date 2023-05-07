@@ -19,4 +19,5 @@ dat = {
     "stack-tag":os.getenv("DUNST_STACK_TAG"),
 }
 with open(f"{Path.home()}/.config/hypr/store/latest_notif", "wb") as f:
+    print(dat)
     pickle.dump(dat, f)
