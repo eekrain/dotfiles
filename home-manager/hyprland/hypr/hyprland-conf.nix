@@ -99,7 +99,7 @@
     bind = $mainMod, Return, exec, kitty zsh
     bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat" zsh
     bind = $mainMod, Q, killactive,
-    bind = $mainMod SHIFT, Q, exit,
+    bind = $mainMod SHIFT, Q, exec, pkill -15 swww-daemon && pkill -15 Hyprland
     bind = $mainMod SHIFT, Space, togglefloating,
     bind = $mainMod,F,fullscreen
     bind = $mainMod,Y,pin
