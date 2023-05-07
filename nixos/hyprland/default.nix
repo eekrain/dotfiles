@@ -14,6 +14,7 @@
   services.xserver.displayManager.defaultSession = "hyprland";
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.sddm.enableHidpi = true;
+  services.xserver.displayManager.sddm.theme = "sugar-candy";
 
   programs.hyprland = {
     enable = true;

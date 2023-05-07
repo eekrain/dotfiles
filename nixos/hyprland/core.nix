@@ -13,8 +13,10 @@ in
     egl-wayland
     glfw-wayland
     libsForQt5.qt5.qtwayland
+    libsForQt5.qt5.qtgraphicaleffects
     libsForQt5.qt5ct
     #other pkgs
+    sddm-sugar-candy
     wev
     wlr-randr
     libnotify

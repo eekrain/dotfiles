@@ -2,3 +2,6 @@
 [waybar-mpris]
 src.git = "https://git.hrfee.pw/hrfee/waybar-mpris"
 fetch.git = "https://git.hrfee.pw/hrfee/waybar-mpris.git"
+[sddm-sugar-candy]
+src.git = "https://github.com/eekrain/sddm-sugar-candy"
+fetch.github = "eekrain/sddm-sugar-candy"

@@ -4,4 +4,5 @@
 { pkgs ? (import ../nixpkgs.nix) { } }: {
   # example = pkgs.callPackage ./example { };
   waybar-mpris = pkgs.callPackage ./waybar-mpris.nix { };
+  sddm-sugar-candy = pkgs.callPackage ./sddm-sugar-candy.nix { };
 }
