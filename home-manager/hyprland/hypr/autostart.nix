@@ -6,7 +6,7 @@ let
     scripts=$config/scripts
 
     # notification daemon
-    # dunst &
+    dunst &
 
     # waybar
     waybar&
