@@ -15,6 +15,14 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.sddm.enableHidpi = true;
   services.xserver.displayManager.sddm.theme = "sugar-candy";
+  services.xserver.displayManager.sddm.stopScript = ''
+    pkill -15 swww-daemon
+    pkill -9 Hyprland
+    if [ -f /run/user/1000/swww.socket ]
+    then
+      rm /run/user/1000/swww.socket
+    fi
+  '';
 
   programs.hyprland = {
     enable = true;

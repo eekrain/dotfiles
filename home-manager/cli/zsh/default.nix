@@ -36,7 +36,7 @@
 
       if [ -f /run/user/1000/swww.socket ]
       then
-        rm -rf /run/user/1000/swww.socket
+        rm /run/user/1000/swww.socket
       fi
       
       python ${config.xdg.configHome}/zsh/zhist_bkp/index.py -b -p $HOME/.zsh_history

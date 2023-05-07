@@ -18,4 +18,6 @@
     };
   };
   services.auto-cpufreq.enable = true;
+  # Use the swap partition here
+  boot.resumeDevice = "/dev/mapper/main-swap";
 }

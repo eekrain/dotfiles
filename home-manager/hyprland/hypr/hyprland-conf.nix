@@ -7,6 +7,7 @@
     # sets xwayland scale
     exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
     exec-once=hypr_autostart
+    exec-once=myswayidle
     # toolkit-specific scale
     env = LIBSEAT_BACKEND,logind
     env = GDK_SCALE,2
@@ -21,6 +22,8 @@
     }
 
     misc {
+      mouse_move_enables_dpms = true
+      key_press_enables_dpms = true
       disable_autoreload = true
       disable_hyprland_logo = true
       always_follow_on_dnd = true
@@ -99,7 +102,8 @@
     bind = $mainMod, Return, exec, kitty zsh
     bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat" zsh
     bind = $mainMod, Q, killactive,
-    bind = $mainMod SHIFT, Q, exec, pkill -15 swww-daemon && pkill -15 Hyprland
+    bind = $mainMod SHIFT, Q, exit,
+    bind = $mainMod, L, exec, myswaylock
     bind = $mainMod SHIFT, Space, togglefloating,
     bind = $mainMod,F,fullscreen
     bind = $mainMod,Y,pin
@@ -140,8 +144,6 @@
     bind = $mainMod, 8, workspace, 8
     bind = $mainMod, 9, workspace, 9
     bind = $mainMod, 0, workspace, 10
-    bind = $mainMod, L, workspace, +1
-    bind = $mainMod, H, workspace, -1
     bind = $mainMod, period, workspace, e+1
     bind = $mainMod, comma, workspace,e-1
     bind = $mainMod, M, workspace,Music
