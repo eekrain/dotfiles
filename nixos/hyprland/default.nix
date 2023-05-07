@@ -10,6 +10,11 @@
     xkbVariant = "";
   };
 
+  services.xserver.enable = true;
+  services.xserver.displayManager.defaultSession = "hyprland";
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.enableHidpi = true;
+
   programs.hyprland = {
     enable = true;
     xwayland = {

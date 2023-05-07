@@ -9,6 +9,7 @@
       nix
       home-manager
       git
+      nvfetcher
     ];
   };
 }
