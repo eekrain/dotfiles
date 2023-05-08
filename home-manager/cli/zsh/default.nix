@@ -70,7 +70,7 @@
 
       zstyle ":history-search-multi-word" page-size "11"
       zi ice wait lucid
-      zi load z-shell/H-S-MW
+      zi light z-shell/H-S-MW
       
       zi ice lucid atload"unalias gco gbd gm"
       zi light davidde/git
