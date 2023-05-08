@@ -103,7 +103,7 @@
     bind = $mainMod, Return, exec, kitty zsh
     bind = $mainMod SHIFT, Return, exec, kitty --class="termfloat" zsh
     bind = $mainMod, Q, killactive,
-    bind = $mainMod SHIFT, Q, exit,
+    bind = $mainMod SHIFT, Q, exec, hypr_kill
     bind = $mainMod, L, exec, myswaylock
     bind = $mainMod SHIFT, Space, togglefloating,
     bind = $mainMod,F,fullscreen

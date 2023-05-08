@@ -17,6 +17,11 @@ let
     # other
     notify-send -a aurora "hello $(whoami)" &
   '';
+  hypr_kill = pkgs.writeShellScriptBin "hypr_kill" ''
+    pkill -15 swww-daemon
+    rm /run/user/1000/swww.socket
+    pkill -15 Hyprland
+  '';
   myswaylock = pkgs.writeShellScriptBin "myswaylock" ''
     swaylock  \
       --screenshots \
@@ -78,6 +83,7 @@ in
     myswaylock
     myswayidle
     configure-gtk
+    hypr_kill
   ];
 
   xdg.configFile."hypr/scripts".source = ./scripts;
