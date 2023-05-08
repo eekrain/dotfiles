@@ -17,5 +17,6 @@
     pavucontrol
     nixpkgs-fmt
     pamixer
+    imv
   ];
 }

@@ -34,6 +34,7 @@ in
     jq
     swaylock-effects
     swayidle
+    ffmpeg
   ];
   security.polkit.enable = true;
   systemd.user.services = {
