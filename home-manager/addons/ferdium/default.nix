@@ -4,7 +4,7 @@
 
   xdg.desktopEntries = {
     ferdium = {
-      name = "Kontol";
+      name = "Ferdium";
       genericName = "Web Browser";
       exec = "env __GLX_VENDOR_LIBRARY_NAME=amdgpu ferdium %U";
       type = "Application";
