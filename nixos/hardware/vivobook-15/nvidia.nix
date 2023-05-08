@@ -10,8 +10,7 @@ let
   '';
 in
 {
-  services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
-  # boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   boot.kernelParams = [
     # "quiet"
