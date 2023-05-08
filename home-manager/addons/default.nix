@@ -3,6 +3,7 @@
   imports = [
     ./browser.nix
     ./neovim
+    ./ferdium
   ];
 
   home.packages = with pkgs; [
@@ -12,7 +13,7 @@
     cava
     spotify
     spicetify-cli
-    # ferdium
+    ferdium
     pavucontrol
     nixpkgs-fmt
     pamixer

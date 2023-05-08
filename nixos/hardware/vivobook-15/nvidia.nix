@@ -10,7 +10,8 @@ let
   '';
 in
 {
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
+  # boot.initrd.kernelModules = [ "amdgpu" ];
 
   boot.kernelParams = [
     # "quiet"
@@ -38,6 +39,9 @@ in
         nvidia-vaapi-driver
         vaapiVdpau
         libvdpau-va-gl
+      ];
+      extraPackages32 = with pkgs; [
+        driversi686Linux.amdvlk
       ];
     };
     pulseaudio.support32Bit = true;

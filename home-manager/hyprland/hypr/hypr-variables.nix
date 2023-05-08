@@ -20,7 +20,7 @@
       QT_QPA_PLATFORM = "wayland";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-      WLR_DRM_DEVICES = "/dev/dri/card1:/dev/dri/renderD129";
+      WLR_DRM_DEVICES = "/dev/dri/card1:/dev/dri/renderD128";
       # WLR_NO_HARDWARE_CURSORS = "1"; # if no cursor,uncomment this line  
       # GBM_BACKEND = "nvidia-drm"; #on my laptop, wayland crashed using this env
       CLUTTER_BACKEND = "wayland";

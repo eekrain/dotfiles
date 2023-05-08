@@ -15,6 +15,10 @@
       DEVICES_TO_DISABLE_ON_LAN_CONNECT = ''"wifi wwan"'';
       DEVICES_TO_DISABLE_ON_WIFI_CONNECT = ''"wwan"'';
       DEVICES_TO_DISABLE_ON_WWAN_CONNECT = ''"wifi"'';
+      CPU_SCALING_MIN_FREQ_ON_AC = 400000;
+      CPU_SCALING_MAX_FREQ_ON_AC = 4280000;
+      CPU_SCALING_MIN_FREQ_ON_BAT = 400000;
+      CPU_SCALING_MAX_FREQ_ON_BAT = 4280000;
     };
   };
   services.auto-cpufreq.enable = true;
