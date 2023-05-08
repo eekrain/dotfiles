@@ -65,7 +65,7 @@
         bindkey '^[[A' history-substring-search-up
         bindkey '^[[B' history-substring-search-down
       }
-      zi ice wait lucid atinit"__bind_history_keys()"
+
       zi light zsh-users/zsh-history-substring-search
 
       zstyle ":history-search-multi-word" page-size "11"
@@ -86,10 +86,10 @@
         has'zsh-aws' blockf atinit'SHOW_AWS_PROMPT=false'\
           eekrain/zsh-aws
 
-      zi ice wait lucid atload"!_zsh_autosuggest_start"
-      zi load zsh-users/zsh-autosuggestions
-
-      # Syntax highlighting
+      zi ice wait lucid atload'!_zsh_autosuggest_start'
+      zi light zsh-users/zsh-autosuggestions
+      
+      Syntax highlighting
       zi ice wait lucid atinit"ZI[COMPINIT_OPTS]=-C; autoload bashcompinit && bashcompinit; zicompinit; zicdreplay"
       zi light z-shell/F-Sy-H
 
