@@ -8,7 +8,6 @@
     exec-once=configure-gtk
     exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
     exec-once=hypr_autostart
-    exec-once=myswayidle
     # toolkit-specific scale
     env = LIBSEAT_BACKEND,logind
     env = GDK_SCALE,2

@@ -11,6 +11,10 @@ let
     waybar&
     $scripts/tools/dynamic &
 
+    # u can change default suspend mode here
+    echo "home" > /tmp/suspend_mode
+    myswayidle &
+
     # wallpaper
     $scripts/wall $config/wallpapers/4.jpg &
 
@@ -42,14 +46,63 @@ let
       --text-color cdd6f4ff \
       --separator-color 00000000 \
       --grace 2 \
-      --fade-in 0.3
+      --fade-in 0.3 &
   '';
   myswayidle = pkgs.writeShellScriptBin "myswayidle" ''
-    swayidle -w  \
-      timeout 60 "myswaylock"\
-      timeout 600 "systemctl --suspend-hybrid" \
-      timeout 1800 "systemctl hibernate"\
-      before-sleep 'myswaylock'
+    if [ ! -f /tmp/suspend_mode ]
+    then
+      echo "work" > /tmp/suspend_mode
+    fi
+
+    SUSPEND_MODE=$(</tmp/suspend_mode)
+
+    if [ $SUSPEND_MODE = "work" ]
+    then
+      swayidle -w \
+        timeout 10                          "hyprctl dispatch dpms off" \
+        resume                              "hyprctl dispatch dpms on" \
+        timeout 20                          "hyprctl dispatch dpms on && myswaylock" \
+        timeout 25                          "hyprctl dispatch dpms off" \
+        timeout 300                         "systemctl suspend" \
+        timeout 600                         "systemctl hibernate"
+        before-sleep                        "hyprctl dispatch dpms on" &
+    else
+      swayidle -w \
+        timeout 1805                        "myswaylock" \
+        timeout 1805                        "hyprctl dispatch dpms off" \
+        timeout 3600                        "systemctl hibernate" \
+        before-sleep                        "hyprctl dispatch dpms on" &
+    fi
+  '';
+  cycle-suspend-mode = pkgs.writeShellScriptBin "cycle-suspend-mode" ''
+    SUSPEND_MODE=$(</tmp/suspend_mode)
+    # set all suspend mode that registered
+    all_mode=("work" "home")
+    indexes=( "''${!all_mode[@]}")
+    lastIndex=''${indexes[-1]}
+
+    # find current index
+    for i in "''${!all_mode[@]}"; do
+      if [[ "''${all_mode[$i]}" = $SUSPEND_MODE ]]; then
+        current_index=$i
+      fi
+    done
+    # add one to new index
+    new_index=$(($current_index + 1))
+
+    if [ $new_index -gt $lastIndex ]; then
+      # cycle back to the first mode
+      new_index=0
+    fi
+
+    # write the new mode
+    echo ''${all_mode[$new_index]} > /tmp/suspend_mode
+
+    # restart the swayidle
+    pkill swayidle
+    myswayidle &
+
+    notify-send -u critical -t 3000 "Suspend Mode" "Suspend mode changed to ''${all_mode[$new_index]}"
   '';
   # currently, there is some friction between sway and gtk:
   # https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
@@ -87,6 +140,7 @@ in
     myswayidle
     configure-gtk
     hypr_kill
+    cycle-suspend-mode
   ];
 
   xdg.configFile."hypr/scripts".source = ./scripts;
