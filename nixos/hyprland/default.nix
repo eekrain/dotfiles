@@ -17,11 +17,11 @@
   services.xserver.displayManager.sddm.theme = "sugar-candy";
   services.xserver.displayManager.sddm.stopScript = ''
     pkill -15 swww-daemon
-    pkill -9 Hyprland
     if [ -f /run/user/1000/swww.socket ]
     then
       rm /run/user/1000/swww.socket
     fi
+    pkill -9 Hyprland
   '';
   # limit timeout, cus using sddm while executing shutdown via command 
   # (without exiting hyprland first) took so long idk why

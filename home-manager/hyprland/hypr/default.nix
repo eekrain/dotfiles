@@ -18,8 +18,11 @@ let
     notify-send -a aurora "hello $(whoami)" &
   '';
   hypr_kill = pkgs.writeShellScriptBin "hypr_kill" ''
-    pkill -15 swww-daemon
-    rm /run/user/1000/swww.socket
+    kill -15 swww-daemon
+    if [ -f /run/user/1000/swww.socket ]
+    then
+      rm /run/user/1000/swww.socket
+    fi
     pkill -15 Hyprland
   '';
   myswaylock = pkgs.writeShellScriptBin "myswaylock" ''
