@@ -59,22 +59,23 @@
 
 
     initExtra = ''
-      bindkey -r '^[[A'
-      bindkey -r '^[[B'
+      export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
+
       function __bind_history_keys() {
         bindkey '^[[A' history-substring-search-up
         bindkey '^[[B' history-substring-search-down
       }
-      export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
-      
+      zi ice wait lucid atinit"__bind_history_keys()"
+      zi light zsh-users/zsh-history-substring-search
+
       zstyle ":history-search-multi-word" page-size "11"
       zi ice wait lucid
       zi load z-shell/H-S-MW
       
-      zi ice atload"unalias gco gbd gm"
+      zi ice lucid atload"unalias gco gbd gm"
       zi light davidde/git
 
-      zi wait lucid light-mode for \
+      zi lucid light-mode wait for \
         rupa/z\
         changyuheng/fz\
         andrewferrier/fzf-z\
