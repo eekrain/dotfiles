@@ -9,7 +9,6 @@
     exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
     exec-once=hypr_autostart
     # toolkit-specific scale
-    env = LIBSEAT_BACKEND,logind
     env = GDK_SCALE,2
     env = XCURSOR_SIZE,32
 
@@ -202,7 +201,7 @@
     bind=,XF86AudioPlay,exec, mpc -q toggle 
     bind=,XF86AudioNext,exec, mpc -q next 
     bind=,XF86AudioPrev,exec, mpc -q prev
-    bind=,XF86TouchpadToggle,exec, $scripts/toggleTouchpad
+    bind=,XF86TouchpadToggle,exec, $scripts/toggle_touchpad
 
 
     #---------------#

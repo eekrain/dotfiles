@@ -19,6 +19,7 @@ let
     $scripts/wall $config/wallpapers/4.jpg &
 
     # other
+    $scripts/toggle_touchpad disable &
     notify-send -a aurora "hello $(whoami)" &
   '';
   hypr_kill = pkgs.writeShellScriptBin "hypr_kill" ''
