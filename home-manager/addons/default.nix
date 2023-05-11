@@ -4,6 +4,7 @@
     ./browser.nix
     ./neovim
     ./ferdium
+    ./easyeffect-audio.nix
   ];
 
   home.packages = with pkgs; [
