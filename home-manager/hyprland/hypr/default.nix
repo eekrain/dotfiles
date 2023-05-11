@@ -59,18 +59,20 @@ let
     if [ $SUSPEND_MODE = "work" ]
     then
       swayidle -w \
-        timeout 10                          "hyprctl dispatch dpms off" \
+        timeout 30                          "hyprctl dispatch dpms off" \
         resume                              "hyprctl dispatch dpms on" \
-        timeout 20                          "hyprctl dispatch dpms on && myswaylock" \
-        timeout 25                          "hyprctl dispatch dpms off" \
+        timeout 60                          "hyprctl dispatch dpms on && myswaylock" \
+        timeout 65                          "hyprctl dispatch dpms off" \
         timeout 300                         "systemctl suspend" \
         timeout 600                         "systemctl hibernate"
         before-sleep                        "hyprctl dispatch dpms on" &
     else
       swayidle -w \
-        timeout 1805                        "myswaylock" \
-        timeout 1805                        "hyprctl dispatch dpms off" \
-        timeout 3600                        "systemctl hibernate" \
+        timeout 120                          "hyprctl dispatch dpms off" \
+        resume                              "hyprctl dispatch dpms on" \
+        timeout 300                         "myswaylock" \
+        timeout 305                         "hyprctl dispatch dpms off" \
+        timeout 600                         "systemctl hibernate" \
         before-sleep                        "hyprctl dispatch dpms on" &
     fi
   '';
