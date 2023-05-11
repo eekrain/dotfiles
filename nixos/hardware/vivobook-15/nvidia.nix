@@ -12,12 +12,6 @@ in
 {
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  boot.kernelParams = [
-    # "quiet"
-    # "splash"
-    "nvidia-drm.modeset=1"
-  ];
-
   hardware = {
     nvidia = {
       open = false;
@@ -25,8 +19,8 @@ in
       modesetting.enable = true;
       prime = {
         offload.enable = true;
-        amdgpuBusId = "PCI:04:00:0";
-        nvidiaBusId = "PCI:01:00:0";
+        amdgpuBusId = "PCI:4:0:0";
+        nvidiaBusId = "PCI:1:0:0";
       };
     };
     opengl = {
@@ -34,13 +28,9 @@ in
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        amdvlk
-        nvidia-vaapi-driver
         vaapiVdpau
         libvdpau-va-gl
-      ];
-      extraPackages32 = with pkgs; [
-        driversi686Linux.amdvlk
+        nvidia-vaapi-driver
       ];
     };
     pulseaudio.support32Bit = true;
