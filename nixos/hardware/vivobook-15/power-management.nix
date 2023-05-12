@@ -4,9 +4,9 @@
     enable = true;
     settings = {
       TLP_ENABLE = 1;
-      RADEON_DPM_PERF_LEVEL_ON_AC = "high";
-      RADEON_DPM_PERF_LEVEL_ON_BAT = "low";
-      RADEON_DPM_STATE_ON_AC = "performance";
+      RADEON_DPM_PERF_LEVEL_ON_AC = "auto";
+      RADEON_DPM_PERF_LEVEL_ON_BAT = "auto";
+      RADEON_DPM_STATE_ON_AC = "balanced";
       RADEON_DPM_STATE_ON_BAT = "battery";
       START_CHARGE_THRESH_BAT0 = 55;
       STOP_CHARGE_THRESH_BAT0 = 60;
