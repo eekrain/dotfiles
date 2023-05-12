@@ -145,7 +145,8 @@
     bind = $mainMod, 0, workspace, 10
     bind = $mainMod, period, workspace, e+1
     bind = $mainMod, comma, workspace,e-1
-    bind = $mainMod, M, workspace,Music
+    bind = $mainMod, M, workspace, 
+    bind = $mainMod, C, workspace, 
 
     #-------------------------------#
     # special workspace(scratchpad) #
@@ -174,6 +175,8 @@
     bind = $mainMod SHIFT, 8, movetoworkspace, 8
     bind = $mainMod SHIFT, 9, movetoworkspace, 9
     bind = $mainMod SHIFT, 0, movetoworkspace, 10
+    bind = $mainMod SHIFT, M, movetoworkspace, 
+    bind = $mainMod SHIFT, C, movetoworkspace, 
     bind = $mainMod SHIFT, left, movetoworkspace, -1
     bind = $mainMod SHIFT, right, movetoworkspace, +1
     # Scroll through existing workspaces with mainMod + scroll
@@ -208,6 +211,11 @@
     # windows rules #
     #---------------#
     #`hyprctl clients` get class、title...
-    windowrule=fullscreen,title:^(WinBox)$
+    windowrule=fullscreen,winbox
+    windowrule=workspace 1, brave
+    windowrulev2 = float,class:^(brave)$,title:^(Save File)$
+    windowrule=workspace name:, title:^(Spotify)$
+    windowrule=workspace name:, Ferdium
+    windowrule=workspace 2, title:^(Visual Studio Code)$
   '';
 }

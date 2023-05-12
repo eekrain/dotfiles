@@ -25,7 +25,6 @@ in
     wev
     wlr-randr
     libnotify
-    gnome.nautilus
     sshpass
     polkit_gnome
     exa
@@ -35,6 +34,7 @@ in
     swaylock-effects
     swayidle
     ffmpeg
+    gtk3
   ];
   security.polkit.enable = true;
   systemd.user.services = {
