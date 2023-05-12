@@ -1,4 +1,19 @@
 {
+    "my-custom-fonts": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "my-custom-fonts",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-J2xoO1hAnKkbRAMUKKuDJ85DBGRCHSIeDIiDD1+PSS8=",
+            "type": "url",
+            "url": "https://github.com/eekrain/dotfiles/releases/download/1.0/my_custom_fonts.tar.xz"
+        },
+        "version": "1.0"
+    },
     "sddm-sugar-candy": {
         "cargoLocks": null,
         "date": "2020-02-01",

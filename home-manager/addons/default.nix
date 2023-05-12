@@ -19,5 +19,6 @@
     nixpkgs-fmt
     pamixer
     imv
+    xarchiver
   ];
 }

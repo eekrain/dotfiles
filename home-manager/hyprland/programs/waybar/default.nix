@@ -204,7 +204,7 @@
 
     style = ''
       * {
-          font-family: FiraCode Nerd Font Mono, sans-serif;
+          font-family: DM Sans, FiraCode Nerd Font Mono, sans-serif;
           font-size: 13px;
       }
 

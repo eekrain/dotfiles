@@ -5,7 +5,8 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+      my-custom-font
+      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "CascadiaCode" ]; })
       twemoji-color-font
     ];
 
