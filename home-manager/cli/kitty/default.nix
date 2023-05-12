@@ -4,7 +4,7 @@
     kitty = {
       enable = true;
       theme = "Catppuccin-Mocha";
-      font.name = "jetbrains mono nerd font";
+      font.name = "CaskaydiaCove Nerd Font Mono";
       font.size = 15;
       settings = {
         italic_font = "auto";
