@@ -27,6 +27,7 @@ in
     libnotify
     sshpass
     polkit_gnome
+    pkgs.gnome.gnome-keyring
     exa
     fzf
     python39
