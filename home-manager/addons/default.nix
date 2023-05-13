@@ -20,5 +20,6 @@
     pamixer
     imv
     xarchiver
+    wf-recorder
   ];
 }
