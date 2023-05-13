@@ -7,6 +7,8 @@
     ./programs
   ];
 
+  services.pass-secret-service.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     systemdIntegration = true;
