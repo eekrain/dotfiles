@@ -6,6 +6,9 @@
     ./ferdium
     ./easyeffect-audio.nix
   ];
+  programs = {
+    obs-studio.enable = true;
+  };
 
   home.packages = with pkgs; [
     vscode
