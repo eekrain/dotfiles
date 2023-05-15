@@ -59,14 +59,8 @@
 
 
     initExtra = ''
+      HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1                # all search results returned will be unique
       export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
-
-      function __bind_history_keys() {
-        bindkey '^[[A' history-substring-search-up
-        bindkey '^[[B' history-substring-search-down
-      }
-
-      zi light zsh-users/zsh-history-substring-search
 
       zstyle ":history-search-multi-word" page-size "11"
       zi ice wait lucid
@@ -83,13 +77,16 @@
         aubreypwd/zsh-plugin-fd\
         Schroefdop/git-branches\
         TwoPizza9621536/zsh-exa\
-        has'zsh-aws' blockf atinit'SHOW_AWS_PROMPT=false'\
-          eekrain/zsh-aws
+        atload"bindkey '^[[A' history-substring-search-up; \
+        bindkey '^[[B' history-substring-search-down" \
+          zsh-users/zsh-history-substring-search 
+
+      zi light eekrain/zsh-aws
 
       zi ice wait lucid atload'!_zsh_autosuggest_start'
       zi light zsh-users/zsh-autosuggestions
       
-      Syntax highlighting
+      #Syntax highlighting
       zi ice wait lucid atinit"ZI[COMPINIT_OPTS]=-C; autoload bashcompinit && bashcompinit; zicompinit; zicdreplay"
       zi light z-shell/F-Sy-H
 
