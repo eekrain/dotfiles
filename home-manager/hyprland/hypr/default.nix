@@ -25,6 +25,7 @@ let
     gtk-launch brave-browser.desktop &
     gtk-launch ferdium.desktop &
     gtk-launch spotify.desktop &
+    gtk-launch freedownloadmanager.desktop &
   '';
   hypr_kill = pkgs.writeShellScriptBin "hypr_kill" ''
     pkill -15 swww-daemon
