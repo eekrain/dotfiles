@@ -133,6 +133,10 @@ let
         gsettings set $gnome_schema gtk-theme 'Catppuccin-Mocha-Compact-Pink-Dark'
       '';
   };
+  wall = pkgs.writeShellScriptBin "wall" ''
+    swww init
+    swww img $1 --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 3
+  '';
 in
 {
   imports = [
@@ -143,6 +147,7 @@ in
   home.packages = with pkgs; [
     waybar-mpris
     swww
+    wall
     hypr_autostart
     myswaylock
     myswayidle
