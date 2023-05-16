@@ -7,6 +7,9 @@
         # bitwarden
         id = "nngceckbapebfimnlniiiahkandclblb";
       }
+      {
+        id = "ahmpjcflkgiildlgicmcieglgoilbfdp";
+      }
     ];
   };
 
