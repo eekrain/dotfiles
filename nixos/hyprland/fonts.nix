@@ -11,8 +11,10 @@
     ];
 
     fontconfig.defaultFonts = {
-      serif = [ "Noto Sans" ];
-      sansSerif = [ "Noto Serif" ];
+      # serif = [ "Noto Serif" ];
+      serif = [ "DM Sans" ];
+      sansSerif = [ "DM Sans" ];
+      monospace = [ "DM Sans" ];
     };
   };
 }

@@ -1,4 +1,19 @@
 {
+    "freedownloadmanager": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "freedownloadmanager",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-qTc2PIIfW+YuSAb8z3Vpf2bTdhumoZXOATsBUG2EYTY=",
+            "type": "url",
+            "url": "https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb"
+        },
+        "version": "6.19.0"
+    },
     "my-custom-fonts": {
         "cargoLocks": null,
         "date": null,

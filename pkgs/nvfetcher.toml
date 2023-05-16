@@ -8,3 +8,6 @@ fetch.github = "eekrain/sddm-sugar-candy"
 [my-custom-fonts]
 src.manual = "1.0"
 fetch.url = "https://github.com/eekrain/dotfiles/releases/download/1.0/my_custom_fonts.tar.xz"
+[freedownloadmanager]
+src.manual = "6.19.0"
+fetch.url = "https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb"

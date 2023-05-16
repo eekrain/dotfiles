@@ -33,7 +33,7 @@
     };
 
     font = {
-      name = "JetBrainsMono Nerd Font";
+      name = "DM Sans";
       size = 12;
     };
 
