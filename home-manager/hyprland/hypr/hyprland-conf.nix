@@ -123,12 +123,20 @@
     bind = $mainMod , G,exec,hyprctl --batch "keyword general:gaps_out 0;keyword general:gaps_in 0"
 
     #--------------------------------------#
-    # Move focus with mainMod + arrow keys #
+    # Move focus & window with mainMod + arrow keys #
     #--------------------------------------#
     bind = $mainMod, left, movefocus, l
     bind = $mainMod, right, movefocus, r
     bind = $mainMod, up, movefocus, u
     bind = $mainMod, down, movefocus, d
+
+    #----------------------------------#
+    # move window in current workspace #
+    #----------------------------------#
+    bind = $mainMod SHIFT,left ,movewindow, h
+    bind = $mainMod SHIFT,up ,movewindow, j
+    bind = $mainMod SHIFT,down ,movewindow, k
+    bind = $mainMod SHIFT,right ,movewindow, l
 
     #----------------------------------------#
     # Switch workspaces with mainMod + [0-9] #
@@ -154,14 +162,6 @@
     bind = $mainMod, minus, movetoworkspace,special
     bind = $mainMod, equal, togglespecialworkspace
 
-    #----------------------------------#
-    # move window in current workspace #
-    #----------------------------------#
-    bind = $mainMod SHIFT,left ,movewindow, h
-    bind = $mainMod SHIFT,up ,movewindow, j
-    bind = $mainMod SHIFT,down ,movewindow, k
-    bind = $mainMod SHIFT,right ,movewindow, l
-
     #-----------------------------------#
     # Move active window to a workspace #
     #-----------------------------------#
@@ -177,8 +177,6 @@
     bind = $mainMod SHIFT, 0, movetoworkspace, 10
     bind = $mainMod SHIFT, M, movetoworkspace, 
     bind = $mainMod SHIFT, C, movetoworkspace, 
-    bind = $mainMod SHIFT, left, movetoworkspace, -1
-    bind = $mainMod SHIFT, right, movetoworkspace, +1
     # Scroll through existing workspaces with mainMod + scroll
     bind = $mainMod, mouse_down, workspace, e+1
     bind = $mainMod, mouse_up, workspace, e-1

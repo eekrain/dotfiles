@@ -36,7 +36,7 @@
       "custom/ss" = {
         "format" = "{}";
         "exec" = "~/.config/hypr/scripts/tools/expand ss-icon";
-        "on-click" = "~/.config/hypr/scripts/screenshot_full";
+        "on-click" = "~/.config/hypr/scripts/screenshot";
       };
 
       "custom/cycle_wall" = {
