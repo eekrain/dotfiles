@@ -103,9 +103,9 @@
     bind = $mainMod, Q, killactive,
     bind = $mainMod SHIFT, Q, exec, hypr_kill
     bind = $mainMod, L, exec, myswaylock
-    bind = $mainMod SHIFT, Space, togglefloating,
-    bind = $mainMod,F,fullscreen
-    bind = $mainMod,Y,pin
+    bind = $mainMod, Space, togglefloating,
+    bind = $mainMod, F, fullscreen
+    bind = $mainMod, Y, pin
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, J, togglesplit, # dwindle
     bind = $mainMod, D, exec, wofi --show drun
