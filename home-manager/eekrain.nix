@@ -9,11 +9,14 @@
     ./hyprland
     ./cli
     ./addons
+    ./addons
+    ./development/android
   ];
 
   nixpkgs = {
     # You can add overlays here
     overlays = [
+      inputs.android-nixpkgs.overlays.default
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
