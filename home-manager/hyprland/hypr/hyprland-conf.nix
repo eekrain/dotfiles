@@ -212,9 +212,6 @@
     windowrule=fullscreen,winbox
     windowrule=workspace 1, brave
     windowrulev2 = float,class:^(brave)$,title:^(Save File)$
-    windowrulev2=workspace 3, class:^(jetbrains-studio)$, title:^((?!Running Devices).)*$
-    windowrulev2=workspace 4, class:^(jetbrains-studio)$, title:^(.*Running Devices.*)$
-    windowrulev2=tile, class:^(jetbrains-studio)$, title:^(.*Running Devices.*)$
     windowrule=workspace name:, title:^(Spotify)$
     windowrule=workspace name:, Ferdium
     windowrule=workspace 2, title:^(Visual Studio Code)$
