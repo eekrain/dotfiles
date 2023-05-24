@@ -5,7 +5,6 @@
   # You can import other home-manager modules here
   imports = [
     inputs.hyprland.homeManagerModules.default
-    inputs.android-nixpkgs.hmModule
     ./hyprland
     ./cli
     ./addons
@@ -30,7 +29,6 @@
     ];
     # Configure your nixpkgs instance
     config = {
-      android_sdk.accept_license = true;
       # Disable if you don't want unfree packages
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
