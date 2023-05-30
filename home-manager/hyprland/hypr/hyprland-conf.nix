@@ -210,8 +210,7 @@
     #---------------#
     #`hyprctl clients` get class、title...
     windowrulev2=fullscreen, class:^(.*winbox64.*)$, title:^(.*WinBox.*)$
-    # windowrulev2=fullscreen, class:^(.*winbox64.*)$, title:^(.*WinBox \(64bit\).*)$
-    # windowrulev2=float, class:^(.*winbox64.*)$, title:^((?!WinBox \(64bit\)).)*$
+    windowrulev2=float, class:^(.*winbox64.*)$, title:^((?!WinBox).)*$
     windowrule=workspace 1, brave
     windowrulev2 = float,class:^(brave)$,title:^(Save File)$
     windowrulev2=workspace 3, class:^(jetbrains-studio)$, title:^((?!Running Devices).)*$
