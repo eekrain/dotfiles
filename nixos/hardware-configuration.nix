@@ -8,30 +8,30 @@
 
   fileSystems."/" =
     {
-      device = "/dev/mapper/main-root";
+      device = "/dev/disk/by-uuid/d4b44d0d-2908-480b-9bc2-e82cc1d71ee7";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/9EEF-555F";
+      device = "/dev/disk/by-uuid/23A7-0620";
       fsType = "vfat";
     };
 
   fileSystems."/nix" =
     {
-      device = "/dev/mapper/main-nix--store";
+      device = "/dev/disk/by-uuid/3ccc5952-788f-4bbe-8d39-fecc9ab4662e";
       fsType = "ext4";
     };
 
   fileSystems."/home" =
     {
-      device = "/dev/mapper/main-home";
+      device = "/dev/disk/by-uuid/75e130e1-7af1-4e8d-9cff-e78245547146";
       fsType = "ext4";
     };
 
   swapDevices =
-    [{ device = "/dev/mapper/main-swap"; }];
+    [{ device = "/dev/disk/by-uuid/e359f208-ec20-4232-bc21-347f671a6258"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

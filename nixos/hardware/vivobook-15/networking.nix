@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   # Enable networking
   networking.networkmanager.enable = true;
@@ -7,4 +7,13 @@
 
   # Set your time zone.
   time.timeZone = "Asia/Jakarta";
+
+  specialisation = {
+    proxied_hotspot.configuration = {
+      boot.loader.grub.configurationName = lib.mkForce "Proxied Hotspot";
+      networking.proxy.default = "http://172.19.0.1:8080";
+      networking.proxy.noProxy = "127.0.0.1,localhost,work.com";
+    };
+  };
+
 }
