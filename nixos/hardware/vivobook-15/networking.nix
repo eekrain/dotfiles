@@ -8,6 +8,12 @@
   # Set your time zone.
   time.timeZone = "Asia/Jakarta";
 
+  networking.extraHosts =
+    ''
+      127.0.0.1 mydomain.com
+      127.0.0.1 dashboard.mydomain.com
+    '';
+
   specialisation = {
     proxied_hotspot.configuration = {
       boot.loader.grub.configurationName = lib.mkForce "Proxied Hotspot";
@@ -16,4 +22,12 @@
     };
   };
 
+  services.dnscrypt-proxy2 = {
+    enable = true;
+    # configFile = ./dnscrypt-tiarap.toml;
+  };
+
+  systemd.services.dnscrypt-proxy2.serviceConfig = {
+    StateDirectory = "dnscrypt-proxy";
+  };
 }
