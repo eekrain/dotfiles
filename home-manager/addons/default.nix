@@ -4,7 +4,7 @@
     ./browser.nix
     ./neovim
     ./ferdium
-    ./easyeffect-audio.nix
+    ./easyeffect-audio
   ];
   programs = {
     obs-studio.enable = true;
