@@ -30,4 +30,13 @@
   systemd.services.dnscrypt-proxy2.serviceConfig = {
     StateDirectory = "dnscrypt-proxy";
   };
+
+  networking.firewall = {
+    enable = false;
+    allowedTCPPorts = [ 80 443 ];
+    allowedTCPPortRanges = [
+      { from = 3000; to = 3010; }
+      { from = 8080; to = 8090; }
+    ];
+  };
 }
