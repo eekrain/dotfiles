@@ -8,7 +8,7 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-qTc2PIIfW+YuSAb8z3Vpf2bTdhumoZXOATsBUG2EYTY=",
+            "sha256": "sha256-3KmNhkEEOzW5qiK6e4ZPI9wbTdA2EFWUH5Z1K8kdXWw=",
             "type": "url",
             "url": "https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb"
         },
@@ -28,6 +28,26 @@
             "url": "https://github.com/eekrain/dotfiles/releases/download/1.0/my_custom_fonts.tar.xz"
         },
         "version": "1.0"
+    },
+    "my-turso-cli": {
+        "cargoLocks": null,
+        "date": "2023-10-05",
+        "extract": null,
+        "name": "my-turso-cli",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "tursodatabase",
+            "repo": "turso-cli",
+            "rev": "242aa0c34ba3926565240ac41cbdfe14700752ed",
+            "sha256": "sha256-cRixO1wVEpOywJ6JAw8hz0GXXIDJ369rNWCwgf/WQE0=",
+            "type": "github"
+        },
+        "version": "242aa0c34ba3926565240ac41cbdfe14700752ed"
     },
     "sddm-sugar-candy": {
         "cargoLocks": null,

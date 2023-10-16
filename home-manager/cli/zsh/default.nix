@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  home.packages = with pkgs; [ zi awscli2 nodejs-16_x yarn nitch krabby ];
+  home.packages = with pkgs; [ zi awscli2 nodejs_20 yarn nitch krabby my-turso-cli ];
 
   xdg.configFile."zsh/zhist_bkp".source = ./zhist_bkp;
 
