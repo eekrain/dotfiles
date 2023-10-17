@@ -17,17 +17,17 @@
   specialisation = {
     proxied_hotspot.configuration = {
       boot.loader.grub.configurationName = lib.mkForce "Proxied Hotspot";
-      networking.proxy.default = "http://172.19.0.1:8080";
-      networking.proxy.httpProxy = "http://172.19.0.1:8080";
-      networking.proxy.httpsProxy = "http://172.19.0.1:8080";
-      networking.proxy.ftpProxy = "http://172.19.0.1:8080";
-      networking.proxy.rsyncProxy = "http://172.19.0.1:8080";
-      networking.proxy.allProxy = "http://172.19.0.1:8080";
+      networking.proxy.default = "http://169.254.1.1:10809";
+      networking.proxy.httpProxy = "http://169.254.1.1:10809";
+      networking.proxy.httpsProxy = "http://169.254.1.1:10809";
+      networking.proxy.ftpProxy = "http://169.254.1.1:10809";
+      networking.proxy.rsyncProxy = "http://169.254.1.1:10809";
+      networking.proxy.allProxy = "http://169.254.1.1:10809";
       networking.proxy.noProxy = "127.0.0.1,localhost,work.com";
 
       environment.sessionVariables = {
-        HTTPS_PROXY = "http://172.19.0.1:8080";
-        HTTP_PROXY = "http://172.19.0.1:8080";
+        HTTPS_PROXY = "http://169.254.1.1:10809";
+        HTTP_PROXY = "http://169.254.1.1:10809";
       };
     };
   };
