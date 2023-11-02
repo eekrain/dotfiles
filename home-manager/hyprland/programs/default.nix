@@ -2,7 +2,7 @@
 {
   imports = [
     ./waybar
-    ./wofi
+    ./rofi
     ./mpv
     ./bat
     ./btop
