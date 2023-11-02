@@ -3,10 +3,11 @@
   # Enable networking
   networking.networkmanager.enable = true;
   # Use iwd as networkmanager backend
-  networking.networkmanager.wifi.backend = "iwd";
+  # networking.networkmanager.wifi.backend = "iwd";
+  services.gnome.gnome-keyring.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Asia/Jakarta";
+  time.timeZone = "Asia/Makassar";
 
   networking.extraHosts =
     ''

@@ -8,7 +8,6 @@
 
       MOZ_ENABLE_WAYLAND = "1";
       LIBSEAT_BACKEND = "logind";
-      NIXOS_OZONE_WL = "1";
       QT_QPA_PLATFORMTHEME = "gtk3";
       QT_SCALE_FACTOR = "1";
       QT_QPA_PLATFORM = "wayland;xcb";
