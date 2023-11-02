@@ -10,7 +10,6 @@
     grub = {
       configurationName = "Default";
       enable = true;
-      version = 2;
       efiSupport = true;
       devices = [ "nodev" ];
       useOSProber = true;

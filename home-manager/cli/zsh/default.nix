@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  home.packages = with pkgs; [ zi awscli2 nodejs-16_x yarn nitch krabby ];
+  home.packages = with pkgs; [ zi awscli2 nodejs_20 nodePackages.pnpm yarn nitch krabby my-turso-cli ];
 
   xdg.configFile."zsh/zhist_bkp".source = ./zhist_bkp;
 
@@ -22,6 +22,9 @@
       relog = "sh $HOME/.config/eww/scripts/exitScreenActions.sh logout";
       rage = ''mpvpaper -v eDP-1 -o "profile=mpvpaper"'';
       fix-swww = "pkill swww-daemon; rm /run/user/1000/swww.socket; rm -rf ~/.cache/swww/";
+      ls = "eza -Fgh --color-scale --git --group-directories-first --icons";
+      ll = "eza - lbF - -git";
+      la = "eza -lbhHigmuSa --time-style=long-iso --git --color-scale";
     };
 
     loginExtra = ''
@@ -76,9 +79,8 @@
         changyuheng/zsh-interactive-cd\
         aubreypwd/zsh-plugin-fd\
         Schroefdop/git-branches\
-        TwoPizza9621536/zsh-exa\
         atload"bindkey '^[[A' history-substring-search-up; \
-        bindkey '^[[B' history-substring-search-down" \
+      bindkey '^[[B' history-substring-search-down" \
           zsh-users/zsh-history-substring-search 
 
       zi light eekrain/zsh-aws
@@ -87,7 +89,8 @@
       zi light zsh-users/zsh-autosuggestions
       
       #Syntax highlighting
-      zi ice wait lucid atinit"ZI[COMPINIT_OPTS]=-C; autoload bashcompinit && bashcompinit; zicompinit; zicdreplay"
+      zi ice wait lucid atinit"ZI[COMPINIT_OPTS] = -C;
+      autoload bashcompinit && bashcompinit; zicompinit; zicdreplay"
       zi light z-shell/F-Sy-H
 
       eval "$(${pkgs.starship}/bin/starship init zsh)"
@@ -96,3 +99,4 @@
     '';
   };
 }
+

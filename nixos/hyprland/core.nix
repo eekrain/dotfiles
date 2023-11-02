@@ -29,9 +29,9 @@ in
     sshpass
     polkit_gnome
     pkgs.gnome.gnome-keyring
-    exa
+    eza
     fzf
-    python39
+    python3
     jq
     swaylock-effects
     swayidle

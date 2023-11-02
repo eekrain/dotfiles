@@ -15,17 +15,17 @@
       QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.libsForQt5.qt5.qtbase}/lib/qt-${pkgs.libsForQt5.qt5.qtbase.version}/plugins";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-      GBM_BACKEND = "nvidia-drm"; #on my laptop, wayland crashed using this env
       _JAVA_AWT_WM_NONREPARENTING = "1";
-      __GL_GSYNC_ALLOWED = "0";
-      __GL_VRR_ALLOWED = "0";
+
+      # LIBVA_DRIVER_NAME = "nvidia";
+      # WLR_RENDERER = "vulkan";
+      # GBM_BACKEND = "nvidia-drm"; #on my laptop, wayland crashed using this env
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      LIBVA_DRIVER_NAME = "nvidia";
-      WLR_RENDERER = "vulkan";
-      WLR_BACKEND = "vulkan";
       WLR_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0";
       # WLR_NO_HARDWARE_CURSORS = "1"; # if no cursor,uncomment this line  
-      GDK_SCALE = "2";
+      WLR_RENDERER_ALLOW_SOFTWARE = "1";
+
+      GDK_SCALE = "1";
       GDK_BACKEND = "wayland";
       SDL_VIDEODRIVER = "wayland";
       CLUTTER_BACKEND = "wayland";

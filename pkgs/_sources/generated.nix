@@ -6,7 +6,7 @@
     version = "6.19.0";
     src = fetchurl {
       url = "https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb";
-      sha256 = "sha256-qTc2PIIfW+YuSAb8z3Vpf2bTdhumoZXOATsBUG2EYTY=";
+      sha256 = "sha256-3KmNhkEEOzW5qiK6e4ZPI9wbTdA2EFWUH5Z1K8kdXWw=";
     };
   };
   my-custom-fonts = {
@@ -16,6 +16,18 @@
       url = "https://github.com/eekrain/dotfiles/releases/download/1.0/my_custom_fonts.tar.xz";
       sha256 = "sha256-J2xoO1hAnKkbRAMUKKuDJ85DBGRCHSIeDIiDD1+PSS8=";
     };
+  };
+  my-turso-cli = {
+    pname = "my-turso-cli";
+    version = "242aa0c34ba3926565240ac41cbdfe14700752ed";
+    src = fetchFromGitHub ({
+      owner = "tursodatabase";
+      repo = "turso-cli";
+      rev = "242aa0c34ba3926565240ac41cbdfe14700752ed";
+      fetchSubmodules = false;
+      sha256 = "sha256-cRixO1wVEpOywJ6JAw8hz0GXXIDJ369rNWCwgf/WQE0=";
+    });
+    date = "2023-10-05";
   };
   sddm-sugar-candy = {
     pname = "sddm-sugar-candy";

@@ -13,8 +13,6 @@
     recommendedEnvironment = true;
     xwayland = {
       enable = true;
-      hidpi = true;
     };
-    nvidiaPatches = true;
   };
 }
