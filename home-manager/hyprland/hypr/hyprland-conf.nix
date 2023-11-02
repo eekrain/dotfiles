@@ -41,25 +41,27 @@
       col.active_border=rgba(cba6f7ff) rgba(89b4faff) rgba(94e2d5ff) 10deg
       col.inactive_border=0xff45475a
       apply_sens_to_raw=0 # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
-      col.group_border=0xff89dceb
-      col.group_border_active=0xfff9e2af
+      # col.group_border=0xff89dceb
+      # col.group_border_active=0xfff9e2af
       layout = dwindle # master|dwindle 
     }
 
     decoration {
-      blur_new_optimizations = true
+      rounding=15
       drop_shadow = true
       shadow_range=100
       shadow_render_power=5
       col.shadow= 0x33000000
       col.shadow_inactive=0x22000000
-      rounding=15
-      blur=0
-      blur_size=1 # minimum 1
-      blur_passes=1 # minimum 1, more passes = more resource intensive.
-      # Your blur "amount" is blur_size * blur_passes, but high blur_size (over around 5-ish) will produce artifacts.
-      # if you want heavy blur, you need to up the blur_passes.
-      # the more passes, the more you can up the blur_size without noticing artifacts.
+
+      blur {
+          enabled = true
+          size = 3
+          passes = 1
+          new_optimizations = true
+          xray = true
+          ignore_opacity = false
+      }
     }
 
     animations {
