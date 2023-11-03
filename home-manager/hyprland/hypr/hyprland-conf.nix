@@ -1,15 +1,15 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   wayland.windowManager.hyprland.extraConfig = ''
     $mainMod = WIN
     $scripts = $HOME/.config/hypr/scripts
     monitor=,highres,auto,2
-    # sets xwayland scale
+
+    # Fix slow startup
+    exec-once=${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP && systemctl --user start hyprland-session.target && systemctl --user import-environment DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP
+
     exec-once=configure-gtk
-    # exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
     exec-once=hypr_autostart
-    # toolkit-specific scale
-    # env = GDK_SCALE,2
     env = XCURSOR_SIZE,32
 
     input {

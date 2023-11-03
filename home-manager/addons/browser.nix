@@ -14,7 +14,7 @@
     ];
   };
 
-  home.packages = with pkgs; [ my-thorium ]; #freedownloadmanager
+  #home.packages = with pkgs; [ my-thorium ]; #freedownloadmanager
   xdg.desktopEntries = {
     brave-browser = {
       name = "Brave Web Browser";
