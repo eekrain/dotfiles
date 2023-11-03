@@ -3,55 +3,18 @@
 {
   freedownloadmanager = {
     pname = "freedownloadmanager";
-    version = "6.19.0";
+    version = "6.19.1";
     src = fetchurl {
       url = "https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb";
       sha256 = "sha256-3KmNhkEEOzW5qiK6e4ZPI9wbTdA2EFWUH5Z1K8kdXWw=";
     };
   };
-  my-custom-fonts = {
-    pname = "my-custom-fonts";
-    version = "1.0";
+  my-thorium = {
+    pname = "my-thorium";
+    version = "117.0.5938.157";
     src = fetchurl {
-      url = "https://github.com/eekrain/dotfiles/releases/download/1.0/my_custom_fonts.tar.xz";
-      sha256 = "sha256-J2xoO1hAnKkbRAMUKKuDJ85DBGRCHSIeDIiDD1+PSS8=";
+      url = "https://github.com/Alex313031/thorium/releases/download/M117.0.5938.157/thorium-browser_117.0.5938.157_amd64.deb";
+      sha256 = "sha256-muNBYP6832PmP0et9ESaRpd/BIwYZmwdkHhsMNBLQE4=";
     };
-  };
-  my-turso-cli = {
-    pname = "my-turso-cli";
-    version = "242aa0c34ba3926565240ac41cbdfe14700752ed";
-    src = fetchFromGitHub ({
-      owner = "tursodatabase";
-      repo = "turso-cli";
-      rev = "242aa0c34ba3926565240ac41cbdfe14700752ed";
-      fetchSubmodules = false;
-      sha256 = "sha256-cRixO1wVEpOywJ6JAw8hz0GXXIDJ369rNWCwgf/WQE0=";
-    });
-    date = "2023-10-05";
-  };
-  sddm-sugar-candy = {
-    pname = "sddm-sugar-candy";
-    version = "a1fae5159c8f7e44f0d8de124b14bae583edb5b8";
-    src = fetchFromGitHub ({
-      owner = "eekrain";
-      repo = "sddm-sugar-candy";
-      rev = "a1fae5159c8f7e44f0d8de124b14bae583edb5b8";
-      fetchSubmodules = false;
-      sha256 = "sha256-p2d7I0UBP63baW/q9MexYJQcqSmZ0L5rkwK3n66gmqM=";
-    });
-    date = "2020-02-01";
-  };
-  waybar-mpris = {
-    pname = "waybar-mpris";
-    version = "485ec0ec0af80a0d63c10e94aebfc59b16aab46b";
-    src = fetchgit {
-      url = "https://git.hrfee.pw/hrfee/waybar-mpris.git";
-      rev = "485ec0ec0af80a0d63c10e94aebfc59b16aab46b";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sha256 = "sha256-BjLxWnDNsR2ZnNklNiKzi1DeoPpaZsRdKbVSwNwYhJ4=";
-    };
-    date = "2022-01-27";
   };
 }

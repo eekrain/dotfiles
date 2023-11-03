@@ -8,4 +8,5 @@
   sddm-sugar-candy = pkgs.callPackage ./sddm-sugar-candy.nix { };
   freedownloadmanager = pkgs.callPackage ./freedownloadmanager.nix { };
   my-turso-cli = pkgs.callPackage ./my-turso-cli.nix { };
+  my-thorium = pkgs.callPackage ./thorium.nix { };
 }
