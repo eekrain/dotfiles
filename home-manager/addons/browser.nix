@@ -2,6 +2,7 @@
 {
   programs.brave = {
     enable = true;
+    package = (pkgs.brave.override { vulkanSupport = true; });
     extensions = [
       {
         # bitwarden
@@ -14,12 +15,12 @@
     ];
   };
 
-  #home.packages = with pkgs; [ my-thorium ]; #freedownloadmanager
+  # home.packages = with pkgs; [ my-thorium ]; #freedownloadmanager
   xdg.desktopEntries = {
     brave-browser = {
       name = "Brave Web Browser";
       genericName = "Web Browser";
-      exec = "env WLR_DRM_DEVICES=/dev/dri/renderD128 nvidia-offload ${pkgs.brave}/bin/brave %U";
+      exec = "nvidia-offload ${pkgs.brave}/bin/brave %U";
       type = "Application";
       terminal = false;
       icon = "brave-browser";
@@ -32,11 +33,11 @@
       actions = {
         "new-window" = {
           name = "New Window";
-          exec = "env WLR_DRM_DEVICES=/dev/dri/renderD128 nvidia-offload ${pkgs.brave}/bin/brave";
+          exec = "nvidia-offload ${pkgs.brave}/bin/brave";
         };
         "new-private-window" = {
           name = "New Incognito Window";
-          exec = "env WLR_DRM_DEVICES=/dev/dri/renderD128 nvidia-offload ${pkgs.brave}/bin/brave --incognito";
+          exec = "nvidia-offload ${pkgs.brave}/bin/brave --incognito";
         };
       };
     };
