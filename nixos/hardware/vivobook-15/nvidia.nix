@@ -15,7 +15,7 @@ in
   hardware = {
     nvidia = {
       open = false;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      # package = config.boot.kernelPackages.nvidiaPackages.latest;
       modesetting.enable = true;
       prime = {
         offload.enable = true;

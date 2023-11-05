@@ -13,9 +13,9 @@
       WLR_RENDERER = "vulkan";
       WLR_RENDERER_ALLOW_SOFTWARE = "1";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      __GL_VRR_ALLOWED = "1";
+      __GL_VRR_ALLOWED = "0";
       WLR_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
-      WLR_NO_HARDWARE_CURSORS = "1"; # if no cursor,uncomment this line  
+      # WLR_NO_HARDWARE_CURSORS = "1"; # if no cursor,uncomment this line  
 
       # GDK_SCALE = "1";
       GDK_BACKEND = "wayland,x11";

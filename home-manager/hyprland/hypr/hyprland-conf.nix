@@ -221,5 +221,6 @@
     windowrule=workspace name:, title:^(Spotify)$
     windowrule=workspace name:, title:^(Ferdium)$
     windowrule=workspace 2, title:^(Visual Studio Code)$
+    windowrulev2=fakefullscreen, class:^(code-url-handler)$
   '';
 }

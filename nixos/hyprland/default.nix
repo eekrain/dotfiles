@@ -29,14 +29,6 @@
     DefaultTimeoutStopSec=10s
   '';
 
-  programs.hyprland = {
-    enable = true;
-    xwayland = {
-      enable = true;
-    };
-    enableNvidiaPatches = true;
-  };
-
   services = {
     dbus.packages = [ pkgs.gcr ];
     gvfs.enable = true;
