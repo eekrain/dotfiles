@@ -9,6 +9,8 @@
   # Set your time zone.
   time.timeZone = "Asia/Makassar";
 
+  services.ntp.enable = true;
+
   networking.extraHosts =
     ''
       127.0.0.1 mydomain.com
