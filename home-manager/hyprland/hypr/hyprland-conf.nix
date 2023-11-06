@@ -6,10 +6,9 @@
     monitor=,highres,auto,2
 
     # Fix slow startup
-    exec-once=${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP && systemctl --user start hyprland-session.target && systemctl --user import-environment DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP
-
-    exec-once=configure-gtk
     exec-once=hypr_autostart
+    exec=configure-gtk
+    
     env = XCURSOR_SIZE,32
 
     input {

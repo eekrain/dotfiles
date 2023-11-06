@@ -4,6 +4,12 @@ let
     config=$HOME/.config/hypr
     scripts=$config/scripts
 
+    ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP
+    systemctl --user start hyprland-session.target
+    systemctl --user import-environment DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP
+    systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+    systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+
     # notification daemon
     dunst &
 
@@ -22,10 +28,11 @@ let
     $scripts/toggle_touchpad disable &
     notify-send -a aurora "hello $(whoami)" &
 
-    gtk-launch ferdium.desktop &
     gtk-launch spotify.desktop &
-    gtk-launch brave-browser.desktop &
+    gtk-launch ferdium.desktop &
+    sleep 5
     hyprctl dispatch workspace 1
+    gtk-launch brave-browser.desktop &
   '';
   hypr_kill = pkgs.writeShellScriptBin "hypr_kill" ''
     pkill -15 swww-daemon
@@ -129,6 +136,7 @@ let
       in
       ''
         export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+        echo $XDG_DATA_DIRS
         gnome_schema=org.gnome.desktop.interface
         gsettings set $gnome_schema gtk-theme 'Catppuccin-Mocha-Compact-Pink-Dark'
       '';

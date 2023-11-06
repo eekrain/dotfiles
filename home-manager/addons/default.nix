@@ -24,8 +24,8 @@
     imv
     xarchiver
     wf-recorder
-    gnome.file-roller
     lollypop
+    peazip
   ];
 
   xdg.mimeApps = {
@@ -40,30 +40,22 @@
               subt);
         in
         [
-          { "text/plain" = "nvim.desktop"; }
-          { "application/zip" = "org.gnome.FileRoller.desktop"; }
-          { "application/rar" = "org.gnome.FileRoller.desktop"; }
-          { "application/7z" = "org.gnome.FileRoller.desktop"; }
-          { "application/*tar" = "org.gnome.FileRoller.desktop"; }
-          { "inode/directory" = "pcmanfm.desktop"; }
+          { "text/plain" = "code.desktop"; }
           { "video/*" = "mpv.desktop"; }
           { "audio/*" = "org.gnome.Lollypop.desktop"; }
-          { "x-scheme-handler/tg" = "ferdium.desktop"; }
+          # Browser
           { "text/html" = "brave.desktop"; }
-          { "x-scheme-handler/http" = "brave.desktop"; }
-          { "x-scheme-handler/https" = "brave.desktop"; }
-          { "x-scheme-handler/ftp" = "brave.desktop"; }
-          { "x-scheme-handler/chrome" = "brave.desktop"; }
-          { "x-scheme-handler/about" = "brave.desktop"; }
-          { "x-scheme-handler/unknown" = "brave.desktop"; }
-          { "application/x-extension-htm" = "brave.desktop"; }
-          { "application/x-extension-html" = "brave.desktop"; }
-          { "application/x-extension-shtml" = "brave.desktop"; }
-          { "application/xhtml+xml" = "brave.desktop"; }
-          { "application/x-extension-xhtml" = "brave.desktop"; }
-          { "application/x-extension-xht" = "brave.desktop"; }
+          (subtypes "x-scheme-handler" "brave.desktop"
+            [ "http" "https" "ftp" "chrome" "about" ])
+          { "x-scheme-handler/tg" = "ferdium.desktop"; }
+          (subtypes "application" "brave.desktop"
+            [ "x-extension-htm" "x-extension-html" "x-extension-shtml" "xhtml+xml" "x-extension-xhtml" "x-extension-xht" "pdf" ])
+          # Image
           (subtypes "image" "imv-dir.desktop"
             [ "png" "jpeg" "gif" "svg" "svg+xml" "tiff" "x-tiff" "x-dcraw" ])
+          # Archive
+          (subtypes "application" "peazip.desktop"
+            [ "bzip2" "gzip" "vnd.android.package-archive" "vnd.ms-cab-compressed" "vnd.debian.binary-package" "x-7z-compressed" "x-7z-compressed-tar" "x-ace" "x-alz" "x-ar" "x-archive" "x-arj" "x-brotli" "x-bzip-brotli-tar" "x-bzip" "x-bzip-compressed-tar" "x-bzip1" "x-bzip1-compressed-tar" "x-cabinet" "x-cd-image" "x-compress" "x-compressed-tar" "x-cpio" "x-chrome-extension" "x-deb" "x-ear" "x-ms-dos-executable" "x-gtar" "x-gzip" "x-gzpostscript" "x-java-archive" "x-lha" "x-lhz" "x-lrzip" "x-lrzip-compressed-tar" "x-lz4" "x-lzip" "x-lzip-compressed-tar" "x-lzma" "x-lzma-compressed-tar" "x-lzop" "x-lz4-compressed-tar" "x-ms-wim" "x-rar" "x-rar-compressed" "x-rpm" "x-source-rpm" "x-rzip" "x-rzip-compressed-tar" "x-tar" "x-tarz" "x-tzo" "x-stuffit" "x-war" "x-xar" "x-xz" "x-xz-compressed-tar" "x-zip" "x-zip-compressed" "x-zstd-compressed-tar" "x-zoo" "zip" "zstd" ])
         ]
       );
   };
