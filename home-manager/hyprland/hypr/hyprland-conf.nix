@@ -1,15 +1,14 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   wayland.windowManager.hyprland.extraConfig = ''
     $mainMod = WIN
     $scripts = $HOME/.config/hypr/scripts
     monitor=,highres,auto,2
-    # sets xwayland scale
-    exec-once=configure-gtk
-    # exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
+
+    # Fix slow startup
     exec-once=hypr_autostart
-    # toolkit-specific scale
-    # env = GDK_SCALE,2
+    exec=configure-gtk
+    
     env = XCURSOR_SIZE,32
 
     input {
@@ -110,7 +109,7 @@
     bind = $mainMod, Y, pin
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, J, togglesplit, # dwindle
-    bind = $mainMod, D, exec, wofi --show drun
+    bind = $mainMod, D, exec, ~/.config/rofi/scripts/launcher_t7
 
     #-----------------------#
     # Toggle grouped layout #
@@ -213,13 +212,14 @@
     #`hyprctl clients` get class、title...
     windowrulev2=fullscreen, class:^(.*winbox64.*)$, title:^(.*WinBox.*)$
     windowrulev2=float, class:^(.*winbox64.*)$, title:^((?!WinBox).)*$
-    windowrule=workspace 1, brave
+    windowrule=workspace 1, title:^(Brave)$
     windowrulev2 = float,class:^(brave)$,title:^(Save File)$
     windowrulev2=workspace 3, class:^(jetbrains-studio)$, title:^((?!Running Devices).)*$
     windowrulev2=workspace 4, class:^(jetbrains-studio)$, title:^(.*Running Devices.*)$
     windowrulev2=tile, class:^(jetbrains-studio)$, title:^(.*Running Devices.*)$
     windowrule=workspace name:, title:^(Spotify)$
-    windowrule=workspace name:, Ferdium
+    windowrule=workspace name:, title:^(Ferdium)$
     windowrule=workspace 2, title:^(Visual Studio Code)$
+    windowrulev2=fakefullscreen, class:^(code-url-handler)$
   '';
 }

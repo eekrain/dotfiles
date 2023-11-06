@@ -4,7 +4,9 @@
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-cpu-amd-pstate
     # inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-pc-laptop-ssd
+
     ./nvidia.nix
     ./bootloader.nix
     ./bluetooth.nix
@@ -14,7 +16,7 @@
   ];
 
   # use latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # IF for some reason your system can't boot up cause of bluetooth issue, add this line to add all linux firmware
   hardware.enableAllFirmware = true;

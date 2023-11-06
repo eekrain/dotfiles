@@ -28,7 +28,6 @@ in
     libnotify
     sshpass
     polkit_gnome
-    pkgs.gnome.gnome-keyring
     eza
     fzf
     python3
@@ -38,6 +37,8 @@ in
     ffmpeg
     gtk3
   ];
+  #environment.variables.NIXOS_OZONE_WL = "1";
+
   security.polkit.enable = true;
   systemd.user.services = {
     polkit-gnome-authentication-agent-1 = {

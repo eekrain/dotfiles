@@ -13,10 +13,10 @@
 
 stdenv.mkDerivation rec {
   pname = "freedownloadmanager";
-  version = "6.19.0";
+  version = "6.19.1";
   src = fetchurl {
     url = "https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb";
-    sha256 = "sha256-qTc2PIIfW+YuSAb8z3Vpf2bTdhumoZXOATsBUG2EYTY=";
+    sha256 = "sha256-3KmNhkEEOzW5qiK6e4ZPI9wbTdA2EFWUH5Z1K8kdXWw=";
   };
 
   unpackPhase = "dpkg-deb -x $src .";

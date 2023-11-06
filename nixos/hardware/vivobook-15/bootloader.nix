@@ -1,5 +1,7 @@
-{ config, ... }:
+{ config, inputs, ... }:
 {
+  imports = [ inputs.grub2-themes.nixosModules.default ];
+
   # Bootloader
   boot.loader = {
     efi = {
@@ -14,5 +16,12 @@
       devices = [ "nodev" ];
       useOSProber = true;
     };
+
+    grub2-theme = {
+      enable = true;
+      theme = "tela";
+      screen = "2k";
+    };
   };
+
 }

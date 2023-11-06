@@ -1,0 +1,1 @@
+mpv ~/Downloads/KnJN-S2-05-1080p-SAMEHADAKU.CARE.mkv --drm-device=/dev/dri/renderD128 --vo=gpu --gpu-api=opengl --hwdec=nvdec --profile=gpu-hq --gpu-context=wayland

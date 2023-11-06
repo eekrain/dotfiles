@@ -15,8 +15,11 @@ in
   hardware = {
     nvidia = {
       open = false;
-      # package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       modesetting.enable = true;
+      powerManagement.enable = true;
+      powerManagement.finegrained = true;
+
       prime = {
         offload.enable = true;
         amdgpuBusId = "PCI:4:0:0";

@@ -3,6 +3,7 @@
 {
   home.sessionVariables = {
     GTK_THEME = "Catppuccin-Mocha-Compact-Pink-Dark";
+    XCURSOR_THEME = "Catppuccin-Mocha-Pink-Cursors";
   };
   home.pointerCursor = {
     package = pkgs.catppuccin-cursors.mochaPink;
