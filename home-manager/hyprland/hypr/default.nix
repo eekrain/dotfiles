@@ -22,10 +22,10 @@ let
     $scripts/toggle_touchpad disable &
     notify-send -a aurora "hello $(whoami)" &
 
-    gtk-launch thorium-browser.desktop &
     gtk-launch ferdium.desktop &
     gtk-launch spotify.desktop &
-    gtk-launch freedownloadmanager.desktop &
+    gtk-launch brave-browser.desktop &
+    hyprctl dispatch workspace 1
   '';
   hypr_kill = pkgs.writeShellScriptBin "hypr_kill" ''
     pkill -15 swww-daemon
