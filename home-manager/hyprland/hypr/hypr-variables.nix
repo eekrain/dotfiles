@@ -8,15 +8,9 @@
 
       LIBSEAT_BACKEND = "logind";
 
-      # GBM_BACKEND = "nvidia-drm"; #on my laptop, wayland crashed using this env
-      # LIBVA_DRIVER_NAME = "nvidia"; # hardware acceleration
-      WLR_RENDERER = "vulkan";
-      # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      # __GL_VRR_ALLOWED = "0";
       # WLR_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
-      # WLR_NO_HARDWARE_CURSORS = "1"; # if no cursor,uncomment this line  
 
-      # GDK_SCALE = "1";
+      GDK_SCALE = "1";
       GDK_BACKEND = "wayland,x11";
       SDL_VIDEODRIVER = "wayland";
       CLUTTER_BACKEND = "wayland";
