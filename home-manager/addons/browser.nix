@@ -2,7 +2,7 @@
 {
   programs.brave = {
     enable = true;
-    package = (pkgs.brave.override { vulkanSupport = true; });
+    package = (pkgs.brave.override { vulkanSupport = true; enableVideoAcceleration = true; });
     extensions = [
       {
         # bitwarden
@@ -14,72 +14,4 @@
       }
     ];
   };
-
-  # home.packages = with pkgs; [ my-thorium ]; #freedownloadmanager
-  xdg.desktopEntries = {
-    brave-browser = {
-      name = "Brave Web Browser";
-      genericName = "Web Browser";
-      exec = "nvidia-offload ${pkgs.brave}/bin/brave %U";
-      type = "Application";
-      terminal = false;
-      icon = "brave-browser";
-      comment = ''Access the Internet.'';
-      settings = {
-        StartupNotify = "true";
-        Categories = "Network;WebBrowser;";
-        MimeType = "application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ipfs;x-scheme-handler/ipns;";
-      };
-      actions = {
-        "new-window" = {
-          name = "New Window";
-          exec = "nvidia-offload ${pkgs.brave}/bin/brave";
-        };
-        "new-private-window" = {
-          name = "New Incognito Window";
-          exec = "nvidia-offload ${pkgs.brave}/bin/brave --incognito";
-        };
-      };
-    };
-
-    # thorium-browser = {
-    #   name = "Thorium Browser";
-    #   genericName = "Web Browser";
-    #   exec = "nvidia-offload ${pkgs.my-thorium}/bin/thorium-browser --enable-features=UseOzonePlatform --ozone-platform=wayland %U";
-    #   type = "Application";
-    #   terminal = false;
-    #   icon = "brave-browser";
-    #   comment = ''Access the Internet.'';
-    #   settings = {
-    #     StartupNotify = "true";
-    #     Categories = "Network;WebBrowser;";
-    #     MimeType = "application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ipfs;x-scheme-handler/ipns;";
-    #   };
-    #   actions = {
-    #     "new-window" = {
-    #       name = "New Window";
-    #       exec = "nvidia-offload ${pkgs.my-thorium}/bin/thorium-browser --enable-features=UseOzonePlatform --ozone-platform=wayland";
-    #     };
-    #     "new-private-window" = {
-    #       name = "New Incognito Window";
-    #       exec = "nvidia-offload ${pkgs.my-thorium}/bin/thorium-browser --enable-features=UseOzonePlatform --ozone-platform=wayland --incognito";
-    #     };
-    #   };
-    # };
-
-    # freedownloadmanager = {
-    #   name = "Free Download Manager";
-    #   exec = "env QT_QPA_PLATFORM=xcb freedownloadmanager %U";
-    #   type = "Application";
-    #   terminal = false;
-    #   icon = "${pkgs.freedownloadmanager}/freedownloadmanager/icon.png";
-    #   comment = ''FDM is a powerful modern download accelerator and organizer.'';
-    #   settings = {
-    #     StartupNotify = "true";
-    #     Categories = "Network;FileTransfer;P2P;GTK;";
-    #     Keywords = "download;manager;free;fdm;";
-    #   };
-    # };
-  };
-
 }

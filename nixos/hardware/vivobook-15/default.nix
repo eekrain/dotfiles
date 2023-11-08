@@ -3,11 +3,11 @@
   imports = [
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-cpu-amd-pstate
-    # inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-pc-laptop-ssd
 
-    ./nvidia.nix
+    ./amdgpu.nix
+    # ./nvidia.nix
     ./bootloader.nix
     ./bluetooth.nix
     ./audio.nix
