@@ -1,37 +1,37 @@
-{ lib, pkgs, config, inputs, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 let
   cfg = config.hardware.amdgpu;
 in
 {
-  imports = [ inputs.hardware.nixosModules.common-gpu-amd ];
-
   options.hardware.amdgpu = {
     enable = mkEnableOption "Enable AMD GPU";
   };
 
   config = mkIf cfg.enable {
-    hardware.amdgpu = {
-      loadInInitrd = true;
-      opencl = true;
+    services.xserver.videoDrivers = [ "modesetting" ];
+
+    hardware.opengl = {
+      driSupport = true;
+      driSupport32Bit = true;
     };
+
+    boot.initrd.kernelModules = [ "amdgpu" ];
 
     hardware.opengl = {
       extraPackages = with pkgs; [
         vaapiVdpau
         libvdpau-va-gl
+        libva
+
+        rocm-opencl-icd
+        rocm-opencl-runtime
       ];
     };
 
-    environment = {
-      sessionVariables = rec {
-        LIBVA_DRIVER_NAME = "radeonsi";
-        VDPAU_DRIVER = "radeonsi";
-        # WLR_NO_HARDWARE_CURSORS = "1"; # if no cursor,uncomment this line  
-      };
 
+    environment = {
       systemPackages = with pkgs; [
-        libva
         libva-utils
         glxinfo
       ];

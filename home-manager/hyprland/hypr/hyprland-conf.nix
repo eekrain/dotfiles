@@ -4,13 +4,14 @@
     $mainMod = WIN
     $scripts = $HOME/.config/hypr/scripts
     monitor=,highres,auto,2
+    xwayland {
+      force_zero_scaling = true
+    }
 
     # Fix slow startup
     exec-once=hypr_autostart
     exec=configure-gtk
     
-    env = XCURSOR_SIZE,32
-
     input {
       kb_layout=us
       follow_mouse=1

@@ -10,8 +10,6 @@ in
     wayland-scanner
     wayland-utils
     wayland-protocols
-    egl-wayland
-    glfw-wayland
     libsForQt5.qt5.qtbase
     libsForQt5.qt5.qtwayland
     libsForQt5.qt5.qtgraphicaleffects
