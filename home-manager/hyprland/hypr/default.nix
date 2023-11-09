@@ -33,6 +33,9 @@ let
     sleep 5
     hyprctl dispatch workspace 1
     gtk-launch brave-browser.desktop &
+
+    # start aria2c downloader
+    aria2c --enable-rpc -x 16 -s 16 &
   '';
   hypr_kill = pkgs.writeShellScriptBin "hypr_kill" ''
     pkill -15 swww-daemon

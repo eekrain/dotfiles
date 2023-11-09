@@ -22,7 +22,6 @@ in
       extraPackages = with pkgs; [
         vaapiVdpau
         libvdpau-va-gl
-        libva
 
         rocm-opencl-icd
         rocm-opencl-runtime
@@ -34,6 +33,7 @@ in
       systemPackages = with pkgs; [
         libva-utils
         glxinfo
+        libva
       ];
     };
   };

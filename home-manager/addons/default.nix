@@ -2,6 +2,7 @@
 {
   imports = [
     ./browser.nix
+    ./vscode.nix
     ./neovim
     ./ferdium
     ./easyeffect-audio

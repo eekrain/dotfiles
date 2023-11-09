@@ -11,7 +11,7 @@ let
     exec "$@"
   '';
 
-  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.beta;
 in
 {
   options.hardware.nvidia = {
@@ -25,7 +25,7 @@ in
         package = nvidiaPackage;
 
         # Open drivers (NVreg_OpenRmEnableUnsupportedGpus=1)
-        # open = true;
+        open = false;
         nvidiaSettings = true;
 
         # nvidia-drm.modeset=1
@@ -36,7 +36,7 @@ in
         # powerManagement.finegrained = true;
 
         prime = {
-          sync.enable = true;
+          offload.enable = true;
           amdgpuBusId = "PCI:4:0:0";
           nvidiaBusId = "PCI:1:0:0";
         };
@@ -46,23 +46,23 @@ in
         enable = true;
         driSupport = true;
         extraPackages = with pkgs; [
+          vaapiVdpau
+          libvdpau-va-gl
           nvidia-vaapi-driver
-          libva
         ];
       };
     };
 
-    environment.etc."gbm/nvidia-drm_gbm.so".source = "${nvidiaPackage}/lib/libnvidia-allocator.so";
-
     environment = {
       systemPackages = with pkgs; [
         nvidia-offload
-        libva-utils
         glxinfo
-        mesa-demos
 
         egl-wayland
         glfw-wayland
+        mesa-demos
+        libva
+        libva-utils
       ];
     };
   };
