@@ -4,6 +4,9 @@ let
     config=$HOME/.config/hypr
     scripts=$config/scripts
 
+    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP XDG_DATA_DIRS && systemctl --user start hyprland-session.target
+    configure-gtk
+
     systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
     systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
 
@@ -130,17 +133,15 @@ let
     name = "configure-gtk";
     destination = "/bin/configure-gtk";
     executable = true;
-    text =
-      let
-        schema = pkgs.gsettings-desktop-schemas;
-        datadir = "${schema}/share/gsettings-schemas/${schema.name}";
-      in
-      ''
-        export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-        echo $XDG_DATA_DIRS
-        gnome_schema=org.gnome.desktop.interface
-        gsettings set $gnome_schema gtk-theme 'Catppuccin-Mocha-Compact-Pink-Dark'
-      '';
+    text = ''
+      gnome_schema=org.gnome.desktop.interface
+      gsettings set $gnome_schema gtk-theme "Catppuccin-Mocha-Compact-Pink-Dark"
+      gsettings set $gnome_schema icon-theme "Papirus-Dark"
+      gsettings set $gnome_schema cursor-theme "Catppuccin-Mocha-Pink-Cursors"
+      gsettings set $gnome_schema font-name "DM Sans 12"
+      gsettings set $gnome_schema cursor-size "32"
+      gsettings set $gnome_schema font-antialiasing "1"
+    '';
   };
   wall = pkgs.writeShellScriptBin "wall" ''
     swww init
@@ -169,4 +170,13 @@ in
   xdg.configFile."hypr/scripts".recursive = true;
   xdg.configFile."hypr/wallpapers".source = ./wallpapers;
   xdg.configFile."hypr/wallpapers".recursive = true;
+
+  home.sessionVariables = {
+    XDG_DATA_DIRS =
+      let
+        schema = pkgs.gsettings-desktop-schemas;
+        datadir = "${schema}/share/gsettings-schemas/${schema.name}";
+      in
+      "${datadir}:$XDG_DATA_DIRS";
+  };
 }

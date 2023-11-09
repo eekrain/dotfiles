@@ -9,7 +9,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemdIntegration = true;
+    systemdIntegration = false;
     recommendedEnvironment = true;
     xwayland = {
       enable = true;
