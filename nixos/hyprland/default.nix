@@ -34,7 +34,7 @@
     xwayland = {
       enable = true;
     };
-    enableNvidiaPatches = true;
+    enableNvidiaPatches = if config.hardware.nvidia.enable then true else false;
   };
 
   services = {

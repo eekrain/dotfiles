@@ -4,6 +4,7 @@
     $mainMod = WIN
     $scripts = $HOME/.config/hypr/scripts
     monitor=,highres,auto,2
+    
     xwayland {
       force_zero_scaling = true
     }

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 
 {
   imports = [
@@ -9,10 +9,11 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemdIntegration = false;
+    systemdIntegration = true;
     recommendedEnvironment = true;
     xwayland = {
       enable = true;
     };
+    enableNvidiaPatches = if osConfig.hardware.nvidia.enable then true else false;
   };
 }
