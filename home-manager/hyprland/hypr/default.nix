@@ -136,7 +136,7 @@ let
     text = ''
       gnome_schema=org.gnome.desktop.interface
       gsettings set $gnome_schema gtk-theme "Catppuccin-Mocha-Compact-Pink-Dark"
-      gsettings set $gnome_schema icon-theme "Papirus-Dark"
+      gsettings set $gnome_schema icon-theme "Oranchelo"
       gsettings set $gnome_schema cursor-theme "Catppuccin-Mocha-Pink-Cursors"
       gsettings set $gnome_schema font-name "DM Sans 12"
       gsettings set $gnome_schema cursor-size "32"

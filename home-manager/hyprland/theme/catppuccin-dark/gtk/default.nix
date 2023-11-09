@@ -1,6 +1,11 @@
 { config, pkgs, lib, inputs, user, ... }:
 
 {
+  home.packages = with pkgs; [
+    hicolor-icon-theme
+    gnome.adwaita-icon-theme
+  ];
+
   home.sessionVariables = {
     GTK_THEME = "Catppuccin-Mocha-Compact-Pink-Dark";
     XCURSOR_THEME = "Catppuccin-Mocha-Pink-Cursors";
@@ -29,8 +34,8 @@
     };
 
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      name = "Oranchelo";
+      package = pkgs.oranchelo-icon-theme;
     };
 
     font = {
