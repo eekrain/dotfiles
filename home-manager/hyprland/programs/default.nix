@@ -3,6 +3,7 @@
   imports = [
     ./waybar
     ./rofi
+    ./wofi
     ./mpv
     ./bat
     ./btop
