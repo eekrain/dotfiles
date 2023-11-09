@@ -26,4 +26,6 @@
       { from = 0; to = 65535; }
     ];
   };
+
+  programs.ssh.startAgent = true;
 }

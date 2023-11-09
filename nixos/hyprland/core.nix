@@ -5,7 +5,6 @@ in
 {
   environment.systemPackages = with pkgs; [
     # hyprland spesific
-    wl-clipboard
     wayland
     wayland-scanner
     wayland-utils
@@ -19,6 +18,7 @@ in
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    wl-clip-persist
     #other pkgs
     sddm-sugar-candy
     wev
