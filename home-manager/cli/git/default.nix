@@ -4,12 +4,12 @@
     git = {
       enable = true;
 
-      extraConfig = {
-        pull.rebase = false;
-      };
+      # extraConfig = {
+      #   pull.rebase = false;
+      # };
 
-      userName = "Ardian Eka Candra";
-      userEmail = "ardianoption@gmail.com";
+      # userName = "Ardian Eka Candra";
+      # userEmail = "ardianoption@gmail.com";
     };
 
     gh = {
