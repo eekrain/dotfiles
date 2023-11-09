@@ -33,6 +33,7 @@ let
 
     # start aria2c downloader
     aria2c --enable-rpc -x 16 -s 16 &
+    wl-clip-persist --clipboard regular &
   '';
   hypr_kill = pkgs.writeShellScriptBin "hypr_kill" ''
     pkill -15 swww-daemon
