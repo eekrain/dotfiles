@@ -26,6 +26,7 @@
     xarchiver
     wf-recorder
     lollypop
+    cinnamon.nemo
     peazip
   ];
 
