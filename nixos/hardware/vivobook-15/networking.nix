@@ -18,7 +18,7 @@
     '';
 
   networking.firewall = {
-    enable = true;
+    enable = false;
     allowedTCPPortRanges = [
       { from = 0; to = 65535; }
     ];

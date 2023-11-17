@@ -25,8 +25,8 @@
       boot.loader.grub.configurationName = lib.mkForce "AMD + Proxy";
 
       services.myproxy.enable = lib.mkForce true;
+      networking.firewall.enable = lib.mkForce true;
     };
-
 
     nvidia_proxied.configuration = {
       boot.loader.grub.configurationName = lib.mkForce "NVIDIA + Proxy";
@@ -34,6 +34,8 @@
       hardware.nvidia.enable = lib.mkForce true;
 
       services.myproxy.enable = lib.mkForce true;
+      networking.firewall.enable = lib.mkForce true;
+
     };
   };
 
