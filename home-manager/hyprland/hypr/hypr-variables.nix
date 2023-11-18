@@ -22,7 +22,7 @@
         QT_QPA_PLATFORMTHEME = "qt5ct";
         QT_SCALE_FACTOR = "1";
         QT_QPA_PLATFORM = "wayland;xcb";
-        QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.libsForQt5.qt5.qtbase}/lib/qt-${pkgs.libsForQt5.qt5.qtbase.version}/plugins";
+        # QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.libsForQt5.qt5.qtbase}/lib/qt-${pkgs.libsForQt5.qt5.qtbase.version}/plugins";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         QT_AUTO_SCREEN_SCALE_FACTOR = "1";
         _JAVA_AWT_WM_NONREPARENTING = "1";

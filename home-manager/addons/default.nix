@@ -28,6 +28,7 @@
     lollypop
     cinnamon.nemo
     peazip
+    gscreenshot
   ];
 
   xdg.mimeApps = {
@@ -45,13 +46,15 @@
           { "text/plain" = "code.desktop"; }
           { "video/*" = "mpv.desktop"; }
           { "audio/*" = "org.gnome.Lollypop.desktop"; }
-          # Browser
+          # Brave Browser
           { "text/html" = "brave.desktop"; }
           (subtypes "x-scheme-handler" "brave.desktop"
             [ "http" "https" "ftp" "chrome" "about" ])
-          { "x-scheme-handler/tg" = "ferdium.desktop"; }
           (subtypes "application" "brave.desktop"
             [ "x-extension-htm" "x-extension-html" "x-extension-shtml" "xhtml+xml" "x-extension-xhtml" "x-extension-xht" "pdf" ])
+          # Ferdium
+          (subtypes "x-scheme-handler" "ferdium.desktop"
+            [ "tg" "whatsapp" ])
           # Image
           (subtypes "image" "imv-dir.desktop"
             [ "png" "jpeg" "gif" "svg" "svg+xml" "tiff" "x-tiff" "x-dcraw" ])

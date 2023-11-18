@@ -13,6 +13,7 @@ in
     libsForQt5.qt5.qtwayland
     libsForQt5.qt5.qtgraphicaleffects
     libsForQt5.qt5ct
+    qt6.qtbase
     glib # gsettings
     xdg-utils # for opening default programs when clicking links
     grim # screenshot functionality
