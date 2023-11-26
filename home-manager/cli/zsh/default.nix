@@ -22,9 +22,10 @@
       relog = "sh $HOME/.config/eww/scripts/exitScreenActions.sh logout";
       rage = ''mpvpaper -v eDP-1 -o "profile=mpvpaper"'';
       fix-swww = "pkill swww-daemon; rm /run/user/1000/swww.socket; rm -rf ~/.cache/swww/";
-      ls = "eza -Fgh --color-scale --git --group-directories-first --icons";
-      ll = "eza - lbF - -git";
-      la = "eza -lbhHigmuSa --time-style=long-iso --git --color-scale";
+      ls = "eza --icons";
+      ll = "ls -lbF --git";
+      la = "ls -lbhHigmuSa --time-style=long-iso --git --color-scale all";
+      lt = "ls --tree --level=2";
       giteka = ''git config user.name "Ardian Eka Candra" && git config user.email "ardianoption@gmail.com"'';
       gitplaton = ''git config user.name "Ardian Eka Candra" && git config user.email "fachri@platon.co.id"'';
     };
