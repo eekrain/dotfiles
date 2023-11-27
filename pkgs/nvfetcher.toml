@@ -14,3 +14,6 @@
 [my-thorium]
 src.manual = "117.0.5938.157"
 fetch.url = "https://github.com/Alex313031/thorium/releases/download/M117.0.5938.157/thorium-browser_117.0.5938.157_amd64.deb"
+[my-auto-cpufreq]
+src.git = "https://github.com/eekrain/auto-cpufreq"
+fetch.github = "eekrain/auto-cpufreq"
