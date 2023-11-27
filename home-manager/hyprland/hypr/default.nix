@@ -28,15 +28,16 @@ let
     $scripts/toggle_touchpad disable &
     notify-send -a aurora "hello $(whoami)" &
 
-    gtk-launch spotify.desktop &
-    gtk-launch ferdium.desktop &
-    sleep 5
-    hyprctl dispatch workspace 1
-    gtk-launch brave-browser.desktop &
-
     # start aria2c downloader
     aria2c --enable-rpc -x 16 -s 16 &
+    # wl clip util
     wl-clip-persist --clipboard regular &
+
+    gtk-launch spotify.desktop &
+    gtk-launch ferdium.desktop &
+    gtk-launch brave-browser.desktop &
+    sleep 5
+    hyprctl dispatch workspace 1
   '';
   hypr_kill = pkgs.writeShellScriptBin "hypr_kill" ''
     pkill -15 swww-daemon
