@@ -14,6 +14,5 @@
     xwayland = {
       enable = true;
     };
-    enableNvidiaPatches = if osConfig.hardware.nvidia.enable then true else false;
   };
 }

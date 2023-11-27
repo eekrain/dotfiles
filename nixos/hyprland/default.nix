@@ -34,8 +34,8 @@
     xwayland = {
       enable = true;
     };
-    enableNvidiaPatches = if config.hardware.nvidia.enable then true else false;
   };
+  xdg.portal.config.common.default = "*";
 
   services = {
     dbus.packages = [ pkgs.gcr ];
@@ -49,12 +49,6 @@
   };
 
   security.pam.services.swaylock = { };
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
-  };
 
   security.doas = {
     enable = true;
