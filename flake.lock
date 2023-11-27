@@ -5,15 +5,15 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1700893678,
-        "narHash": "sha256-Y90NDHaMVGxqA2W8TYsM31u7WnFJdWwWzU7UcTeYREo=",
-        "owner": "AdnanHodzic",
+        "lastModified": 1701126575,
+        "narHash": "sha256-DPM3Hyn/MZGA8AZGHrZZFyndS9rAWVSwFu0lJ4L+9sE=",
+        "owner": "eekrain",
         "repo": "auto-cpufreq",
-        "rev": "4dbad5539aab8e6d54c96afee451242840973f05",
+        "rev": "3efebccf27952b3cc84cabacd946719f73e96125",
         "type": "github"
       },
       "original": {
-        "owner": "AdnanHodzic",
+        "owner": "eekrain",
         "repo": "auto-cpufreq",
         "type": "github"
       }

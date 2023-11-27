@@ -17,7 +17,7 @@
     # Common Grub2 themes
     grub2-themes.url = github:vinceliuice/grub2-themes;
 
-    auto-cpufreq.url = github:AdnanHodzic/auto-cpufreq;
+    auto-cpufreq.url = github:eekrain/auto-cpufreq;
   };
 
   outputs = { self, nixpkgs, home-manager, hyprland, auto-cpufreq, ... }@inputs:

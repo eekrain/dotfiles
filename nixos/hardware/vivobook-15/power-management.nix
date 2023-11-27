@@ -1,12 +1,11 @@
 { config, inputs, ... }:
 {
-  disabledModules = [ "nixos/modules/services/hardware/auto-cpufreq.nix" ];
   imports =
     [
       inputs.auto-cpufreq.nixosModules.default
     ];
 
-  services.auto-cpufreq = {
+  programs.auto-cpufreq = {
     enable = true;
     settings = {
       battery = {
