@@ -110,7 +110,8 @@
       bind = $mainMod, Y, pin
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, J, togglesplit, # dwindle
-      bind = $mainMod, D, exec, ~/.config/rofi/scripts/launcher_t7
+      bind = $mainMod, D, exec, wofi --show drun
+      # bind = $mainMod, D, exec, ~/.config/rofi/scripts/launcher_t7
       bind = , Print, exec, gscreenshot
 
       #-----------------------#
