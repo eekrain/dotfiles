@@ -1,0 +1,58 @@
+# Start configuration added by Zim install {{{
+#
+# This is not sourced during shell startup, and it's only used to configure the
+# zimfw plugin manager.
+#
+
+#
+# Modules
+#
+
+# Sets sane Zsh built-in environment options.
+zmodule environment
+# Applies correct bindkeys for input events.
+zmodule input
+# Sets a custom terminal title.
+zmodule termtitle
+# Utility aliases and functions. Adds colour to ls, grep and less.
+zmodule utility
+
+#
+# Completion
+#
+
+
+# Additional completion definitions for Zsh.
+zmodule zsh-users/zsh-completions --fpath src
+# Enables and configures smart and extensive tab completion.
+# completion must be sourced after all modules that add completion definitions.
+zmodule completion
+
+#
+# Modules that must be initialized last
+#
+
+# Fish-like syntax highlighting for Zsh.
+# zsh-users/zsh-syntax-highlighting must be sourced after completion
+zmodule zsh-users/zsh-syntax-highlighting
+
+# Fish-like history search (up arrow) for Zsh.
+# zsh-users/zsh-history-substring-search must be sourced after zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-history-substring-search
+
+# Multi word search
+zstyle ":plugin:history-search-multi-word" active "standout"        # Effect on active history entry. Try: standout, bold, bg=blue (default underline)
+zmodule zdharma-continuum/history-search-multi-word
+
+# Fish-like autosuggestions for Zsh.
+zmodule zsh-users/zsh-autosuggestions
+
+
+# My personal add on
+zmodule eekrain/zsh-aws
+zmodule davidde/git
+zmodule rupa/z
+zmodule changyuheng/fz
+zmodule changyuheng/zsh-interactive-cd
+zmodule aubreypwd/zsh-plugin-fd
+# }}} End configuration added by Zim install

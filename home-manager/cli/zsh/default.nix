@@ -1,16 +1,63 @@
 { config, pkgs, ... }:
 {
-  home.packages = with pkgs; [ zi awscli2 nodejs_20 nodePackages.pnpm yarn nitch krabby my-turso-cli ];
+  home.packages = with pkgs; [ awscli2 nodejs_20 nodePackages.pnpm yarn nitch krabby my-turso-cli ];
 
   xdg.configFile."zsh/zhist_bkp".source = ./zhist_bkp;
+
+  # Add zim zsh plugin manager config here 
+  # xdg.configFile."zsh/zimrc".source = ./zimrc;
 
   programs.zsh = {
     enable = true;
 
-    history = {
-      size = 10000;
-      save = 10000;
-    };
+    loginExtra = ''
+      hypr_store=$HOME/.config/hypr/store
+      mkdir -p $hypr_store
+      
+      if [ ! -f $hypr_store/dynamic_out.txt ]
+      then
+        touch $hypr_store/dynamic_out.txt $hypr_store/latest_notif $hypr_store/prev.txt
+      fi
+
+      python ${config.xdg.configHome}/zsh/zhist_bkp/index.py -r -p $HOME/.zsh_history
+    '';
+
+    logoutExtra = ''
+      python ${config.xdg.configHome}/zsh/zhist_bkp/index.py -b -p $HOME/.zsh_history
+    '';
+
+    completionInit = ''
+      autoload bashcompinit && bashcompinit
+    '';
+
+    initExtra = ''
+      zstyle ':zim:zmodule' use 'degit'
+      ZIM_HOME=~/.config/zsh/.zim
+      ZIM_CONFIG_FILE=~/.config/zsh/zimrc
+
+      # Download zimfw plugin manager if missing.
+      if [[ ! -e ''${ZIM_HOME}/zimfw.zsh ]]; then
+        curl -fsSL --create-dirs -o ''${ZIM_HOME}/zimfw.zsh \
+            https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+      fi
+
+      # Install missing modules, and update ''${ZIM_HOME}/init.zsh if missing or outdated.
+      if [[ ! ''${ZIM_HOME}/init.zsh -nt ''${ZDOTDIR:-''${HOME}}/.zimrc ]]; then
+        source ''${ZIM_HOME}/zimfw.zsh init -q
+      fi
+
+      source ''${ZIM_HOME}/init.zsh
+
+      zmodload zsh/terminfo
+      [ -n "''${terminfo[kcuu1]}" ] && bindkey "''${terminfo[kcuu1]}" history-substring-search-up
+      [ -n "''${terminfo[kcud1]}" ] && bindkey "''${terminfo[kcud1]}" history-substring-search-down
+      bindkey '^[[A' history-substring-search-up
+      bindkey '^[[B' history-substring-search-down
+      
+      eval "$(${pkgs.starship}/bin/starship init zsh)"
+      nitch
+    '';
+
 
     shellAliases = {
       c = "clear";
@@ -29,77 +76,6 @@
       giteka = ''git config user.name "Ardian Eka Candra" && git config user.email "ardianoption@gmail.com"'';
       gitplaton = ''git config user.name "Ardian Eka Candra" && git config user.email "fachri@platon.co.id"'';
     };
-
-    loginExtra = ''
-      mkdir -p $HOME/.zi
-      hypr_store=$HOME/.config/hypr/store
-      mkdir -p $hypr_store
-      
-      if [ ! -f $hypr_store/dynamic_out.txt ]
-      then
-        touch $hypr_store/dynamic_out.txt $hypr_store/latest_notif $hypr_store/prev.txt
-      fi
-
-      if [ -f /run/user/1000/swww.socket ]
-      then
-        rm /run/user/1000/swww.socket
-      fi
-      
-      python ${config.xdg.configHome}/zsh/zhist_bkp/index.py -b -p $HOME/.zsh_history
-    '';
-
-    initExtraBeforeCompInit = ''
-      typeset -A ZI
-      ZI[HOME_DIR]=$HOME/.zi
-      ZI[BIN_DIR]=${pkgs.zi}
-      ZI[CACHE_DIR]=$HOME/.cache/zi
-      ZI[CONFIG_DIR]=$HOME/.config/zi
-      source ${pkgs.zi}/zi.zsh
-    '';
-
-    # Enable Zi completions
-    completionInit = ''
-      autoload -Uz _zi
-      (( ''${+_comps} )) && _comps[zi]=_zi
-    '';
-
-
-    initExtra = ''
-      HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1                # all search results returned will be unique
-      export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
-
-      zstyle ":history-search-multi-word" page-size "11"
-      zi ice wait lucid
-      zi light z-shell/H-S-MW
-      
-      zi ice lucid atload"unalias gco gbd gm"
-      zi light davidde/git
-
-      zi lucid light-mode wait for \
-        rupa/z\
-        changyuheng/fz\
-        andrewferrier/fzf-z\
-        changyuheng/zsh-interactive-cd\
-        aubreypwd/zsh-plugin-fd\
-        Schroefdop/git-branches\
-        atload"bindkey '^[[A' history-substring-search-up; \
-      bindkey '^[[B' history-substring-search-down" \
-          zsh-users/zsh-history-substring-search 
-
-      zi light eekrain/zsh-aws
-
-      zi ice wait lucid atload'!_zsh_autosuggest_start'
-      zi light zsh-users/zsh-autosuggestions
-      
-      #Syntax highlighting
-      zi ice wait lucid atinit"ZI[COMPINIT_OPTS] = -C;
-      autoload bashcompinit && bashcompinit; zicompinit; zicdreplay"
-      zi light z-shell/F-Sy-H
-
-      eval "$(${pkgs.starship}/bin/starship init zsh)"
-      
-      nitch
-    '';
   };
 }
 
