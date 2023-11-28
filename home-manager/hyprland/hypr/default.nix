@@ -32,7 +32,7 @@ let
     wl-clip-persist --clipboard regular &
 
     gtk-launch spotify.desktop &
-    gtk-launch ferdium.desktop &
+    gtk-launch rambox.desktop &
     motrix &
     gtk-launch brave-browser.desktop &
     sleep 5

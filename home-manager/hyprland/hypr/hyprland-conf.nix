@@ -221,7 +221,7 @@
       windowrulev2=workspace 4, class:^(jetbrains-studio)$, title:^(.*Running Devices.*)$
       windowrulev2=tile, class:^(jetbrains-studio)$, title:^(.*Running Devices.*)$
       windowrule=workspace name:, title:^(Spotify)$
-      windowrule=workspace name:, title:^(Ferdium)$
+      windowrulev2=workspace name:, class:^(rambox)$
       windowrule=workspace 2, title:^(Visual Studio Code)$
       windowrulev2=fakefullscreen, class:^(code-url-handler)$
     '';

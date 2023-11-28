@@ -4,7 +4,6 @@
     ./browser.nix
     ./vscode.nix
     ./neovim
-    ./ferdium
     ./easyeffect-audio
   ];
   programs = {
@@ -18,7 +17,6 @@
     cava
     spotify
     spicetify-cli
-    ferdium
     pavucontrol
     nixpkgs-fmt
     pamixer
@@ -30,6 +28,7 @@
     peazip
     gscreenshot
     motrix
+    rambox
   ];
 
   xdg.mimeApps = {
@@ -53,8 +52,8 @@
             [ "http" "https" "ftp" "chrome" "about" ])
           (subtypes "application" "brave.desktop"
             [ "x-extension-htm" "x-extension-html" "x-extension-shtml" "xhtml+xml" "x-extension-xhtml" "x-extension-xht" "pdf" ])
-          # Ferdium
-          (subtypes "x-scheme-handler" "ferdium.desktop"
+          # Rambox
+          (subtypes "x-scheme-handler" "rambox.desktop"
             [ "tg" "whatsapp" ])
           # Image
           (subtypes "image" "imv-dir.desktop"
