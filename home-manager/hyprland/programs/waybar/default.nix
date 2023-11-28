@@ -23,7 +23,6 @@
         "custom/ss"
         "custom/cycle_wall"
         "custom/expand"
-        "cpu"
         "clock"
       ];
 
@@ -122,12 +121,6 @@
         "max-length" = 25;
       };
 
-      "cpu" = {
-        "interval" = 1;
-        "format" = "{icon0} {icon1} {icon2} {icon3}";
-        "format-icons" = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
-      };
-
       "memory" = {
         "format" = "{}% ";
       };
@@ -164,13 +157,14 @@
       };
 
       "network" = {
-        #"interface"="wlp2*"; // (Optional) To force the use of this interface
-        "format-wifi" = "";
-        "format-ethernet" = "";
-        "tooltip-format" = "via {gwaddr} {ifname}";
-        "format-linked" = "";
-        "format-disconnected" = "wifi";
-        "format-alt" = "   ";
+        "format" = "🚫 🌐";
+        "format-wifi" = " {essid}";
+        "tooltip-format-wifi" = "{bandwidthDownBits:>}{bandwidthUpBits:>}";
+        "format-ethernet" = "🖧{ifname}";
+        "tooltip-format-ethernet" = "{bandwidthDownBits:>}{bandwidthUpBits:>}";
+        "format-disconnected" = "🚫 🌐";
+        "on-click" = "kitty -e nmtui";
+        "interval" = 1;
       };
       "pulseaudio" = {
         # "scroll-step"=1; // %, can be a float
