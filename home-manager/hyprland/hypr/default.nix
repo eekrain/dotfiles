@@ -28,13 +28,12 @@ let
     $scripts/toggle_touchpad disable &
     notify-send -a aurora "hello $(whoami)" &
 
-    # start aria2c downloader
-    aria2c --enable-rpc -x 16 -s 16 &
     # wl clip util
     wl-clip-persist --clipboard regular &
 
     gtk-launch spotify.desktop &
     gtk-launch ferdium.desktop &
+    motrix &
     gtk-launch brave-browser.desktop &
     sleep 5
     hyprctl dispatch workspace 1

@@ -29,6 +29,7 @@
     cinnamon.nemo
     peazip
     gscreenshot
+    motrix
   ];
 
   xdg.mimeApps = {
