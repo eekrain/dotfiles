@@ -4,8 +4,10 @@
   programs.brave = {
     enable = true;
     package = (pkgs.brave.override {
-      vulkanSupport = true;
+      libvaSupport = true;
+      vulkanSupport = if osConfig.hardware.nvidia.enable then false else true;
       enableVideoAcceleration = true;
+      commandLineArgs = if osConfig.hardware.nvidia.enable then "--ozone-platform=x11" else "";
     });
     extensions = [
       {
@@ -24,7 +26,7 @@
       brave-browser = {
         name = "Brave Web Browser";
         genericName = "Web Browser";
-        exec = "env NIXOS_OZONE_WL=0 nvidia-offload ${pkgs.brave}/bin/brave --ozone-platform=x11 %U";
+        exec = "nvidia-offload ${pkgs.brave}/bin/brave -ozone-platform=x11 %U";
         type = "Application";
         terminal = false;
         icon = "brave-browser";
@@ -37,11 +39,11 @@
         actions = {
           "new-window" = {
             name = "New Window";
-            exec = "env NIXOS_OZONE_WL=0 nvidia-offload ${pkgs.brave}/bin/brave --ozone-platform=x11";
+            exec = "nvidia-offload ${pkgs.brave}/bin/brave -ozone-platform=x11";
           };
           "new-private-window" = {
             name = "New Incognito Window";
-            exec = "env NIXOS_OZONE_WL=0 nvidia-offload ${pkgs.brave}/bin/brave --ozone-platform=x11 --incognito";
+            exec = "nvidia-offload ${pkgs.brave}/bin/brave -ozone-platform=x11 --incognito";
           };
         };
       };
