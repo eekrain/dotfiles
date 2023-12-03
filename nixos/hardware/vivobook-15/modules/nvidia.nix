@@ -33,7 +33,7 @@ in
 
         # NVreg_PreserveVideoMemoryAllocations=1
         powerManagement.enable = true;
-        # powerManagement.finegrained = true;
+        powerManagement.finegrained = true;
 
         prime = {
           offload.enable = true;
