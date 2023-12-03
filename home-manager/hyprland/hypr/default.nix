@@ -33,7 +33,7 @@ let
 
     gtk-launch spotify.desktop &
     gtk-launch rambox.desktop &
-    motrix &
+    gtk-launch motrix.desktop &
     gtk-launch brave-browser.desktop &
     sleep 5
     hyprctl dispatch workspace 1
