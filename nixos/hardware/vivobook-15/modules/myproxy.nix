@@ -16,7 +16,7 @@ in
       redsocks = [
         {
           port = 55555;
-          proxy = "169.254.1.1:10808";
+          proxy = "172.19.0.1:2080";
           type = "socks5";
           redirectCondition = true;
           redirectInternetOnly = true;

@@ -27,6 +27,7 @@
 
   networking = {
     networkmanager.enable = true;
+    # set networkmanager for using dnscrypt
     nameservers = [ "127.0.0.1" "::1" ];
     networkmanager.dns = "none";
   };
