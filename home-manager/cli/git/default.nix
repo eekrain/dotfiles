@@ -6,6 +6,7 @@
       enable = true;
       extraConfig = {
         pull.rebase = false;
+        # Follows gitCredentialHelper from home-manager gh module 
         credential."https://github.com" = {
           helper = "${pkgs.gitAndTools.gh}/bin/gh auth git-credential";
         };
