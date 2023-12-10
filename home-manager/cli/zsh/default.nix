@@ -9,6 +9,7 @@
 
   programs.zsh = {
     enable = true;
+    dotDir = ".config/zsh";
 
     loginExtra = ''
       hypr_store=$HOME/.config/hypr/store
