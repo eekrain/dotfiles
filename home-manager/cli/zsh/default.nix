@@ -1,11 +1,9 @@
 { config, pkgs, ... }:
 {
-  home.packages = with pkgs; [ awscli2 nodejs_20 nodePackages.pnpm yarn nitch krabby my-turso-cli ];
-
-  xdg.configFile."zsh/zhist_bkp".source = ./zhist_bkp;
+  home.packages = with pkgs; [ awscli2 nodejs_20 yarn nitch krabby turso-cli ];
 
   # Add zim zsh plugin manager config here 
-  # xdg.configFile."zsh/zimrc".source = ./zimrc;
+  xdg.configFile."zsh/zimrc".source = ./zimrc;
 
   programs.zsh = {
     enable = true;
@@ -19,12 +17,6 @@
       then
         touch $hypr_store/dynamic_out.txt $hypr_store/latest_notif $hypr_store/prev.txt
       fi
-
-      python ${config.xdg.configHome}/zsh/zhist_bkp/index.py -r -p $HOME/.zsh_history
-    '';
-
-    logoutExtra = ''
-      python ${config.xdg.configHome}/zsh/zhist_bkp/index.py -b -p $HOME/.zsh_history
     '';
 
     completionInit = ''
@@ -64,8 +56,6 @@
       c = "clear";
       rb = "reboot";
       update = "sudo nixos-rebuild switch";
-      b-hist = "python ${config.xdg.configHome}/zsh/zhist_bkp/index.py -b -p $HOME/.zsh_history";
-      r-hist = "python ${config.xdg.configHome}/zsh/zhist_bkp/index.py -r -p $HOME/.zsh_history";
       kill-gradle = "pkill -f '.*GradleDaemon.*'";
       relog = "sh $HOME/.config/eww/scripts/exitScreenActions.sh logout";
       rage = ''mpvpaper -v eDP-1 -o "profile=mpvpaper"'';

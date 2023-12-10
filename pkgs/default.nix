@@ -6,6 +6,4 @@
   my-custom-font = pkgs.callPackage ./my-custom-font.nix { };
   waybar-mpris = pkgs.callPackage ./waybar-mpris.nix { };
   sddm-sugar-candy = pkgs.callPackage ./sddm-sugar-candy.nix { };
-  my-turso-cli = pkgs.callPackage ./my-turso-cli.nix { };
-  my-thorium = pkgs.callPackage ./thorium.nix { };
 }

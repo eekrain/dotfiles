@@ -1,19 +1,10 @@
 # nvfetcher.toml
-# [waybar-mpris]
-# src.git = "https://git.hrfee.pw/hrfee/waybar-mpris"
-# fetch.git = "https://git.hrfee.pw/hrfee/waybar-mpris.git"
-# [sddm-sugar-candy]
-# src.git = "https://github.com/eekrain/sddm-sugar-candy"
-# fetch.github = "eekrain/sddm-sugar-candy"
-# [my-custom-fonts]
-# src.manual = "1.0"
-# fetch.url = "https://github.com/eekrain/dotfiles/releases/download/1.0/my_custom_fonts.tar.xz"
-# [my-turso-cli]
-# src.git = "https://github.com/tursodatabase/turso-cli"
-# fetch.github = "tursodatabase/turso-cli"
-[my-thorium]
-src.manual = "117.0.5938.157"
-fetch.url = "https://github.com/Alex313031/thorium/releases/download/M117.0.5938.157/thorium-browser_117.0.5938.157_amd64.deb"
-[my-auto-cpufreq]
-src.git = "https://github.com/eekrain/auto-cpufreq"
-fetch.github = "eekrain/auto-cpufreq"
+[waybar-mpris]
+src.git = "https://git.hrfee.pw/hrfee/waybar-mpris"
+fetch.git = "https://git.hrfee.pw/hrfee/waybar-mpris.git"
+[sddm-sugar-candy]
+src.git = "https://github.com/eekrain/sddm-sugar-candy"
+fetch.github = "eekrain/sddm-sugar-candy"
+[my-custom-fonts]
+src.manual = "1.0"
+fetch.url = "https://github.com/eekrain/dotfiles/releases/download/1.0/my_custom_fonts.tar.xz"
