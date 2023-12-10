@@ -7,7 +7,7 @@
       extraConfig = {
         pull.rebase = false;
         credential."https://github.com" = {
-          helper = "${pkgs.gitAndTools.gh} auth git-credential";
+          helper = "${pkgs.gitAndTools.gh}/bin/gh auth git-credential";
         };
       };
 
