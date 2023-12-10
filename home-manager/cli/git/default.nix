@@ -4,10 +4,12 @@
   programs = {
     git = {
       enable = true;
-      extraConfig = ''
-        [credential "https://github.com"]
-            helper = "${pkgs.gitAndTools.gh} auth git-credential"
-      '';
+      extraConfig = {
+        pull.rebase = false;
+        credential."https://github.com" = {
+          helper = "${pkgs.gitAndTools.gh} auth git-credential";
+        };
+      };
 
       # userName = "Ardian Eka Candra";
       # userEmail = "ardianoption@gmail.com";
