@@ -3,7 +3,7 @@ with lib;
 let
   cfg = config.hardware.suspendThenHybernate;
   hibernateEnvironment = {
-    HIBERNATE_SECONDS = "30";
+    HIBERNATE_SECONDS = "1800";
     HIBERNATE_LOCK = "/var/run/autohibernate.lock";
   };
 in

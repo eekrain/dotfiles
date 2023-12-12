@@ -40,8 +40,5 @@
   # Use the swap partition here
   boot.resumeDevice = "/dev/mapper/main-swap";
 
-  # hardware.suspendThenHybernate = {
-  #   enable = true;
-  #   hibernateSeconds = 30;
-  # };
+  hardware.suspendThenHybernate.enable = true;
 }
