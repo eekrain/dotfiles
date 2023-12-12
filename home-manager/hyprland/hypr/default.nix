@@ -76,20 +76,20 @@ let
     if [ $SUSPEND_MODE = "work" ]
     then
       swayidle -w \
-        timeout 30                          "hyprctl dispatch dpms off" \
-        resume                              "hyprctl dispatch dpms on" \
-        timeout 60                          "hyprctl dispatch dpms on && myswaylock" \
-        timeout 65                          "hyprctl dispatch dpms off" \
-        timeout 300                         "systemctl suspend" \
-        before-sleep                        "hyprctl dispatch dpms on" &
+        timeout 30    "hyprctl dispatch dpms off" \
+        resume        "hyprctl dispatch dpms on" \
+        timeout 60    "hyprctl dispatch dpms on && myswaylock" \
+        timeout 65    "hyprctl dispatch dpms off" \
+        timeout 300   "systemctl suspend" \
+        before-sleep  "hyprctl dispatch dpms on" &
     else
       swayidle -w \
-        timeout 120                          "hyprctl dispatch dpms off" \
-        resume                              "hyprctl dispatch dpms on" \
-        timeout 300                         "hyprctl dispatch dpms on && myswaylock" \
-        timeout 305                         "hyprctl dispatch dpms off" \
-        timeout 600                         "systemctl suspend" \
-        before-sleep                        "hyprctl dispatch dpms on" &
+        timeout 120    "hyprctl dispatch dpms off" \
+        resume        "hyprctl dispatch dpms on" \
+        timeout 300    "hyprctl dispatch dpms on && myswaylock" \
+        timeout 305    "hyprctl dispatch dpms off" \
+        timeout 600    "systemctl suspend" \
+        before-sleep  "hyprctl dispatch dpms on" &
     fi
   '';
   cycle-suspend-mode = pkgs.writeShellScriptBin "cycle-suspend-mode" ''
