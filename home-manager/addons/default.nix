@@ -11,7 +11,6 @@
   };
 
   home.packages = with pkgs; [
-    # vscode #install manually via nix-env
     discord
     winbox
     cava
