@@ -2,7 +2,7 @@
 {
   home.packages = [
     (pkgs.vscode.override {
-      commandLineArgs = "--ozone-platform=x11";
+      commandLineArgs = "--enable-features=WaylandWindowDecorations --ozone-platform-hint=auto";
       # isInsiders = true;
     })
   ];
