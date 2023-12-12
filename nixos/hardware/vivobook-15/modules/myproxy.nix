@@ -1,4 +1,4 @@
-{ lib, pkgs, config, inputs, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 let
   cfg = config.services.myproxy;

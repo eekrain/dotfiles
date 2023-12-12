@@ -35,7 +35,6 @@
 
       services.myproxy.enable = lib.mkForce true;
       networking.firewall.enable = lib.mkForce true;
-
     };
   };
 

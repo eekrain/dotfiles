@@ -3,6 +3,7 @@
   imports =
     [
       inputs.auto-cpufreq.nixosModules.default
+      ./modules/suspend-then-hybernate.nix
     ];
 
   programs.auto-cpufreq = {
@@ -35,6 +36,12 @@
       DEVICES_TO_DISABLE_ON_WWAN_CONNECT = ''"wifi"'';
     };
   };
+
   # Use the swap partition here
   boot.resumeDevice = "/dev/mapper/main-swap";
+
+  # hardware.suspendThenHybernate = {
+  #   enable = true;
+  #   hibernateSeconds = 30;
+  # };
 }

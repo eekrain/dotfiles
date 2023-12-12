@@ -81,15 +81,14 @@ let
         timeout 60                          "hyprctl dispatch dpms on && myswaylock" \
         timeout 65                          "hyprctl dispatch dpms off" \
         timeout 300                         "systemctl suspend" \
-        timeout 600                         "systemctl hibernate"
         before-sleep                        "hyprctl dispatch dpms on" &
     else
       swayidle -w \
         timeout 120                          "hyprctl dispatch dpms off" \
         resume                              "hyprctl dispatch dpms on" \
-        timeout 300                         "myswaylock" \
+        timeout 300                         "hyprctl dispatch dpms on && myswaylock" \
         timeout 305                         "hyprctl dispatch dpms off" \
-        timeout 600                         "systemctl hibernate" \
+        timeout 600                         "systemctl suspend" \
         before-sleep                        "hyprctl dispatch dpms on" &
     fi
   '';
