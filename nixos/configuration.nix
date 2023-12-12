@@ -48,6 +48,8 @@
       experimental-features = "nix-command flakes";
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
+      # For using cachix should set trusted user
+      trusted-users = [ "root" "@wheel" ];
     };
   };
 

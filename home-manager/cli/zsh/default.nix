@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 {
-  home.packages = with pkgs; [ awscli2 nodejs_21 nitch krabby turso-cli ];
+  home.packages = with pkgs; [
+    awscli2
+    nitch
+    krabby
+    turso-cli
+  ];
 
   # Add zim zsh plugin manager config here 
   xdg.configFile."zsh/zimrc".source = ./zimrc;
