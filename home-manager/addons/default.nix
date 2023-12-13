@@ -28,14 +28,9 @@
     gscreenshot
     motrix
     rambox
-    nvtop-nvidia
     nvtop-amd
+    nvitop
   ];
-
-  home.shellAliases = {
-    "nvtop-nvidia" = "${pkgs.nvtop-nvidia}/bin/nvtop";
-    "nvtop-amd" = "${pkgs.nvtop-amd}/bin/nvtop";
-  };
 
   xdg.mimeApps = {
     enable = true;
