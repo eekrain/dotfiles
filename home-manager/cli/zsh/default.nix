@@ -73,5 +73,8 @@
       gitplaton = ''git config user.name "Ardian Eka Candra" && git config user.email "fachri@platon.co.id"'';
     };
   };
+  home.sessionVariables = {
+    NIXPKGS_ALLOW_UNFREE = "1";
+  };
 }
 
