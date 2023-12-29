@@ -14,8 +14,6 @@
     discord
     winbox
     cava
-    spotify
-    spicetify-cli
     pavucontrol
     nixpkgs-fmt
     pamixer

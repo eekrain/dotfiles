@@ -31,12 +31,12 @@ let
     # wl clip util
     wl-clip-persist --clipboard regular &
 
-    gtk-launch spotify.desktop &
     gtk-launch rambox.desktop &
     gtk-launch motrix.desktop &
     gtk-launch brave-browser.desktop &
     sleep 5
     hyprctl dispatch workspace 1
+    toggle-proxy check
   '';
   hypr_kill = pkgs.writeShellScriptBin "hypr_kill" ''
     pkill -15 swww-daemon
@@ -122,6 +122,29 @@ let
 
     notify-send -u critical -t 3000 "Suspend Mode" "Suspend mode changed to ''${all_mode[$new_index]}"
   '';
+  toggle-proxy = pkgs.writeShellScriptBin "toggle-proxy" ''
+    lockfile=/tmp/proxy-status.lock
+
+    if [ "$1" == "check" ]
+    then
+      stat="$(doas systemctl status redsocks.service | grep -q inactive; echo $?)"
+      echo $stat > $lockfile
+    elif [ "$1" == "toggle" ]
+    then
+      if [ "$(cat $lockfile)" == "0" ]
+      then
+        doas systemctl start firewall.service
+        doas systemctl start redsocks.service
+        echo "1" > $lockfile
+        echo "proxy started"
+      else
+        doas systemctl stop firewall.service
+        doas systemctl stop redsocks.service
+        echo "0" > $lockfile
+        echo "proxy stopped"
+      fi
+    fi
+  '';
   # currently, there is some friction between sway and gtk:
   # https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
   # the suggested way to set gtk settings is with gsettings
@@ -163,6 +186,7 @@ in
     configure-gtk
     hypr_kill
     cycle-suspend-mode
+    toggle-proxy
   ];
 
   xdg.configFile."hypr/scripts".source = ./scripts;

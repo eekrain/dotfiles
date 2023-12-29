@@ -216,12 +216,11 @@
       #`hyprctl clients` get class、title...
       windowrulev2=fullscreen, class:^(.*winbox64.*)$, title:^(.*WinBox.*)$
       windowrulev2=float, class:^(.*winbox64.*)$, title:^((?!WinBox).)*$
-      windowrule=workspace 1, title:^(Brave)$
-      windowrulev2 = float,class:^(brave)$,title:^(Save File)$
+      windowrulev2=float,class:^(Brave-browser)$,title:^(Save File)$
+      windowrulev2=workspace 1, class:^(Brave-browser)$
       windowrulev2=workspace 3, class:^(jetbrains-studio)$, title:^((?!Running Devices).)*$
       windowrulev2=workspace 4, class:^(jetbrains-studio)$, title:^(.*Running Devices.*)$
       windowrulev2=tile, class:^(jetbrains-studio)$, title:^(.*Running Devices.*)$
-      windowrule=workspace name:, title:^(Spotify)$
       windowrulev2=workspace name:, class:^(rambox)$
       windowrule=workspace 2, title:^(Visual Studio Code)$
       windowrulev2=fakefullscreen, class:^(code-url-handler)$

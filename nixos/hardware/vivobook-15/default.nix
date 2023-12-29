@@ -16,25 +16,17 @@
   ];
 
   # Default Profile GPU
-  boot.loader.grub.configurationName = "AMD Normal Network";
-  hardware.amdgpu.enable = true;
+  boot.loader.grub.configurationName = "AMD Proxied";
+  services.myproxy.enable = true;
 
+  hardware.amdgpu.enable = true;
+  hardware.nvidia.enable = false;
 
   specialisation = {
-    amd_proxied.configuration = {
-      boot.loader.grub.configurationName = lib.mkForce "AMD + Proxy";
-
-      services.myproxy.enable = lib.mkForce true;
-      networking.firewall.enable = lib.mkForce true;
-    };
-
     nvidia_proxied.configuration = {
-      boot.loader.grub.configurationName = lib.mkForce "NVIDIA + Proxy";
+      boot.loader.grub.configurationName = lib.mkForce "NVIDIA Proxied";
       hardware.amdgpu.enable = lib.mkForce false;
       hardware.nvidia.enable = lib.mkForce true;
-
-      services.myproxy.enable = lib.mkForce true;
-      networking.firewall.enable = lib.mkForce true;
     };
   };
 
