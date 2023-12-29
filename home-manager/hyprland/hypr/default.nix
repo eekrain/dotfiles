@@ -9,6 +9,7 @@ let
 
     systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
     systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+    ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
 
     # notification daemon
     dunst &
