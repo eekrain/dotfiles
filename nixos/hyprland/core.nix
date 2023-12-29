@@ -13,6 +13,7 @@ in
     libsForQt5.qt5.qtwayland
     libsForQt5.qt5.qtgraphicaleffects
     libsForQt5.qt5ct
+    libsForQt5.polkit-kde-agent
     qt6.qtbase
     glib # gsettings
     xdg-utils # for opening default programs when clicking links
@@ -26,7 +27,6 @@ in
     wlr-randr
     libnotify
     sshpass
-    polkit_gnome
     eza
     fzf
     python3

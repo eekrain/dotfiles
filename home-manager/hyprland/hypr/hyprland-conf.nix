@@ -3,6 +3,7 @@
   wayland.windowManager.hyprland.extraConfig =
     ''
       exec-once=hypr_autostart
+      exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
 
       $mainMod = WIN
       $scripts = $HOME/.config/hypr/scripts
