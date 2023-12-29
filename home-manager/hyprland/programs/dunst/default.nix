@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
 {
-  services.dunst = {
-    enable = true;
-    configFile = ./dunstrc;
-  };
+  home.packages = [ pkgs.dunst ];
+  xdg.configFile."dunst/dunstrc".source = ./dunstrc;
 }

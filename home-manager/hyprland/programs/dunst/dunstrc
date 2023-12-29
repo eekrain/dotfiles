@@ -1,172 +1,203 @@
 [global]
-	font = DM Sans 10
 
-	# Allow a small subset of html markup:
-	# <b>bold</b>
-	# <i>italic</i>
-	# <s>strikethrough<s/>
-	# <u>underline</u>
-	#
-	# for a complete reference see http://developer.gnome.org/pango/stable/PangoMarkupFormat.html
-	# If markup is not allowed, those tags will be stripped out of the message.
-	allow_markup = yes
+    # --- Display --- #
 
-	# The format of the message. Possible variables are:
-	#   %a  appname
-	#   %s  summary
-	#   %b  body
-	#   %i  iconname (including its path)
-	#   %I  iconname (without its path)
-	#   %p  progress value if set ([  0%] to [100%]) or nothing
-	# Markup is allowed
-	format = "<b>%s</b>\n%b"
+    # The monitor to be displayed to
+    monitor = 0
 
-	# Sort messages by urgency
-	sort = yes
+    # Follow monitor with mouse
+    follow = mouse
 
-	# Show how many messages are currently hidden (because of geometry)
-	indicate_hidden = yes
+    width = 300
+    # height = 260
+    origin = top-right
+    offset = 15x15
 
-	# Alignment of message text.
-	# Possible values are "left", "center" and "right"
-	alignment = left
 
-	# The frequency with wich text that is longer than the notification
-	# window allows bounces back and forth.
-	# This option conflicts with 'word_wrap'.
-	# Set to 0 to disable
-	bounce_freq = 0
+    progress_bar = true
+    progress_bar_height = 14
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
 
-	# Specify where to make an ellipsis in long lines.
-	# Possible values are "start", "middle" and "end".
-	ellipsize = middle
 
-	# Show age of message if message is older than show_age_threshold seconds.
-	# set to -1 to disable
-	show_age_threshold = -1
+    # Show how many messages are hidden
+    indicate_hidden = yes
 
-	# Split notifications into multiple lines if they don't fit into geometry
-	word_wrap = yes
+    # Shrink window if it's smaller than the width.
+    shrink = no
 
-	# Ignore newlines '\n' in notifications
-	ignore_newline = no
+    # The transparency of the window.
+    transparency = 1
 
-	### Geometry ###
+    # Draw a line between multiple notifications
+    separator_height = 6
 
-	# dynamic width from 0 to 300
-	# width = (0, 300)
-	# constant width of 300
-	width = 300
+    separator_color = "#272f57"
 
-	# The maximum height of a single notification, excluding the frame.
-	height = 500
+    # Set notification padding
+    padding = 16
+    horizontal_padding = 16
 
-	# Position of the notification
-	origin = top-right
+    # Disable frame (border)
+    frame_width = 0
 
-	# Offset from the origin
-	offset = 10x60
+    # Sort messages by urgency.
+    sort = no
 
-	# Frame
-	frame_width = 0
-	frame_color = "#131718"
+    # Disable idle time
+    idle_threshold = 0
 
-	# The transparency of the window. range: [0; 100]
-	# This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
-	transparency = 0
+   
+    # --- Text --- #
 
-	# Don't remove messages, if the user is idle (no mouse or keyboard input)
-	# for longer than idle_threshold seconds.
-	# Set to 0 to disable.
-	idle_threshold = 0
+    # Set the font
+    # font = "Noto Sans 11"
+    font = "Hack Nerd Font 11"
 
-	# Which monitor should the notifications be displayed on.
-	monitor = 0
+    # Set line height to font height
+    line_height = 0
 
-	# Display notification on focused monitor. Possible modes are:
-	# mouse: follow mouse pointer
-	# keyboard: follow window with keyboard focus
-	# none: don't follow anything
-	#
-	# "keyboard" needs a windowmanager that exports the _NET_ACTIVE_WINDOW property.
-	# This should be the case for almost all modern windowmanagers.
-	#
-	# If this option is set to mouse or keyboard, the monitor option will be
-	# ignored.
-	follow = none
+    # Reference for markup and formatting:
+    #  <b>bold</b>
+    #  <i>italic</i>
+    #  <s>strikethrough</s>
+    #  <u>underline</u>
+    #  <https://developer.gnome.org/pango/stable/pango-Markup.html>.
+    #  %a appname
+    #  %s summary
+    #  %b body
+    #  %i iconname (including its path)
+    #  %I iconname (without its path)
+    #  %p progress value if set ([  0%] to [100%]) or nothing
+    #  %n progress value if set without any extra characters
+    #  %% Literal %
 
-	# Display indicators for URLs (U) and actions (A).
-	show_indicators = no
+    markup = full
+    format = "<b>%a</b>\n%s"
 
-	# Should a notification popped up from history be sticky or
-	# timeout as if it would normally do.
-	sticky_history = yes
+    # Left align the text
+    alignment = left
 
-	# The height of a single line. If the height is smaller than the font height,
-	# it will get raised to the font height.
-	# This adds empty space above and under the text.
-	line_height = 8
+    # Vertical alignment of message text and icon.
+    vertical_alignment = center
 
-	# Draw a line of 'separatpr_height' pixel height between two notifications.
-	# Set to 0 to disable
-	separator_height = 3
+    # Show age of message if message is old
+    show_age_threshold = 120
 
-	# Padding between text and separator
-	padding = 16
+    # Wrap text if it doesn't fit in geometry
+    word_wrap = yes
 
-	# Horizontal padding
-	horizontal_padding = 12
+    # Where to place ellipses if word wrap is disabled
+    # ellipsize = middle
 
-    # Padding between text and icon.
-    text_icon_padding = 4
+    # Use newlines '\n' in notifications.
+    ignore_newline = no
 
-	# Define a color for the separator.
-	# possible values are:
-	#  * auto: dunst tries to find a color fitting to the background
-	#  * foreground: use the same color as the foreground
-	#  * frame: use the same color as the frame.
-	#  * anything else will be interpreted as a X color
-	separator_color = frame
+    # Don't stack together notifications
+    stack_duplicates = false
 
-	# Print a notification on startup
-	# This is mainly for error detection, since dbus (re-)starts dunst
-	# automatically after a crash.
-	startup_notification = false
+    # Hide the count of stacked notifications
+    # hide_duplicate_count = false
 
-	# Align icons left/right/off
-	icon_position = left
+    # Display indicators for URLs (U) and actions (A).
+    show_indicators = yes
 
-	# Scale larger icons down to this size, set to 0 to disable
-	max_icon_size = 64
+    
+    # ---- Icons ---- #
 
-	# Define the corner radius of the notification window
-	# in pixel size. If the radius is 0, you have no rounded
-	# corners.
-	# The radius will be automatically lowered if it exceeds half of the
-	# notification height to avoid clipping text and/or icons.
-	corner_radius = 10
+    # Align icons left/right/off
+    icon_position = left
 
-	# Always run rule-defined scripts, even if the notification is suppressed
-	always_run_script = true
-[redirect]
-  summary = "*"
-  script = "~/.config/hypr/scripts/tools/notif"
+    # Scale small icons up to this size, set to 0 to disable.
+    min_icon_size = 50
 
-[logger]
-  summary = "*"
-  script = "~/.config/hypr/scripts/tools/notif"
+    # Scale larger icons down to this size, set to 0 to disable
+    max_icon_size = 60
+
+    # Paths to default icons.
+    icon_path = ~/.nix-profile/share/icons/kora/apps/scalable:~/.nix-profile/share/icons/kora/status/scalable:~/.nix-profile/share/icons/kora/actions/scalable:~/.nix-profile/share/icons/kora/emblems/scalable:~/.nix-profile/share/icons/kora/devices/scalable
+ 
+    # --- History --- #
+
+    # Avoid timing out hidden notifications
+    sticky_history = yes
+
+    # Maximum amount of notifications kept in history
+    history_length = 100
+
+
+    # --- Misc/Advanced --- #
+
+    dmenu = /usr/bin/dmenu -p dunst:
+
+    # Browser for opening urls in context menu.
+    browser = brave
+
+    # Always run rule-defined scripts, even if the notification is suppressed
+    always_run_script = false
+
+    # Define the title of the windows spawned by dunst
+    title = Dunst
+
+    # Define the class of the windows spawned by dunst
+    class = Dunst
+
+    # Define the corner radius of the notification window
+    corner_radius = 10
+
+    # Don't gnore the dbus closeNotification message.
+    ignore_dbusclose = false
+
+
+    # --- Legacy --- #
+
+    # Use the Xinerama extension instead of RandR for multi-monitor support.
+    force_xinerama = false
+
+
+    # --- Mouse --- #
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+
+[experimental]
+    per_monitor_dpi = false
 
 [urgency_low]
-background = "#0B0F10"
-foreground = "#9fa0a0"
-timeout = 1
+    background = "#141929fe"
+    highlight = "#6fa6e7"
+    frame_color = "#272f57"
+    foreground = "#dae1f2"
+    timeout = 8
 
 [urgency_normal]
-background = "#0B0F10"
-foreground = "#9fa0a0"
-timeout = 1
+    background = "#141929fe"
+    highlight = "#5ca1ff"
+
+    frame_color = "#272f57"
+    foreground = "#dae1f2"
+    timeout = 8
 
 [urgency_critical]
-background = "#0B0F10"
-foreground = "#c5c8c9"
-timeout = 1
+    background = "#5ca1ffff"
+    highlight = "#fe6c5a"
+    foreground = "#1c2138"
+    frame_color = "#52426e"
+    timeout = 0
+    icon = battery-ac-adapter
+
+[backlight]
+    appname = "Backlight"
+    highlight = "#fc7b80"
+
+[music]
+    appname = "Music"
+
+[volume]
+    summary = "Volume*"
+    highlight = "#cb8cf4"
+
+[battery]
+    appname = "Power Warning"

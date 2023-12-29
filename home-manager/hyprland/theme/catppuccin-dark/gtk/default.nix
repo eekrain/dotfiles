@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     hicolor-icon-theme
     gnome.adwaita-icon-theme
+    kora-icon-theme
   ];
 
   home.sessionVariables = {
