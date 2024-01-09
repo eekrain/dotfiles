@@ -25,7 +25,7 @@
     peazip
     gscreenshot
     motrix
-    rambox
+    wavebox
     nvtop-amd
     nvitop
   ];
@@ -51,8 +51,8 @@
             [ "http" "https" "ftp" "chrome" "about" ])
           (subtypes "application" "brave.desktop"
             [ "x-extension-htm" "x-extension-html" "x-extension-shtml" "xhtml+xml" "x-extension-xhtml" "x-extension-xht" "pdf" ])
-          # Rambox
-          (subtypes "x-scheme-handler" "rambox.desktop"
+          # Wavebox
+          (subtypes "x-scheme-handler" "Wavebox.desktop"
             [ "tg" "whatsapp" ])
           # Image
           (subtypes "image" "imv-dir.desktop"

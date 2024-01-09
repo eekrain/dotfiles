@@ -31,7 +31,7 @@ let
     # wl clip util
     wl-clip-persist --clipboard regular &
 
-    gtk-launch rambox.desktop &
+    gtk-launch Wavebox.desktop &
     gtk-launch motrix.desktop &
     gtk-launch brave-browser.desktop &
     sleep 5
