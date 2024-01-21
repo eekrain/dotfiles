@@ -14,12 +14,14 @@
         turbo = "never";
         scaling_min_freq = 400000;
         scaling_max_freq = 3210000;
+        energy_performance_preference = "power";
       };
       charger = {
         governor = "powersave";
         turbo = "auto";
         scaling_min_freq = 400000;
         scaling_max_freq = 4280000;
+        energy_performance_preference = "power";
       };
     };
   };

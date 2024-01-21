@@ -5,7 +5,7 @@
   services.gnome.gnome-keyring.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Asia/Makassar";
+  time.timeZone = "Asia/Jakarta";
   services.ntp.enable = true;
   programs.ssh.startAgent = true;
 
