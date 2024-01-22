@@ -218,6 +218,7 @@
       windowrulev2=float, class:^(.*winbox64.*)$, title:^((?!WinBox).)*$
       windowrulev2=float,class:^(Brave-browser)$,title:^(Save File)$
       windowrulev2=workspace 1, class:^(Brave-browser)$
+      windowrulev2=idleinhibit fullscreen, class:^(Brave-browser)$
       windowrulev2=workspace 3, class:^(jetbrains-studio)$, title:^((?!Running Devices).)*$
       windowrulev2=workspace 4, class:^(jetbrains-studio)$, title:^(.*Running Devices.*)$
       windowrulev2=tile, class:^(jetbrains-studio)$, title:^(.*Running Devices.*)$

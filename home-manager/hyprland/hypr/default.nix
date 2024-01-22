@@ -22,7 +22,7 @@ let
     myswayidle &
 
     # wallpaper
-    swww init
+    swww init &
 
     # other
     $scripts/toggle_touchpad disable &
