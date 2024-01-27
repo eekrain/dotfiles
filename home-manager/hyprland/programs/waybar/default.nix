@@ -114,7 +114,7 @@
       };
 
       "clock" = {
-        "timezone" = "Asia/Makassar";
+        "timezone" = "Asia/Jakarta";
         "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         "interval" = 60;
         "format" = "{:%I:%M}";

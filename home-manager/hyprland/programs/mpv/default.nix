@@ -7,6 +7,7 @@
   };
   xdg.configFile."mpv/input.conf".source = ./input.conf;
   xdg.configFile."mpv/mpv.conf".source = ./mpv.conf;
+  xdg.configFile."mpv/mpv_subtitles.conf".source = ./mpv_subtitles.conf;
   xdg.configFile."mpv/scripts/file-browser.lua".source = ./scripts/file-browser.lua;
   xdg.configFile."mpv/shaders".source = ./shaders;
   xdg.configFile."mpv/shaders".recursive = true;
@@ -16,7 +17,7 @@
       name = "mpv Media Player";
       genericName = "Multimedia player";
       type = "Application";
-      exec = "env WLR_DRM_DEVICES=/dev/dri/renderD128 nvidia-offload mpv --player-operation-mode=pseudo-gui -- %U";
+      exec = "nvidia-offload mpv --player-operation-mode=pseudo-gui -- %U";
       terminal = false;
       icon = "mpv";
       comment = ''Play movies and songs'';
@@ -31,7 +32,7 @@
       name = "umpv Media Player";
       genericName = "Multimedia player";
       type = "Application";
-      exec = "env WLR_DRM_DEVICES=/dev/dri/renderD128 nvidia-offload umpv --player-operation-mode=pseudo-gui -- %U";
+      exec = "nvidia-offload umpv --player-operation-mode=pseudo-gui -- %U";
       terminal = false;
       icon = "umpv";
       comment = ''Play movies and songs'';
