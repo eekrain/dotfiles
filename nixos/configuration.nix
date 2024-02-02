@@ -50,6 +50,7 @@
       auto-optimise-store = true;
       # For using cachix should set trusted user
       trusted-users = [ "root" "@wheel" ];
+      sandbox = false;
     };
   };
 

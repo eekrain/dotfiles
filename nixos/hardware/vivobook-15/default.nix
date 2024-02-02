@@ -14,11 +14,13 @@
     ./networking.nix
     ./power-management.nix
     ./virtualization.nix
+
+    ./modules/dae.nix
   ];
 
   # Default Profile GPU
   boot.loader.grub.configurationName = "AMD Proxied";
-  services.myproxy.enable = true;
+  # services.myproxy.enable = true;
 
   hardware.amdgpu.enable = true;
   hardware.nvidia.enable = false;
