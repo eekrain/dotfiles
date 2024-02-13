@@ -11,7 +11,8 @@ global {
 
 node {
   # Fill in your subscription links here.
-	node1: 'vmess://eyJhZGQiOiIxMDQuMTguMjI1LjUyIiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiJ3cy1jZG4uYXJkaWFuZWthLm15LmlkIiwiaWQiOiIyZWEyM2YyNC1mOTJiLTRhZjMtOTkzYi1hMTkzMTlhZDNlNGEiLCJuZXQiOiJ3cyIsInBhdGgiOiJ4cmF5LXZtZXNzLXdzIiwicG9ydCI6IjQ0MyIsInBzIjoidm1lc3Mtd3MtY2RuIiwic2N5IjoiYXV0byIsInNuaSI6IndzLWNkbi5hcmRpYW5la2EubXkuaWQiLCJ0bHMiOiJ0bHMiLCJ0eXBlIjoiIiwidiI6IjIifQ=='
+	node1: 'vless://2ea23f24-f92b-4af3-993b-a19319ad3e4a@104.18.225.52:443/?type=ws&encryption=none&host=ws-cdn.ardianeka.my.id&path=xray-vless-ws&security=tls&sni=ws-cdn.ardianeka.my.id#vless-ws-cdn'
+	node2: 'vless://2ea23f24-f92b-4af3-993b-a19319ad3e4a@104.18.225.52:443/?type=grpc&encryption=none&serviceName=xray-vless-grpc&security=tls&sni=grpc-cdn.ardianeka.my.id#vless-grpc-cdn'
 }
 
 # See https://github.com/daeuniverse/dae/blob/main/docs/en/configuration/dns.md for full examples.
