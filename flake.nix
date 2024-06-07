@@ -99,7 +99,7 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main nixos configuration file <
-            ./nixos/virtualbox/configuration.nix
+            ./nixos/vivobook-15/configuration.nix
           ];
         };
         # FIXME replace with your hostname
