@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.desktop.hyprland;
+  cfg = config.myHmModule.desktop.hyprland;
 in
 {
   config = mkIf cfg.enable {

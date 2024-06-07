@@ -1,10 +1,10 @@
 { lib, config, pkgs, ... }:
 with lib;
 let
-  cfg = config.cli;
+  cfg = config.myHmModule.cli;
 in
 {
-  options.cli.kitty = mkEnableOption "Enable kitty settings";
+  options.myHmModule.cli.kitty = mkEnableOption "Enable kitty settings";
   config = mkIf cfg.kitty {
     programs = {
       kitty = {

@@ -1,10 +1,10 @@
 { lib, config, pkgs, ... }:
 with lib;
 let
-  cfg = config.cli;
+  cfg = config.myHmModule.cli;
 in
 {
-  options.cli.zsh = mkEnableOption "Enable zsh settings";
+  options.myHmModule.cli.zsh = mkEnableOption "Enable zsh settings";
 
   config = mkIf cfg.zsh {
 

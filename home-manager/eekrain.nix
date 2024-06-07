@@ -22,13 +22,15 @@
   ];
 
   # Enabling home manager modules installed
-  cli = {
-    git = true;
-    zsh = true;
-    kitty = true;
-  };
-  desktop = {
-    hyprland.enable = true;
+  myHmModule = {
+    cli = {
+      git = true;
+      zsh = true;
+      kitty = true;
+    };
+    desktop = {
+      hyprland.enable = true;
+    };
   };
 
   # Add stuff for your user as you see fit:

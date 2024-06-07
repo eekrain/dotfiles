@@ -1,7 +1,7 @@
 { inputs, config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.desktop.hyprland;
+  cfg = config.myHmModule.desktop.hyprland;
 in
 {
   imports = [
@@ -10,7 +10,7 @@ in
     # ./env.nix
   ];
 
-  options.desktop.hyprland.enable = mkEnableOption "Enable installing hyprland with basic and my preferred keybind";
+  options.myHmModule.desktop.hyprland.enable = mkEnableOption "Enable installing hyprland with basic and my preferred keybind";
 
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
