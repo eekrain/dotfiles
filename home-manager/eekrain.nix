@@ -21,15 +21,16 @@
     ./default-settings
   ];
 
-  # Enabling home manager modules installed
+  # Enabling my home manager modules installed
   myHmModule = {
     cli = {
       git = true;
       zsh = true;
       kitty = true;
     };
-    desktop = {
-      hyprland.enable = true;
+    desktop.hyprland = {
+      enable = true;
+      riceSetup = "hyprland-rice-aurora";
     };
   };
 

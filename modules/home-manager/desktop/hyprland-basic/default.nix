@@ -7,7 +7,7 @@ in
   imports = [
     inputs.hyprland.homeManagerModules.default
     ./config.nix
-    # ./env.nix
+    ./env.nix
   ];
 
   options.myHmModule.desktop.hyprland.enable = mkEnableOption "Enable installing hyprland with basic and my preferred keybind";

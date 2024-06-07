@@ -1,0 +1,7 @@
+{
+  imports = [
+    ./dunst
+    ./waybar
+    ./wofi
+  ];
+}
