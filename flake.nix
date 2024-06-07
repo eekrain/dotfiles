@@ -85,7 +85,7 @@
         #   specialArgs = { inherit inputs outputs; };
         #   modules = [
         #     # > Our main nixos configuration file <
-        #     # ./nixos/virtualbox/configuration.nix
+        #     ./nixos/virtualbox/configuration.nix
         #   ];
         # };
         # FIXME replace with your hostname

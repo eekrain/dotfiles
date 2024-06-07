@@ -1,6 +1,6 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
 
-  imports = [ ./user.nix ];
+  imports = [ ./users.nix ];
 
   # Addons packages
   environment.systemPackages = with pkgs; [
