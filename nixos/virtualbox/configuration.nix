@@ -16,10 +16,12 @@
     ../default-settings/default.nix
   ];
 
-  # Enabling nixos modules installed
-  desktop = {
-    hyprland.enable = true;
-    hyprland.riceSetup = "hyprland-rice-aurora";
+  # Enabling my custom nixos modules installed
+  myModule = {
+    desktop = {
+      hyprland.enable = true;
+      hyprland.riceSetup = "hyprland-rice-aurora";
+    };
   };
 
   # Put your flake location dir here, for use with nh(nix helper tool)

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.desktop;
+  cfg = config.myModule.desktop;
 in
 {
   imports = [
@@ -9,7 +9,7 @@ in
     ./hyprland-rice-aurora.nix
   ];
 
-  options.desktop = {
+  options.myModule.desktop = {
     hyprland.riceSetup = mkOption {
       description = "Desktop rice to use";
       type = types.enum [ "hyprland-rice-aurora" ];

@@ -1,10 +1,10 @@
 { inputs, config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.desktop.hyprland;
+  cfg = config.myModule.desktop.hyprland;
 in
 {
-  options.desktop.hyprland.enable = mkEnableOption "Enable basic hyprland installation";
+  options.myModule.desktop.hyprland.enable = mkEnableOption "Enable basic hyprland installation";
 
   config = mkIf cfg.enable {
     programs.hyprland = {
