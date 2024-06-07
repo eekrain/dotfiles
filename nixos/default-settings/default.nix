@@ -6,6 +6,8 @@
   environment.systemPackages = with pkgs; [
     git
   ];
+  # Enabling zsh as the default shell
+  programs.zsh.enable = true;
 
   # Default nixpks settings
   nixpkgs = {
