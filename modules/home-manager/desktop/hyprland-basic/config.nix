@@ -169,6 +169,10 @@ in
         workspace_swipe_cancel_ratio = "0.5";
         workspace_swipe_create_new = "false";
       };
+
+      debug = {
+        disable_logs = false;
+      };
     };
   };
 }
