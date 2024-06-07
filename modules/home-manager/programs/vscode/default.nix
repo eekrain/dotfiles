@@ -7,11 +7,7 @@ in
   config = mkIf cfg.vscode {
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode.override {
-        commandLineArgs = "--ozone-platform=x11";
-        # isInsiders = true;
-      };
-      enableUpdateCheck = false;
+      package = pkgs.vscode;
     };
   };
 }

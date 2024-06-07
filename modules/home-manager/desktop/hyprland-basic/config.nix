@@ -7,7 +7,7 @@ in
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland.settings = {
       monitor = ",highres,auto,2";
-      "$mod" = "ALT";
+      "$mod" = "WIN";
 
       xwayland = {
         force_zero_scaling = "true";
