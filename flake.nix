@@ -95,13 +95,13 @@
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         # FIXME replace with your hostname
-        # eka-laptop = nixpkgs.lib.nixosSystem {
-        #   specialArgs = { inherit inputs outputs; };
-        #   modules = [
-        #     # > Our main nixos configuration file <
-        #     ./nixos/virtualbox/configuration.nix
-        #   ];
-        # };
+        eka-laptop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            # > Our main nixos configuration file <
+            ./nixos/virtualbox/configuration.nix
+          ];
+        };
         # FIXME replace with your hostname
         virtualbox = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
@@ -116,14 +116,14 @@
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
         # FIXME replace with your username@hostname
-        # "eekrain@eka-laptop" = home-manager.lib.homeManagerConfiguration {
-        #   pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        #   extraSpecialArgs = { inherit inputs outputs; };
-        #   modules = [
-        #     # > Our main home-manager configuration file <
-        #     ./home-manager/eekrain.nix
-        #   ];
-        # };
+        "eekrain@eka-laptop" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            # > Our main home-manager configuration file <
+            ./home-manager/eekrain.nix
+          ];
+        };
         "eekrain@virtualbox" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; };

@@ -5,6 +5,8 @@
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
+    ./bootloader.nix
+    ./power-management.nix
 
     # If you want to use modules your own flake exports (from modules/nixos):
     outputs.nixosModules.hardware
@@ -22,18 +24,18 @@
   # Enabling my custom nixos modules installed
   myModules = {
     hardware = {
-      audio = false;
-      bluetooth = false;
-      gpu = null;
+      audio = true;
+      bluetooth = true;
+      gpu = lib.mkDefault "amd";
       suspendThenHybernate = false;
     };
     networking = {
       enable = true;
-      proxyWith = null;
-      # proxyWith = "redsocks";
+      proxyWith = "redsocks";
     };
     desktop = {
       sddm.enable = true;
+      sddm.defaultSession = "hyprland";
       hyprland.enable = true;
       hyprland.riceSetup = "hyprland-rice-aurora";
     };
@@ -44,23 +46,29 @@
     };
   };
 
-  # Put your flake location dir here, for use with nh(nix helper tool)
-  programs.nh.flake = lib.mkForce "/home/eekrain/dotfiles";
-
   # TODO: Set your hostname
   networking.hostName = "virtualbox";
 
+  # Put your flake location dir here, for use with nh(nix helper tool)
+  programs.nh.flake = lib.mkForce "/home/eekrain/dotfiles";
+
   # FIXME: Add the rest of your current configuration
-  # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  # use latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+  # IF for some reason your system can't boot up cause of bluetooth issue, add this line to add all linux firmware
+  hardware.enableAllFirmware = true;
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Asia/Jakarta";
+  # Specialisation settings
+  # Default boot loader configuration name using AMD GPU
+  boot.loader.grub.configurationName = "AMD GPU";
+  specialisation = {
+    nvidia_gpu.configuration = {
+      # Bootloader name for specialisation with NVIDIA GPU instead
+      boot.loader.grub.configurationName = lib.mkForce "NVIDIA GPU";
+      # Force change myModules.hardware.gpu to be "nvidia"
+      myModules.hardware.gpu = lib.mkForce "nvidia";
+    };
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
