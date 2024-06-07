@@ -4,6 +4,7 @@ let
   cfg = config.myHmModules.programs;
 in
 {
+  # xdg.mimeApps for configuring default apps to open a file for a spesific format
   config = mkIf cfg.mimeapps {
     xdg.mimeApps = {
       enable = true;
