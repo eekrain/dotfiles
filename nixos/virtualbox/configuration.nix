@@ -13,7 +13,7 @@
     # inputs.hardware.nixosModules.common-cpu-amd
 
     # You can also split up your configuration and import pieces of it here:
-    ../default-settings
+    ../default-settings/default.nix
   ];
 
   # TODO: Set your hostname

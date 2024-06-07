@@ -58,6 +58,12 @@
       # Your custom packages
       # Accessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+      # Devshell for bootstrapping
+      # Acessible through 'nix develop' or 'nix-shell' (legacy)
+      devShells = forAllSystems (system:
+        let pkgs = nixpkgs.legacyPackages.${system};
+        in import ./shell.nix { inherit pkgs; }
+      );
       # Formatter for your nix files, available through 'nix fmt'
       # Other options beside 'alejandra' include 'nixpkgs-fmt'
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
@@ -75,19 +81,19 @@
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         # FIXME replace with your hostname
-        eka-laptop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            # > Our main nixos configuration file <
-            # ./nixos/configuration.nix
-          ];
-        };
+        # eka-laptop = nixpkgs.lib.nixosSystem {
+        #   specialArgs = { inherit inputs outputs; };
+        #   modules = [
+        #     # > Our main nixos configuration file <
+        #     # ./nixos/virtualbox/configuration.nix
+        #   ];
+        # };
         # FIXME replace with your hostname
         virtualbox = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main nixos configuration file <
-            ./nixos/virtualbox
+            ./nixos/virtualbox/configuration.nix
           ];
         };
       };
@@ -96,14 +102,14 @@
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
         # FIXME replace with your username@hostname
-        "eekrain@eka-laptop" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [
-            # > Our main home-manager configuration file <
-            ./home-manager/eekrain.nix
-          ];
-        };
+        # "eekrain@eka-laptop" = home-manager.lib.homeManagerConfiguration {
+        #   pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        #   extraSpecialArgs = { inherit inputs outputs; };
+        #   modules = [
+        #     # > Our main home-manager configuration file <
+        #     ./home-manager/eekrain.nix
+        #   ];
+        # };
         "eekrain@virtualbox" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; };
