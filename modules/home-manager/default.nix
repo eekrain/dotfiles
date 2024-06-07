@@ -3,4 +3,5 @@
 {
   # List your module files here
   cli = import ./cli;
+  desktop = import ./desktop;
 }

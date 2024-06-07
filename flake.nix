@@ -32,6 +32,12 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # TODO: Add any other flake you might need
+
+    # Hyprland stuff
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
   };
 
   outputs =

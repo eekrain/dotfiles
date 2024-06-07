@@ -12,6 +12,7 @@
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     outputs.homeManagerModules.cli
+    outputs.homeManagerModules.desktop
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -22,15 +23,17 @@
 
   # Enabling home manager modules installed
   cli = {
+    git = true;
     zsh = true;
+    kitty = true;
+  };
+  desktop = {
+    hyprland.enable = true;
   };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
-
-  # Enable git
-  programs.git.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "24.05";
