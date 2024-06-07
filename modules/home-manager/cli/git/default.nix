@@ -1,10 +1,10 @@
 { lib, config, pkgs, ... }:
 with lib;
 let
-  cfg = config.myHmModule.cli;
+  cfg = config.myHmModules.cli;
 in
 {
-  options.myHmModule.cli.git = mkEnableOption "Enable git settings";
+  options.myHmModules.cli.git = mkEnableOption "Enable git settings";
   config = mkIf cfg.git {
     home.packages = [ pkgs.gh ];
     programs = {

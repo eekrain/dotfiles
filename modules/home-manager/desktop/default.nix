@@ -9,7 +9,7 @@ in
     ./hyprland-rice-aurora
   ];
 
-  options.myHmModule.desktop.hyprland = {
+  options.myHmModules.desktop.hyprland = {
     riceSetup = mkOption {
       description = "Desktop rice to use";
       type = types.enum [ "hyprland-rice-aurora" ];

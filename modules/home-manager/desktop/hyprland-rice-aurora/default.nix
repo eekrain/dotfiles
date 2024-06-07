@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.myHmModule.desktop.hyprland;
+  cfg = config.myHmModules.desktop.hyprland;
 in
 {
   imports = [

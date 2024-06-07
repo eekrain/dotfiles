@@ -22,7 +22,7 @@
   ];
 
   # Enabling my home manager modules installed
-  myHmModule = {
+  myHmModules = {
     cli = {
       git = true;
       zsh = true;
