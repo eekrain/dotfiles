@@ -10,7 +10,7 @@ in
 
       settings = {
         general = {
-          lock_cmd = "pidof swaylock || myswaylock"; # avoid starting multiple hyprlock instances.
+          lock_cmd = "pidof swaylock || swaylock"; # avoid starting multiple hyprlock instances.
           before_sleep_cmd = "hyprctl dispatch dpms on"; # turning on display before suspend.
           ignore_dbus_inhibit = false;
         };
@@ -23,7 +23,7 @@ in
           }
           {
             timeout = 60; # 0.5min
-            on-timeout = "hyprctl dispatch dpms on && myswaylock && sleep 3 && hyprctl dispatch dpms off"; # screen off when timeout has passed
+            on-timeout = "hyprctl dispatch dpms on && swaylock && sleep 3 && hyprctl dispatch dpms off"; # screen off when timeout has passed
             on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
           }
         ];
