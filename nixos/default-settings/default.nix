@@ -6,6 +6,16 @@
   environment.systemPackages = with pkgs; [
     git
   ];
+  #Enabling nix helper for easier nixos-rebuild
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    # Update this programs.nh.flake to your flake dir location, depending on your own machine
+    # update it in nixos/machine-name/configuration.nix
+    flake = lib.mkDefault "/home/eekrain/dotfiles";
+  };
+
   # Enabling zsh as the default shell
   programs.zsh.enable = true;
   # Enabling direnv for easier flake development

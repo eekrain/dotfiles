@@ -15,6 +15,9 @@
     # You can also split up your configuration and import pieces of it here:
     ../default-settings/default.nix
   ];
+  # Put your flake location dir here, for use with nh(nix helper tool)
+
+  programs.nh.flake = lib.mkForce "/home/eekrain/dotfiles";
 
   # TODO: Set your hostname
   networking.hostName = "virtualbox";
