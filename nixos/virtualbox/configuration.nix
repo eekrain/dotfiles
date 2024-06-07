@@ -9,6 +9,7 @@
     # If you want to use modules your own flake exports (from modules/nixos):
     outputs.nixosModules.hardware
     outputs.nixosModules.desktop
+    outputs.nixosModules.networking
 
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
@@ -24,6 +25,11 @@
       bluetooth = false;
       gpu = null;
       suspendThenHybernate = false;
+    };
+    networking = {
+      enable = true;
+      proxyWith = null;
+      # proxyWith = "redsocks";
     };
     desktop = {
       sddm.enable = true;

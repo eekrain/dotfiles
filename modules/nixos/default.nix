@@ -4,4 +4,5 @@
   # List your module files here
   desktop = import ./desktop;
   hardware = import ./hardware;
+  networking = import ./networking;
 }
