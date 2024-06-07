@@ -1,7 +1,7 @@
 { inputs, config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.myHmModules.desktop;
+  cfg = config.myHmModule.desktop.hyprland;
 in
 {
   imports = [ inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger ];

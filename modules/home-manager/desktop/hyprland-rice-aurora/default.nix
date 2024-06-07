@@ -81,6 +81,4 @@ in
       };
     };
   };
-
-  myHmModules.hyprland.enable = true;
 }
