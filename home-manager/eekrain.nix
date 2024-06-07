@@ -13,6 +13,7 @@
     # If you want to use modules your own flake exports (from modules/home-manager):
     outputs.homeManagerModules.cli
     outputs.homeManagerModules.desktop
+    outputs.homeManagerModules.programs
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -23,14 +24,27 @@
 
   # Enabling my home manager modules installed
   myHmModules = {
+    desktop.hyprland = {
+      enable = true;
+      riceSetup = "hyprland-rice-aurora";
+    };
+
     cli = {
       git = true;
       zsh = true;
       kitty = true;
     };
-    desktop.hyprland = {
-      enable = true;
-      riceSetup = "hyprland-rice-aurora";
+
+    programs = {
+      bat = true;
+      browser = true;
+      btop = true;
+      cava = true;
+      easyeffect-audio = true;
+      hypridle = true;
+      mimeapps = true;
+      mpv = true;
+      vscode = true;
     };
   };
 
