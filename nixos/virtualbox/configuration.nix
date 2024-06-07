@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
 
     # If you want to use modules your own flake exports (from modules/nixos):
+    outputs.nixosModules.hardware
     outputs.nixosModules.desktop
 
     # Or modules from other flakes (such as nixos-hardware):
@@ -18,6 +19,12 @@
 
   # Enabling my custom nixos modules installed
   myModules = {
+    hardware = {
+      audio = true;
+      bluetooth = false;
+      gpu = null;
+      suspendThenHybernate = false;
+    };
     desktop = {
       sddm.enable = true;
       hyprland.enable = true;

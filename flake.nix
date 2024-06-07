@@ -34,10 +34,18 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # TODO: Add any other flake you might need
+    # Hardware preconfigured modules from nixos
+    hardware.url = "github:nixos/nixos-hardware";
 
     # Hyprland stuff
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
+
+    # Common Grub2 themes
+    grub2-themes.url = github:vinceliuice/grub2-themes;
+
+    # For better power management configuration, especially laptop
+    auto-cpufreq.url = github:AdnanHodzic/auto-cpufreq;
   };
 
   outputs =
