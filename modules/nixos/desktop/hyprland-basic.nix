@@ -13,17 +13,13 @@ in
       xwayland.enable = true;
       systemd.setPath.enable = true;
     };
-    services.gvfs.enable = true;
 
     programs = {
       dconf.enable = true;
       light.enable = true;
     };
 
-    security = {
-      polkit.enable = true;
-      rtkit.enable = true;
-    };
+    security.polkit.enable = true;
 
     environment.systemPackages = with pkgs; [
       grim # screenshot functionality

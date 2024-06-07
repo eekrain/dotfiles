@@ -31,4 +31,10 @@
       allowUnfree = true;
     };
   };
+
+  #creating default home user directory
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
 }

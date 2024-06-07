@@ -6,6 +6,11 @@
   environment.systemPackages = with pkgs; [
     git
   ];
+
+  # FS tools for compatibility with desktop
+  services.envfs.enable = true;
+  services.gvfs.enable = true;
+
   #Enabling nix helper for easier nixos-rebuild
   programs.nh = {
     enable = true;
