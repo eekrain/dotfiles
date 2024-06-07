@@ -7,6 +7,7 @@ in
   imports = [
     ./hyprland-basic.nix
     ./hyprland-rice-aurora.nix
+    ./sddm.nix
   ];
 
   options.myModules.desktop = {

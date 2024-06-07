@@ -45,6 +45,7 @@
       hypridle = true;
       mimeapps = true;
       mpv = true;
+      swaylock = true;
       vscode = true;
     };
 

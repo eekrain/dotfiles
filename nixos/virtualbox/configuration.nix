@@ -19,6 +19,7 @@
   # Enabling my custom nixos modules installed
   myModules = {
     desktop = {
+      sddm.enable = true;
       hyprland.enable = true;
       hyprland.riceSetup = "hyprland-rice-aurora";
     };

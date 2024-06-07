@@ -10,7 +10,7 @@ in
         noto-fonts
         noto-fonts-cjk
         noto-fonts-emoji
-        # my-custom-font
+        my-custom-font
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "CascadiaCode" ]; })
         twemoji-color-font
       ];

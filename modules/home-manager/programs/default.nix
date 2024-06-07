@@ -13,6 +13,7 @@ in
     ./hypridle
     ./mimeapps
     ./mpv
+    ./swaylock
     ./vscode
   ];
 
@@ -25,6 +26,7 @@ in
     hypridle = mkEnableOption "Enable hypridle settings";
     mimeapps = mkEnableOption "Enable mimeapps settings";
     mpv = mkEnableOption "Enable mpv settings";
+    swaylock = mkEnableOption "Enable swaylock settings";
     vscode = mkEnableOption "Enable vscode settings";
   };
 }

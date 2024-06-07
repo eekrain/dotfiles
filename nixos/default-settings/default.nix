@@ -10,6 +10,8 @@
   # FS tools for compatibility with desktop
   services.envfs.enable = true;
   services.gvfs.enable = true;
+  # Enable gnome keyring by default
+  services.gnome.gnome-keyring.enable = true;
 
   #Enabling nix helper for easier nixos-rebuild
   programs.nh = {
