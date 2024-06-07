@@ -5,4 +5,5 @@
   desktop = import ./desktop;
   hardware = import ./hardware;
   networking = import ./networking;
+  addons = import ./addons;
 }

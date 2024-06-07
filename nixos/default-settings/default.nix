@@ -84,6 +84,7 @@
           "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4="
           "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         ];
+        sandbox = false;
         # Opinionated: disable global registry
         flake-registry = "";
         # Workaround for https://github.com/NixOS/nix/issues/9574

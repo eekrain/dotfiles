@@ -10,6 +10,7 @@
     outputs.nixosModules.hardware
     outputs.nixosModules.desktop
     outputs.nixosModules.networking
+    outputs.nixosModules.addons
 
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
@@ -35,6 +36,11 @@
       sddm.enable = true;
       hyprland.enable = true;
       hyprland.riceSetup = "hyprland-rice-aurora";
+    };
+    addons = {
+      enableAndroidAdb = false;
+      enableDocker = false;
+      enableVirtualbox = false;
     };
   };
 
