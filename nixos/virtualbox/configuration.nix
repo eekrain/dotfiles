@@ -17,7 +17,7 @@
   ];
 
   # Enabling my custom nixos modules installed
-  myModule = {
+  myModules = {
     desktop = {
       hyprland.enable = true;
       hyprland.riceSetup = "hyprland-rice-aurora";

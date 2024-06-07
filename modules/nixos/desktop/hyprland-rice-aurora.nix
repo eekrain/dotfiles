@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.myModule.desktop.hyprland;
+  cfg = config.myModules.desktop.hyprland;
 in
 {
   config = mkIf (cfg.riceSetup == "hyprland-rice-aurora") {

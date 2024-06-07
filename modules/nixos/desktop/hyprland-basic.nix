@@ -1,10 +1,10 @@
 { inputs, config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.myModule.desktop.hyprland;
+  cfg = config.myModules.desktop.hyprland;
 in
 {
-  options.myModule.desktop.hyprland.enable = mkEnableOption "Enable basic hyprland installation";
+  options.myModules.desktop.hyprland.enable = mkEnableOption "Enable basic hyprland installation";
 
   config = mkIf cfg.enable {
     programs.hyprland = {
@@ -20,6 +20,12 @@ in
     };
 
     security.polkit.enable = true;
+
+    # Configure keymap in X11
+    services.xserver.xkb = {
+      layout = "us";
+      variant = "";
+    };
 
     environment.systemPackages = with pkgs; [
       grim # screenshot functionality
