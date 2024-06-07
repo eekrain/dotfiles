@@ -7,7 +7,7 @@
     ./hardware-configuration.nix
 
     # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
+    outputs.nixosModules.desktop
 
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
@@ -15,8 +15,14 @@
     # You can also split up your configuration and import pieces of it here:
     ../default-settings/default.nix
   ];
-  # Put your flake location dir here, for use with nh(nix helper tool)
 
+  # Enabling nixos modules installed
+  desktop = {
+    hyprland.enable = true;
+    hyprland.riceSetup = "hyprland-rice-aurora";
+  };
+
+  # Put your flake location dir here, for use with nh(nix helper tool)
   programs.nh.flake = lib.mkForce "/home/eekrain/dotfiles";
 
   # TODO: Set your hostname
