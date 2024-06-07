@@ -27,9 +27,9 @@
     zsh = true;
     kitty = true;
   };
-  desktop = {
-    hyprland.enable = true;
-  };
+  # desktop = {
+  #   hyprland.enable = true;
+  # };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
