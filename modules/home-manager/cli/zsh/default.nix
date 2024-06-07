@@ -14,6 +14,9 @@ in
       nitch
       krabby
       turso-cli
+      eza
+      fzf
+      jq
     ];
 
     # Enable starship promt styling

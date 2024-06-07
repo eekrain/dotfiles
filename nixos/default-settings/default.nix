@@ -8,6 +8,9 @@
   ];
   # Enabling zsh as the default shell
   programs.zsh.enable = true;
+  # Enabling direnv for easier flake development
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
 
   # Default nixpks settings
   nixpkgs = {

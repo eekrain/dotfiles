@@ -10,6 +10,7 @@
       home-manager
       git
       nvfetcher
+      direnv
     ];
   };
 }
