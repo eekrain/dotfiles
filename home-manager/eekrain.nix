@@ -14,6 +14,7 @@
     outputs.homeManagerModules.cli
     outputs.homeManagerModules.desktop
     outputs.homeManagerModules.programs
+    outputs.homeManagerModules.addons
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -46,6 +47,8 @@
       mpv = true;
       vscode = true;
     };
+
+    addons.enable = true;
   };
 
   # Add stuff for your user as you see fit:

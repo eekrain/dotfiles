@@ -5,4 +5,5 @@
   cli = import ./cli;
   desktop = import ./desktop;
   programs = import ./programs;
+  addons = import ./addons;
 }
