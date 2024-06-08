@@ -29,6 +29,14 @@
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
+  # Enabling doas for easier sudo access
+  security.doas = {
+    enable = true;
+    extraConfig = ''
+      permit nopass :wheel
+    '';
+  };
+
   # Default nixpks settings
   nixpkgs = {
     # You can add overlays here
