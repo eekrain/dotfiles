@@ -24,7 +24,7 @@ in
       gscreenshot
       motrix
       # wavebox
-      vscode
+      # vscode
     ];
 
     xdg.configFile."hypr/wallpapers".source = ./wallpapers;
