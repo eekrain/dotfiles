@@ -14,6 +14,7 @@ in
     ./mimeapps
     ./mpv
     ./swaylock
+    ./vscode
   ];
 
   options.myHmModules.programs = {
@@ -26,5 +27,6 @@ in
     mimeapps = mkEnableOption "Enable mimeapps settings";
     mpv = mkEnableOption "Enable mpv settings";
     swaylock = mkEnableOption "Enable swaylock settings";
+    vscode = mkEnableOption "Enable vscode settings";
   };
 }
