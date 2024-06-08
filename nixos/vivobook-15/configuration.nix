@@ -47,7 +47,7 @@
   };
 
   # TODO: Set your hostname
-  networking.hostName = "virtualbox";
+  networking.hostName = "eka-laptop";
 
   # Put your flake location dir here, for use with nh(nix helper tool)
   programs.nh.flake = lib.mkForce "/home/eekrain/dotfiles";
