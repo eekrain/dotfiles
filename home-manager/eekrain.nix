@@ -46,7 +46,6 @@
       mimeapps = true;
       mpv = true;
       swaylock = true;
-      vscode = true;
     };
 
     addons.enable = true;
