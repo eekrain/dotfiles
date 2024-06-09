@@ -75,9 +75,11 @@ in
           nvidiaSettings = true;
           # nvidia-drm.modeset=1
           modesetting.enable = true;
-          # Power management setting, i used false cause it affects battery
-          powerManagement.enable = false;
-          powerManagement.finegrained = false;
+          # Power management setting, vivobook pro 15 is using nvidia rtx 3050
+          # My device dont have problem setting powermanagement to true
+          # if ur device isnt running well, set powerManagement value below to be false
+          powerManagement.enable = true;
+          powerManagement.finegrained = true;
 
           # Nvidia PRIME settings
           prime = {

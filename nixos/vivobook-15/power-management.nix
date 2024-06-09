@@ -1,22 +1,21 @@
 { config, inputs, ... }:
 {
-  imports = [ inputs.auto-cpufreq.nixosModules.default ];
+  imports = [
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-cpu-amd-pstate
+    inputs.hardware.nixosModules.common-pc-laptop
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
+    inputs.hardware.nixosModules.common-pc-laptop-acpi_call
+
+    inputs.auto-cpufreq.nixosModules.default
+  ];
 
   programs.auto-cpufreq = {
     enable = true;
     settings = {
-      battery = {
-        governor = "powersave";
-        turbo = "never";
-        scaling_min_freq = 400000;
-        scaling_max_freq = 3210000;
-        energy_performance_preference = "power";
-      };
       charger = {
         governor = "powersave";
         turbo = "auto";
-        scaling_min_freq = 400000;
-        scaling_max_freq = 4280000;
         energy_performance_preference = "power";
       };
     };
@@ -27,12 +26,15 @@
     settings = {
       START_CHARGE_THRESH_BAT0 = 40;
       STOP_CHARGE_THRESH_BAT0 = 60;
-      RADEON_DPM_PERF_LEVEL_ON_AC = "auto";
-      RADEON_DPM_PERF_LEVEL_ON_BAT = "auto";
-      DEVICES_TO_DISABLE_ON_LAN_CONNECT = ''"wifi wwan"'';
-      DEVICES_TO_DISABLE_ON_WIFI_CONNECT = ''"wwan"'';
-      DEVICES_TO_DISABLE_ON_WWAN_CONNECT = ''"wifi"'';
     };
+  };
+
+  services = {
+    asusd = {
+      enable = true;
+      enableUserService = true;
+    };
+    supergfxd.enable = true;
   };
 
   # Use the swap partition here
