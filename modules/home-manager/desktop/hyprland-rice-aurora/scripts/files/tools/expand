@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 TEMP=/tmp/current_wall
 
-files=(~/.config/hypr/wallpapers/*)
+files=(~/.config/wallpapers/*)
 
 hypr=~/.config/hypr
 scripts=$hypr/scripts
 
 cooldown=0.1
-
 
 while true
 do

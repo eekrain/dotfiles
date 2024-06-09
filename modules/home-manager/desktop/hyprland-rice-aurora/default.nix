@@ -2,6 +2,15 @@
 with lib;
 let
   cfg = config.myHmModules.desktop.hyprland;
+  initMyWallpaper = pkgs.writeShellScriptBin "initMyWallpaper" ''
+    swww-daemon &
+    sleep 1
+    swww clear #clearing previous wallpaper, in case it was .gif, it take too long to initialize
+    wall ~/.config/wallpapers/1.jpg #sets lightweigh wallpaper first
+    sleep 10
+    # then sets my favorite .gif wallpaper
+    wall ~/.config/wallpapers/misono-mika-angel-blue-archive-moewalls.gif
+  '';
 in
 {
   imports = [
@@ -12,7 +21,7 @@ in
 
   config = mkIf (cfg.riceSetup == "hyprland-rice-aurora") {
     # For waybar modules to read playing media
-    home.packages = [ pkgs.waybar-mpris ];
+    home.packages = [ pkgs.waybar-mpris initMyWallpaper ];
 
     wayland.windowManager.hyprland = {
       extraConfig = ''
@@ -66,15 +75,16 @@ in
         exec-once = [
           "waybar"
           "dunst"
-          "swww-daemon"
+          "initMyWallpaper"
 
-          "$HOME/.config/hypr/scripts/tools/dynamic"
-          "$HOME/.config/hypr/scripts/toggle_touchpad disable"
+          "touchpadtoggle"
+          "~/.config/hypr/scripts/tools/dynamic"
           ''notify-send -a aurora "hello $(whoami)"''
 
           "gtk-launch brave-browser.desktop"
           "gtk-launch motrix.desktop"
-          "proxyscript check && sleep 3 && proxyscript toggle"
+          # Disabling proxy on startup
+          "myProxyScript check && myProxyScript toggle"
         ];
       };
     };

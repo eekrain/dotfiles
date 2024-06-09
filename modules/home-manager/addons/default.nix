@@ -26,7 +26,7 @@ in
       # wavebox
     ];
 
-    xdg.configFile."hypr/wallpapers".source = ./wallpapers;
-    xdg.configFile."hypr/wallpapers".recursive = true;
+    xdg.configFile."wallpapers".source = ./wallpapers;
+    xdg.configFile."wallpapers".recursive = true;
   };
 }

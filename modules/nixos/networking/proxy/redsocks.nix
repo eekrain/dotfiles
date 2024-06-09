@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.myModules.networking;
-  proxyscript = pkgs.writeShellScriptBin "proxyscript" ''
+  myProxyScript = pkgs.writeShellScriptBin "myProxyScript" ''
     lockfile=/tmp/proxy-status.lock
 
     if [ "$1" == "check" ]
@@ -43,7 +43,7 @@ in
       ];
     };
 
-    environment.systemPackages = [ proxyscript ];
-    environment.shellAliases.toggleproxy = "proxyscript toggle";
+    environment.systemPackages = [ myProxyScript ];
+    environment.shellAliases.proxytoggle = "myProxyScript toggle";
   };
 }
