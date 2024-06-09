@@ -70,7 +70,7 @@ in
           # Using beta driver
           package = config.boot.kernelPackages.nvidiaPackages.beta;
           # Open drivers (NVreg_OpenRmEnableUnsupportedGpus=1)
-          open = false;
+          open = mkForce false;
           # Install nvidia settings app
           nvidiaSettings = true;
           # nvidia-drm.modeset=1

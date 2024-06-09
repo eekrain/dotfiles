@@ -43,9 +43,6 @@
 
     # Common Grub2 themes
     grub2-themes.url = github:vinceliuice/grub2-themes;
-
-    # For better power management configuration, especially laptop
-    auto-cpufreq.url = github:AdnanHodzic/auto-cpufreq;
   };
 
   outputs =

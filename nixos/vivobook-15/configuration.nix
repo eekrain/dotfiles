@@ -27,7 +27,7 @@
       audio = true;
       bluetooth = true;
       gpu = lib.mkDefault "amd";
-      suspendThenHybernate = false;
+      suspendThenHybernate = true;
     };
     networking = {
       enable = true;

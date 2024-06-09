@@ -43,7 +43,7 @@ in
           ''$mod SHIFT, Return, exec, kitty --class="termfloat" zsh''
           "$mod, Q, killactive,"
           "$mod SHIFT, Q, exec, hypr_kill"
-          "$mod, L, exec, swaylock"
+          "$mod, L, exec, hyprlock"
           "$mod, Space, togglefloating,"
           "$mod, F, fullscreen"
           "$mod, Y, pin"

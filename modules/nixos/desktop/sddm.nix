@@ -18,8 +18,9 @@ in
       #automatically unlock the user’s default Gnome keyring upon login by sddm
       enableGnomeKeyring = true;
     };
-    #security pam for swaylock, assuming if sddm installed, swaylock will always be installed also
-    security.pam.services.swaylock = {
+
+    # security pam for swaylock
+    security.pam.services.hyprlock = {
       #automatically unlock the user’s default Gnome keyring upon login by swaylock
       enableGnomeKeyring = true;
     };

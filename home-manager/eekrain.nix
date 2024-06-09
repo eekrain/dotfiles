@@ -43,9 +43,9 @@
       cava = true;
       easyeffect-audio = true;
       hypridle = true;
+      hyprlock = true;
       mimeapps = true;
       mpv = true;
-      swaylock = true;
       vscode = true;
     };
 

@@ -31,6 +31,7 @@ in
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
       _JAVA_AWT_WM_NONREPARENTING = "1";
       NIXOS_OZONE_WL = "1";
+      ELECTRON_OZONE_PLATFORM_HINT = "auto";
     };
   };
 }

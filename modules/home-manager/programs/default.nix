@@ -11,9 +11,9 @@ in
     ./cava
     ./easyeffect-audio
     ./hypridle
+    ./hyprlock
     ./mimeapps
     ./mpv
-    ./swaylock
     ./vscode
   ];
 
@@ -24,9 +24,9 @@ in
     cava = mkEnableOption "Enable cava settings";
     easyeffect-audio = mkEnableOption "Enable easyeffect-audio settings";
     hypridle = mkEnableOption "Enable hypridle settings";
+    hyprlock = mkEnableOption "Enable hyprlock settings";
     mimeapps = mkEnableOption "Enable mimeapps settings";
     mpv = mkEnableOption "Enable mpv settings";
-    swaylock = mkEnableOption "Enable swaylock settings";
     vscode = mkEnableOption "Enable vscode settings";
   };
 }

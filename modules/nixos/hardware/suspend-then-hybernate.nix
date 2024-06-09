@@ -3,19 +3,12 @@ with lib;
 let
   cfg = config.myModules.hardware;
   hibernateEnvironment = {
-    HIBERNATE_SECONDS = "30";
+    HIBERNATE_SECONDS = "1800"; #30 min after suspend, then do hybernate
     HIBERNATE_LOCK = "/var/run/autohibernate.lock";
   };
 in
 {
-
   config = mkIf cfg.suspendThenHybernate {
-    # suspend to RAM (deep) rather than `s2idle`
-    boot.kernelParams = [ "mem_sleep_default=deep" ];
-    systemd.sleep.extraConfig = ''
-      SuspendState=mem
-    '';
-
     systemd.services."awake-after-suspend-for-a-time" = {
       description = "Sets up the suspend so that it'll wake for hibernation";
       wantedBy = [ "suspend.target" ];
@@ -29,10 +22,11 @@ in
       '';
       serviceConfig.Type = "simple";
     };
+
     systemd.services."hibernate-after-recovery" = {
       description = "Hibernates after a suspend recovery due to timeout";
       wantedBy = [ "suspend.target" ];
-      after = if (cfg.gpu == "nvidia") then [ "nvidia-resume.service" ] else [ "systemd-suspend.service" ];
+      after = if (config.myModules.hardware.gpu == "nvidia") then [ "nvidia-resume.service" ] else [ "systemd-suspend.service" ];
       environment = hibernateEnvironment;
       script = ''
         curtime=$(date +%s)

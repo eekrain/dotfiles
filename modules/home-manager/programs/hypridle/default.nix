@@ -10,21 +10,24 @@ in
 
       settings = {
         general = {
-          lock_cmd = "pidof swaylock || swaylock"; # avoid starting multiple hyprlock instances.
-          before_sleep_cmd = "hyprctl dispatch dpms on"; # turning on display before suspend.
+          lock_cmd = "pidof hyprlock || hyprlock"; # avoid starting multiple hyprlock instances.
+          after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
           ignore_dbus_inhibit = false;
         };
 
         listener = [
           {
-            timeout = "30"; # 0.5min
+            timeout = 30; # 0.5min
             on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
             on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
           }
           {
-            timeout = 60; # 0.5min
-            on-timeout = "hyprctl dispatch dpms on && swaylock && sleep 3 && hyprctl dispatch dpms off"; # screen off when timeout has passed
-            on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+            timeout = 60; # 1min
+            on-timeout = "loginctl lock-session"; # screen off when timeout has passed
+          }
+          {
+            timeout = 300; # 5min
+            on-timeout = "systemctl suspend"; # screen off when timeout has passed
           }
         ];
       };
