@@ -12,13 +12,13 @@
 
   programs.auto-cpufreq = {
     enable = true;
-    settings = {
-      charger = {
-        governor = "powersave";
-        turbo = "auto";
-        energy_performance_preference = "power";
-      };
-    };
+    # settings = {
+    #   charger = {
+    #     governor = "powersave";
+    #     turbo = "auto";
+    #     energy_performance_preference = "power";
+    #   };
+    # };
   };
 
   services.tlp = {
