@@ -2,9 +2,17 @@
 with lib;
 let
   cfg = config.myHmModules.desktop.hyprland;
+  hypr_kill = pkgs.writeShellScriptBin "hypr_kill" ''
+    HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
+    rm /tmp/hyprexitwithgrace.log
+    hyprctl --batch "$HYPRCMDS" > /tmp/hyprexitwithgrace.log 2>&1
+    swww clear #clearing current wallpaper, in case it was .gif, it take too long to initialize later on boot
+    hyprctl dispatch exit 
+  '';
 in
 {
   config = mkIf cfg.enable {
+    home.packages = [ hypr_kill ];
     wayland.windowManager.hyprland.settings = {
       monitor = ",highres,auto,2";
       "$mod" = "WIN";

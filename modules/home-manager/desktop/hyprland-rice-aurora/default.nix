@@ -5,7 +5,6 @@ let
   initMyWallpaper = pkgs.writeShellScriptBin "initMyWallpaper" ''
     swww-daemon &
     sleep 1
-    swww clear #clearing previous wallpaper, in case it was .gif, it take too long to initialize
     wall ~/.config/wallpapers/1.jpg #sets lightweigh wallpaper first
     sleep 10
     # then sets my favorite .gif wallpaper
