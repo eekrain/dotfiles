@@ -40,10 +40,7 @@ in
     ];
 
     # QT Theming settings
-    qt = {
-      enable = true;
-      platformTheme.name = "kde";
-    };
+    qt.enable = true;
 
     # GTK Theming settings
     gtk = {

@@ -17,12 +17,18 @@ in
         p.material-color-utilities
         p.pywayland
       ]))
+      python-materialyoucolor
 
       brightnessctl
       ydotool
       ddcutil
       dart-sass
       material-symbols
+      playerctl
+      gojq
+      yad
+      bc
+      gradience
     ];
 
     programs.ags = {
@@ -34,12 +40,18 @@ in
       # additional packages to add to gjs's runtime
       extraPackages = with pkgs; [
         gtksourceview
+        gtksourceview4
+        gtksourceviewmm
+        gtkmm3
         webkitgtk
         accountsservice
+        gtk-layer-shell
+        tinyxml-2
 
         ollama
         python312Packages.material-color-utilities
         python312Packages.pywayland
+        python-materialyoucolor
         pywal
         webp-pixbuf-loader
       ];
