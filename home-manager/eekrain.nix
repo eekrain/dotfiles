@@ -27,7 +27,7 @@
   myHmModules = {
     desktop.hyprland = {
       enable = true;
-      riceSetup = "hyprland-rice-aurora";
+      riceSetup = "hyprland-rice-illogical-impulse";
     };
 
     cli = {

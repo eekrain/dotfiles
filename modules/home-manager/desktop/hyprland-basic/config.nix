@@ -24,6 +24,7 @@ in
       binds = {
         workspace_back_and_forth = "1";
         allow_workspace_cycles = "1";
+        scroll_event_delay = 0;
       };
 
       bindm = [
@@ -49,7 +50,8 @@ in
           "$mod, Y, pin"
           "$mod, P, pseudo, # dwindle"
           "$mod, J, togglesplit, # dwindle"
-          "$mod, D, exec, wofi --show drun"
+          # "$mod, D, exec, wofi --show drun"
+          "$mod, D, exec, pkill anyrun || anyrun"
           ", Print, exec, gscreenshot"
         ]
         [
@@ -150,32 +152,41 @@ in
 
       input = {
         kb_layout = "us";
-        follow_mouse = "1";
+        numlock_by_default = true;
+        repeat_delay = 250;
+        repeat_rate = 35;
+
         touchpad = {
-          natural_scroll = "no";
+          natural_scroll = true;
+          disable_while_typing = true;
+          clickfinger_behavior = true;
+          scroll_factor = 0.5;
         };
+        follow_mouse = 1;
       };
 
       misc = {
-        mouse_move_enables_dpms = "true";
-        key_press_enables_dpms = "true";
-        disable_autoreload = "true";
-        disable_hyprland_logo = "true";
-        always_follow_on_dnd = "true";
-        layers_hog_keyboard_focus = "true";
-        animate_manual_resizes = "false";
-        enable_swallow = "true";
-        focus_on_activate = "true";
+        mouse_move_enables_dpms = true;
+        key_press_enables_dpms = true;
+        disable_autoreload = true;
+        disable_hyprland_logo = true;
+        always_follow_on_dnd = true;
+        layers_hog_keyboard_focus = true;
+        animate_manual_resizes = false;
+        enable_swallow = true;
+        focus_on_activate = true;
       };
 
       gestures = {
-        workspace_swipe = "true";
-        workspace_swipe_fingers = "4";
-        workspace_swipe_distance = "250";
-        workspace_swipe_invert = "true";
-        workspace_swipe_min_speed_to_force = "15";
-        workspace_swipe_cancel_ratio = "0.5";
-        workspace_swipe_create_new = "false";
+        workspace_swipe = true;
+        workspace_swipe_fingers = 4;
+        workspace_swipe_distance = 250;
+        workspace_swipe_invert = true;
+        workspace_swipe_min_speed_to_force = 5;
+        workspace_swipe_cancel_ratio = 0.5;
+        workspace_swipe_direction_lock = true;
+        workspace_swipe_direction_lock_threshold = 10;
+        workspace_swipe_create_new = false;
       };
 
       debug = {

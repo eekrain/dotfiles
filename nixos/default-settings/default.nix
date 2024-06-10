@@ -76,6 +76,8 @@
         auto-optimise-store = true;
         # For using cachix should set trusted user
         trusted-users = [ "root" "@wheel" "eekrain" ];
+        builders-use-substitutes = true;
+        # extra substituters to add
         substituters = [
           "https://cache.nixos.org"
           "https://nix-community.cachix.org"
@@ -83,6 +85,7 @@
           "https://nixpkgs-wayland.cachix.org"
           "https://nrdxp.cachix.org"
           "https://nix-gaming.cachix.org"
+          "https://anyrun.cachix.org"
         ];
         trusted-public-keys = [
           "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
@@ -91,6 +94,7 @@
           "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
           "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4="
           "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+          "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
         ];
         sandbox = false;
         # Opinionated: disable global registry
