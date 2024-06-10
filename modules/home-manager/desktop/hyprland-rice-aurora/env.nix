@@ -4,9 +4,7 @@ let
   cfg = config.myHmModules.desktop.hyprland;
 in
 {
-  config = mkIf cfg.enable {
-
-    # Default hyprland env variables
+  config = mkIf (cfg.riceSetup == "hyprland-rice-aurora") {
     home.sessionVariables = {
       EDITOR = "code";
       BROWSER = "brave";
@@ -23,7 +21,8 @@ in
       XDG_SESSION_TYPE = "wayland";
 
       MOZ_ENABLE_WAYLAND = "1";
-      QT_QPA_PLATFORMTHEME = "qt5ct";
+      # QT_QPA_PLATFORMTHEME = "qt5ct";
+      QT_QPA_PLATFORMTHEME = "kde";
       QT_SCALE_FACTOR = "1";
       QT_QPA_PLATFORM = "wayland;xcb";
       # QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.libsForQt5.qt5.qtbase}/lib/qt-${pkgs.libsForQt5.qt5.qtbase.version}/plugins";

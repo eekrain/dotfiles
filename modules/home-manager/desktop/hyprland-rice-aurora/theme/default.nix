@@ -4,9 +4,16 @@ let
   cfg = config.myHmModules.desktop.hyprland;
 in
 {
-  imports = [ inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger ];
-
   config = mkIf (cfg.riceSetup == "hyprland-rice-aurora") {
+    home.packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      my-custom-font
+      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "CascadiaCode" ]; })
+      twemoji-color-font
+    ];
+
     programs.hyprcursor-phinger.enable = true;
     home.sessionVariables = {
       HYPRCURSOR_THEME = "phinger-cursors-dark";

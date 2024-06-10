@@ -1,6 +1,7 @@
 {
   imports = [
     ./ags
-    ./anyrun.nix
+    # ./anyrun
+    ./wofi
   ];
 }

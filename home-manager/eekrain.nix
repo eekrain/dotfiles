@@ -25,10 +25,7 @@
 
   # Enabling my home manager modules installed
   myHmModules = {
-    desktop.hyprland = {
-      enable = true;
-      riceSetup = "hyprland-rice-illogical-impulse";
-    };
+    desktop.hyprland.riceSetup = "hyprland-rice-illogical-impulse";
 
     cli = {
       git = true;

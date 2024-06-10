@@ -1,11 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 with lib;
 let
   cfg = config.myHmModules.desktop;
 in
 {
   imports = [
-    ./hyprland-basic
+    inputs.hyprland.homeManagerModules.default
+    inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
     ./hyprland-rice-aurora
     ./hyprland-rice-illogical-impulse
   ];

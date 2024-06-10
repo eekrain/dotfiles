@@ -24,6 +24,7 @@ in
         hidePluginInfo = true;
         closeOnClick = true;
       };
+      extraCss = lib.fileContents ./style.css;
     };
   };
 }

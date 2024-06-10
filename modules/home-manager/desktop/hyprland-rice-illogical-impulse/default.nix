@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./programs
+    ./theme
   ];
 
   config = mkIf (cfg.riceSetup == "hyprland-rice-illogical-impulse") {

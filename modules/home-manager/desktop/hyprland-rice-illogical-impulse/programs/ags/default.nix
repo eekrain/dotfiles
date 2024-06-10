@@ -9,6 +9,7 @@ in
 
   config = mkIf (cfg.riceSetup == "hyprland-rice-illogical-impulse") {
     home.packages = with pkgs; [
+      glib
       ollama
       pywal
       sassc
@@ -19,6 +20,9 @@ in
 
       brightnessctl
       ydotool
+      ddcutil
+      dart-sass
+      material-symbols
     ];
 
     programs.ags = {
@@ -30,17 +34,14 @@ in
       # additional packages to add to gjs's runtime
       extraPackages = with pkgs; [
         gtksourceview
-        gtksourceview4
         webkitgtk
         accountsservice
 
         ollama
-        python311Packages.material-color-utilities
-        python311Packages.pywayland
+        python312Packages.material-color-utilities
+        python312Packages.pywayland
         pywal
-        sassc
         webp-pixbuf-loader
-        ydotool
       ];
     };
   };

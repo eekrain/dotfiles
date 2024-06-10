@@ -5,8 +5,7 @@ let
 in
 {
   imports = [
-    ./hyprland-basic.nix
-    ./hyprland-rice-aurora.nix
+    ./hyprland.nix
     ./sddm.nix
   ];
 

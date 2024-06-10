@@ -39,6 +39,8 @@ in
   options.myModules.desktop.hyprland.enable = mkEnableOption "Enable basic hyprland installation";
 
   config = mkIf cfg.enable {
+    hardware.i2c.enable = true;
+
     programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -70,6 +72,13 @@ in
       gtk3 # needed for gtk-launch command
       libnotify # for sending notification
       touchpadtoggle #script for touchpad toggler
+
+      # other pkgs
+      python3
+      eza
+      fzf
+      jq
+      gnome.nautilus
     ];
   };
 }

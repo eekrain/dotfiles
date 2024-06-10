@@ -70,7 +70,6 @@ in
         bindkey '^[[A' history-substring-search-up
         bindkey '^[[B' history-substring-search-down
       
-        eval "$(${pkgs.starship}/bin/starship init zsh)"
         nitch
       '';
 
