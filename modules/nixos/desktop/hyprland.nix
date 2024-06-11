@@ -41,6 +41,10 @@ in
   config = mkIf cfg.enable {
     hardware.i2c.enable = true;
 
+    # Enable Location.
+    # Used for night light mode
+    services.geoclue2.enable = true;
+
     programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
