@@ -73,7 +73,6 @@ in
       dart-sass
       sassc
       axel
-      wlogout
       hyprpicker
       gammastep
       bc

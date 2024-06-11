@@ -31,12 +31,14 @@ in
     # Additional stuff
     home.packages = with pkgs; [
       # themes
+      adw-gtk3
       adwaita-qt6
       material-symbols
       nerdfonts
       noto-fonts
       noto-fonts-cjk-sans
-      google-fonts
+
+      libsForQt5.qt5ct
     ];
 
     # QT Theming settings
@@ -45,12 +47,6 @@ in
     # GTK Theming settings
     gtk = {
       enable = true;
-
-      theme = {
-        package = pkgs.adw-gtk3;
-        name = "adw-gtk3-dark";
-      };
-
       iconTheme = {
         package = pkgs.morewaita-icon-theme;
         name = "MoreWaita";
@@ -58,29 +54,8 @@ in
 
       font = {
         name = "Rubik";
-        # size = 12;
+        package = google-fonts;
       };
-
-      gtk3.extraConfig = {
-        gtk-xft-antialias = 1;
-        gtk-xft-hinting = 1;
-        gtk-xft-hintstyle = "hintslight";
-        gtk-xft-rgba = "rgb";
-      };
-
-      gtk2.extraConfig = ''
-        gtk-xft-antialias=1
-        gtk-xft-hinting=1
-        gtk-xft-hintstyle="hintslight"
-        gtk-xft-rgba="rgb"
-      '';
-
-      gtk3.extraCss = ''
-        headerbar, .titlebar,
-        .csd:not(.popup):not(tooltip):not(messagedialog) decoration{
-          border-radius: 0;
-        }
-      '';
     };
 
     # Cursor settings 

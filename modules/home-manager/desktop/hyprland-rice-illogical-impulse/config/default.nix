@@ -5,15 +5,15 @@ let
 in
 {
   config = mkIf (cfg.riceSetup == "hyprland-rice-illogical-impulse") {
-    xdg.configFile."hypr/hyprland".source = ./hyprland;
-    xdg.configFile."hypr/hyprland".recursive = true;
-
     wayland.windowManager.hyprland = {
       plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
         # hyprbars
         hyprexpo
       ];
 
+      # FIXME please copy all files inside dotfiles/modules/home-manager/desktop/hyprland-rice-illogical-impulse/config
+      # except this default.nix into your ~/.config 
+      # because there is a config in which it cant be managed by home-manager
       extraConfig = ''
         # This config sources other files in `hyprland` and `custom` folders
         # You wanna add your stuff in file in `custom`
@@ -23,6 +23,7 @@ in
         source=~/.config/hypr/hyprland/execs.conf
         source=~/.config/hypr/hyprland/general.conf
         source=~/.config/hypr/hyprland/rules.conf
+        source=~/.config/hypr/hyprland/colors.conf
         source=~/.config/hypr/hyprland/keybinds.conf
       '';
     };
