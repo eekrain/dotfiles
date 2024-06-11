@@ -11,7 +11,7 @@ in
         enable = true;
         theme = "Catppuccin-Mocha";
         font.name = "CaskaydiaCove Nerd Font Mono";
-        font.size = 15;
+        font.size = 12;
         settings = {
           italic_font = "auto";
           bold_italic_font = "auto";

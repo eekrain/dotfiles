@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.myHmModules.desktop.hyprland;
+  cfg = config.myHmModules.programs;
 in
 {
-  config = mkIf (cfg.riceSetup == "hyprland-rice-aurora") {
+  config = mkIf cfg.wofi {
     home.packages = with pkgs;[
       wofi
     ];

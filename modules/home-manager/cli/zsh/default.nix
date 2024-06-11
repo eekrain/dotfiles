@@ -78,7 +78,6 @@ in
         rb = "reboot";
         sd = "shutdown now";
         wifirescan = "nmcli device wifi rescan";
-        kill-gradle = "pkill -f '.*GradleDaemon.*'";
         ls = "eza --icons";
         ll = "ls -lbF --git";
         la = "ls -lbhHigmuSa --time-style=long-iso --git --color-scale all";

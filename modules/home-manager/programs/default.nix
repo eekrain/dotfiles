@@ -14,7 +14,9 @@ in
     ./hyprlock
     ./mimeapps
     ./mpv
+    ./screenshot
     ./vscode
+    ./wofi
   ];
 
   options.myHmModules.programs = {
@@ -27,6 +29,8 @@ in
     hyprlock = mkEnableOption "Enable hyprlock settings";
     mimeapps = mkEnableOption "Enable mimeapps settings";
     mpv = mkEnableOption "Enable mpv settings";
+    screenshot = mkEnableOption "Enable screenshot script";
     vscode = mkEnableOption "Enable vscode settings";
+    wofi = mkEnableOption "Enable wofi settings";
   };
 }

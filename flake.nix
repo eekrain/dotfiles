@@ -49,10 +49,6 @@
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
     # AGS for end4 dots
     ags.url = "github:Aylur/ags/main";
-    anyrun = {
-      url = "github:Kirottu/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # Common Grub2 themes
     grub2-themes.url = github:vinceliuice/grub2-themes;

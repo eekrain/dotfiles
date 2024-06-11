@@ -43,7 +43,9 @@
       hyprlock = true;
       mimeapps = true;
       mpv = true;
+      screenshot = true;
       vscode = true;
+      wofi = true;
     };
 
     addons.enable = true;
