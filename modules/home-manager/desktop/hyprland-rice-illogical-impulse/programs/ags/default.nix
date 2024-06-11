@@ -9,26 +9,78 @@ in
 
   config = mkIf (cfg.riceSetup == "hyprland-rice-illogical-impulse") {
     home.packages = with pkgs; [
-      glib
-      ollama
-      pywal
-      sassc
-      (python312.withPackages (p: [
-        p.material-color-utilities
-        p.pywayland
+      # Python
+      pyenv.out
+      (python311.withPackages (p: with p; [
+        materialyoucolor
+        material-color-utilities
+        pillow
+        poetry-core
+        pywal
+        setuptools-scm
+        wheel
+        pywayland
+        psutil
+        # debugpy.overrideAttrs (final: prev: {
+        #   pytestCheckPhase = ''true'';
+        # })
+        pydbus
+        dbus-python
+        pygobject3
+        watchdog
+        pip
+        evdev
+        appdirs
+        inotify-simple
+        ordered-set
+        six
+        hatchling
+        pycairo
+        xkeysnail
       ]))
-      python-materialyoucolor
 
-      brightnessctl
-      ydotool
-      ddcutil
-      dart-sass
+      # MicroTex Deps
+      tinyxml-2
+      gtkmm3
+      gtksourceviewmm
+      cairomm
+
+      # Gnome Stuff
+      polkit_gnome
+      gnome.gnome-control-center
+      gnome.gnome-bluetooth
+      gnome.gnome-shell
+      blueberry
+      wlsunset
+
+      # GTK
+      webp-pixbuf-loader
+      gtk-layer-shell
+      gtk3
+      gtksourceview3
+      upower
+      gobject-introspection
+      wrapGAppsHook
+
+      # AGS and Hyprland dependencies.
+      glib
       material-symbols
-      playerctl
+      brightnessctl
+      ddcutil
+      fuzzel
+      ripgrep
       gojq
-      yad
+      dart-sass
+      sassc
+      axel
+      wlogout
+      hyprpicker
+      gammastep
       bc
       gradience
+      playerctl
+      yad
+      ydotool
     ];
 
     programs.ags = {
@@ -39,21 +91,10 @@ in
 
       # additional packages to add to gjs's runtime
       extraPackages = with pkgs; [
-        gtksourceview
-        gtksourceview4
-        gtksourceviewmm
-        gtkmm3
+        pkgs2311.gtksourceview
+        pkgs2311.gnome.gvfs
         webkitgtk
         accountsservice
-        gtk-layer-shell
-        tinyxml-2
-
-        ollama
-        python312Packages.material-color-utilities
-        python312Packages.pywayland
-        python-materialyoucolor
-        pywal
-        webp-pixbuf-loader
       ];
     };
   };

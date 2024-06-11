@@ -66,6 +66,7 @@
       boot.loader.grub.configurationName = lib.mkForce "NVIDIA GPU";
       # Force change myModules.hardware.gpu to be "nvidia"
       myModules.hardware.gpu = lib.mkForce "nvidia";
+      myModules.hardware.ollama = lib.mkForce true;
     };
   };
 

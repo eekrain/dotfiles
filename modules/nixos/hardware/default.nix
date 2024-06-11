@@ -18,6 +18,7 @@ in
       type = types.nullOr (types.enum [ "amd" "nvidia" ]);
       default = null;
     };
+    ollama = mkEnableOption "Enable ollama settings";
     suspendThenHybernate = mkEnableOption "Enable suspend-then-hybernate configuration";
   };
 }

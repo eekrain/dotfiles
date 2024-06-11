@@ -14,11 +14,20 @@ in
       services.xserver.videoDrivers = mkDefault [ "amdgpu" ];
 
       hardware = {
-        amdgpu.loadInInitrd = true;
-        opengl.extraPackages = with pkgs; [
-          vaapiVdpau
-          libvdpau-va-gl
-        ];
+        amdgpu = {
+          loadInInitrd = true;
+          amdvlk = true;
+        };
+        opengl = {
+          driSupport = true;
+          driSupport32Bit = true;
+          extraPackages = with pkgs; [
+            vaapiVdpau
+            libvdpau-va-gl
+            libGL
+          ];
+          setLdLibraryPath = true;
+        };
       };
 
       # Adding libva driver env vars for amdgpu only
@@ -59,12 +68,20 @@ in
       services.xserver.videoDrivers = mkDefault [ "amdgpu" "nvidia" ];
 
       hardware = {
-        amdgpu.loadInInitrd = true;
-        opengl.extraPackages = with pkgs; [
-          vaapiVdpau
-          libvdpau-va-gl
-          nvidia-vaapi-driver
-        ];
+        amdgpu = {
+          loadInInitrd = true;
+          amdvlk = true;
+        };
+        opengl = {
+          driSupport = true;
+          driSupport32Bit = true;
+          extraPackages = with pkgs; [
+            vaapiVdpau
+            libvdpau-va-gl
+            libGL
+          ];
+          setLdLibraryPath = true;
+        };
 
         nvidia = {
           # Using beta driver
@@ -102,6 +119,15 @@ in
         __GL_VRR_ALLOWED = "0";
         WLR_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
         WLR_NO_HARDWARE_CURSORS = "1"; # if no cursor,uncomment this line  
+      };
+    })
+    # If ollama and Nvidia driver is enabled
+    (mkIf (cfg.ollama && cfg.gpu == "nvidia") {
+      systemd.services.ollama.serviceConfig.DynamicUser = lib.mkForce false;
+      services.ollama = {
+        enable = true;
+        acceleration = "cuda";
+        models = "/opt/ollama/models";
       };
     })
   ];

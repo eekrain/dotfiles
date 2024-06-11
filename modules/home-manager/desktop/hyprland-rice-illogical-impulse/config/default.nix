@@ -23,7 +23,6 @@ in
         source=~/.config/hypr/hyprland/execs.conf
         source=~/.config/hypr/hyprland/general.conf
         source=~/.config/hypr/hyprland/rules.conf
-        source=~/.config/hypr/hyprland/colors.conf
         source=~/.config/hypr/hyprland/keybinds.conf
       '';
     };
