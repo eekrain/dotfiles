@@ -12,10 +12,10 @@ in
         background = [
           {
             monitor = "";
-            path = "$HOME/.config/wallpapers/zblurred_bg.png"; # only png supported for now
+            path = "$HOME/Pictures/wallpapers/zhyprlock_blurred_bg.png"; # only png supported for now
 
             # all these options are taken from hyprland, see https://wiki.hyprland.org/Configuring/Variables/#blur for explanations
-            blur_size = "4";
+            blur_size = "0";
             blur_passes = "0"; # 0 disables blurring
             noise = "0.0117";
             contrast = "1.3000"; # Vibrant!!!

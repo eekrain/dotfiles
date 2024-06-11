@@ -26,7 +26,7 @@ in
       # wavebox
     ];
 
-    xdg.configFile."wallpapers".source = ./wallpapers;
-    xdg.configFile."wallpapers".recursive = true;
+    home.file."Pictures/wallpapers".source = ./wallpapers;
+    home.file."Pictures/wallpapers".recursive = true;
   };
 }

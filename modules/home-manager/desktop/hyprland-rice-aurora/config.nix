@@ -12,10 +12,10 @@ let
   initMyWallpaper = pkgs.writeShellScriptBin "initMyWallpaper" ''
     swww-daemon &
     sleep 1
-    wall ~/.config/wallpapers/1.jpg #sets lightweigh wallpaper first
+    wall ~/Pictures/wallpapers/1.jpg #sets lightweigh wallpaper first
     sleep 10
     # then sets my favorite .gif wallpaper
-    wall ~/.config/wallpapers/misono-mika-angel-blue-archive-moewalls.gif
+    wall ~/Pictures/wallpapers/misono-mika-angel-blue-archive-moewalls.gif
   '';
 in
 {
