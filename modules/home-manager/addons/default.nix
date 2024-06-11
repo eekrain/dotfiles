@@ -4,6 +4,7 @@ let
   cfg = config.myHmModules.addons;
 in
 {
+  imports = [ ./motrix.nix ];
   options.myHmModules.addons.enable = mkEnableOption "Enable addons settings";
 
   config = mkIf cfg.enable {
@@ -22,7 +23,6 @@ in
       lollypop
       # peazip
       gscreenshot
-      motrix
       # wavebox
     ];
 

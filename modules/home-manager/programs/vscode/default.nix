@@ -8,7 +8,7 @@ in
     home.packages = [
       (pkgs.vscode.override {
         # gnome-libsecret to detect the correct keyring to use on my system
-        commandLineArgs = ''--password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland'';
+        commandLineArgs = ''--password-store="gnome-libsecret" --enable-features=UseOzonePlatform --ozone-platform=wayland'';
       })
     ];
   };
