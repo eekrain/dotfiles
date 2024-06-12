@@ -15,14 +15,7 @@ in
       enable = true;
       systemd = {
         enable = true;
-        variables = [
-          "DISPLAY"
-          "HYPRLAND_INSTANCE_SIGNATURE"
-          "WAYLAND_DISPLAY"
-          "XDG_CURRENT_DESKTOP"
-          "PATH"
-          "XDG_DATA_DIRS"
-        ];
+        variables = [ "--all" ];
       };
       xwayland.enable = true;
     };

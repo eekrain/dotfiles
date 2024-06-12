@@ -14,16 +14,11 @@ in
       displayManager.sddm.theme = "sugar-candy";
     };
 
-    security.pam.services.sddm = {
-      #automatically unlock the user’s default Gnome keyring upon login by sddm
-      enableGnomeKeyring = true;
-    };
+    # Enabling gnome keyring
+    security.pam.services.sddm.enableGnomeKeyring = true;
+    security.pam.services.hyprlock.enableGnomeKeyring = true;
+    security.pam.services.login.enableGnomeKeyring = true;
 
-    # security pam for swaylock
-    security.pam.services.hyprlock = {
-      #automatically unlock the user’s default Gnome keyring upon login by swaylock
-      enableGnomeKeyring = true;
-    };
 
     # limit timeout, cus using sddm while executing shutdown via command 
     # (without exiting hyprland first) took so long idk why

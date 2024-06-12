@@ -57,8 +57,6 @@ in
       light.enable = true;
     };
 
-    security.polkit.enable = true;
-
     # Configure keymap in X11
     services.xserver.xkb = {
       layout = "us";
@@ -84,5 +82,35 @@ in
       jq
       gnome.nautilus
     ];
+
+    # Testing portal stuff
+    xdg.portal = {
+      enable = true;
+      config = {
+        common = {
+          default = [
+            "xdph"
+            "gtk"
+          ];
+          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+          "org.freedesktop.portal.FileChooser" = [ "xdg-desktop-portal-gtk" ];
+        };
+      };
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    };
+
+    # Polkit stuff
+
+    security.polkit = {
+      enable = true;
+      debug = true;
+      extraConfig = ''
+        /* Log authorization checks. */
+        polkit.addRule(function(action, subject) {
+          polkit.log("user " +  subject.user + " is attempting action " + action.id + " from PID " + subject.pid);
+        });       
+      '';
+    };
+    programs.gnupg.agent.enable = true;
   };
 }
