@@ -10,6 +10,7 @@ in
 
     # Addons cli packages
     home.packages = with pkgs; [
+      zoxide
       awscli2
       nitch
       krabby
@@ -29,24 +30,18 @@ in
     # ZSH settings
     programs.zsh = {
       enable = true;
+      enableCompletion = false;
       # ZSH config dir
       dotDir = ".config/zsh";
+      history = {
+        path = "${config.xdg.configHome}/zsh/zsh_history";
+        save = 1000000000;
+        size = 1000000000;
+      };
 
-      loginExtra = ''
-        hypr_store=$HOME/.config/hypr/store
-        mkdir -p $hypr_store
-      
-        if [ ! -f $hypr_store/dynamic_out.txt ]
-        then
-          touch $hypr_store/dynamic_out.txt $hypr_store/latest_notif $hypr_store/prev.txt
-        fi
-      '';
-
-      completionInit = ''
-        autoload bashcompinit && bashcompinit
-      '';
-
-      initExtra = ''
+      # We put zim zsh plugin manager before History options
+      # Following the structure of oh-my-zsh from home-manager programs.zsh module
+      initExtraBeforeCompInit = ''
         zstyle ':zim:zmodule' use 'degit'
         ZIM_HOME=~/.config/zsh/.zim
         ZIM_CONFIG_FILE=~/.config/zsh/zimrc
@@ -63,13 +58,13 @@ in
         fi
 
         source ''${ZIM_HOME}/init.zsh
+      '';
 
-        zmodload zsh/terminfo
-        [ -n "''${terminfo[kcuu1]}" ] && bindkey "''${terminfo[kcuu1]}" history-substring-search-up
-        [ -n "''${terminfo[kcud1]}" ] && bindkey "''${terminfo[kcud1]}" history-substring-search-down
-        bindkey '^[[A' history-substring-search-up
-        bindkey '^[[B' history-substring-search-down
-      
+      initExtra = ''
+        # Enabling history-substring-search binding that's installed in zimrc
+        bindkey "^[[A" history-substring-search-up
+        bindkey "^[[B" history-substring-search-down
+        
         nitch
       '';
 

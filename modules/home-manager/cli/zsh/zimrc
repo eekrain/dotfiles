@@ -21,7 +21,8 @@ zmodule utility
 # Completion
 #
 
-
+# This is for enabling aws cli completion https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
+autoload bashcompinit && bashcompinit
 # Additional completion definitions for Zsh.
 zmodule zsh-users/zsh-completions --fpath src
 # Enables and configures smart and extensive tab completion.
@@ -31,6 +32,18 @@ zmodule completion
 #
 # Modules that must be initialized last
 #
+
+# My personal add on
+zmodule kiesman99/zim-zoxide
+zmodule eekrain/zsh-aws
+zmodule davidde/git
+zmodule changyuheng/zsh-interactive-cd
+zmodule aubreypwd/zsh-plugin-fd
+
+
+# Fish-like autosuggestions for Zsh.
+zmodule zsh-users/zsh-autosuggestions
+
 
 # Fish-like syntax highlighting for Zsh.
 # zsh-users/zsh-syntax-highlighting must be sourced after completion
@@ -43,16 +56,4 @@ zmodule zsh-users/zsh-history-substring-search
 # Multi word search
 zstyle ":plugin:history-search-multi-word" active "standout"        # Effect on active history entry. Try: standout, bold, bg=blue (default underline)
 zmodule zdharma-continuum/history-search-multi-word
-
-# Fish-like autosuggestions for Zsh.
-zmodule zsh-users/zsh-autosuggestions
-
-
-# My personal add on
-zmodule eekrain/zsh-aws
-zmodule davidde/git
-zmodule rupa/z
-zmodule changyuheng/fz
-zmodule changyuheng/zsh-interactive-cd
-zmodule aubreypwd/zsh-plugin-fd
 # }}} End configuration added by Zim install
