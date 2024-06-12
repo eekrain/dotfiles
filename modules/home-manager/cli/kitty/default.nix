@@ -9,7 +9,7 @@ in
     programs = {
       kitty = {
         enable = true;
-        theme = "Catppuccin-Mocha";
+        theme = "Catppuccin-Macchiato";
         font.name = "CaskaydiaCove Nerd Font Mono";
         font.size = 12;
         settings = {
