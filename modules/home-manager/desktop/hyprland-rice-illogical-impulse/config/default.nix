@@ -5,6 +5,12 @@ let
 in
 {
   config = mkIf (cfg.riceSetup == "hyprland-rice-illogical-impulse") {
+    # Install the default .config for configuration reference
+    home.file.".config.example" = {
+      source = "${pkgs.my-illogical-impulse-dots}/.config";
+      recursive = true; # link recursively
+      executable = true; # make all files executable
+    };
     wayland.windowManager.hyprland = {
       plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
         # hyprbars

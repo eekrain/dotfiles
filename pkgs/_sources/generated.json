@@ -1,4 +1,19 @@
 {
+    "materialyoucolor": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "materialyoucolor",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-J35//h3tWn20f5ej6OXaw4NKnxung9q7m0E4Zf9PUw4=",
+            "type": "url",
+            "url": "https://pypi.org/packages/source/m/materialyoucolor/materialyoucolor-2.0.9.tar.gz"
+        },
+        "version": "2.0.9"
+    },
     "my-custom-fonts": {
         "cargoLocks": null,
         "date": null,
@@ -13,21 +28,6 @@
             "url": "https://github.com/eekrain/dotfiles/releases/download/1.0/my_custom_fonts.tar.xz"
         },
         "version": "1.0"
-    },
-    "python-materialyoucolor": {
-        "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "python-materialyoucolor",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-J35//h3tWn20f5ej6OXaw4NKnxung9q7m0E4Zf9PUw4=",
-            "type": "url",
-            "url": "https://pypi.org/packages/source/m/materialyoucolor/materialyoucolor-2.0.9.tar.gz"
-        },
-        "version": "2.0.9"
     },
     "sddm-sugar-candy": {
         "cargoLocks": null,

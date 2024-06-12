@@ -8,6 +8,6 @@ fetch.github = "eekrain/sddm-sugar-candy"
 [my-custom-fonts]
 src.manual = "1.0"
 fetch.url = "https://github.com/eekrain/dotfiles/releases/download/1.0/my_custom_fonts.tar.xz"
-[python-materialyoucolor]
+[materialyoucolor]
 src.pypi = "materialyoucolor"
 fetch.pypi = "materialyoucolor"
