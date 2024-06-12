@@ -2,25 +2,20 @@
 with lib;
 let
   cfg = config.myModules.networking;
-  myProxyScript = pkgs.writeShellScriptBin "myProxyScript" ''
-    lockfile=/tmp/proxy-status.lock
+  proxyUrl = "172.19.0.1:2080";
+  proxyType = "socks5";
+  proxytoggle = pkgs.writeShellScriptBin "proxytoggle" ''
+    running="$(
+      doas systemctl status redsocks.service | grep -q inactive
+      echo $?
+    )"
 
-    if [ "$1" == "check" ]
-    then
-      stat="$(doas systemctl status redsocks.service | grep -q inactive; echo $?)"
-      echo $stat > $lockfile
-    elif [ "$1" == "toggle" ]
-    then
-      if [ "$(cat $lockfile)" == "0" ]
-      then
-        doas systemctl start firewall.service && doas systemctl start redsocks.service
-        echo "1" > $lockfile
-        echo "proxy started"
-      else
-        doas systemctl stop firewall.service && doas systemctl stop redsocks.service
-        echo "0" > $lockfile
-        echo "proxy stopped"
-      fi
+    if [ $running == "0" ]; then
+      doas systemctl start firewall.service && doas systemctl start redsocks.service
+      notify-send "Proxy activated" "Redsocks proxy is running via ${proxyUrl} with type ${proxyType}" -a 'Shell'
+    else
+      doas systemctl stop firewall.service && doas systemctl stop redsocks.service
+      notify-send "Proxy disabled" "Now internet is accessed without proxy" -a 'Shell'
     fi
   '';
 in
@@ -35,15 +30,14 @@ in
       redsocks = [
         {
           port = 55555;
-          proxy = "172.19.0.1:2080";
-          type = "socks5";
+          proxy = proxyUrl;
+          type = proxyType;
           redirectCondition = true;
           redirectInternetOnly = true;
         }
       ];
     };
 
-    environment.systemPackages = [ myProxyScript ];
-    environment.shellAliases.proxytoggle = "myProxyScript toggle";
+    environment.systemPackages = [ proxytoggle ];
   };
 }

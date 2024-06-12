@@ -254,7 +254,7 @@ in
           "gtk-launch brave-browser.desktop"
           "gtk-launch motrix.desktop"
           # Disabling proxy on startup
-          "myProxyScript check && myProxyScript toggle"
+          "proxytoggle"
         ];
       };
 
