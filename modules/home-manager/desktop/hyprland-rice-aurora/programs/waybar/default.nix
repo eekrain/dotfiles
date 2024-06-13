@@ -5,6 +5,8 @@ let
 in
 {
   config = mkIf (cfg.riceSetup == "hyprland-rice-aurora") {
+    home.packages = [ pkgs.python3 ];
+
     programs.waybar = {
       enable = true;
       systemd = {

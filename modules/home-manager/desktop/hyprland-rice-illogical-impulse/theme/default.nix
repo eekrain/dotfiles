@@ -1,9 +1,14 @@
-{ inputs, config, lib, pkgs, ... }:
-with lib;
-let
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.myHmModules.desktop.hyprland;
 
-  nerdfonts = (pkgs.nerdfonts.override {
+  nerdfonts = pkgs.nerdfonts.override {
     fonts = [
       "Ubuntu"
       "UbuntuMono"
@@ -14,8 +19,8 @@ let
       "Mononoki"
       "SpaceMono"
     ];
-  });
-  google-fonts = (pkgs.google-fonts.override {
+  };
+  google-fonts = pkgs.google-fonts.override {
     fonts = [
       # Sans
       "Gabarito"
@@ -24,21 +29,20 @@ let
       "Chakra Petch"
       "Crimson Text"
     ];
-  });
-in
-{
+  };
+in {
   config = mkIf (cfg.riceSetup == "hyprland-rice-illogical-impulse") {
     # Additional stuff
     home.packages = with pkgs; [
       # themes
+      libsForQt5.qt5ct
       adw-gtk3
       adwaita-qt6
       material-symbols
       nerdfonts
       noto-fonts
       noto-fonts-cjk-sans
-
-      libsForQt5.qt5ct
+      qogir-icon-theme
     ];
 
     # QT Theming settings
@@ -72,7 +76,7 @@ in
       '';
     };
 
-    # Cursor settings 
+    # Cursor settings
     programs.hyprcursor-phinger.enable = true;
     home.sessionVariables = {
       HYPRCURSOR_THEME = "phinger-cursors-dark";

@@ -1,6 +1,11 @@
-{ inputs, config, lib, pkgs, ... }:
-with lib;
-let
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.myModules.desktop.hyprland;
   touchpadtoggle = pkgs.writeShellScriptBin "touchpadtoggle" ''
     if [ -z "$XDG_RUNTIME_DIR" ]; then
@@ -34,8 +39,7 @@ let
       disable_touchpad
     fi
   '';
-in
-{
+in {
   options.myModules.desktop.hyprland.enable = mkEnableOption "Enable basic hyprland installation";
 
   config = mkIf cfg.enable {
@@ -51,11 +55,7 @@ in
       xwayland.enable = true;
       systemd.setPath.enable = true;
     };
-
-    programs = {
-      dconf.enable = true;
-      light.enable = true;
-    };
+    programs.dconf.enable = true;
 
     # Configure keymap in X11
     services.xserver.xkb = {
@@ -74,13 +74,8 @@ in
       gtk3 # needed for gtk-launch command
       libnotify # for sending notification
       touchpadtoggle #script for touchpad toggler
-
-      # other pkgs
-      python3
-      eza
-      fzf
-      jq
-      gnome.nautilus
+      brightnessctl
+      inputs.swww.packages.${pkgs.system}.swww
     ];
 
     # Testing portal stuff
@@ -92,11 +87,11 @@ in
             "xdph"
             "gtk"
           ];
-          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-          "org.freedesktop.portal.FileChooser" = [ "xdg-desktop-portal-gtk" ];
+          "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+          "org.freedesktop.portal.FileChooser" = ["xdg-desktop-portal-gtk"];
         };
       };
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      extraPortals = with pkgs; [xdg-desktop-portal-gtk];
     };
 
     # Polkit stuff
@@ -108,7 +103,7 @@ in
         /* Log authorization checks. */
         polkit.addRule(function(action, subject) {
           polkit.log("user " +  subject.user + " is attempting action " + action.id + " from PID " + subject.pid);
-        });       
+        });
       '';
     };
     programs.gnupg.agent.enable = true;

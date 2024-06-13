@@ -5,8 +5,9 @@ let
 in
 {
   imports = [
-    ./hyprland.nix
     ./sddm.nix
+    ./hyprland.nix
+    ./nautilus.nix
   ];
 
   options.myModules.desktop = {

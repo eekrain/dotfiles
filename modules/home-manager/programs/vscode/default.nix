@@ -5,8 +5,10 @@ let
 in
 {
   config = mkIf cfg.vscode {
-    home.packages = [
-      (pkgs.vscode.override {
+    home.packages = with pkgs; [
+      # nix formatter
+      alejandra
+      (vscode.override {
         # gnome-libsecret to detect the correct keyring to use on my system
         commandLineArgs = ''--password-store="gnome-libsecret" --enable-features=UseOzonePlatform --ozone-platform=wayland'';
       })

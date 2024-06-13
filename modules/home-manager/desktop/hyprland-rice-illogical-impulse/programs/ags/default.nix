@@ -63,9 +63,9 @@ in
       wrapGAppsHook
 
       # AGS and Hyprland dependencies.
+      brightnessctl
       glib
       material-symbols
-      brightnessctl
       ddcutil
       fuzzel
       ripgrep

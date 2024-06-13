@@ -1,13 +1,15 @@
-{ lib, config, pkgs, ... }:
-with lib;
-let
-  cfg = config.myHmModules.cli;
-in
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.cli;
+in {
   options.myHmModules.cli.zsh = mkEnableOption "Enable zsh settings";
 
   config = mkIf cfg.zsh {
-
     # Addons cli packages
     home.packages = with pkgs; [
       zoxide
@@ -24,7 +26,7 @@ in
     programs.starship.enable = true;
     xdg.configFile."starship.toml".source = ./starship.toml;
 
-    # Add zim zsh plugin manager config here 
+    # Add zim zsh plugin manager config here
     xdg.configFile."zsh/zimrc".source = ./zimrc;
 
     # ZSH settings
@@ -64,7 +66,7 @@ in
         # Enabling history-substring-search binding that's installed in zimrc
         bindkey "^[[A" history-substring-search-up
         bindkey "^[[B" history-substring-search-down
-        
+
         nitch
       '';
 
@@ -88,4 +90,3 @@ in
     };
   };
 }
-

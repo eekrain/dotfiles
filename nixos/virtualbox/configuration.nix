@@ -36,6 +36,7 @@
       sddm.enable = true;
       hyprland.enable = true;
       hyprland.riceSetup = "hyprland-rice-aurora";
+      nautilus.enable = true;
     };
     addons = {
       enableAndroidAdb = false;

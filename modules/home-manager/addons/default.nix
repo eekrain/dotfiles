@@ -15,14 +15,10 @@ in
       winbox
       cava
       pavucontrol
-      nixpkgs-fmt
-      pamixer
       imv
       xarchiver
       wf-recorder
-      lollypop
       # peazip
-      gscreenshot
       # wavebox
     ];
 

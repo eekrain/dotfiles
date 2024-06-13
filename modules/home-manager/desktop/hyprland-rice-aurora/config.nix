@@ -133,12 +133,12 @@ in
             #-----------------------------------------#
             # Fn control, eg: volume,brightness,etc   #
             #-----------------------------------------#
-            ",XF86AudioRaiseVolume,exec, pamixer -i 5"
-            ",XF86AudioLowerVolume,exec, pamixer -d 5"
-            ",XF86AudioMute,exec, pamixer -t"
-            ",XF86AudioMicMute,exec, pamixer --default-source -t"
-            ",XF86MonBrightnessUp,exec, light -A 5"
-            ",XF86MonBrightnessDown, exec, light -U 5"
+            ",XF86AudioRaiseVolume,exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+            ",XF86AudioLowerVolume,exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+            ",XF86AudioMute,exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%"
+            ",XF86AudioMicMute,exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
+            ",XF86MonBrightnessUp,exec, brightnessctl set '12.75+'"
+            ",XF86MonBrightnessDown, exec, brightnessctl set '12.75-'"
             ",XF86AudioPlay,exec, mpc -q toggle"
             ",XF86AudioNext,exec, mpc -q next"
             ",XF86AudioPrev,exec, mpc -q prev"

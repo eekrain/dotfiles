@@ -41,6 +41,7 @@
       sddm.enable = true;
       sddm.defaultSession = "hyprland";
       hyprland.enable = true;
+      nautilus.enable = true;
     };
     addons = {
       enableAndroidAdb = false;
