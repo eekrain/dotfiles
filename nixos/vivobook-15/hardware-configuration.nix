@@ -4,7 +4,13 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "ntfs" ];
+
+  # Encryption settings with luks
+  boot.initrd.luks.devices.root = {
+    device = "/dev/disk/by-partlabel/root";
+    preLVM = true;
+    allowDiscards = true;
+  };
 
   fileSystems."/" =
     {
@@ -33,18 +39,14 @@
   swapDevices =
     [{ device = "/dev/disk/by-label/swap"; }];
 
-  boot.initrd.luks.devices.root = {
-    device = "/dev/disk/by-partlabel/root";
-    preLVM = true;
-    allowDiscards = true;
+  # Mounting my windows partition
+  boot.supportedFilesystems = [ "ntfs" ];
+  fileSystems."/home/eekrain/MyWindows" = {
+    device = "/dev/disk/by-uuid/7276265D762621F9";
+    fsType = "ntfs-3g";
+    # uid of the user, my eekrain user has uid of 1000
+    options = [ "rw" "uid=1000" ];
   };
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  # networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
