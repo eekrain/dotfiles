@@ -38,6 +38,8 @@
 
   swapDevices =
     [{ device = "/dev/disk/by-label/swap"; }];
+  # Use the swap partition here
+  boot.resumeDevice = "/dev/disk/by-label/swap";
 
   # Mounting my windows partition
   boot.supportedFilesystems = [ "ntfs" ];

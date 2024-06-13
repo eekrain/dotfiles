@@ -8,6 +8,7 @@ in
     ./audio.nix
     ./bluetooth.nix
     ./gpu.nix
+    ./power-management.nix
     ./suspend-then-hybernate.nix
   ];
   options.myModules.hardware = {

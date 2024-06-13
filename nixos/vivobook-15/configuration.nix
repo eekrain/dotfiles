@@ -6,7 +6,6 @@
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ./bootloader.nix
-    ./power-management.nix
 
     # If you want to use modules your own flake exports (from modules/nixos):
     outputs.nixosModules.hardware
@@ -15,7 +14,11 @@
     outputs.nixosModules.addons
 
     # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-cpu-amd-pstate
+    inputs.hardware.nixosModules.common-pc-laptop
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
+    inputs.hardware.nixosModules.common-pc-laptop-acpi_call
 
     # You can also split up your configuration and import pieces of it here:
     ../default-settings/default.nix
@@ -27,6 +30,7 @@
       audio = true;
       bluetooth = true;
       gpu = lib.mkDefault "amd";
+      powerManagement = true;
       suspendThenHybernate = true;
     };
     networking = {
@@ -47,8 +51,7 @@
 
   # TODO: Set your hostname
   networking.hostName = "eka-laptop";
-
-  # Put your flake location dir here, for use with nh(nix helper tool)
+  # TODO: Put your flake location dir here, for use with nh(nix helper tool)
   programs.nh.flake = lib.mkForce "/home/eekrain/dotfiles";
 
   # FIXME: Add the rest of your current configuration
@@ -56,6 +59,13 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
   # IF for some reason your system can't boot up cause of bluetooth issue, add this line to add all linux firmware
   hardware.enableAllFirmware = true;
+
+  # Spesific settings for ASUS Laptops
+  services.asusd = {
+    enable = true;
+    enableUserService = true;
+  };
+  services.supergfxd.enable = true;
 
   # Specialisation settings
   # Default boot loader configuration name using AMD GPU
