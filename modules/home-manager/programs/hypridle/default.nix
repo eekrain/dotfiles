@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.myHmModules.programs;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.programs;
+in {
   config = mkIf cfg.hypridle {
     services.hypridle = {
       enable = true;
@@ -12,6 +15,7 @@ in
         general = {
           lock_cmd = "pidof hyprlock || hyprlock"; # avoid starting multiple hyprlock instances.
           after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
+          before_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
           ignore_dbus_inhibit = false;
         };
 
@@ -23,11 +27,11 @@ in
           }
           {
             timeout = 60; # 1min
-            on-timeout = "loginctl lock-session"; # screen off when timeout has passed
+            on-timeout = "loginctl lock-session"; # lock session with hyprlock
           }
           {
             timeout = 300; # 5min
-            on-timeout = "systemctl suspend"; # screen off when timeout has passed
+            on-timeout = "systemctl suspend"; # suspend system
           }
         ];
       };
