@@ -29,7 +29,7 @@ with lib; let
     }
 
     last_stat=$(cat "$STATUS_FILE")
-    if [ $last_stat = "0" ]; then
+    if [[ $last_stat == "0" ]]; then
         enable_touchpad
     else
         disable_touchpad

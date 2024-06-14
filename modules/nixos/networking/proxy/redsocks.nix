@@ -14,7 +14,7 @@ with lib; let
       echo $?
     )"
 
-    if [ $running == "0" ]; then
+    if [[ $running == "0" ]]; then
       doas systemctl start firewall.service && doas systemctl start redsocks.service
       notify-send "Proxy activated" "Redsocks proxy is running via ${proxyUrl} with type ${proxyType}" -a 'Shell' -i ${pkgs.my-icons}/share/icons/proxy_enabled.svg
     else
