@@ -9,7 +9,7 @@ with lib; let
   cfg = config.myModules.desktop.hyprland;
   touchpadtoggle = pkgs.writeShellScriptBin "touchpadtoggle" ''
     if [ -z "$XDG_RUNTIME_DIR" ]; then
-      export XDG_RUNTIME_DIR=/run/user/$(id -u)
+        export XDG_RUNTIME_DIR=/run/user/$(id -u)
     fi
     export STATUS_FILE="$XDG_RUNTIME_DIR/touchpad.status"
 
@@ -17,26 +17,22 @@ with lib; let
     export HYPRLAND_DEVICE="asue120b:00-04f3:31c0-touchpad"
 
     enable_touchpad() {
-      printf "true" > "$STATUS_FILE"
-      notify-send -u normal "Enabling Touchpad"
-      hyprctl keyword "device[$HYPRLAND_DEVICE]:enabled" true
+        printf "1" >"$STATUS_FILE"
+        notify-send -u normal "Touchpad enabled" -i ${pkgs.my-icons}/share/icons/touchpad_enabled.svg
+        hyprctl keyword "device[$HYPRLAND_DEVICE]:enabled" true
     }
 
     disable_touchpad() {
-      printf "false" > "$STATUS_FILE"
-      notify-send -u normal "Disabling Touchpad"
-      hyprctl keyword "device[$HYPRLAND_DEVICE]:enabled" false
+        printf "0" >"$STATUS_FILE"
+        notify-send -u normal "Touchpad disabled" -i ${pkgs.my-icons}/share/icons/touchpad_disabled.svg
+        hyprctl keyword "device[$HYPRLAND_DEVICE]:enabled" false
     }
 
     last_stat=$(cat "$STATUS_FILE")
-    if [ $last_stat = "true" ]
-    then
-      disable_touchpad
-    elif [ $last_stat = "false" ]
-    then
-      enable_touchpad
+    if [ $last_stat = "0" ]; then
+        enable_touchpad
     else
-      disable_touchpad
+        disable_touchpad
     fi
   '';
 in {
