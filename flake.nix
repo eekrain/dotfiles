@@ -39,6 +39,10 @@
     # TODO: Add any other flake you might need
     # Hardware preconfigured modules from nixos
     hardware.url = "github:nixos/nixos-hardware";
+    auto-cpufreq = {
+      url = "github:AdnanHodzic/auto-cpufreq";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Hyprland stuff
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -49,8 +53,6 @@
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
     # AGS for end4 dots
     ags.url = "github:Aylur/ags/main";
-    # Use latest swww
-    swww.url = "github:LGFae/swww";
 
     # Common Grub2 themes
     grub2-themes.url = github:vinceliuice/grub2-themes;

@@ -1,15 +1,21 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.myModules.hardware;
-in
 {
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myModules.hardware;
+in {
+  imports = [inputs.auto-cpufreq.nixosModules.default];
   options.myModules.hardware = {
     powerManagement = mkEnableOption "Enable custom power management settings";
   };
 
   config = mkIf cfg.powerManagement {
-    services.auto-cpufreq.enable = true;
+    environment.systemPackages = [pkgs.dmidecode];
+    programs.auto-cpufreq.enable = true;
 
     services.tlp = {
       enable = true;
