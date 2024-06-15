@@ -71,7 +71,6 @@ in {
       libnotify # for sending notification
       touchpadtoggle #script for touchpad toggler
       brightnessctl
-      pkgs2405.swww
     ];
 
     # Testing portal stuff
