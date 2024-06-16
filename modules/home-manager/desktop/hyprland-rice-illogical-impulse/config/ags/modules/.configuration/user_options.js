@@ -56,6 +56,11 @@ let configOptions = {
             'default': "auto",
         },
     },
+    'cheatsheet': {
+        'keybinds': {
+            'configPath': "" // Path to hyprland keybind config file. Leave empty for default (~/.config/hypr/hyprland/keybinds.conf)
+        }
+    },
     'gaming': {
         'crosshair': {
             'size': 20,
@@ -116,6 +121,7 @@ let configOptions = {
     },
     'weather': {
         'city': "",
+        'preferredUnit': "C", // Either C or F
     },
     'workspaces': {
         'shown': 10,
