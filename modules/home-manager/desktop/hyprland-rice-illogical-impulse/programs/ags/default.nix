@@ -44,7 +44,6 @@ in {
       gtksourceview3
       upower
       gobject-introspection
-      wrapGAppsHook
 
       # AGS and Hyprland dependencies.
       brightnessctl

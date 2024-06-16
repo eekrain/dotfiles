@@ -67,7 +67,8 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
   # IF for some reason your system can't boot up cause of bluetooth issue, add this line to add all linux firmware
   hardware.enableAllFirmware = true;
-
+  # use zramSwap
+  zramSwap.enable = true;
   # Spesific settings for ASUS Laptops
   services.asusd = {
     enable = true;
