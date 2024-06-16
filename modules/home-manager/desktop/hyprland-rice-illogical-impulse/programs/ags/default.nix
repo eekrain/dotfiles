@@ -1,43 +1,29 @@
-{ inputs, lib, config, pkgs, ... }:
-with lib;
-let
-  cfg = config.myHmModules.desktop.hyprland;
-in
 {
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.desktop.hyprland;
+in {
   # add the home manager module
-  imports = [ inputs.ags.homeManagerModules.default ];
+  imports = [inputs.ags.homeManagerModules.default];
 
   config = mkIf (cfg.riceSetup == "hyprland-rice-illogical-impulse") {
     home.packages = with pkgs; [
       # Python
       pyenv.out
-      (python311.withPackages (p: with p; [
-        materialyoucolor
-        material-color-utilities
-        pillow
-        poetry-core
-        pywal
-        setuptools-scm
-        wheel
-        pywayland
-        psutil
-        # debugpy.overrideAttrs (final: prev: {
-        #   pytestCheckPhase = ''true'';
-        # })
-        pydbus
-        dbus-python
-        pygobject3
-        watchdog
-        pip
-        evdev
-        appdirs
-        inotify-simple
-        ordered-set
-        six
-        hatchling
-        pycairo
-        xkeysnail
-      ]))
+      (python311.withPackages (p:
+        with p; [
+          materialyoucolor
+          setproctitle
+          material-color-utilities
+          pywal
+          pywayland
+          pygobject3
+        ]))
 
       # MicroTex Deps
       tinyxml-2
@@ -46,12 +32,10 @@ in
       cairomm
 
       # Gnome Stuff
-      polkit_gnome
       gnome.gnome-control-center
       gnome.gnome-bluetooth
       gnome.gnome-shell
       blueberry
-      wlsunset
 
       # GTK
       webp-pixbuf-loader

@@ -1,6 +1,13 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   # You can import other NixOS modules here
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
@@ -57,7 +64,7 @@
 
   # FIXME: Add the rest of your current configuration
   # use latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   # IF for some reason your system can't boot up cause of bluetooth issue, add this line to add all linux firmware
   hardware.enableAllFirmware = true;
 
@@ -76,8 +83,7 @@
       # Bootloader name for specialisation with NVIDIA GPU instead
       boot.loader.grub.configurationName = lib.mkForce "NVIDIA GPU";
       # Force change myModules.hardware.gpu to be "nvidia"
-      myModules.hardware.gpu = lib.mkForce "nvidia";
-      myModules.hardware.ollama = lib.mkForce true;
+      myModules.hardware.gpu = lib.mkForce "amd+nvidia";
     };
   };
 
