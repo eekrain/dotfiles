@@ -7,6 +7,8 @@
 with lib; let
   cfg = config.myHmModules.programs;
 in {
+  options.myHmModules.programs.hypridle = mkEnableOption "Enable hypridle settings";
+
   config = mkIf cfg.hypridle {
     services.hypridle = {
       enable = true;

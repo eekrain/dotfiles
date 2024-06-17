@@ -1,13 +1,18 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.myHmModules.programs;
-in
 {
-  # Script for easier screenshot 
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.programs;
+in {
+  options.myHmModules.programs.screenshot = mkEnableOption "Enable screenshot script";
+
+  # Script for easier screenshot
   # It will select an area to screenshot, then open it it swappy editing tool
   config = mkIf cfg.screenshot {
-    home.packages = with pkgs;[
+    home.packages = with pkgs; [
       grim
       slurp
       swappy

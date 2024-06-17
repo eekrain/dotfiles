@@ -1,11 +1,16 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
-  cfg = config.myHmModules.addons;
-in
 {
-  config = mkIf cfg.enable {
-    home.packages = [ pkgs.motrix ];
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.programs;
+in {
+  options.myHmModules.programs.motrix = mkEnableOption "Enable motrix settings";
+
+  config = mkIf cfg.motrix {
+    home.packages = [pkgs.motrix];
 
     xdg.desktopEntries.motrix = {
       name = "Motrix";

@@ -1,9 +1,14 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.myHmModules.programs;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.programs;
+in {
+  options.myHmModules.programs.mpv = mkEnableOption "Enable mpv settings";
+
   config = mkIf cfg.mpv {
     programs = {
       mpv = {

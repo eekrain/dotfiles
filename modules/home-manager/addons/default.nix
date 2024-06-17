@@ -1,10 +1,12 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
-  cfg = config.myHmModules.addons;
-in
 {
-  imports = [ ./motrix.nix ];
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.addons;
+in {
   options.myHmModules.addons.enable = mkEnableOption "Enable addons settings";
 
   config = mkIf cfg.enable {

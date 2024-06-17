@@ -1,18 +1,23 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.myHmModules.programs;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.programs;
+in {
+  options.myHmModules.programs.browser = mkEnableOption "Enable browser settings";
+
   config = mkIf cfg.browser {
     programs.brave = {
       enable = true;
-      package = (pkgs.brave.override {
+      package = pkgs.brave.override {
         libvaSupport = true;
         vulkanSupport = true;
         enableVideoAcceleration = true;
         commandLineArgs = ''--ozone-platform-hint=wayland --gtk-version=4 --ignore-gpu-blocklist --enable-features=TouchpadOverscrollHistoryNavigation'';
-      });
+      };
       extensions = [
         {
           # bitwarden

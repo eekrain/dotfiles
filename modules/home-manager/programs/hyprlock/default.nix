@@ -1,9 +1,14 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.myHmModules.programs;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.programs;
+in {
+  options.myHmModules.programs.hyprlock = mkEnableOption "Enable hyprlock settings";
+
   config = mkIf cfg.hyprlock {
     programs.hyprlock = {
       enable = true;
