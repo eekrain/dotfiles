@@ -9,17 +9,21 @@ with lib; let
   cfg = config.myHmModules.desktop.hyprland;
   # I dont know why gif wallpaper when it's cached it's just stuck from booting
   # So i will do it manually
-  initMyWallpaper = pkgs.writeShellScriptBin "initMyWallpaper" ''
+  myWallpaperInit = pkgs.writeShellScriptBin "myWallpaperInit" ''
+    # Init swww-daemon via hyprctl dispatch
+    hyprctl dispatch -- exec swww-daemon --format xrgb
+    # Clear it first from previous wallpaper
     swww clear
     sleep 1
+    # Sets light wallpaper first so it's not just pitch black
     swww img ~/Pictures/wallpapers/1.jpg --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 3
     sleep 5
-    # then sets my favorite .gif wallpaper
-    swww img ~/Pictures/wallpapers/misono-mika-angel-blue-archive-moewalls.gif --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 3
+    # then sets my favorite .gif wallpaper, im delaying it cus it's loading slow
+    swww img ~/Pictures/wallpapers/misono-mika-angel-blue-archive-moewalls.gif
   '';
 in {
   config = mkIf (cfg.riceSetup == "hyprland-rice-illogical-impulse") {
-    home.packages = [initMyWallpaper]; #install custom script
+    home.packages = [myWallpaperInit]; #install custom script
     # Install the default .config for configuration reference
     home.file.".config.example" = {
       source = "${pkgs.my-illogical-impulse-dots}/.config";
@@ -38,8 +42,10 @@ in {
       extraConfig = ''
         # This config sources other files in `hyprland` and `custom` folders
         # You wanna add your stuff in file in `custom`
-        exec-once = swww-daemon
-        exec-once = initMyWallpaper
+
+        # This is my way of starting swww
+        # Feel free to just change it to only swww-daemon or modify the myWallpaperInit script
+        exec-once = myWallpaperInit
 
         # Defaults
         source=~/.config/hypr/hyprland/env.conf
