@@ -1,6 +1,13 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   # You can import other NixOS modules here
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
@@ -35,7 +42,6 @@
     desktop = {
       sddm.enable = true;
       hyprland.enable = true;
-      hyprland.riceSetup = "hyprland-rice-aurora";
       nautilus.enable = true;
     };
     addons = {

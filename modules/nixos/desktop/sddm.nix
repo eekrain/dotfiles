@@ -1,9 +1,23 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.myModules.desktop;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myModules.desktop;
+in {
+  options.myModules.desktop = {
+    sddm = {
+      enable = mkEnableOption "Enable sddm display manager";
+      defaultSession = mkOption {
+        description = "Graphical session to pre-select in the session chooser";
+        type = types.str;
+        default = "hyprland";
+      };
+    };
+  };
+
   config = mkIf cfg.sddm.enable {
     # Display manager
     services = {
@@ -19,8 +33,7 @@ in
     security.pam.services.hyprlock.enableGnomeKeyring = true;
     security.pam.services.login.enableGnomeKeyring = true;
 
-
-    # limit timeout, cus using sddm while executing shutdown via command 
+    # limit timeout, cus using sddm while executing shutdown via command
     # (without exiting hyprland first) took so long idk why
     systemd.extraConfig = ''
       DefaultTimeoutStopSec=10s

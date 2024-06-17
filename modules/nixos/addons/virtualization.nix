@@ -1,9 +1,19 @@
-{ config, inputs, pkgs, lib, ... }:
-with lib;
-let
-  cfg = config.myModules.addons;
-in
 {
+  config,
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.myModules.addons;
+in {
+  options.myModules.addons = {
+    enableAndroidAdb = mkEnableOption "Enable android adb connection";
+    enableDocker = mkEnableOption "Enable default docker settings";
+    enableVirtualbox = mkEnableOption "Enable default virtualbox settings";
+  };
+
   config = mkMerge [
     (mkIf cfg.enableAndroidAdb {
       # For android development
@@ -12,15 +22,14 @@ in
     (mkIf cfg.enableDocker {
       # My default docker settings
       virtualisation.docker.enable = true;
-      users.extraGroups.docker.members = [ "eekrain" ];
+      users.extraGroups.docker.members = ["eekrain"];
     })
     (mkIf cfg.enableVirtualbox {
       # Virtual box
       virtualisation.virtualbox.host.enable = true;
       virtualisation.virtualbox.host.package = pkgs.pkgs2405.virtualbox;
       virtualisation.virtualbox.host.enableExtensionPack = true;
-      users.extraGroups.vboxusers.members = [ "eekrain" ];
+      users.extraGroups.vboxusers.members = ["eekrain"];
     })
   ];
-
 }

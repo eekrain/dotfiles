@@ -1,9 +1,14 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.myModules.hardware;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myModules.hardware;
+in {
+  options.myModules.hardware.audio = mkEnableOption "Enable custom audio settings";
+
   config = mkIf cfg.audio {
     environment.systemPackages = with pkgs; [
       psmisc

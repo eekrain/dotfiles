@@ -9,9 +9,7 @@ with lib; let
   cfg = config.myModules.hardware;
 in {
   imports = [inputs.auto-cpufreq.nixosModules.default];
-  options.myModules.hardware = {
-    powerManagement = mkEnableOption "Enable custom power management settings";
-  };
+  options.myModules.hardware.powerManagement = mkEnableOption "Enable custom power management settings";
 
   config = mkIf cfg.powerManagement {
     environment.systemPackages = [pkgs.dmidecode];
