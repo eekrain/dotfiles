@@ -10,6 +10,8 @@ in {
   options.myHmModules.programs.hyprlock = mkEnableOption "Enable hyprlock settings";
 
   config = mkIf cfg.hyprlock {
+    home.file."Pictures/wallpapers/zhyprlock_blurred_bg.png".source = ./zhyprlock_blurred_bg.png;
+
     programs.hyprlock = {
       enable = true;
 
