@@ -47,6 +47,8 @@ in {
     # Enabling upower service
     # For gnome and ags stuff
     services.upower.enable = true;
+    # Enable gnome keyring by default
+    services.gnome.gnome-keyring.enable = true;
 
     programs.hyprland = {
       enable = true;

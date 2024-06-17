@@ -1,6 +1,20 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Adding home manager modules
+    # To rebuild home manager settings together with nixos-rebuild
+    inputs.home-manager.nixosModules.home-manager
+    ./eekrain.nix
+  ];
 
-  imports = [ ./users.nix ];
+  # Add home manager settings to rebuild together with nixos-rebuild
+  home-manager.extraSpecialArgs = {inherit inputs outputs;};
 
   # Addons packages
   environment.systemPackages = with pkgs; [
@@ -10,8 +24,6 @@
   # FS tools for compatibility with desktop
   services.envfs.enable = true;
   services.gvfs.enable = true;
-  # Enable gnome keyring by default
-  services.gnome.gnome-keyring.enable = true;
 
   #Enabling nix helper for easier nixos-rebuild
   programs.nh = {
@@ -65,49 +77,47 @@
   };
 
   # Default nix settings
-  nix =
-    let
-      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-    in
-    {
-      settings = {
-        # Enable flakes and new 'nix' command
-        experimental-features = "nix-command flakes";
-        # Deduplicate and optimize nix store
-        auto-optimise-store = true;
-        # For using cachix should set trusted user
-        trusted-users = [ "root" "@wheel" "eekrain" ];
-        builders-use-substitutes = true;
-        # extra substituters to add
-        substituters = [
-          "https://cache.nixos.org"
-          "https://nix-community.cachix.org"
-          "https://hyprland.cachix.org"
-          "https://nixpkgs-wayland.cachix.org"
-          "https://nrdxp.cachix.org"
-          "https://nix-gaming.cachix.org"
-          "https://anyrun.cachix.org"
-        ];
-        trusted-public-keys = [
-          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-          "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-          "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-          "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4="
-          "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-          "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
-        ];
-        sandbox = false;
-        # Opinionated: disable global registry
-        flake-registry = "";
-        # Workaround for https://github.com/NixOS/nix/issues/9574
-        nix-path = config.nix.nixPath;
-      };
-      # Opinionated: disable channels
-      channel.enable = false;
-
-      # Opinionated: make flake registry and nix path match flake inputs
-      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+  nix = let
+    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+  in {
+    settings = {
+      # Enable flakes and new 'nix' command
+      experimental-features = "nix-command flakes";
+      # Deduplicate and optimize nix store
+      auto-optimise-store = true;
+      # For using cachix should set trusted user
+      trusted-users = ["root" "@wheel" "eekrain"];
+      builders-use-substitutes = true;
+      # extra substituters to add
+      substituters = [
+        "https://cache.nixos.org"
+        "https://nix-community.cachix.org"
+        "https://hyprland.cachix.org"
+        "https://nixpkgs-wayland.cachix.org"
+        "https://nrdxp.cachix.org"
+        "https://nix-gaming.cachix.org"
+        "https://anyrun.cachix.org"
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+        "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4="
+        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+        "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+      ];
+      sandbox = false;
+      # Opinionated: disable global registry
+      flake-registry = "";
+      # Workaround for https://github.com/NixOS/nix/issues/9574
+      nix-path = config.nix.nixPath;
     };
+    # Opinionated: disable channels
+    channel.enable = false;
+
+    # Opinionated: make flake registry and nix path match flake inputs
+    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+  };
 }
