@@ -52,7 +52,6 @@ in {
       ddcutil
       fuzzel
       ripgrep
-      gojq
       dart-sass
       sassc
       axel

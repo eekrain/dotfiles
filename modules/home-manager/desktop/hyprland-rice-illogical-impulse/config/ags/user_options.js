@@ -4,6 +4,11 @@
 //   options listed in this file will override the default ones in the above file
 
 const userConfigOptions = {
+    'brightness': {
+        'controllers': {
+            'default': "brightnessctl",
+        },
+    },
 }
 
 export default userConfigOptions;
