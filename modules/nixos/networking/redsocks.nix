@@ -23,7 +23,9 @@ with lib; let
     fi
   '';
 in {
-  config = mkIf (cfg.proxyWith == "redsocks") {
+  options.myModules.networking.redsocks = mkEnableOption "Enable redsocks settings";
+
+  config = mkIf cfg.redsocks {
     networking.firewall.enable = lib.mkForce true;
 
     services.redsocks = {

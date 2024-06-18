@@ -39,8 +39,6 @@
     };
     networking = {
       enable = true;
-      proxyWith = null;
-      # proxyWith = "redsocks";
     };
     desktop = {
       sddm.enable = true;

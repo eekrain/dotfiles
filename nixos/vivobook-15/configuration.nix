@@ -46,7 +46,7 @@
     };
     networking = {
       enable = true;
-      proxyWith = "redsocks";
+      clash = true;
     };
     desktop = {
       sddm.enable = true;
