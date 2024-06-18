@@ -7,13 +7,21 @@
 with lib; let
   cfg = config.myModules.hardware;
   hibernateEnvironment = {
-    HIBERNATE_SECONDS = "30"; #30 min after suspend, then do hybernate
+    HIBERNATE_SECONDS = toString cfg.suspendThenHybernate.hibernateAfterSuspendSeconds; #30 min after suspend, then do hybernate
     HIBERNATE_LOCK = "/var/run/autohibernate.lock";
   };
 in {
-  options.myModules.hardware.suspendThenHybernate = mkEnableOption "Enable suspend-then-hybernate configuration";
+  options.myModules.hardware.suspendThenHybernate = {
+    enable = mkEnableOption "Enable suspend-then-hybernate configuration";
 
-  config = mkIf cfg.suspendThenHybernate {
+    hibernateAfterSuspendSeconds = mkOption {
+      default = 1800;
+      type = types.int;
+      description = "Seconds to hibernate after suspend is activated";
+    };
+  };
+
+  config = mkIf cfg.suspendThenHybernate.enable {
     systemd.services."awake-after-suspend-for-a-time" = {
       description = "Sets up the suspend so that it'll wake for hibernation";
       wantedBy = ["suspend.target"];
@@ -41,8 +49,10 @@ in {
         sustime=$(cat $HIBERNATE_LOCK)
         rm $HIBERNATE_LOCK
         if [ $(($curtime - $sustime)) -ge $HIBERNATE_SECONDS ]; then
-          sleep 3
+          sleep 5
           systemctl hibernate
+        else
+          ${pkgs.utillinux}/bin/rtcwake -m no -s 1
         fi
       '';
       serviceConfig.Type = "simple";

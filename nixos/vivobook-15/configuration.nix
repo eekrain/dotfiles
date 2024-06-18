@@ -39,7 +39,10 @@
       gpu = lib.mkDefault "amd";
       nvtop = true;
       powerManagement = true;
-      suspendThenHybernate = true;
+      suspendThenHybernate = {
+        enable = true;
+        hibernateAfterSuspendSeconds = 30;
+      };
     };
     networking = {
       enable = true;

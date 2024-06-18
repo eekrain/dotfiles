@@ -32,7 +32,10 @@
       audio = false;
       bluetooth = false;
       gpu = null;
-      suspendThenHybernate = false;
+      suspendThenHybernate = {
+        enable = false;
+        # hibernateAfterSuspendSeconds = 30;
+      };
     };
     networking = {
       enable = true;
