@@ -18,5 +18,12 @@ in {
       type = types.nullOr (types.enum ["amd" "amd+nvidia"]);
       default = null;
     };
+    nvtop = mkEnableOption "Enable nvtop installation";
+  };
+
+  config = mkIf cfg.nvtop {
+    environment.systemPackages = with pkgs; [
+      nvtopPackages.nvidia
+    ];
   };
 }

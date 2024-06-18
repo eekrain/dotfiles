@@ -18,7 +18,7 @@
       initialPassword = "eka";
       isNormalUser = true;
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["wheel" "redsocks" "audio" "vboxsf" "adbusers" "libvirtd" "networkmanager" "video" "docker"];
+      extraGroups = ["wheel" "redsocks" "audio" "adbusers" "libvirtd" "networkmanager" "video" "docker"];
       # Setting zsh as default shell
       shell = pkgs.zsh;
     };
