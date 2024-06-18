@@ -11,6 +11,11 @@ in {
 
   config = mkIf cfg.clash {
     networking.firewall.enable = lib.mkForce false;
-    programs.clash-verge.enable = true;
+    programs.clash-verge = {
+      enable = true;
+      package = pkgs.clash-verge-rev;
+      tunMode = true;
+      autoStart = false;
+    };
   };
 }

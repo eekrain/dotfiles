@@ -47,6 +47,7 @@
     networking = {
       enable = true;
       clash = true;
+      # redsocks = true;
     };
     desktop = {
       sddm.enable = true;
