@@ -51,7 +51,10 @@
     desktop = {
       sddm.enable = true;
       sddm.defaultSession = "hyprland";
-      hyprland.enable = true;
+      hyprland = {
+        enable = true;
+        brightnessController = "light";
+      };
       nautilus.enable = true;
     };
     addons = {

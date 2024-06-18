@@ -36,11 +36,39 @@ with lib; let
     fi
   '';
 in {
-  options.myModules.desktop.hyprland.enable = mkEnableOption "Enable basic hyprland installation";
+  options.myModules.desktop.hyprland = {
+    enable = mkEnableOption "Enable basic hyprland installation";
+
+    brightnessController = mkOption {
+      description = "GPU driver to use";
+      type = types.enum ["light" "brightnessctl" "ddcutil"];
+      default = "light";
+    };
+  };
 
   config = mkIf cfg.enable {
+    # Brightness controller settings
     hardware.i2c.enable = true;
+    programs.light.enable =
+      if (cfg.brightnessController == "light")
+      then true
+      else false;
 
+    environment.systemPackages = with pkgs;
+      [
+        grim # screenshot functionality
+        slurp # screenshot functionality
+        wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+        egl-wayland
+        #other pkgs
+        xdg-utils # for opening default programs when clicking links
+        swww # wallpaper daemon
+        gtk3 # needed for gtk-launch command
+        libnotify # for sending notification
+        touchpadtoggle #script for touchpad toggler
+      ]
+      ++ optionals (cfg.brightnessController == "ddcutil") [ddcutil] #install ddcutil if ddcutil selected as brightnessController
+      ++ optionals (cfg.brightnessController == "brightnessctl") [brightnessctl]; #install brightnessctl if brightnessctl selected as brightnessController
     # Enable Location.
     # Used for night light mode
     services.geoclue2.enable = true;
@@ -64,20 +92,6 @@ in {
       variant = "";
     };
 
-    environment.systemPackages = with pkgs; [
-      grim # screenshot functionality
-      slurp # screenshot functionality
-      wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-      egl-wayland
-      #other pkgs
-      xdg-utils # for opening default programs when clicking links
-      swww # wallpaper daemon
-      gtk3 # needed for gtk-launch command
-      libnotify # for sending notification
-      touchpadtoggle #script for touchpad toggler
-      brightnessctl
-    ];
-
     # Testing portal stuff
     xdg.portal = {
       enable = true;
@@ -95,7 +109,6 @@ in {
     };
 
     # Polkit stuff
-
     security.polkit = {
       enable = true;
       debug = true;

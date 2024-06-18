@@ -87,6 +87,21 @@ class BrightnessDdcService extends BrightnessServiceBase {
     }
 }
 
+class LightService extends BrightnessServiceBase {
+    static {
+        Service.register(this);
+    }
+
+    constructor() {
+        super();
+        this._screenValue = Number(exec('light -G'));
+    }
+
+    setBrightnessCmd(percent) {
+        return `light -S ${Math.round(percent * 100)}%`;
+    }
+}
+
 async function listDdcMonitorsSnBus() {
     let ddcSnBus = {};
     try {
@@ -118,6 +133,9 @@ for (let i = 0; i < service.length; i++) {
         || userOptions.brightness.controllers.default || "auto";
     if (preferredController) {
         switch (preferredController) {
+            case "light":
+                service[i] = new LightService();
+                break;
             case "brightnessctl":
                 service[i] = new BrightnessCtlService();
                 break;

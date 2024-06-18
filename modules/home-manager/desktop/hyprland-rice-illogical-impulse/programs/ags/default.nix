@@ -46,10 +46,8 @@ in {
       gobject-introspection
 
       # AGS and Hyprland dependencies.
-      brightnessctl
       glib
       material-symbols
-      ddcutil
       fuzzel
       ripgrep
       dart-sass

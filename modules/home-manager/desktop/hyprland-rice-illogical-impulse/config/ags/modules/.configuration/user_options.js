@@ -50,6 +50,7 @@ let configOptions = {
         // Object of controller names for each monitor, either "brightnessctl" or "ddcutil" or "auto"
         // 'default' one will be used if unspecified
         // Examples
+        // 'eDP-1': "light",
         // 'eDP-1': "brightnessctl",
         // 'DP-1': "ddcutil",
         'controllers': {

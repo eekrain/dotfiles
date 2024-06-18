@@ -6,7 +6,10 @@
 const userConfigOptions = {
     'brightness': {
         'controllers': {
-            'default': "brightnessctl",
+            // can be "light" | "brighnessctl" | "ddcutil"
+            // for no multi monitor use i recommend light, cus the other is not saving brightness value
+            // when we turning on display after calling "hyprctl dispatch dpms off"
+            'default': "light", 
         },
     },
 }
