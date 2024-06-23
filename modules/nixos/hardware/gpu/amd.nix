@@ -11,14 +11,10 @@ in {
     services.xserver.videoDrivers = ["modesetting"];
     boot.initrd.kernelModules = ["amdgpu"];
 
-    hardware.opengl = {
-      driSupport = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        vaapiVdpau
-        libvdpau-va-gl
-      ];
-    };
+    hardware.opengl.extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
 
     # Adding libva driver env vars for amdgpu only
     environment.sessionVariables = {

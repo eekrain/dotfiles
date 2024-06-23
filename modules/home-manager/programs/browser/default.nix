@@ -10,6 +10,12 @@ in {
   options.myHmModules.programs.browser = mkEnableOption "Enable browser settings";
 
   config = mkIf cfg.browser {
+    home.packages = [
+      (pkgs.google-chrome.override {
+        libvaSupport = true;
+        commandLineArgs = ''--ozone-platform-hint=wayland --gtk-version=4 --ignore-gpu-blocklist --enable-features=TouchpadOverscrollHistoryNavigation'';
+      })
+    ];
     programs.brave = {
       enable = true;
       package = pkgs.brave.override {

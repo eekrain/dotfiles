@@ -31,10 +31,10 @@ in {
       executable = true; # make all files executable
     };
     wayland.windowManager.hyprland = {
-      plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
-        # hyprbars
-        hyprexpo
-      ];
+      # plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
+      #   hyprbars
+      #   hyprexpo
+      # ];
 
       # FIXME please copy all files inside dotfiles/modules/home-manager/desktop/hyprland-rice-illogical-impulse/config
       # except this default.nix into your ~/.config

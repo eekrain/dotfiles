@@ -72,8 +72,8 @@
 
   # FIXME: Add the rest of your current configuration
   # use latest kernel
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   # IF for some reason your system can't boot up cause of bluetooth issue, add this line to add all linux firmware
   hardware.enableAllFirmware = true;
   # # use zramSwap

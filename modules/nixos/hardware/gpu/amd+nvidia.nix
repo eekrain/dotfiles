@@ -11,15 +11,11 @@ in {
     services.xserver.videoDrivers = ["modesetting" "nvidia"];
     boot.initrd.kernelModules = ["amdgpu"];
 
-    hardware.opengl = {
-      driSupport = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        vaapiVdpau
-        libvdpau-va-gl
-        nvidia-vaapi-driver
-      ];
-    };
+    hardware.opengl.extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+    ];
 
     boot.blacklistedKernelModules = ["nouveau"];
     hardware.nvidia = {
