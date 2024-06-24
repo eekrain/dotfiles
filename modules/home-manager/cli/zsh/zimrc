@@ -39,8 +39,8 @@ zmodule Aloxaf/fzf-tab
 zmodule kiesman99/zim-zoxide
 zmodule eekrain/zsh-aws
 zmodule davidde/git
-zmodule changyuheng/zsh-interactive-cd
-zmodule aubreypwd/zsh-plugin-fd
+#zmodule changyuheng/zsh-interactive-cd
+#zmodule aubreypwd/zsh-plugin-fd
 
 # Fish-like autosuggestions for Zsh.
 zmodule zsh-users/zsh-autosuggestions
