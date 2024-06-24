@@ -41,7 +41,7 @@
       powerManagement = true;
       suspendThenHybernate = {
         enable = true;
-        hibernateAfterSuspendSeconds = 30;
+        hibernateAfterSuspendSeconds = 1800;
       };
     };
     networking = {

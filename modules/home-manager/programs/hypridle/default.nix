@@ -23,16 +23,16 @@ in {
 
         listener = [
           {
-            timeout = 15; # 0.5min
+            timeout = 60; # 1min
             on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
             on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
           }
           {
-            timeout = 30; # 1min
+            timeout = 90; # 1.5min
             on-timeout = "loginctl lock-session"; # lock session with hyprlock
           }
           {
-            timeout = 60; # 5min
+            timeout = 300; # 5min
             on-timeout = "systemctl suspend"; # suspend system
           }
         ];
