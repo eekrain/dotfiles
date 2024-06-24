@@ -45,6 +45,14 @@ in {
         save = 1000000000;
         size = 1000000000;
         ignoreAllDups = true;
+        ignorePatterns = [
+          "rm *"
+          "pkill *"
+          "ga *"
+          "gc *"
+          "gp *"
+          "ls *"
+        ];
       };
 
       # We put zim zsh plugin manager before History options
@@ -97,6 +105,7 @@ in {
         c = "clear";
         rb = "reboot";
         sd = "shutdown now";
+        cd = "z";
         wifirescan = "nmcli device wifi rescan";
         ls = "eza --icons";
         ll = "ls -lbF --git";
