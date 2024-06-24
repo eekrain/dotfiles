@@ -6,6 +6,7 @@
 }:
 with lib; let
   cfg = config.myHmModules.cli;
+  starshipCmd = "${config.home.profileDirectory}/bin/starship";
 in {
   options.myHmModules.cli.zsh = mkEnableOption "Enable zsh settings";
 
@@ -23,7 +24,11 @@ in {
     ];
 
     # Enable starship promt styling
-    programs.starship.enable = true;
+    programs.starship = {
+      enable = true;
+      # handle integration myself
+      enableZshIntegration = false;
+    };
     xdg.configFile."starship.toml".source = ./starship.toml;
 
     # Add zim zsh plugin manager config here
@@ -39,6 +44,7 @@ in {
         path = "${config.xdg.configHome}/zsh/zsh_history";
         save = 1000000000;
         size = 1000000000;
+        ignoreAllDups = true;
       };
 
       # We put zim zsh plugin manager before History options
@@ -63,9 +69,26 @@ in {
       '';
 
       initExtra = ''
+        setopt INC_APPEND_HISTORY
+        setopt HIST_SAVE_NO_DUPS
+        setopt HIST_FIND_NO_DUPS
+
         # Enabling history-substring-search binding that's installed in zimrc
         bindkey "^[[A" history-substring-search-up
         bindkey "^[[B" history-substring-search-down
+
+        # Completion styling
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+        zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
+        zstyle ':completion:*' menu no
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1lh --icons --git-ignore --group-directories-first --sort=accessed --color=always $realpath'
+        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1lh --icons --git-ignore --group-directories-first --sort=accessed --color=always $realpath'
+        zstyle ':fzf-tab:complete:cd:*' fzf-flags --height=35% --preview-window=right:65%
+        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-flags --height=35% --preview-window=right:65%
+
+        if [[ $TERM != "dumb" ]]; then
+          eval "$(${starshipCmd} init zsh)"
+        fi
 
         nitch
       '';

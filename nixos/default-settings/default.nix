@@ -36,7 +36,11 @@
   };
 
   # Enabling zsh as the default shell
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = false;
+  };
+
   # Enabling direnv for easier flake development
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
