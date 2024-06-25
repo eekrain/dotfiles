@@ -46,7 +46,6 @@ in {
         size = 1000000000;
         ignoreAllDups = true;
         ignorePatterns = [
-          "rm *"
           "pkill *"
           "ga *"
           "gc *"
