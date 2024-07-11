@@ -13,7 +13,7 @@ in {
     programs.obs-studio.enable = true;
 
     home.packages = with pkgs; [
-      discord
+      vesktop
       winbox
       cava
       pavucontrol

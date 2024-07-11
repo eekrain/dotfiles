@@ -38,7 +38,7 @@
   # Enabling zsh as the default shell
   programs.zsh = {
     enable = true;
-    enableCompletion = false;
+    enableBashCompletion = true;
   };
 
   # Enabling direnv for easier flake development

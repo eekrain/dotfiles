@@ -37,7 +37,6 @@ in {
     # ZSH settings
     programs.zsh = {
       enable = true;
-      enableCompletion = false;
       # ZSH config dir
       dotDir = ".config/zsh";
       history = {
@@ -54,31 +53,24 @@ in {
         ];
       };
 
-      # We put zim zsh plugin manager before History options
-      # Following the structure of oh-my-zsh from home-manager programs.zsh module
-      initExtraBeforeCompInit = ''
+      initExtra = ''
+        setopt INC_APPEND_HISTORY
+        setopt HIST_SAVE_NO_DUPS
+        setopt HIST_FIND_NO_DUPS
+
         zstyle ':zim:zmodule' use 'degit'
         ZIM_HOME=~/.config/zsh/.zim
         ZIM_CONFIG_FILE=~/.config/zsh/zimrc
-
         # Download zimfw plugin manager if missing.
         if [[ ! -e ''${ZIM_HOME}/zimfw.zsh ]]; then
           curl -fsSL --create-dirs -o ''${ZIM_HOME}/zimfw.zsh \
               https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
         fi
-
         # Install missing modules, and update ''${ZIM_HOME}/init.zsh if missing or outdated.
         if [[ ! ''${ZIM_HOME}/init.zsh -nt ''${ZDOTDIR:-''${HOME}}/.zimrc ]]; then
           source ''${ZIM_HOME}/zimfw.zsh init -q
         fi
-
         source ''${ZIM_HOME}/init.zsh
-      '';
-
-      initExtra = ''
-        setopt INC_APPEND_HISTORY
-        setopt HIST_SAVE_NO_DUPS
-        setopt HIST_FIND_NO_DUPS
 
         # Enabling history-substring-search binding that's installed in zimrc
         bindkey "^[[A" history-substring-search-up
