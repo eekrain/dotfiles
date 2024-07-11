@@ -22,12 +22,13 @@ with lib; let
   };
   google-fonts = pkgs.google-fonts.override {
     fonts = [
-      # Sans
-      "Gabarito"
-      "Lexend"
-      # Serif
-      "Chakra Petch"
-      "Crimson Text"
+      "Rubik"
+      # # Sans
+      # "Gabarito"
+      # "Lexend"
+      # # Serif
+      # "Chakra Petch"
+      # "Crimson Text"
     ];
   };
 in {

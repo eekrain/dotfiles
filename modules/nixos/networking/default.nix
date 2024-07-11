@@ -10,15 +10,23 @@ in {
   imports = [
     ./redsocks.nix
     ./clash.nix
+    ./cloudflare-warp
   ];
 
   options.myModules.networking.enable = mkEnableOption "Enable networking functions";
+  options.myModules.networking.cloudflared = mkEnableOption "Install cloudflared";
 
   config = mkIf cfg.enable {
     # Set your time zone.
     time.timeZone = "Asia/Jakarta";
     services.ntp.enable = true;
     programs.ssh.startAgent = true;
+
+    environment.systemPackages = with pkgs;
+      []
+      ++ lib.optionals (cfg.cloudflared) [
+        cloudflared
+      ];
 
     networking = {
       networkmanager.enable = true;
