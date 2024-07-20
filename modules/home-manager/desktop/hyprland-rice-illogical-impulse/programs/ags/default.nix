@@ -14,7 +14,6 @@ in {
   config = mkIf (cfg.riceSetup == "hyprland-rice-illogical-impulse") {
     home.packages = with pkgs; [
       # Python
-      pyenv.out
       (python311.withPackages (p:
         with p; [
           materialyoucolor

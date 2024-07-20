@@ -1,11 +1,14 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.myHmModules.desktop.hyprland;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.desktop.hyprland;
+in {
   config = mkIf (cfg.riceSetup == "hyprland-rice-aurora") {
-    home.packages = [ pkgs.python3 ];
+    home.packages = [pkgs.python311];
 
     programs.waybar = {
       enable = true;
@@ -14,196 +17,196 @@ in
         target = "graphical-session.target";
       };
 
-      settings = [{
-        "layer" = "top";
-        "position" = "top";
-        modules-left = [
-          "hyprland/workspaces"
-        ];
-        modules-center = [
-          "custom/dynamic_pill"
-        ];
-        modules-right = [
-          "temperature"
-          "network"
-          "battery"
-          "custom/ss"
-          "custom/cycle_wall"
-          "custom/expand"
-          "clock"
-        ];
+      settings = [
+        {
+          "layer" = "top";
+          "position" = "top";
+          modules-left = [
+            "hyprland/workspaces"
+          ];
+          modules-center = [
+            "custom/dynamic_pill"
+          ];
+          modules-right = [
+            "temperature"
+            "network"
+            "battery"
+            "custom/ss"
+            "custom/cycle_wall"
+            "custom/expand"
+            "clock"
+          ];
 
-        "custom/dynamic_pill" = {
-          "return-type" = "json";
-          "exec" = "~/.config/hypr/scripts/tools/start_dyn";
-          "escape" = true;
-        };
-
-        "custom/ss" = {
-          "format" = "{}";
-          "exec" = "~/.config/hypr/scripts/tools/expand ss-icon";
-          "on-click" = "~/.config/hypr/scripts/screenshot";
-        };
-
-        "custom/cycle_wall" = {
-          "format" = "{}";
-          "exec" = "~/.config/hypr/scripts/tools/expand wall";
-          #"interval"= 1;
-          "on-click" = "~/.config/hypr/scripts/tools/expand cycle";
-        };
-
-        "custom/expand" = {
-          "on-click" = "~/.config/hypr/scripts/expand_toolbar";
-          "format" = "{}";
-          "exec" = "~/.config/hypr/scripts/tools/expand arrow-icon";
-        };
-
-        "keyboard-state" = {
-          "numlock" = true;
-          "capslock" = true;
-          "format" = "{name} {icon}";
-          "format-icons" = {
-            "locked" = "";
-            "unlocked" = "";
+          "custom/dynamic_pill" = {
+            "return-type" = "json";
+            "exec" = "~/.config/hypr/scripts/tools/start_dyn";
+            "escape" = true;
           };
-        };
 
-        "hyprland/workspaces" = {
-          "format" = "{name}";
-          "on-click" = "activate";
-          # "on-scroll-up" = "hyprctl dispatch workspace e+1";
-          # "on-scroll-down" = "hyprctl dispatch workspace e-1";
-        };
-
-
-        "sway/mode" = {
-          "format" = "<span style=\"italic\">{}</span>";
-        };
-
-        "mpd" = {
-          "format" = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ";
-          "format-disconnected" = "Disconnected ";
-          "format-stopped" = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ";
-          "unknown-tag" = "N/A";
-          "interval" = 2;
-          "consume-icons" = {
-            "on" = " ";
+          "custom/ss" = {
+            "format" = "{}";
+            "exec" = "~/.config/hypr/scripts/tools/expand ss-icon";
+            "on-click" = "~/.config/hypr/scripts/screenshot";
           };
-          "random-icons" = {
-            "off" = "<span color=\"#f53c3c\"></span> ";
-            "on" = " ";
+
+          "custom/cycle_wall" = {
+            "format" = "{}";
+            "exec" = "~/.config/hypr/scripts/tools/expand wall";
+            #"interval"= 1;
+            "on-click" = "~/.config/hypr/scripts/tools/expand cycle";
           };
-          "repeat-icons" = {
-            "on" = " ";
+
+          "custom/expand" = {
+            "on-click" = "~/.config/hypr/scripts/expand_toolbar";
+            "format" = "{}";
+            "exec" = "~/.config/hypr/scripts/tools/expand arrow-icon";
           };
-          "single-icons" = {
-            "on" = "1 ";
+
+          "keyboard-state" = {
+            "numlock" = true;
+            "capslock" = true;
+            "format" = "{name} {icon}";
+            "format-icons" = {
+              "locked" = "";
+              "unlocked" = "";
+            };
           };
-          "state-icons" = {
-            "paused" = "";
-            "playing" = "";
+
+          "hyprland/workspaces" = {
+            "format" = "{name}";
+            "on-click" = "activate";
+            # "on-scroll-up" = "hyprctl dispatch workspace e+1";
+            # "on-scroll-down" = "hyprctl dispatch workspace e-1";
           };
-          "tooltip-format" = "MPD (connected)";
-          "tooltip-format-disconnected" = "MPD (disconnected)";
-        };
 
-        "idle_inhibitor" = {
-          "format" = "{icon}";
-          "format-icons" = {
-            "activated" = "";
-            "deactivated" = "";
+          "sway/mode" = {
+            "format" = "<span style=\"italic\">{}</span>";
           };
-        };
 
-        "tray" = {
-          #"icon-size"=21;
-          "spacing" = 10;
-        };
-
-        "clock" = {
-          "timezone" = "Asia/Jakarta";
-          "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          "interval" = 60;
-          "format" = "{:%I:%M}";
-          "max-length" = 25;
-        };
-
-        "memory" = {
-          "format" = "{}% ";
-        };
-
-        "temperature" = {
-          #"thermal-zone"=2;
-          #"hwmon-path"="/sys/class/hwmon/hwmon2/temp1_input";
-          "critical-threshold" = 80;
-          "format-critical" = "{temperatureC}°C";
-          "format" = "";
-        };
-
-        "backlight" = {
-          #"device"="acpi_video1";
-          "format" = "{percent}% {icon}";
-          "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
-        };
-
-        "battery" = {
-          "states" = {
-            "warning" = 50;
-            "critical" = 20;
+          "mpd" = {
+            "format" = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ";
+            "format-disconnected" = "Disconnected ";
+            "format-stopped" = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ";
+            "unknown-tag" = "N/A";
+            "interval" = 2;
+            "consume-icons" = {
+              "on" = " ";
+            };
+            "random-icons" = {
+              "off" = "<span color=\"#f53c3c\"></span> ";
+              "on" = " ";
+            };
+            "repeat-icons" = {
+              "on" = " ";
+            };
+            "single-icons" = {
+              "on" = "1 ";
+            };
+            "state-icons" = {
+              "paused" = "";
+              "playing" = "";
+            };
+            "tooltip-format" = "MPD (connected)";
+            "tooltip-format-disconnected" = "MPD (disconnected)";
           };
-          "format" = "{icon}";
-          "format-charging" = "";
-          "format-plugged" = "";
-          # "format-good"=""; // An empty format will hide the module
-          # "format-full"="";
-          "format-icons" = [ "" "" "" "" "" ];
-        };
 
-        "battery#bat2" = {
-          "bat" = "BAT2";
-        };
-
-        "network" = {
-          "format" = "🚫 🌐";
-          "format-wifi" = " {essid}";
-          "tooltip-format-wifi" = "{bandwidthDownBits:>}{bandwidthUpBits:>}";
-          "format-ethernet" = "🖧{ifname}";
-          "tooltip-format-ethernet" = "{bandwidthDownBits:>}{bandwidthUpBits:>}";
-          "format-disconnected" = "🚫 🌐";
-          "on-click" = "kitty -e nmtui";
-          "interval" = 1;
-        };
-        "pulseaudio" = {
-          # "scroll-step"=1; // %, can be a float
-          "format" = "{format_source}";
-          "format-bluetooth" = "{volume}% {icon} {format_source}";
-          "format-bluetooth-muted" = " {icon} {format_source}";
-          "format-muted" = " {format_source}";
-          "format-icons" = {
-            "headphone" = "";
-            "hands-free" = "";
-            "headset" = "";
-            "phone" = "";
-            "portable" = "";
-            "car" = "";
-            "default" = [ "" "" "" ];
+          "idle_inhibitor" = {
+            "format" = "{icon}";
+            "format-icons" = {
+              "activated" = "";
+              "deactivated" = "";
+            };
           };
-          "on-click" = "pavucontrol";
-        };
-        "custom/media" = {
-          "format" = "{icon} {}";
-          "return-type" = "json";
-          "max-length" = 40;
-          "format-icons" = {
-            "spotify" = "";
-            "default" = "🎜";
-          };
-          "escape" = true;
-          "exec" = "$HOME/.config/waybar/mediaplayer.py 2> /dev/null";
-          #"exec"="$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null"; #Filter player based on name
-        };
 
-      }];
+          "tray" = {
+            #"icon-size"=21;
+            "spacing" = 10;
+          };
+
+          "clock" = {
+            "timezone" = "Asia/Jakarta";
+            "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+            "interval" = 60;
+            "format" = "{:%I:%M}";
+            "max-length" = 25;
+          };
+
+          "memory" = {
+            "format" = "{}% ";
+          };
+
+          "temperature" = {
+            #"thermal-zone"=2;
+            #"hwmon-path"="/sys/class/hwmon/hwmon2/temp1_input";
+            "critical-threshold" = 80;
+            "format-critical" = "{temperatureC}°C";
+            "format" = "";
+          };
+
+          "backlight" = {
+            #"device"="acpi_video1";
+            "format" = "{percent}% {icon}";
+            "format-icons" = ["" "" "" "" "" "" "" "" ""];
+          };
+
+          "battery" = {
+            "states" = {
+              "warning" = 50;
+              "critical" = 20;
+            };
+            "format" = "{icon}";
+            "format-charging" = "";
+            "format-plugged" = "";
+            # "format-good"=""; // An empty format will hide the module
+            # "format-full"="";
+            "format-icons" = ["" "" "" "" ""];
+          };
+
+          "battery#bat2" = {
+            "bat" = "BAT2";
+          };
+
+          "network" = {
+            "format" = "🚫 🌐";
+            "format-wifi" = " {essid}";
+            "tooltip-format-wifi" = "{bandwidthDownBits:>}{bandwidthUpBits:>}";
+            "format-ethernet" = "🖧{ifname}";
+            "tooltip-format-ethernet" = "{bandwidthDownBits:>}{bandwidthUpBits:>}";
+            "format-disconnected" = "🚫 🌐";
+            "on-click" = "kitty -e nmtui";
+            "interval" = 1;
+          };
+          "pulseaudio" = {
+            # "scroll-step"=1; // %, can be a float
+            "format" = "{format_source}";
+            "format-bluetooth" = "{volume}% {icon} {format_source}";
+            "format-bluetooth-muted" = " {icon} {format_source}";
+            "format-muted" = " {format_source}";
+            "format-icons" = {
+              "headphone" = "";
+              "hands-free" = "";
+              "headset" = "";
+              "phone" = "";
+              "portable" = "";
+              "car" = "";
+              "default" = ["" "" ""];
+            };
+            "on-click" = "pavucontrol";
+          };
+          "custom/media" = {
+            "format" = "{icon} {}";
+            "return-type" = "json";
+            "max-length" = 40;
+            "format-icons" = {
+              "spotify" = "";
+              "default" = "🎜";
+            };
+            "escape" = true;
+            "exec" = "$HOME/.config/waybar/mediaplayer.py 2> /dev/null";
+            #"exec"="$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null"; #Filter player based on name
+          };
+        }
+      ];
 
       style = ''
         * {

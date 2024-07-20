@@ -16,7 +16,6 @@ in {
       pulseaudioFull
     ];
 
-    sound.enable = lib.mkForce false;
     hardware.pulseaudio.enable = false;
     # rtkit is optional but recommended
     security.rtkit.enable = true;

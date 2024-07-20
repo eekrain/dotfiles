@@ -16,14 +16,13 @@ with lib; let
     swww clear
     sleep 1
     # Sets light wallpaper first so it's not just pitch black
-    swww img ~/Pictures/wallpapers/1.jpg --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 3
+    swww img ~/Pictures/wallpapers/roshidere-orange.png --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 3
     sleep 5
     # then sets my favorite .gif wallpaper, im delaying it cus it's loading slow
-    swww img ~/Pictures/wallpapers/misono-mika-angel-blue-archive-moewalls.gif
+    # swww img ~/Pictures/wallpapers/misono-mika-angel-blue-archive-moewalls.gif
   '';
 in {
   config = mkIf (cfg.riceSetup == "hyprland-rice-illogical-impulse") {
-    home.packages = [myWallpaperInit]; #install custom script
     # Install the default .config for configuration reference
     home.file.".config.example" = {
       source = "${pkgs.my-illogical-impulse-dots}/.config";
@@ -45,7 +44,9 @@ in {
 
         # This is my way of starting swww
         # Feel free to just change it to only swww-daemon or modify the myWallpaperInit script
-        exec-once = myWallpaperInit
+        exec-once = ${myWallpaperInit}/bin/myWallpaperInit
+        # Zapzap whatsapp client desktop file is somehow not found, so we will exec it from here
+        exec-once = ${pkgs.zapzap}/bin/zapzap
 
         # Defaults
         source=~/.config/hypr/hyprland/env.conf

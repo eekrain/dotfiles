@@ -43,7 +43,7 @@
     # Hardware preconfigured modules from nixos
     hardware.url = "github:nixos/nixos-hardware";
     auto-cpufreq = {
-      url = "github:AdnanHodzic/auto-cpufreq";
+      url = "github:AdnanHodzic/auto-cpufreq/04f25a93d3491164bbbe41d597ec8fee5e0f070d";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
