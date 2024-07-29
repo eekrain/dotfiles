@@ -85,6 +85,9 @@ in {
       systemd.setPath.enable = true;
     };
     programs.dconf.enable = true;
+    # # FS tools for compatibility with desktop
+    # services.envfs.enable = true;
+    services.gvfs.enable = true;
 
     # Configure keymap in X11
     services.xserver.xkb = {
@@ -105,7 +108,7 @@ in {
           "org.freedesktop.portal.FileChooser" = ["xdg-desktop-portal-gtk"];
         };
       };
-      extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
     };
 
     # Polkit stuff

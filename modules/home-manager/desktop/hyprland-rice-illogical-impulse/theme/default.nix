@@ -44,6 +44,7 @@ in {
       noto-fonts
       noto-fonts-cjk-sans
       qogir-icon-theme
+      gnome.adwaita-icon-theme
     ];
 
     # QT Theming settings

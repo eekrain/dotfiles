@@ -70,8 +70,8 @@ in {
 
       # additional packages to add to gjs's runtime
       extraPackages = with pkgs; [
-        pkgs2311.gtksourceview
-        pkgs2311.gnome.gvfs
+        # pkgs2311.gtksourceview
+        gtksourceview
         webkitgtk
         accountsservice
       ];

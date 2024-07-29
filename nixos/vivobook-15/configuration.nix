@@ -78,8 +78,8 @@
   # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelPackages = pkgs.linuxPackages_cachyos;
-  chaotic.scx.enable = true;
-  chaotic.scx.scheduler = "scx_rusty";
+  # chaotic.scx.enable = true;
+  # chaotic.scx.scheduler = "scx_rusty";
 
   # IF for some reason your system can't boot up cause of bluetooth issue, add this line to add all linux firmware
   hardware.enableAllFirmware = true;
