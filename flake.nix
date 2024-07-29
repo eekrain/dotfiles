@@ -58,7 +58,10 @@
     ags.url = "github:Aylur/ags/main";
 
     # Common Grub2 themes
-    grub2-themes.url = github:vinceliuice/grub2-themes;
+    grub2-themes = {
+      url = github:vinceliuice/grub2-themes;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
