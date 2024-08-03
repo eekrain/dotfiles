@@ -9,13 +9,16 @@ with lib; let
 in {
   config = mkIf (cfg.gpu == "amd+nvidia") {
     services.xserver.videoDrivers = ["modesetting" "nvidia"];
-    boot.initrd.kernelModules = ["amdgpu"];
 
-    hardware.opengl.extraPackages = with pkgs; [
-      vaapiVdpau
-      libvdpau-va-gl
-      nvidia-vaapi-driver
-    ];
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+    };
+    hardware.amdgpu.initrd.enable = true;
 
     boot.blacklistedKernelModules = ["nouveau"];
     hardware.nvidia = {

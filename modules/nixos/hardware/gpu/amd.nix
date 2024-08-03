@@ -9,12 +9,16 @@ with lib; let
 in {
   config = mkIf (cfg.gpu == "amd") {
     services.xserver.videoDrivers = ["modesetting"];
-    boot.initrd.kernelModules = ["amdgpu"];
 
-    hardware.opengl.extraPackages = with pkgs; [
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+    };
+    hardware.amdgpu.initrd.enable = true;
 
     # Adding libva driver env vars for amdgpu only
     environment.sessionVariables = {
