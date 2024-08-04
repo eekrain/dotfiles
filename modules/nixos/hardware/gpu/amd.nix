@@ -8,7 +8,7 @@ with lib; let
   cfg = config.myModules.hardware;
 in {
   config = mkIf (cfg.gpu == "amd") {
-    services.xserver.videoDrivers = ["modesetting"];
+    services.xserver.videoDrivers = ["amdgpu"];
 
     hardware.graphics = {
       enable = true;
@@ -20,11 +20,11 @@ in {
     };
     hardware.amdgpu.initrd.enable = true;
 
-    # Adding libva driver env vars for amdgpu only
-    environment.sessionVariables = {
-      LIBVA_DRIVER_NAME = "radeonsi";
-      VDPAU_DRIVER = "radeonsi";
-    };
+    # # Adding libva driver env vars for amdgpu only
+    # environment.sessionVariables = {
+    #   LIBVA_DRIVER_NAME = "radeonsi";
+    #   VDPAU_DRIVER = "radeonsi";
+    # };
 
     # If it's only using amd, implementing disable nvidia for better battery life
     # This runs only intel/amdgpu igpus and nvidia dgpus do not drain power.

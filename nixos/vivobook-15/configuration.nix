@@ -37,7 +37,6 @@
       audio = true;
       bluetooth = true;
       gpu = lib.mkDefault "amd";
-      nvtop = true;
       powerManagement = true;
       suspendThenHybernate = {
         enable = true;
