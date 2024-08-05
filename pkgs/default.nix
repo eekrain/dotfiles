@@ -8,4 +8,5 @@ pkgs: {
   my-illogical-impulse-dots = pkgs.callPackage ./my-illogical-impulse-dots.nix {};
   my-icons = pkgs.callPackage ./my-icons {};
   materialyoucolor = pkgs.python311Packages.callPackage ./materialyoucolor.nix {};
+  responsivelyapp = pkgs.callPackage ./responsivelyapp.nix {};
 }

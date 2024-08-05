@@ -9,17 +9,12 @@ with lib; let
   cfg = config.myModules.addons;
 in {
   options.myModules.addons = {
-    enableNixLd = mkEnableOption "Enable nix-ld";
     enableAndroidAdb = mkEnableOption "Enable android adb connection";
     enableDocker = mkEnableOption "Enable default docker settings";
     enableVirtualbox = mkEnableOption "Enable default virtualbox settings";
   };
 
   config = mkMerge [
-    (mkIf cfg.enableNixLd {
-      # Nix-ld
-      programs.nix-ld.enable = true;
-    })
     (mkIf cfg.enableAndroidAdb {
       # For android development
       programs.adb.enable = true;

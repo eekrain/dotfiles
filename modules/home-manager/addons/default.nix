@@ -20,6 +20,7 @@ in {
       imv
       xarchiver
       wf-recorder
+      responsivelyapp
       # peazip
       # wavebox
     ];

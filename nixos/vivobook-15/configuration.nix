@@ -60,7 +60,8 @@
       nautilus.enable = true;
     };
     addons = {
-      enableNixLd = true;
+      nix-ld = true;
+      devenv = true;
       enableAndroidAdb = false;
       enableDocker = false;
       enableVirtualbox = false;
