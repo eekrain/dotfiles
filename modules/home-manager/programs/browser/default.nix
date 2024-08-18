@@ -13,7 +13,6 @@ in {
     home.packages = [
       (pkgs.google-chrome.override {
         libvaSupport = true;
-        commandLineArgs = ''--ozone-platform-hint=wayland --gtk-version=4 --ignore-gpu-blocklist'';
       })
     ];
     programs.brave = {
@@ -22,7 +21,6 @@ in {
         libvaSupport = true;
         vulkanSupport = true;
         enableVideoAcceleration = true;
-        commandLineArgs = ''--ozone-platform-hint=wayland --gtk-version=4 --ignore-gpu-blocklist'';
       };
       extensions = [
         {
