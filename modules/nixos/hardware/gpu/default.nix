@@ -6,6 +6,14 @@
 }:
 with lib; let
   cfg = config.myModules.hardware;
+  # This script is used to prefer the Nvidia GPU when it's available
+  preferNvidia = pkgs.writeShellScriptBin "prefer-nvidia" ''
+    if command -v nvidia-offload &> /dev/null; then
+      nvidia-offload "$@"
+    else
+      exec "$@"
+    fi
+  '';
 in {
   imports = [
     ./amd.nix
@@ -24,6 +32,7 @@ in {
     environment.systemPackages = with pkgs; [
       glxinfo
       pciutils
+      preferNvidia
     ];
   };
 }

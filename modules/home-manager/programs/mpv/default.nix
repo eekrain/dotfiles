@@ -27,7 +27,7 @@ in {
         name = "mpv Media Player";
         genericName = "Multimedia player";
         type = "Application";
-        exec = "nvidia-offload mpv --player-operation-mode=pseudo-gui -- %U";
+        exec = "prefer-nvidia mpv --player-operation-mode=pseudo-gui -- %U";
         terminal = false;
         icon = "mpv";
         comment = ''Play movies and songs'';
@@ -42,7 +42,7 @@ in {
         name = "umpv Media Player";
         genericName = "Multimedia player";
         type = "Application";
-        exec = "nvidia-offload umpv --player-operation-mode=pseudo-gui -- %U";
+        exec = "prefer-nvidia umpv --player-operation-mode=pseudo-gui -- %U";
         terminal = false;
         icon = "umpv";
         comment = ''Play movies and songs'';
