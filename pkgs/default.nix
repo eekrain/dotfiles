@@ -9,4 +9,5 @@ pkgs: {
   my-icons = pkgs.callPackage ./my-icons {};
   materialyoucolor = pkgs.python311Packages.callPackage ./materialyoucolor.nix {};
   responsivelyapp = pkgs.callPackage ./responsivelyapp.nix {};
+  zen-browser = pkgs.callPackage ./zen-browser/default.nix {};
 }
