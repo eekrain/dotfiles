@@ -1,13 +1,16 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.myHmModules.desktop.hyprland;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.desktop.hyprland;
+in {
   config = mkIf (cfg.riceSetup == "hyprland-rice-aurora") {
     home.sessionVariables = {
       EDITOR = "code";
-      BROWSER = "brave";
+      BROWSER = "zen";
       TERMINAL = "kitty";
 
       LIBSEAT_BACKEND = "logind";

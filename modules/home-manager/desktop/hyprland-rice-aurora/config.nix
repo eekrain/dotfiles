@@ -1,13 +1,17 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.myHmModules.desktop.hyprland;
   hypr_kill = pkgs.writeShellScriptBin "hypr_kill" ''
     HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
     rm /tmp/hyprexitwithgrace.log
     hyprctl --batch "$HYPRCMDS" > /tmp/hyprexitwithgrace.log 2>&1
     swww clear #clearing current wallpaper, in case it was .gif, it take too long to initialize later on boot
-    hyprctl dispatch exit 
+    hyprctl dispatch exit
   '';
   initMyWallpaper = pkgs.writeShellScriptBin "initMyWallpaper" ''
     swww-daemon &
@@ -17,8 +21,7 @@ let
     # then sets my favorite .gif wallpaper
     wall ~/Pictures/wallpapers/misono-mika-angel-blue-archive-moewalls.gif
   '';
-in
-{
+in {
   config = mkIf (cfg.riceSetup == "hyprland-rice-aurora") {
     home.packages = [
       # For waybar modules to read playing media
@@ -108,7 +111,7 @@ in
           [
             #-------------------------------#
             # special workspace(scratchpad) #
-            #-------------------------------# 
+            #-------------------------------#
             "$mod, minus, movetoworkspace,special"
             "$mod, equal, togglespecialworkspace"
           ]
@@ -221,7 +224,7 @@ in
           "col.active_border" = "rgba(cba6f7ff) rgba(89b4faff) rgba(94e2d5ff) 10deg";
           "col.inactive_border" = "0xff45475a";
           apply_sens_to_raw = "0"; # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
-          layout = "dwindle"; # master|dwindle 
+          layout = "dwindle"; # master|dwindle
         };
 
         decoration = {
@@ -251,7 +254,7 @@ in
           "~/.config/hypr/scripts/tools/dynamic"
           ''notify-send -a aurora "hello $(whoami)"''
 
-          "gtk-launch brave-browser.desktop"
+          "gtk-launch dev.zen.Zen.desktop"
           "gtk-launch motrix.desktop"
           # Disabling proxy on startup
           "proxytoggle"

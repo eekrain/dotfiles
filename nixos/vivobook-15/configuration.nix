@@ -62,6 +62,7 @@
     addons = {
       nix-ld = true;
       devenv = true;
+      flatpak = true;
       enableAndroidAdb = false;
       enableDocker = false;
       enableVirtualbox = false;

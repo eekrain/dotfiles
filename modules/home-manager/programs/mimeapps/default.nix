@@ -30,10 +30,10 @@ in {
             {"video/*" = "mpv.desktop";}
             {"audio/*" = "org.gnome.Lollypop.desktop";}
             # Brave Browser
-            {"text/html" = "brave.desktop";}
-            (subtypes "x-scheme-handler" "brave.desktop"
+            {"text/html" = "dev.zen.Zen.desktop";}
+            (subtypes "x-scheme-handler" "dev.zen.Zen.desktop"
               ["http" "https" "ftp" "chrome" "about"])
-            (subtypes "application" "brave.desktop"
+            (subtypes "application" "dev.zen.Zen.desktop"
               ["x-extension-htm" "x-extension-html" "x-extension-shtml" "xhtml+xml" "x-extension-xhtml" "x-extension-xht" "pdf"])
             # # Wavebox
             # (subtypes "x-scheme-handler" "Wavebox.desktop"

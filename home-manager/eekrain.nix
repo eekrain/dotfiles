@@ -41,7 +41,7 @@
 
     programs = {
       bat = true;
-      browser = true;
+      browser = false;
       btop = true;
       cava = true;
       easyeffect-audio = true;

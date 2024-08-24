@@ -21,6 +21,7 @@ in {
       xarchiver
       wf-recorder
       responsivelyapp
+      bruno # alternative to postman
       # peazip
       # wavebox
     ];
