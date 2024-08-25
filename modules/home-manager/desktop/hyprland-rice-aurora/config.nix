@@ -254,7 +254,7 @@ in {
           "~/.config/hypr/scripts/tools/dynamic"
           ''notify-send -a aurora "hello $(whoami)"''
 
-          "gtk-launch dev.zen.Zen.desktop"
+          "gtk-launch zen.desktop"
           "gtk-launch motrix.desktop"
           # Disabling proxy on startup
           "proxytoggle"
