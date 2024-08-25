@@ -17,7 +17,7 @@ in {
       slurp
       swappy
       (pkgs.writeShellScriptBin "screenshot" ''
-        ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -w 0)" - | ${pkgs.swappy}/bin/swappy -f -
+        pidof ${pkgs.grim}/bin/grim || ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -w 0)" - | ${pkgs.swappy}/bin/swappy -f -
       '')
     ];
   };

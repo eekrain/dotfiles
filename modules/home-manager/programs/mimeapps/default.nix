@@ -27,23 +27,25 @@ in {
                 subt);
           in [
             {"text/plain" = "code.desktop";}
+
+            # Media
             {"video/*" = "mpv.desktop";}
-            {"audio/*" = "org.gnome.Lollypop.desktop";}
-            # Brave Browser
+            (subtypes "application" "mpv.desktop"
+              ["ogg" "x-ogg" "mxf" "sdp" "smil" "x-smil" "streamingmedia" "x-streamingmedia" "vnd.rn-realmedia" "vnd.rn-realmedia-vbr" "x-extension-m4a" "x-extension-mp4" "vnd.ms-asf" "x-matroska" "x-ogm" "x-shorten" "x-mpegurl" "vnd.apple.mpegurl" "x-cue"])
+            {"audio/*" = "io.bassi.Amberol.desktop";}
+            {"image/*" = "com.github.weclaw1.ImageRoll.desktop";}
+
+            # Zen Browser
             {"text/html" = "zen.desktop";}
             (subtypes "x-scheme-handler" "zen.desktop"
-              ["http" "https" "ftp" "chrome" "about"])
+              ["http" "https" "ftp" "chrome" "about" "tg" "whatsapp"])
             (subtypes "application" "zen.desktop"
               ["x-extension-htm" "x-extension-html" "x-extension-shtml" "xhtml+xml" "x-extension-xhtml" "x-extension-xht" "pdf"])
-            # # Wavebox
-            # (subtypes "x-scheme-handler" "Wavebox.desktop"
-            #   [ "tg" "whatsapp" ])
-            # Image
-            (subtypes "image" "imv-dir.desktop"
-              ["png" "jpeg" "gif" "svg" "svg+xml" "tiff" "x-tiff" "x-dcraw"])
+
             # Archive
-            (subtypes "application" "peazip.desktop"
-              ["bzip2" "gzip" "vnd.android.package-archive" "vnd.ms-cab-compressed" "vnd.debian.binary-package" "x-7z-compressed" "x-7z-compressed-tar" "x-ace" "x-alz" "x-ar" "x-archive" "x-arj" "x-brotli" "x-bzip-brotli-tar" "x-bzip" "x-bzip-compressed-tar" "x-bzip1" "x-bzip1-compressed-tar" "x-cabinet" "x-cd-image" "x-compress" "x-compressed-tar" "x-cpio" "x-chrome-extension" "x-deb" "x-ear" "x-ms-dos-executable" "x-gtar" "x-gzip" "x-gzpostscript" "x-java-archive" "x-lha" "x-lhz" "x-lrzip" "x-lrzip-compressed-tar" "x-lz4" "x-lzip" "x-lzip-compressed-tar" "x-lzma" "x-lzma-compressed-tar" "x-lzop" "x-lz4-compressed-tar" "x-ms-wim" "x-rar" "x-rar-compressed" "x-rpm" "x-source-rpm" "x-rzip" "x-rzip-compressed-tar" "x-tar" "x-tarz" "x-tzo" "x-stuffit" "x-war" "x-xar" "x-xz" "x-xz-compressed-tar" "x-zip" "x-zip-compressed" "x-zstd-compressed-tar" "x-zoo" "zip" "zstd"])
+            {"inode/directory" = "org.gnome.Nautilus.desktop";}
+            (subtypes "application" "org.gnome.Nautilus.desktop"
+              ["inode/directory" "x-7z-compressed" "x-7z-compressed-tar" "x-bzip" "x-bzip-compressed-tar" "x-compress" "x-compressed-tar" "x-cpio" "x-gzip" "x-lha" "x-lzip" "x-lzip-compressed-tar" "x-lzma" "x-lzma-compressed-tar" "x-tar" "x-tarz" "x-xar" "x-xz" "x-xz-compressed-tar" "zip" "gzip" "bzip2" "vnd.rar" "zstd" "x-zstd-compressed-tar"])
           ]
         );
     };

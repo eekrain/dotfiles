@@ -48,6 +48,11 @@ in {
         # Zapzap whatsapp client desktop file is somehow not found, so we will exec it from here
         exec-once = ${pkgs.zapzap}/bin/zapzap
 
+        # Clipboard stuff
+        exec-once = ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard both
+        exec-once = ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist -max-dedupe-search 10 -max-items 500 store
+        exec-once = ${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist -max-dedupe-search 10 -max-items 500 store
+
         # Defaults
         source=~/.config/hypr/hyprland/env.conf
         source=~/.config/hypr/hyprland/execs.conf
@@ -58,10 +63,6 @@ in {
       '';
     };
 
-    services.cliphist = {
-      enable = true;
-      allowImages = true;
-      extraOptions = ["-max-dedupe-search" "10" "-max-items" "500"];
-    };
+    home.packages = with pkgs; [cliphist];
   };
 }

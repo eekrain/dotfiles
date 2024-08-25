@@ -16,14 +16,11 @@ in {
       vesktop
       winbox
       cava
-      pavucontrol
-      imv
-      xarchiver
+      amberol
+      image-roll
       wf-recorder
       responsivelyapp
       bruno # alternative to postman
-      # peazip
-      # wavebox
     ];
 
     home.file."Pictures/wallpapers".source = ./wallpapers;
