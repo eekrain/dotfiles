@@ -7,15 +7,15 @@
   wrapGAppsHook,
   ...
 }: let
-  version = "1.0.0-a.29";
+  version = "1.0.0-a.30";
   downloadUrl = {
     specific = {
       url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-specific.tar.bz2";
-      sha256 = "sha256:0nmfqrr7x16p989m63inr9qz80l3hy94ymidn0x76j1hjldr37z5";
+      sha256 = "sha256:07y6h2xwqja9a9k0w9iqnd9hy06w6n320maaii7cqh6khx259cqm";
     };
     generic = {
       url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-generic.tar.bz2";
-      sha256 = "sha256:0fr2h6ilfiq9jwaslq47q1hswhsdkmn9wlix7g13c1ixc7zg2f6j";
+      sha256 = "sha256:1nlaphylrrbsd2rmn1h5ml9wmxwshys04svpf5v8fv8ndihjyfj8";
     };
   };
 

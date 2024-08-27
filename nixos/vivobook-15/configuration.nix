@@ -62,10 +62,11 @@
     addons = {
       nix-ld = true;
       devenv = true;
-      flatpak = true;
-      enableAndroidAdb = false;
-      enableDocker = false;
-      enableVirtualbox = false;
+      flatpak = false;
+      androidAdb = false;
+      docker = false;
+      virtualbox = false;
+      waydroid = true;
     };
   };
 
