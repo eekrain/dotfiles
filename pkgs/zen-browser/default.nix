@@ -7,18 +7,6 @@
   wrapGAppsHook,
   ...
 }: let
-  version = "1.0.0-a.30";
-  downloadUrl = {
-    specific = {
-      url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-specific.tar.bz2";
-      sha256 = "sha256:07y6h2xwqja9a9k0w9iqnd9hy06w6n320maaii7cqh6khx259cqm";
-    };
-    generic = {
-      url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-generic.tar.bz2";
-      sha256 = "sha256:1nlaphylrrbsd2rmn1h5ml9wmxwshys04svpf5v8fv8ndihjyfj8";
-    };
-  };
-
   runtimeLibs = with pkgs;
     [
       libGL
@@ -73,14 +61,17 @@
       libXfixes
       libXScrnSaver
     ]);
+
+  version = "1.0.0-a.32";
 in
   stdenv.mkDerivation {
-    inherit version;
     pname = "zen-browser";
+    inherit version;
 
     src = builtins.fetchTarball {
-      url = downloadUrl.specific.url;
-      sha256 = downloadUrl.specific.sha256;
+      url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-specific.tar.bz2";
+      # sha256 = lib.fakeHash;
+      sha256 = "sha256:1wqzczhsgh7cv6waflwahk2fyan1w5k0x150xl4az104zq9mw611";
     };
 
     desktopSrc = ./.;
