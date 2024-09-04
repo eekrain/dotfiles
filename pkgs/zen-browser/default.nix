@@ -62,7 +62,7 @@
       libXScrnSaver
     ]);
 
-  version = "1.0.0-a.32";
+  version = "1.0.0-a.35";
 in
   stdenv.mkDerivation {
     pname = "zen-browser";
@@ -71,7 +71,7 @@ in
     src = builtins.fetchTarball {
       url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-specific.tar.bz2";
       # sha256 = lib.fakeHash;
-      sha256 = "sha256:1wqzczhsgh7cv6waflwahk2fyan1w5k0x150xl4az104zq9mw611";
+      sha256 = "sha256:1bda2h0xz5ysqq65vp7cvai9vzwgwl4jhdmmrcbjwvdj4ksdvh10";
     };
 
     desktopSrc = ./.;

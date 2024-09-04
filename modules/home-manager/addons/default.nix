@@ -21,6 +21,7 @@ in {
       wf-recorder
       responsivelyapp
       bruno # alternative to postman
+      redisinsight
     ];
 
     home.file."Pictures/wallpapers".source = ./wallpapers;
