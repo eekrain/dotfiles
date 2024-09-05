@@ -31,9 +31,9 @@ in {
       cairomm
 
       # Gnome Stuff
-      gnome.gnome-control-center
-      gnome.gnome-bluetooth
-      gnome.gnome-shell
+      gnome-control-center
+      gnome-bluetooth
+      gnome-shell
       blueberry
 
       # GTK
