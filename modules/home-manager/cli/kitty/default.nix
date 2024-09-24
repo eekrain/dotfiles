@@ -1,15 +1,18 @@
-{ lib, config, pkgs, ... }:
-with lib;
-let
-  cfg = config.myHmModules.cli;
-in
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.cli;
+in {
   options.myHmModules.cli.kitty = mkEnableOption "Enable kitty settings";
   config = mkIf cfg.kitty {
     programs = {
       kitty = {
         enable = true;
-        theme = "Catppuccin-Macchiato";
+        themeFile = "Catppuccin-Macchiato";
         font.name = "CaskaydiaCove Nerd Font Mono";
         font.size = 12;
         settings = {
