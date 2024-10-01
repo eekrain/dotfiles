@@ -4,12 +4,11 @@
   lib,
 }: let
   pname = "responsivelyapp";
-  version = "1.13.0";
-
+  version = "1.15.0";
   src = fetchurl {
     url = "https://github.com/responsively-org/responsively-app-releases/releases/download/v${version}/ResponsivelyApp-${version}.AppImage";
     # sha256 = lib.fakeHash;
-    sha256 = "sha256-fwaAQwbdhLR37QZG0MRvYMyt0LP5/VZ8qnxgKvmRvRA=";
+    sha256 = "sha256-BkljY8Il45A2JbsLgQbjsxCy0lnFZvtpc5HzvI1nwWk=";
   };
 
   appimageContents = appimageTools.extract {
