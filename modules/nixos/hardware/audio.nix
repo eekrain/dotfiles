@@ -11,9 +11,8 @@ in {
 
   config = mkIf cfg.audio {
     environment.systemPackages = with pkgs; [
-      psmisc
-      lsof
-      pulseaudioFull
+      alsa-utils
+      pavucontrol
     ];
 
     hardware.pulseaudio.enable = false;

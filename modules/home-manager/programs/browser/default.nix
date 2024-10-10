@@ -12,6 +12,7 @@ in {
   config = mkIf cfg.browser {
     home.packages = [
       pkgs.zen-browser
+      pkgs.brave
     ];
   };
 }

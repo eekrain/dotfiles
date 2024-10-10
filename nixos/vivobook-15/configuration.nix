@@ -65,8 +65,8 @@
       flatpak = false;
       androidAdb = false;
       docker = false;
-      virtualbox = false;
-      waydroid = true;
+      virtualbox = true;
+      waydroid = false;
     };
   };
 
