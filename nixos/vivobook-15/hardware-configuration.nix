@@ -1,9 +1,14 @@
-{ config, lib, pkgs, modulesPath, ... }:
 {
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "uas" "sd_mod" "usb_storage" "cryptd" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}: {
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "uas" "sd_mod" "usb_storage" "cryptd"];
+  boot.initrd.kernelModules = ["dm-snapshot"];
+  boot.kernelModules = ["kvm-amd"];
+  boot.extraModulePackages = [];
 
   # Encryption settings with luks
   boot.initrd.luks.devices.root = {
@@ -12,42 +17,37 @@
     allowDiscards = true;
   };
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-label/root";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/root";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-partlabel/boot";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-partlabel/boot";
+    fsType = "vfat";
+  };
 
-  fileSystems."/nix" =
-    {
-      device = "/dev/disk/by-label/nix-store";
-      fsType = "ext4";
-    };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-label/nix-store";
+    fsType = "ext4";
+  };
 
-  fileSystems."/home" =
-    {
-      device = "/dev/disk/by-label/home";
-      fsType = "ext4";
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-label/home";
+    fsType = "ext4";
+  };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-label/swap"; }];
+  swapDevices = [{device = "/dev/disk/by-label/swap";}];
   # Use the swap partition here
   boot.resumeDevice = "/dev/disk/by-label/swap";
 
   # Mounting my windows partition
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
   fileSystems."/home/eekrain/MyWindows" = {
-    device = "/dev/disk/by-uuid/7276265D762621F9";
+    device = "/dev/disk/by-uuid/546003036002EB94";
     fsType = "ntfs-3g";
     # uid of the user, my eekrain user has uid of 1000
-    options = [ "rw" "uid=1000" ];
+    options = ["rw" "uid=1000"];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
