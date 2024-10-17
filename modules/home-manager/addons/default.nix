@@ -22,6 +22,7 @@ in {
       responsivelyapp
       bruno # alternative to postman
       redisinsight
+      hiddify
     ];
 
     home.file."Pictures/wallpapers".source = ./wallpapers;
