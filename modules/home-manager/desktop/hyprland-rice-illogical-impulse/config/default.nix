@@ -29,6 +29,8 @@ in {
       recursive = true; # link recursively
       executable = true; # make all files executable
     };
+
+    home.packages = [pkgs.wl-clip-persist pkgs.cliphist];
     wayland.windowManager.hyprland = {
       # plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
       #   hyprbars
@@ -42,11 +44,11 @@ in {
         # This config sources other files in `hyprland` and `custom` folders
         # You wanna add your stuff in file in `custom`
 
+        exec-once = ags &
+
         # This is my way of starting swww
         # Feel free to just change it to only swww-daemon or modify the myWallpaperInit script
         exec-once = ${myWallpaperInit}/bin/myWallpaperInit
-        # Zapzap whatsapp client desktop file is somehow not found, so we will exec it from here
-        exec-once = ${pkgs.zapzap}/bin/zapzap
 
         # Clipboard stuff
         exec-once = ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard both
@@ -62,7 +64,5 @@ in {
         source=~/.config/hypr/hyprland/keybinds.conf
       '';
     };
-
-    home.packages = with pkgs; [cliphist];
   };
 }

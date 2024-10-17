@@ -17,7 +17,7 @@ in {
       winbox
       cava
       amberol
-      image-roll
+      qview
       wf-recorder
       responsivelyapp
       bruno # alternative to postman

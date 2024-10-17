@@ -26,21 +26,29 @@ in {
                 })
                 subt);
           in [
-            {"text/plain" = "code.desktop";}
+            # Vscode
+            (subtypes "text" "code.desktop"
+              ["plain" "html"])
+            {"application/json" = "code.desktop";}
 
-            # Media
+            # Videos
             {"video/*" = "mpv.desktop";}
             (subtypes "application" "mpv.desktop"
               ["ogg" "x-ogg" "mxf" "sdp" "smil" "x-smil" "streamingmedia" "x-streamingmedia" "vnd.rn-realmedia" "vnd.rn-realmedia-vbr" "x-extension-m4a" "x-extension-mp4" "vnd.ms-asf" "x-matroska" "x-ogm" "x-shorten" "x-mpegurl" "vnd.apple.mpegurl" "x-cue"])
             {"audio/*" = "io.bassi.Amberol.desktop";}
-            {"image/*" = "com.github.weclaw1.ImageRoll.desktop";}
+
+            # Images
+            (subtypes "image" "com.interversehq.qView.desktop"
+              ["bmp" "x-win-bitmap" "gif" "icns" "x-icon" "jpeg" "jpg" "x-portable-bitmap" "x-portable-graymap" "png" "x-portable-pixmap" "svg+xml" "tiff" "vnd.wap.wbmp" "webp" "x-xbitmap" "x-xpixmap" "apng" "avif" "avif-sequence" "x-sgi-bw" "aces" "x-exr" "vnd.radiance" "heic" "heif" "jxl" "openraster" "vnd.zbrush.pcx" "x-pcx" "x-pic" "vnd.adobe.photoshop" "psd" "x-sun-raster" "x-rgb" "x-sgi-rgba" "sgi" "x-tga" "x-xcf"])
+            (subtypes "application" "com.interversehq.qView.desktop"
+              ["x-navi-animation" "x-krita" "x-photoshop" "photoshop" "psd"])
 
             # Zen Browser
-            {"text/html" = "zen.desktop";}
             (subtypes "x-scheme-handler" "zen.desktop"
-              ["http" "https" "ftp" "chrome" "about" "tg" "whatsapp"])
+              ["http" "https" "chrome"])
             (subtypes "application" "zen.desktop"
-              ["x-extension-htm" "x-extension-html" "x-extension-shtml" "xhtml+xml" "x-extension-xhtml" "x-extension-xht" "pdf"])
+              ["pdf" "rdf+xml" "rss+xml" "xhtml+xml" "xhtml_xml" "xml" "x-xpinstall" "xhtml+xml"])
+            {"text/xml" = "zen.desktop";}
 
             # Archive
             {"inode/directory" = "org.gnome.Nautilus.desktop";}
