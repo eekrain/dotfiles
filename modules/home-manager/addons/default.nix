@@ -23,6 +23,7 @@ in {
       bruno # alternative to postman
       redisinsight
       hiddify
+      bitwarden-desktop
     ];
 
     home.file."Pictures/wallpapers".source = ./wallpapers;
