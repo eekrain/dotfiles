@@ -13,12 +13,8 @@ in {
   # It will select an area to screenshot, then open it it swappy editing tool
   config = mkIf cfg.screenshot {
     home.packages = with pkgs; [
-      grim
-      slurp
-      swappy
-      (pkgs.writeShellScriptBin "screenshot" ''
-        pidof ${pkgs.grim}/bin/grim || ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -w 0)" - | ${pkgs.swappy}/bin/swappy -f -
-      '')
+      grimblast
+      satty
     ];
   };
 }
