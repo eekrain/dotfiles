@@ -15,7 +15,6 @@ in {
     home.packages = with pkgs; [
       vesktop
       winbox
-      cava
       amberol
       qview
       wf-recorder

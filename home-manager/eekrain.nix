@@ -43,7 +43,6 @@
       bat = true;
       browser = true;
       btop = true;
-      cava = true;
       easyeffect-audio = true;
       hypridle = true;
       hyprlock = true;

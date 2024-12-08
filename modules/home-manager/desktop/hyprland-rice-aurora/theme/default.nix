@@ -1,16 +1,20 @@
-{ inputs, config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.myHmModules.desktop.hyprland;
-in
 {
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.myHmModules.desktop.hyprland;
+in {
   config = mkIf (cfg.riceSetup == "hyprland-rice-aurora") {
     home.packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
       my-custom-font
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "CascadiaCode" ]; })
+      nerd-fonts.fira-code
       twemoji-color-font
     ];
 
@@ -35,7 +39,7 @@ in
 
       theme = {
         package = pkgs.orchis-theme.override {
-          tweaks = [ "solid" "nord" ];
+          tweaks = ["solid" "nord"];
         };
         name = "Orchis-Dark-Nord";
       };

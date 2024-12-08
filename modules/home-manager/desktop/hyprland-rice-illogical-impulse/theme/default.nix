@@ -7,30 +7,17 @@
 }:
 with lib; let
   cfg = config.myHmModules.desktop.hyprland;
-
-  nerdfonts = pkgs.nerdfonts.override {
-    fonts = [
-      "Ubuntu"
-      "UbuntuMono"
-      "CascadiaCode"
-      "FantasqueSansMono"
-      "JetBrainsMono"
-      "FiraCode"
-      "Mononoki"
-      "SpaceMono"
-    ];
-  };
-  google-fonts = pkgs.google-fonts.override {
-    fonts = [
-      "Rubik"
-      # # Sans
-      # "Gabarito"
-      # "Lexend"
-      # # Serif
-      # "Chakra Petch"
-      # "Crimson Text"
-    ];
-  };
+  # google-fonts = pkgs.google-fonts.override {
+  #   fonts = [
+  #     "Rubik"
+  #     # # Sans
+  #     # "Gabarito"
+  #     # "Lexend"
+  #     # # Serif
+  #     # "Chakra Petch"
+  #     # "Crimson Text"
+  #   ];
+  # };
 in {
   config = mkIf (cfg.riceSetup == "hyprland-rice-illogical-impulse") {
     # Additional stuff
@@ -40,7 +27,8 @@ in {
       adw-gtk3
       adwaita-qt6
       material-symbols
-      nerdfonts
+      nerd-fonts.fira-code
+      nerd-fonts.caskaydia-cove
       noto-fonts
       noto-fonts-cjk-sans
       qogir-icon-theme
@@ -60,7 +48,7 @@ in {
 
       font = {
         name = "Rubik";
-        package = google-fonts;
+        package = pkgs.rubik;
       };
 
       gtk3.extraConfig = {
@@ -96,16 +84,16 @@ in {
     };
 
     # Font linking
-    home.file = {
-      ".local/share/fonts" = {
-        recursive = true;
-        source = "${nerdfonts}/share/fonts/truetype/NerdFonts";
-      };
-      ".fonts" = {
-        recursive = true;
-        source = "${nerdfonts}/share/fonts/truetype/NerdFonts";
-      };
-      ".local/share/icons/MoreWaita".source = "${pkgs.morewaita-icon-theme}/share/icons";
-    };
+    # home.file = {
+    #   ".local/share/fonts" = {
+    #     recursive = true;
+    #     source = "${nerdfonts}/share/fonts/truetype/NerdFonts";
+    #   };
+    #   ".fonts" = {
+    #     recursive = true;
+    #     source = "${nerdfonts}/share/fonts/truetype/NerdFonts";
+    #   };
+    #   ".local/share/icons/MoreWaita".source = "${pkgs.morewaita-icon-theme}/share/icons";
+    # };
   };
 }

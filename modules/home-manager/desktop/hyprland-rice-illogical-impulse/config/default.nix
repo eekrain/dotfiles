@@ -30,7 +30,12 @@ in {
       executable = true; # make all files executable
     };
 
-    home.packages = [pkgs.wl-clip-persist pkgs.cliphist];
+    home.packages = with pkgs; [
+      wl-clip-persist
+      cliphist
+      hypridle
+      hyprlock
+    ];
     wayland.windowManager.hyprland = {
       # plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
       #   hyprbars

@@ -3,7 +3,6 @@
     ./bat
     ./browser
     ./btop
-    ./cava
     ./easyeffect-audio
     ./hypridle
     ./hyprlock

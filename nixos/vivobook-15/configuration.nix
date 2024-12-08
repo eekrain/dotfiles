@@ -25,7 +25,6 @@
     inputs.hardware.nixosModules.common-cpu-amd-pstate
     inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-pc-laptop-ssd
-    inputs.hardware.nixosModules.common-pc-laptop-acpi_call
     inputs.chaotic.nixosModules.default
     # You can also split up your configuration and import pieces of it here:
     ../default-settings/default.nix
