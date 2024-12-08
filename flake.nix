@@ -55,7 +55,7 @@
     };
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
     # AGS for end4 dots
-    ags.url = "github:Aylur/ags/main";
+    ags.url = "github:Aylur/ags/v1";
 
     # Common Grub2 themes
     grub2-themes = {
