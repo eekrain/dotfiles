@@ -63,7 +63,7 @@
       devenv = true;
       flatpak = false;
       androidAdb = false;
-      docker = false;
+      docker = true;
       virtualbox = false;
       waydroid = false;
     };
