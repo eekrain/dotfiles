@@ -119,14 +119,6 @@
           ./nixos/vivobook-15/configuration.nix
         ];
       };
-      # # FIXME replace with your hostname
-      # virtualbox = nixpkgs.lib.nixosSystem {
-      #   specialArgs = {inherit inputs outputs;};
-      #   modules = [
-      #     # > Our main nixos configuration file <
-      #     ./nixos/virtualbox/configuration.nix
-      #   ];
-      # };
     };
 
     # Standalone home-manager configuration entrypoint
@@ -141,14 +133,6 @@
           ./home-manager/eekrain.nix
         ];
       };
-      # "eekrain@virtualbox" = home-manager.lib.homeManagerConfiguration {
-      #   pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-      #   extraSpecialArgs = {inherit inputs outputs;};
-      #   modules = [
-      #     # > Our main home-manager configuration file <
-      #     ./home-manager/eekrain.nix
-      #   ];
-      # };
     };
   };
 }

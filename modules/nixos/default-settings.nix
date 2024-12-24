@@ -10,16 +10,10 @@
     # Adding home manager modules
     # To rebuild home manager settings together with nixos-rebuild
     inputs.home-manager.nixosModules.home-manager
-    ./eekrain.nix
   ];
 
   # Add home manager settings to rebuild together with nixos-rebuild
   home-manager.extraSpecialArgs = {inherit inputs outputs;};
-
-  # Addons packages
-  environment.systemPackages = with pkgs; [
-    git
-  ];
 
   #Enabling nix helper for easier nixos-rebuild
   programs.nh = {

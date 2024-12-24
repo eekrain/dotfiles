@@ -15,6 +15,7 @@
     ./bootloader.nix
 
     # If you want to use modules your own flake exports (from modules/nixos):
+    outputs.nixosModules.default-settings
     outputs.nixosModules.hardware
     outputs.nixosModules.desktop
     outputs.nixosModules.networking
@@ -27,7 +28,7 @@
     inputs.hardware.nixosModules.common-pc-laptop-ssd
     inputs.chaotic.nixosModules.default
     # You can also split up your configuration and import pieces of it here:
-    ../default-settings/default.nix
+    ../eekrain.nix
   ];
 
   # Enabling my custom nixos modules installed
