@@ -85,13 +85,10 @@ const Utilities = () =>
     className: "spacing-h-4",
     children: [
       UtilButton({
-        name: getString("Screen snip"),
-        icon: "screenshot_region",
-        onClicked: () => {
-          Utils.execAsync(
-            `grimblast save area - | satty -f - --fullscreen --output-filename ~/Pictures/Screenshots/Satty-$(date '+%Y%m%d-%H:%M:%S').png`
-          ).catch(print);
-        },
+          name: getString('Screen snip'), icon: 'screenshot_region', onClicked: () => {
+              Utils.execAsync(`${App.configDir}/scripts/grimblast.sh save`)
+                  .catch(print)
+          }
       }),
       UtilButton({
         name: getString("Color picker"),
