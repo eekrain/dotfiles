@@ -26,6 +26,7 @@
     outputs.homeManagerModules.cli
     outputs.homeManagerModules.programs
     outputs.homeManagerModules.addons
+    # Activating illogical impulse rice
     outputs.homeManagerModules.illogical-impulse
 
     # Or modules exported from other flakes (such as nix-colors):
@@ -35,7 +36,7 @@
     # ./default-settings
   ];
 
-  # Enabling my home manager modules installed
+  # Enabling home manager modules as you need here
   myHmModules = {
     cli = {
       git = true;
