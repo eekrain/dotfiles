@@ -55,3 +55,10 @@ init-illogical-impulse
 ```
 
 And then if everything is working, Hyprland instance will ran.
+
+
+## Thank's to
+
+- [@end-4](https://github.com/end-4) for making good looking yet functional rice
+- [@Aylur](https://github.com/Aylur) for amazing widget system
+- [@Misterio77](https://github.com/Misterio77) for minimal and easy to use flake starter config
