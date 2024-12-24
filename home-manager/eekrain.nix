@@ -24,9 +24,9 @@
     # If you want to use modules your own flake exports (from modules/home-manager):
     outputs.homeManagerModules.default-settings
     outputs.homeManagerModules.cli
-    outputs.homeManagerModules.desktop
     outputs.homeManagerModules.programs
     outputs.homeManagerModules.addons
+    outputs.homeManagerModules.illogical-impulse
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -37,8 +37,6 @@
 
   # Enabling my home manager modules installed
   myHmModules = {
-    desktop.hyprland.riceSetup = "hyprland-rice-illogical-impulse";
-
     cli = {
       git = true;
       zsh = true;

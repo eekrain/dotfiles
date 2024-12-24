@@ -4,7 +4,7 @@
   # List your module files here
   default-settings = import ./default-settings.nix;
   cli = import ./cli;
-  desktop = import ./desktop;
   programs = import ./programs;
   addons = import ./addons;
+  illogical-impulse = import ./illogical-impulse;
 }

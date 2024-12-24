@@ -5,13 +5,11 @@
   pkgs,
   ...
 }: {
-  imports = [./theme];
-
   # Copy all the files from this dots folder
   # For applying the config we still need to copy over manually not nix managed
   # because illogical impulse's ags needs some write access
   home.file.".config.example" = {
-    source = "./";
+    source = ./dots;
     executable = true; # make all files executable
   };
 

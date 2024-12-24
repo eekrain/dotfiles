@@ -24,7 +24,8 @@ in {
   imports = [
     inputs.hyprland.homeManagerModules.default
     ./programs
-    ./dots
+    ./dots.nix
+    ./theme.nix
   ];
 
   # Dependency for illogical-impulse ags bar/shell
