@@ -18,11 +18,10 @@
     # It copies from the reference dot files located ~/.config.example as we already set above
     # Run it from cli "init-illogical-impulse"
     (pkgs.writeShellScriptBin "init-illogical-impulse" ''
-      mkdir -p ~/.config/hypr/hyprland && rsync -avm ~/.config.example/hyprland ~/.config/hypr
-      rsync -avm ~/.config.example/ags ~/.config
-      rsync -avm ~/.config.example/fuzzel ~/.config
-      rsync -avm ~/.config.example/qt5ct ~/.config
-
+      mkdir -p ~/.config/hypr/hyprland && rsync -avz ~/.config.example/hyprland ~/.config/hypr --chmod=Du=rwx,Dg=rx,D=rx,Fu=rwx,Fg=rx,Fo=rx
+      rsync -avz ~/.config.example/ags ~/.config --chmod=Du=rwx,Dg=rx,D=rx,Fu=rwx,Fg=rx,Fo=rx
+      rsync -avz ~/.config.example/fuzzel ~/.config --chmod=Du=rwx,Dg=rx,D=rx,Fu=rwx,Fg=rx,Fo=rx
+      rsync -avz ~/.config.example/qt5ct ~/.config --chmod=Du=rwx,Dg=rx,D=rx,Fu=rwx,Fg=rx,Fo=rx
       # Starting hyprland
       pidof Hyprland || Hyprland
     '')
