@@ -4,9 +4,6 @@
 //   options listed in this file will override the default ones in the above file
 
 const userConfigOptions = {
-  appearance: {
-    fakeScreenRounding: 0, // 0: None | 1: Always | 2: When not fullscreen
-  },
 };
 
 export default userConfigOptions;
