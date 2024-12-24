@@ -48,7 +48,7 @@ sudo nixos-install --flake ./path/to/flake/dotfiles#your-machine-hostname
 
 #### 9. Init illogical-impulse dotfiles
 
-After the installation complete, when you boot up and on SDDM login screen, attempt to login via CLI instead. Because the rice of illogical-impulse is not manageable with home-manager (especially the ags config), you need to initialize dots config manually. I have added a script to copy the dots configuration, you need to run it every update to modules/home-manager/illogical-impulse/dots to synchronize it. You can run:
+After the installation complete, when you boot up and on SDDM login screen, attempt to login via CLI instead (Ctrl+Alt+F4). Because the rice of illogical-impulse is not manageable with home-manager (especially the ags config), you need to initialize dots config manually. I have added a script to copy the dots configuration, you need to run it every update to modules/home-manager/illogical-impulse/dots to synchronize it. You can run:
 
 ```bash
 init-illogical-impulse
