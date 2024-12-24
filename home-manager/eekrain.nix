@@ -8,12 +8,12 @@
   pkgs,
   ...
 }: {
-  # TODO: Set your username
+  # FIXME: Set your username
   home = {
     username = "eekrain";
     homeDirectory = "/home/eekrain";
   };
-  # TODO: Set your git settings
+  # FIXME: Set your git settings
   programs.git = {
     userName = "Ardian Eka Candra";
     userEmail = "ardianoption@gmail.com";

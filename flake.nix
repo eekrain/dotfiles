@@ -116,6 +116,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
+          # FIXME replace with your system configuration
           ./nixos/vivobook-15/configuration.nix
         ];
       };
@@ -130,6 +131,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
+          # FIXME replace with your user spesific configuration
           ./home-manager/eekrain.nix
         ];
       };

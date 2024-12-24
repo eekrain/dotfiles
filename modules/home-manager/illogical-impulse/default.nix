@@ -8,6 +8,8 @@
 with lib; let
   # I dont know why gif wallpaper when it's cached it's just stuck from booting
   # So i will do it manually
+  # TODO : If you dont want to use a .gif wallpaper, delete the script below
+  # TODO : Then scroll to bottom
   myWallpaperInit = pkgs.writeShellScriptBin "myWallpaperInit" ''
     # Init swww-daemon via hyprctl dispatch
     hyprctl dispatch -- exec swww-daemon --format xrgb
@@ -16,7 +18,7 @@ with lib; let
     sleep 1
     # Sets light wallpaper first so it's not just pitch black
     swww img ~/Pictures/wallpapers/misono-mika-angel-blue-archive-moewalls.jpg --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 3
-    sleep 5
+    sleep 3
     # then sets my favorite .gif wallpaper, im delaying it cus it's loading slow
     swww img ~/Pictures/wallpapers/misono-mika-angel-blue-archive-moewalls.gif
   '';
@@ -52,9 +54,10 @@ in {
 
       exec-once = ags &
 
-      # This is my way of starting swww
-      # Feel free to just change it to only swww-daemon or modify the myWallpaperInit script
+      # TODO : If you want to use my wallpaper script, use this config
       exec-once = ${myWallpaperInit}/bin/myWallpaperInit
+      # TODO : If you are just using static wallpaper, use this instead
+      # exec-once = swww-daemon --format xrgb
 
       # Clipboard stuff
       exec-once = ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard both
