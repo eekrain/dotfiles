@@ -13,10 +13,16 @@
     username = "eekrain";
     homeDirectory = "/home/eekrain";
   };
+  # TODO: Set your git settings
+  programs.git = {
+    userName = "Ardian Eka Candra";
+    userEmail = "ardianoption@gmail.com";
+  };
 
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
+    outputs.homeManagerModules.default-settings
     outputs.homeManagerModules.cli
     outputs.homeManagerModules.desktop
     outputs.homeManagerModules.programs
@@ -26,7 +32,7 @@
     # inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
-    ./default-settings
+    # ./default-settings
   ];
 
   # Enabling my home manager modules installed

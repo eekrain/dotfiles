@@ -102,8 +102,8 @@ in {
         ll = "ls -lbF --git";
         la = "ls -lbhHigmuSa --time-style=long-iso --git --color-scale all";
         lt = "ls --tree --level=2";
-        giteka = ''git config user.name "Ardian Eka Candra" && git config user.email "ardianoption@gmail.com"'';
-        gitplaton = ''git config user.name "Ardian Eka Candra" && git config user.email "fachri@platon.co.id"'';
+        # giteka = ''git config user.name "Ardian Eka Candra" && git config user.email "ardianoption@gmail.com"'';
+        # gitplaton = ''git config user.name "Ardian Eka Candra" && git config user.email "fachri@platon.co.id"'';
       };
     };
 
