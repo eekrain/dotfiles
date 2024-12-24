@@ -20,7 +20,7 @@ You can clone / fork / use this repo. Then you need to make new entry on nixos f
 
 #### 3. Adding user to nixos folder
 
-You can use my file://nixos/eekrain.nix, rename and edit it to your user configuration.
+You can use my file://./nixos/eekrain.nix, rename and edit it to your user configuration.
 
 #### 4. Adding user to home-manager folder
 
