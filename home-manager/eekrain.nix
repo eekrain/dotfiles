@@ -54,7 +54,6 @@
       mimeapps = true;
       motrix = true;
       mpv = true;
-      screenshot = true;
       vscode = true;
       wofi = true;
     };

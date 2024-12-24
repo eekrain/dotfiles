@@ -4,14 +4,9 @@
 //   options listed in this file will override the default ones in the above file
 
 const userConfigOptions = {
-    'brightness': {
-        'controllers': {
-            // can be "light" | "brighnessctl" | "ddcutil"
-            // for no multi monitor use i recommend light, cus the other is not saving brightness value
-            // when we turning on display after calling "hyprctl dispatch dpms off"
-            'default': "light", 
-        },
-    },
-}
+  appearance: {
+    fakeScreenRounding: 0, // 0: None | 1: Always | 2: When not fullscreen
+  },
+};
 
 export default userConfigOptions;

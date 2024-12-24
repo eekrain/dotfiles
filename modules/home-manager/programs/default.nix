@@ -9,7 +9,6 @@
     ./mimeapps
     ./motrix
     ./mpv
-    ./screenshot
     ./vscode
     ./wofi
   ];

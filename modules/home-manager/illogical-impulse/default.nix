@@ -15,10 +15,10 @@ with lib; let
     swww clear
     sleep 1
     # Sets light wallpaper first so it's not just pitch black
-    swww img ~/Pictures/wallpapers/roshidere-orange.png --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 3
+    swww img ~/Pictures/wallpapers/misono-mika-angel-blue-archive-moewalls.jpg --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 3
     sleep 5
     # then sets my favorite .gif wallpaper, im delaying it cus it's loading slow
-    # swww img ~/Pictures/wallpapers/misono-mika-angel-blue-archive-moewalls.gif
+    swww img ~/Pictures/wallpapers/misono-mika-angel-blue-archive-moewalls.gif
   '';
 in {
   imports = [
@@ -34,6 +34,8 @@ in {
     cliphist
     hypridle
     hyprlock
+    grimblast
+    satty
   ];
 
   # Hyprland settings managed by home manager
@@ -52,7 +54,7 @@ in {
 
       # This is my way of starting swww
       # Feel free to just change it to only swww-daemon or modify the myWallpaperInit script
-      # exec-once = ${myWallpaperInit}/bin/myWallpaperInit
+      exec-once = ${myWallpaperInit}/bin/myWallpaperInit
 
       # Clipboard stuff
       exec-once = ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard both

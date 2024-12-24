@@ -55,7 +55,7 @@
       sddm.defaultSession = "hyprland";
       hyprland = {
         enable = true;
-        brightnessController = "light";
+        brightnessController = "brightnessctl";
       };
       nautilus.enable = true;
     };

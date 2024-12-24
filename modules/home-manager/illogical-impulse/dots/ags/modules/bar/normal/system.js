@@ -89,7 +89,7 @@ const Utilities = () =>
         icon: "screenshot_region",
         onClicked: () => {
           Utils.execAsync(
-            `bash -c "mkdir -p ~/Pictures/Screenshots && grimblast --freeze save area - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date "+%Y%m%d-%H:%M:%S").png"`
+            `grimblast save area - | satty -f - --fullscreen --output-filename ~/Pictures/Screenshots/Satty-$(date '+%Y%m%d-%H:%M:%S').png`
           ).catch(print);
         },
       }),
