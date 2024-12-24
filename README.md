@@ -1,6 +1,6 @@
 # My Hyprland Dotfiles using NixOS with Flakes
  
-https://github.com/eekrain/dotfiles/assets/65037854/0ab88ce9-61cf-4ff5-a93c-8f528015451f
+https://github.com/user-attachments/assets/fb367d67-d5f1-4911-9687-698e174401aa
 
 <p align="center">Rice <a href="https://end-4.github.io/dots-hyprland-wiki/en/" target="_blank">illogical-impulse</a> by <a href="https://github.com/end-4" target="_blank">end-4</a></p>
 
