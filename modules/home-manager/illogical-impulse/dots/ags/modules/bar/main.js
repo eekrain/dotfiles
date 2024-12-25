@@ -90,6 +90,7 @@ export const Bar = async (monitor = 0) => {
         name: `bar${monitor}`,
         anchor: ['top', 'left', 'right'],
         exclusivity: 'exclusive',
+        layer: 'background',
         visible: true,
         child: Widget.Stack({
             homogeneous: false,
