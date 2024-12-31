@@ -23,7 +23,8 @@ in {
       redisinsight
       hiddify
       bitwarden-desktop
-      wpsoffice
+      libreoffice
+      teams-for-linux
     ];
 
     home.file."Pictures/wallpapers".source = ./wallpapers;
