@@ -25,6 +25,7 @@ in {
       bitwarden-desktop
       libreoffice
       teams-for-linux
+      whatsapp-for-linux
     ];
 
     home.file."Pictures/wallpapers".source = ./wallpapers;
