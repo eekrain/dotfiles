@@ -20,6 +20,7 @@ in {
       wf-recorder
       responsivelyapp
       bruno # alternative to postman
+      insomnia
       redisinsight
       hiddify
       bitwarden-desktop

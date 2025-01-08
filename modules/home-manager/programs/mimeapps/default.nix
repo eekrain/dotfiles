@@ -20,12 +20,12 @@ with lib; let
             subt);
       in [
         # Zen Browser
-        {"text/xml" = "zen.desktop";}
-        {"text/html" = "zen.desktop";}
-        (subtypes "x-scheme-handler" "zen.desktop"
+        {"text/xml" = "zen_twilight.desktop";}
+        {"text/html" = "zen_twilight.desktop";}
+        (subtypes "x-scheme-handler" "zen_twilight.desktop"
           ["http" "https" "chrome"])
         (
-          subtypes "application" "zen.desktop"
+          subtypes "application" "zen_twilight.desktop"
           ["pdf" "rdf+xml" "rss+xml" "xhtml+xml" "xhtml_xml" "xml" "x-xpinstall" "xhtml+xml" "x-extension-xhtml" "x-extension-xht" "x-extension-htm" "x-extension-html" "x-extension-shtml"]
         )
 
