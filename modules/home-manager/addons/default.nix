@@ -27,6 +27,8 @@ in {
       libreoffice
       teams-for-linux
       whatsapp-for-linux
+      distrobox
+      boxbuddy #distrobox
     ];
 
     home.file."Pictures/wallpapers".source = ./wallpapers;
