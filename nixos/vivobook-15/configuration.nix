@@ -26,7 +26,7 @@
     inputs.hardware.nixosModules.common-cpu-amd-pstate
     inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-pc-laptop-ssd
-    inputs.chaotic.nixosModules.default
+    # inputs.chaotic.nixosModules.default
     # You can also split up your configuration and import pieces of it here:
     ../eekrain.nix
   ];
@@ -79,7 +79,7 @@
   # use latest kernel
   # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   # chaotic.scx.enable = true;
   # chaotic.scx.scheduler = "scx_rusty";
 

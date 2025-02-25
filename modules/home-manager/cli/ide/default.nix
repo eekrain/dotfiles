@@ -11,15 +11,15 @@ in {
   config = mkIf cfg.git {
     home.packages = [pkgs.helix];
 
-    programs.zellij = {
-      enable = true;
-      settings = {
-        theme = "Catppuccin Mocha";
-        editor = {
-          line-number = "relative";
-          lsp.display-messages = true;
-        };
-      };
-    };
+    # programs.zellij = {
+    #   enable = true;
+    #   settings = {
+    #     theme = "Catppuccin Mocha";
+    #     editor = {
+    #       line-number = "relative";
+    #       lsp.display-messages = true;
+    #     };
+    #   };
+    # };
   };
 }

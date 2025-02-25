@@ -15,6 +15,7 @@ in {
     home.packages = [
       inputs.zen-browser.packages."${system}".twilight
       pkgs.brave
+      pkgs.google-chrome
     ];
   };
 }

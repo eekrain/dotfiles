@@ -18,21 +18,21 @@ in {
           lock_cmd = "pidof hyprlock || hyprlock"; # avoid starting multiple hyprlock instances.
           after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
           before_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
-          ignore_dbus_inhibit = true;
+          # ignore_dbus_inhibit = true;
         };
 
         listener = [
           {
-            timeout = 900; # 1min
+            timeout = 60 * 5; # 1min
             on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
             on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
           }
           {
-            timeout = 960; # 1.5min
+            timeout = 60 * 5 + 30; # 1.5min
             on-timeout = "loginctl lock-session"; # lock session with hyprlock
           }
           {
-            timeout = 1200; # 5min
+            timeout = 60 * 20; # 5min
             on-timeout = "systemctl suspend"; # suspend system
           }
         ];
