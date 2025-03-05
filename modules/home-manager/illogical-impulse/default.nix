@@ -32,8 +32,8 @@ in {
 
   # Dependency for illogical-impulse ags bar/shell
   home.packages = with pkgs; [
+    clipse
     wl-clip-persist
-    cliphist
     hypridle
     hyprlock
     grimblast
@@ -60,9 +60,8 @@ in {
       # exec-once = swww-daemon --format xrgb
 
       # Clipboard stuff
-      exec-once = ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard both
-      exec-once = ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist -max-dedupe-search 10 -max-items 500 store
-      exec-once = ${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist -max-dedupe-search 10 -max-items 500 store
+      exec-once = ${pkgs.clipse}/bin/clipse -listen
+      exec-once = ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular
 
       # Defaults
       source=~/.config/hypr/hyprland/env.conf

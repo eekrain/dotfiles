@@ -20,7 +20,6 @@ in {
     xdg.configFile."mpv/mpv_subtitles.conf".source = ./mpv_subtitles.conf;
     xdg.configFile."mpv/scripts/file-browser.lua".source = ./scripts/file-browser.lua;
     xdg.configFile."mpv/shaders".source = ./shaders;
-    xdg.configFile."mpv/shaders".recursive = true;
 
     xdg.desktopEntries = {
       mpv = {
