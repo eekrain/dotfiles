@@ -28,8 +28,13 @@ in {
       libreoffice
       teams-for-linux
       whatsapp-for-linux
+      zoom-us
       distrobox
       boxbuddy #distrobox
+
+      pnpm_10
+      nodejs_22
+      bun
     ];
 
     home.file."Pictures/wallpapers".source = ./wallpapers;
