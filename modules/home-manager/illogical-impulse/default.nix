@@ -43,11 +43,12 @@ in {
   # Hyprland settings managed by home manager
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd = {
-      enable = true;
-      variables = ["--all"];
-    };
-    xwayland.enable = true;
+    # set the flake package
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+
+    # Disbale for withUWSM
+    systemd.enable = false;
 
     extraConfig = ''
       # This config sources other files in `~/.config/hypr/hyprland` folders

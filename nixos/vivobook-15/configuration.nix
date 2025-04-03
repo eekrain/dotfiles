@@ -52,7 +52,7 @@
     };
     desktop = {
       sddm.enable = true;
-      sddm.defaultSession = "hyprland";
+      sddm.defaultSession = "hyprland-uwsm";
       hyprland = {
         enable = true;
         brightnessController = "brightnessctl";

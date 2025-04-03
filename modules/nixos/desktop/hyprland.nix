@@ -66,6 +66,7 @@ in {
         gtk3 # needed for gtk-launch command
         libnotify # for sending notification
         touchpadtoggle #script for touchpad toggler
+        hyprpolkitagent
       ]
       ++ optionals (cfg.brightnessController == "ddcutil") [ddcutil] #install ddcutil if ddcutil selected as brightnessController
       ++ optionals (cfg.brightnessController == "brightnessctl") [brightnessctl]; #install brightnessctl if brightnessctl selected as brightnessController
@@ -80,9 +81,12 @@ in {
 
     programs.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      xwayland.enable = true;
-      systemd.setPath.enable = true;
+      # set the flake package
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # make sure to also set the portal package, so that they are in sync
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+
+      withUWSM = true;
     };
     programs.dconf.enable = true;
     # # FS tools for compatibility with desktop
@@ -98,30 +102,19 @@ in {
     # Testing portal stuff
     xdg.portal = {
       enable = true;
+      xdgOpenUsePortal = true;
       config = {
-        common = {
-          default = [
-            "xdph"
-            "gtk"
-          ];
-          "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
-          "org.freedesktop.portal.FileChooser" = ["xdg-desktop-portal-gtk"];
-        };
+        common.default = ["gtk"];
+        hyprland.default = ["gtk" "hyprland"];
       };
-      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
     };
 
     # Polkit stuff
-    security.polkit = {
-      enable = true;
-      debug = true;
-      extraConfig = ''
-        /* Log authorization checks. */
-        polkit.addRule(function(action, subject) {
-          polkit.log("user " +  subject.user + " is attempting action " + action.id + " from PID " + subject.pid);
-        });
-      '';
-    };
+    security.polkit.enable = true;
     programs.gnupg.agent.enable = true;
 
     environment.sessionVariables = {
