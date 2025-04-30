@@ -25,7 +25,7 @@ in {
     environment.systemPackages = with pkgs;
       []
       ++ lib.optionals (cfg.cloudflared) [
-        cloudflared
+        pkgs2411.cloudflared
       ];
 
     networking = {

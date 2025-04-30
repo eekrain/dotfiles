@@ -29,6 +29,8 @@ in {
         ++ lib.optionals (cfg.devenv) [
           devenv
           cachix
+          appimage-run
+          nload
         ];
     }
   ];

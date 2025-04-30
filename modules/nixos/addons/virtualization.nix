@@ -30,7 +30,7 @@ in {
     (mkIf cfg.virtualbox {
       # Virtual box
       virtualisation.virtualbox.host.enable = true;
-      virtualisation.virtualbox.host.package = pkgs.pkgs2405.virtualbox;
+      virtualisation.virtualbox.host.package = pkgs.pkgs2411.virtualbox;
       users.extraGroups.vboxusers.members = ["eekrain"];
     })
 

@@ -35,6 +35,7 @@ in {
       pnpm_10
       nodejs_22
       bun
+      remmina
     ];
 
     home.file."Pictures/wallpapers".source = ./wallpapers;

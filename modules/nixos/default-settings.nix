@@ -50,8 +50,8 @@
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
+      outputs.overlays.packages-2411
       outputs.overlays.packages-2405
-      outputs.overlays.packages-2311
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default

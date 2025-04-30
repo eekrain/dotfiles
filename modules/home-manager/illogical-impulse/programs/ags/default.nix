@@ -10,15 +10,7 @@
 
   home.packages = with pkgs; [
     # Python
-    (python311.withPackages (p:
-      with p; [
-        materialyoucolor
-        setproctitle
-        material-color-utilities
-        pywal
-        pywayland
-        pygobject3
-      ]))
+    (python3.withPackages (ps: with ps; [materialyoucolor setproctitle material-color-utilities pywal pywayland pygobject3]))
 
     # MicroTex Deps
     tinyxml-2
@@ -66,7 +58,6 @@
 
     # additional packages to add to gjs's runtime
     extraPackages = with pkgs; [
-      # pkgs2311.gtksourceview
       gtksourceview
       webkitgtk
       accountsservice

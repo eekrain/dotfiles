@@ -14,7 +14,7 @@ in {
     # Addons cli packages
     home.packages = with pkgs; [
       zoxide
-      pkgs2405.awscli2
+      pkgs2411.awscli2
       nitch
       krabby
       turso-cli
