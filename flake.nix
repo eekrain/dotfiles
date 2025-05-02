@@ -56,8 +56,12 @@
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
     # AGS for end4 dots
     ags.url = "github:Aylur/ags/v1";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
+      # to have it up-to-date or simply don't specify the nixpkgs input
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Common Grub2 themes
     grub2-themes = {
       url = github:vinceliuice/grub2-themes;

@@ -15,6 +15,7 @@ in {
       alejandra
       vscode
       windsurf
+      code-cursor
     ];
   };
 }

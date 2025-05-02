@@ -1,7 +1,8 @@
 {
   imports = [
-    ./sddm.nix
     ./hyprland.nix
     ./nautilus.nix
+    ./sddm.nix
+    ./greetd.nix
   ];
 }

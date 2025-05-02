@@ -53,7 +53,7 @@ in {
         ];
       };
 
-      initExtra = ''
+      initContent = ''
         setopt INC_APPEND_HISTORY
         setopt HIST_SAVE_NO_DUPS
         setopt HIST_FIND_NO_DUPS

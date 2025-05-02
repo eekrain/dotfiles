@@ -47,12 +47,13 @@
       enable = true;
       cloudflared = true;
       cloudflare-warp = true;
-      clash = true;
+      clash = false;
       # redsocks = true;
     };
     desktop = {
-      sddm.enable = true;
-      sddm.defaultSession = "hyprland-uwsm";
+      # sddm.enable = true;
+      # sddm.defaultSession = "hyprland-uwsm";
+      greetd.enable = true;
       hyprland = {
         enable = true;
         brightnessController = "brightnessctl";
