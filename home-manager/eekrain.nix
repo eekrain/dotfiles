@@ -28,6 +28,8 @@
     outputs.homeManagerModules.addons
     # Activating illogical impulse rice with Quickshell (end-4-flakes)
     outputs.homeManagerModules.illogical-impulse-quickshell
+    # Caelestia desktop environment
+    outputs.homeManagerModules.caelestia
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -59,6 +61,9 @@
     };
 
     addons.enable = true;
+    
+    # Enable Caelestia desktop environment
+    caelestia.enable = true;
   };
 
   # Add stuff for your user as you see fit:

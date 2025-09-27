@@ -47,12 +47,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Hyprland stuff
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
     # AGS for end4 dots
     ags.url = "github:Aylur/ags/v1";
@@ -65,6 +59,16 @@
     # Common Grub2 themes
     grub2-themes = {
       url = github:vinceliuice/grub2-themes;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    # Caelestia desktop environment
+    caelestia.url = "github:caelestia-dots/shell";
+    caelestia.inputs.nixpkgs.follows = "nixpkgs";
+    
+    # Additional dependencies for Caelestia
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

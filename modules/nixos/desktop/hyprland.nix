@@ -67,6 +67,8 @@ in {
         libnotify # for sending notification
         touchpadtoggle #script for touchpad toggler
         hyprpolkitagent
+        # Caelestia desktop environment
+        inputs.caelestia.packages.${pkgs.stdenv.hostPlatform.system}.default
       ]
       ++ optionals (cfg.brightnessController == "ddcutil") [ddcutil] #install ddcutil if ddcutil selected as brightnessController
       ++ optionals (cfg.brightnessController == "brightnessctl") [brightnessctl]; #install brightnessctl if brightnessctl selected as brightnessController
@@ -81,11 +83,10 @@ in {
 
     programs.hyprland = {
       enable = true;
-      # set the flake package
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # make sure to also set the portal package, so that they are in sync
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-
+      # Use the system package from nixos-unstable instead of external flake
+      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      xwayland.enable = true;
       withUWSM = true;
     };
     programs.dconf.enable = true;
@@ -109,10 +110,5 @@ in {
     # Polkit stuff
     security.polkit.enable = true;
     programs.gnupg.agent.enable = true;
-
-    environment.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-      ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    };
   };
 }

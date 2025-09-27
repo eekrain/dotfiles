@@ -8,4 +8,5 @@
   addons = import ./addons;
   illogical-impulse = import ./illogical-impulse;
   illogical-impulse-quickshell = import ./illogical-impulse-quickshell;
+  caelestia = import ./caelestia;
 }
