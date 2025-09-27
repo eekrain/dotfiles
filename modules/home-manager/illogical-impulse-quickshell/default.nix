@@ -14,26 +14,19 @@ with lib; {
   programs.dots-hyprland = {
     enable = true;
     source = ./configs;
-    packageSet = "essential";
-    mode = "hybrid";  # Hyprland declarative + Quickshell copied
-    
-    # Force disable touchegg component (handle system-wide if needed)
-    touchegg.enable = lib.mkForce false;
-    
-    # Enable misc config copying to get Quickshell files deployed
-    configuration.copyMiscConfig = lib.mkForce true;
+    packageSet = "minimal";
+    mode = "declarative";
     
     # Quickshell configuration customized for existing setup
     quickshell = {
       appearance = {
-        extraBackgroundTint = true;
         fakeScreenRounding = 2;
         transparency = false;
       };
       
       bar = {
         bottom = false;          # Top bar
-        cornerStyle = 0;         # Hug style
+        cornerStyle = 2;         # Hug style
         topLeftIcon = "spark";
         showBackground = true;
         verbose = true;
@@ -65,9 +58,7 @@ with lib; {
       
       apps = {
         terminal = "kitty";     # Use existing kitty terminal
-        bluetooth = "kcmshell6 kcm_bluetooth";
-        network = "plasmawindowed org.kde.plasma.networkmanagement";
-        taskManager = "plasma-systemmonitor --page-name Processes";
+        taskManager = "btop";
       };
       
       time = {
