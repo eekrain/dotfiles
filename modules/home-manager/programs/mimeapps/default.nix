@@ -23,7 +23,7 @@ with lib; let
         {"text/xml" = "zen-twilight.desktop";}
         {"text/html" = "zen-twilight.desktop";}
         (subtypes "x-scheme-handler" "zen-twilight.desktop"
-          ["http" "https" "chrome"])
+          ["unknown" "mailto" "chrome" "about" "https" "http"])
         (
           subtypes "application" "zen-twilight.desktop"
           ["pdf" "rdf+xml" "rss+xml" "xhtml+xml" "xhtml_xml" "xml" "x-xpinstall" "xhtml+xml" "x-extension-xhtml" "x-extension-xht" "x-extension-htm" "x-extension-html" "x-extension-shtml"]

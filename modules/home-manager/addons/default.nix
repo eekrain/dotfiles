@@ -15,27 +15,29 @@ in {
     home.packages = with pkgs; [
       nvtopPackages.nvidia
       vesktop
-      winbox
       amberol
       qview
       wf-recorder
-      responsivelyapp
       bruno # alternative to postman
       insomnia
-      redisinsight
-      hiddify
-      bitwarden-desktop
       libreoffice
-      teams-for-linux
-      whatsapp-for-linux
-      zoom-us
-      distrobox
-      boxbuddy #distrobox
-
-      pnpm_10
-      nodejs_22
-      bun
+      ferdium
       remmina
+      zoom-us
+
+      nodejs_20
+      bun
+      ungoogled-chromium
+
+      # winbox
+      # responsivelyapp
+      # redisinsight
+      # hiddify
+      # bitwarden-desktop
+      # teams-for-linux
+      # whatsapp-for-linux
+      # distrobox
+      # boxbuddy
     ];
 
     home.file."Pictures/wallpapers".source = ./wallpapers;
