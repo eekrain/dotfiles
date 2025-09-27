@@ -16,7 +16,7 @@ with lib; {
     source = ./configs;
     packageSet = "minimal";
     mode = "declarative";
-    
+    touchegg.enable = lib.mkForce false;
     # Quickshell configuration customized for existing setup
     quickshell = {
       appearance = {
