@@ -67,10 +67,6 @@
       url = github:vinceliuice/grub2-themes;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
-    # End-4 flakes Hyprland desktop environment
-    illogical-impulse-quickshell.url = "github:celesrenata/end-4-flakes";
-    illogical-impulse-quickshell.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {

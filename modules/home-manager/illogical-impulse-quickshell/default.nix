@@ -4,103 +4,14 @@
   lib,
   pkgs,
   ...
-}:
-with lib; {
+}: {
   imports = [
-    inputs.illogical-impulse-quickshell.homeManagerModules.default
+    inputs.hyprland.homeManagerModules.default
+    ./programs
+    ./dots.nix
+    ./theme.nix
   ];
 
-  programs.dots-hyprland = {
-    enable = true;
-    source = ./configs;
-    packageSet = "essential";
-    mode = "declarative";
-    touchegg.enable = lib.mkForce false;
-
-    # 💼 Productivity-optimized settings
-    quickshell = {
-      appearance = {
-        transparency = true; # Nice visual effects
-        fakeScreenRounding = 2;
-      };
-
-      bar = {
-        bottom = false; # Top bar for traditional feel
-        cornerStyle = 1; # Float style
-        showBackground = true;
-        verbose = true; # Show detailed info
-
-        utilButtons = {
-          showScreenSnip = true; # Essential for productivity
-          showColorPicker = true; # Useful for design work
-          showMicToggle = true; # For meetings
-          showKeyboardToggle = true;
-          showDarkModeToggle = true;
-          showPerformanceProfileToggle = false;
-        };
-
-        workspaces = {
-          shown = 10; # Many workspaces for organization
-          showAppIcons = true;
-          alwaysShowNumbers = true; # Always show for quick navigation
-          showNumberDelay = 100; # Quick response
-        };
-      };
-
-      battery = {
-        low = 25; # Higher threshold for work
-        critical = 10;
-        automaticSuspend = true;
-        suspend = 5; # Longer suspend delay
-      };
-
-      apps = {
-        terminal = "foot";
-        taskManager = "plasma-systemmonitor --page-name Processes";
-      };
-
-      time = {
-        format = "HH:mm:ss"; # 24-hour with seconds
-        dateFormat = "dddd, MMMM dd, yyyy"; # Full date
-      };
-    };
-
-    hyprland = {
-      general = {
-        gapsIn = 6; # Comfortable gaps
-        gapsOut = 10;
-        borderSize = 2;
-        allowTearing = false; # Smooth visuals
-      };
-
-      decoration = {
-        rounding = 12; # Moderate rounding
-        blurEnabled = true; # Nice visual effects
-      };
-
-      gestures = {
-        workspaceSwipe = true; # Efficient navigation
-      };
-    };
-
-    terminal = {
-      scrollback = {
-        lines = 10000; # Large scrollback for logs
-        multiplier = 3.0;
-      };
-
-      cursor = {
-        style = "beam";
-        blink = true; # Visible cursor
-      };
-
-      colors = {
-        alpha = 0.90; # Slight transparency
-      };
-    };
-  };
-
-  # Additional packages that work with Quickshell setup
   home.packages = with pkgs; [
     clipse
     wl-clip-persist
@@ -109,4 +20,24 @@ with lib; {
     swww
     quickshell
   ];
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = null;
+    portalPackage = null;
+    systemd.enable = false;
+
+    extraConfig = ''
+      exec-once = qs &
+      exec-once = swww-daemon --format xrgb
+      exec-once = ${pkgs.clipse}/bin/clipse -listen
+      exec-once = ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular
+      
+      source=~/.config/hypr/hyprland/general.conf
+      source=~/.config/hypr/hyprland/env.conf
+      source=~/.config/hypr/hyprland/execs.conf
+      source=~/.config/hypr/hyprland/rules.conf
+      source=~/.config/hypr/hyprland/keybinds.conf
+    '';
+  };
 }
