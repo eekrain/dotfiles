@@ -28,6 +28,7 @@
       Environment = [
         "QT_QUICK_CONTROLS_STYLE=Basic"
         "QT_QUICK_FLICKABLE_WHEEL_DECELERATION=10000"
+        "QT_QPA_PLATFORM=wayland"
       ];
     };
     Install = {

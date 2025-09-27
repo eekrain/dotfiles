@@ -30,6 +30,7 @@
       # Set up environment variables for Quickshell
       export QT_QUICK_CONTROLS_STYLE=Basic
       export QT_QUICK_FLICKABLE_WHEEL_DECELERATION=10000
+      export QT_QPA_PLATFORM=wayland
       
       # Start Quickshell if not already running
       if ! pidof qs >/dev/null; then
