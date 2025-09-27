@@ -41,14 +41,14 @@
   # Use the swap partition here
   boot.resumeDevice = "/dev/disk/by-label/swap";
 
-  # Mounting my windows partition
-  boot.supportedFilesystems = ["ntfs"];
-  fileSystems."/home/eekrain/MyWindows" = {
-    device = "/dev/disk/by-uuid/546003036002EB94";
-    fsType = "ntfs-3g";
-    # uid of the user, my eekrain user has uid of 1000
-    options = ["rw" "uid=1000"];
-  };
+  # # Mounting my windows partition
+  # boot.supportedFilesystems = ["ntfs"];
+  # fileSystems."/home/eekrain/MyWindows" = {
+  #   device = "/dev/disk/by-uuid/546003036002EB94";
+  #   fsType = "ntfs-3g";
+  #   # uid of the user, my eekrain user has uid of 1000
+  #   options = ["rw" "uid=1000"];
+  # };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
