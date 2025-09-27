@@ -10,60 +10,92 @@ with lib; {
     inputs.illogical-impulse-quickshell.homeManagerModules.default
   ];
 
-  # dots-hyprland configuration - HYBRID MODE
   programs.dots-hyprland = {
     enable = true;
     source = ./configs;
-    packageSet = "minimal";
+    packageSet = "essential";
     mode = "declarative";
     touchegg.enable = lib.mkForce false;
-    # Quickshell configuration customized for existing setup
+
+    # 💼 Productivity-optimized settings
     quickshell = {
       appearance = {
+        transparency = true; # Nice visual effects
         fakeScreenRounding = 2;
-        transparency = false;
       };
-      
+
       bar = {
-        bottom = false;          # Top bar
-        cornerStyle = 2;         # Hug style
-        topLeftIcon = "spark";
+        bottom = false; # Top bar for traditional feel
+        cornerStyle = 1; # Float style
         showBackground = true;
-        verbose = true;
-        
+        verbose = true; # Show detailed info
+
         utilButtons = {
-          showScreenSnip = true;
-          showColorPicker = true;
-          showMicToggle = true;
+          showScreenSnip = true; # Essential for productivity
+          showColorPicker = true; # Useful for design work
+          showMicToggle = true; # For meetings
           showKeyboardToggle = true;
           showDarkModeToggle = true;
           showPerformanceProfileToggle = false;
         };
-        
+
         workspaces = {
-          monochromeIcons = true;
-          shown = 10;
+          shown = 10; # Many workspaces for organization
           showAppIcons = true;
-          alwaysShowNumbers = false;
-          showNumberDelay = 300;
+          alwaysShowNumbers = true; # Always show for quick navigation
+          showNumberDelay = 100; # Quick response
         };
       };
-      
+
       battery = {
-        low = 20;
-        critical = 5;
+        low = 25; # Higher threshold for work
+        critical = 10;
         automaticSuspend = true;
-        suspend = 3;
+        suspend = 5; # Longer suspend delay
       };
-      
+
       apps = {
-        terminal = "kitty";     # Use existing kitty terminal
-        taskManager = "btop";
+        terminal = "foot";
+        taskManager = "plasma-systemmonitor --page-name Processes";
       };
-      
+
       time = {
-        format = "hh:mm";
-        dateFormat = "ddd, dd/MM";
+        format = "HH:mm:ss"; # 24-hour with seconds
+        dateFormat = "dddd, MMMM dd, yyyy"; # Full date
+      };
+    };
+
+    hyprland = {
+      general = {
+        gapsIn = 6; # Comfortable gaps
+        gapsOut = 10;
+        borderSize = 2;
+        allowTearing = false; # Smooth visuals
+      };
+
+      decoration = {
+        rounding = 12; # Moderate rounding
+        blurEnabled = true; # Nice visual effects
+      };
+
+      gestures = {
+        workspaceSwipe = true; # Efficient navigation
+      };
+    };
+
+    terminal = {
+      scrollback = {
+        lines = 10000; # Large scrollback for logs
+        multiplier = 3.0;
+      };
+
+      cursor = {
+        style = "beam";
+        blink = true; # Visible cursor
+      };
+
+      colors = {
+        alpha = 0.90; # Slight transparency
       };
     };
   };

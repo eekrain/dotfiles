@@ -13,3 +13,6 @@ source=~/.config/hypr/general.conf
 source=~/.config/hypr/rules.conf
 source=~/.config/hypr/colors.conf
 source=~/.config/hypr/keybinds.conf
+
+# Custom user overrides (if they exist)
+source=~/.config/hypr/custom.conf

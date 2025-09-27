@@ -1,8 +1,8 @@
+# Startup executables for dots-hyprland
 
 # Core desktop components
 exec-once = quickshell -c $qsConfig &
 exec-once = @HYPRIDLE_BIN@
-exec-once = swww-daemon --format xrgb
 
 # Authentication and security
 exec-once = @GNOME_KEYRING_BIN@ --start --components=secrets
@@ -18,13 +18,12 @@ exec-once = sleep 1 && dbus-update-activation-environment --systemd WAYLAND_DISP
 # Audio system
 @AUDIO_EXEC@
 
+# Clipboard management
+exec-once = @WL_PASTE_BIN@ --type text --watch @CLIPHIST_BIN@ store
+exec-once = @WL_PASTE_BIN@ --type image --watch @CLIPHIST_BIN@ store
+
 # Cursor theme
 exec-once = hyprctl setcursor @CURSOR_THEME@ @CURSOR_SIZE@
 
-# Startup executables for dots-hyprland
-exec-once = sleep 2; proxytoggle #disabling proxy on startup
-exec-once = sleep 2; touchpadtoggle #disabling touchpad on startup
-exec-once = sleep 2; gtk-launch com.github.xeco23.WasIstLos.desktop #Starting up whatsapp for linux
-exec-once = sleep 2; gtk-launch motrix.desktop #Starting download manager
-exec-once = sleep 2; gtk-launch vesktop.desktop #Starting download manager
-exec-once = sleep 4; gtk-launch zen_twilight.desktop #Starting up zen browser
+# User custom execs
+@CUSTOM_EXECS@
