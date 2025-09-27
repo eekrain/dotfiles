@@ -17,7 +17,7 @@
     enable = true;
     systemd = {
       enable = true;
-      target = "hyprland-session.target";
+      target = "xdg-desktop-portal-hyprland.service";
     };
   };
 

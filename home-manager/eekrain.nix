@@ -26,8 +26,7 @@
     outputs.homeManagerModules.cli
     outputs.homeManagerModules.programs
     outputs.homeManagerModules.addons
-    # Activating illogical impulse rice with Quickshell (end-4-flakes)
-    outputs.homeManagerModules.illogical-impulse-quickshell
+    outputs.homeManagerModules.services
     # Caelestia desktop environment
     outputs.homeManagerModules.caelestia
 
@@ -59,7 +58,6 @@
       vscode = true;
       wofi = true;
     };
-
     addons.enable = true;
     
     # Enable Caelestia desktop environment

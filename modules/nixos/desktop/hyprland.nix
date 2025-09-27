@@ -69,6 +69,33 @@ in {
         hyprpolkitagent
         # Caelestia desktop environment
         inputs.caelestia.packages.${pkgs.stdenv.hostPlatform.system}.default
+        # Additional packages from mawkler-nixos reference
+        brightnessctl
+        hyprpaper
+        hyprshot
+        playerctl
+        waybar
+        wofi
+        # Additional packages needed for Caelestia
+        cliphist
+        inotify-tools
+        app2unit
+        wireplumber
+        trash-cli
+        foot
+        fish
+        fastfetch
+        starship
+        btop
+        jq
+        socat
+        imagemagick
+        curl
+        adw-gtk3
+        papirus-icon-theme
+        kdePackages.qt6ct
+        libsForQt5.qt5ct
+        nerd-fonts.jetbrains-mono
       ]
       ++ optionals (cfg.brightnessController == "ddcutil") [ddcutil] #install ddcutil if ddcutil selected as brightnessController
       ++ optionals (cfg.brightnessController == "brightnessctl") [brightnessctl]; #install brightnessctl if brightnessctl selected as brightnessController
@@ -80,6 +107,9 @@ in {
     services.upower.enable = true;
     # Enable gnome keyring by default
     services.gnome.gnome-keyring.enable = true;
+    
+    # Additional services needed for Caelestia
+    services.power-profiles-daemon.enable = true;
 
     programs.hyprland = {
       enable = true;
@@ -89,10 +119,18 @@ in {
       xwayland.enable = true;
       withUWSM = true;
     };
+    
+    programs.hyprlock.enable = true;
     programs.dconf.enable = true;
     # # FS tools for compatibility with desktop
     # services.envfs.enable = true;
     services.gvfs.enable = true;
+    
+    # Enable SDDM display manager with Wayland support
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
 
     # Configure keymap in X11
     services.xserver.xkb = {

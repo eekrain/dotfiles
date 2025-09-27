@@ -1,49 +1,29 @@
 { config, lib, ... }: {
   programs.caelestia.settings = {
-    # Appearance settings
+    # paths.wallpaperDir = "~/Images";
     appearance = {
-      anim = {
-        durations = {
-          scale = 0.7;
-        };
-      };
-      padding = {
-        scale = 0.5;
-      };
+      anim = { durations = { scale = 0.7; }; };
+      padding = { scale = 0.5; };
       transparency = {
         enabled = true;
         base = 0.6;
         layers = 0.4;
       };
     };
-
-    # General settings
     general = {
       apps = {
         terminal = [ "ghostty" ];
         audio = [ "pavucontrol" ];
       };
     };
-
-    # Background settings
-    background = {
-      desktopClock = {
-        enabled = true;
-      };
-    };
-
-    # Bar configuration
+    background = { desktopClock = { enabled = true; }; };
     bar = {
-      sizes = {
-        innerWidth = 32;
-      };
+      sizes = { innerWidth = 32; };
       status = {
         showAudio = true;
         showMicrophone = true;
       };
-      tray = {
-        recolour = false;
-      };
+      tray = { recolour = false; };
       workspaces = {
         activeLabel = "";
         label = "";
@@ -51,36 +31,18 @@
         shown = 5;
       };
     };
-
-    # Border settings
-    border = {
-      thickness = 1;
-    };
-
-    # Dashboard settings
-    dashboard = {
-      dragThreshold = 10;
-    };
-
-    # Launcher settings
+    border = { thickness = 1; };
+    dashboard = { dragThreshold = 10; };
     launcher = {
       vimKeybinds = true;
       enableDangerousActions = true;
       maxShown = 10;
     };
-
-    # Notification settings
     notifs = {
       actionOnClick = true;
       defaultExpireTimeout = 3000;
     };
-
-    # OSD settings
-    osd = {
-      hideDelay = 1000;
-    };
-
-    # Session settings
+    osd = { hideDelay = 1000; };
     session = {
       vimKeybinds = true;
       commands = {

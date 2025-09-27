@@ -6,7 +6,6 @@
   cli = import ./cli;
   programs = import ./programs;
   addons = import ./addons;
-  illogical-impulse = import ./illogical-impulse;
-  illogical-impulse-quickshell = import ./illogical-impulse-quickshell;
+  services = import ./services;
   caelestia = import ./caelestia;
 }

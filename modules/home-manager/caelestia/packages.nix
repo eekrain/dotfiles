@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    # Caelestia dependencies
+    # Not sure if all these dependencies are necessary or not
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
     hyprpicker
@@ -27,11 +27,5 @@
     kdePackages.qt6ct
     libsForQt5.qt5ct
     nerd-fonts.jetbrains-mono
-    
-    # Additional utilities
-    quickshell
-    swww
-    grimblast
-    satty
   ];
 }
