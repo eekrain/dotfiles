@@ -27,7 +27,7 @@
     outputs.homeManagerModules.programs
     outputs.homeManagerModules.addons
     # Activating illogical impulse rice
-    outputs.homeManagerModules.illogical-impulse
+    # outputs.homeManagerModules.illogical-impulse
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default

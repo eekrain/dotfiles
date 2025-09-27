@@ -38,7 +38,7 @@ in {
     programs.zsh = {
       enable = true;
       # ZSH config dir
-      dotDir = ".config/zsh";
+      dotDir = "/home/eekrain/.config/zsh";
       history = {
         path = "${config.xdg.configHome}/zsh/zsh_history";
         save = 1000000000;
