@@ -25,10 +25,20 @@
     enable = true;
     package = null;
     portalPackage = null;
-    systemd.enable = false;
+    systemd.enable = true;
 
+    settings = {
+      # Essential environment variables for Wayland
+      env = [
+        "XDG_RUNTIME_DIR,/run/user/$UID"
+        "WAYLAND_DISPLAY,wayland-0"
+        "XDG_SESSION_TYPE,wayland"
+        "QT_QPA_PLATFORM,wayland-egl"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+      ];
+    };
+    
     extraConfig = ''
-      exec-once = QT_QPA_PLATFORM=wayland QT_QUICK_CONTROLS_STYLE=Basic QT_QUICK_FLICKABLE_WHEEL_DECELERATION=10000 qs &
       exec-once = swww-daemon --format xrgb
       exec-once = ${pkgs.clipse}/bin/clipse -listen
       exec-once = ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular
@@ -39,5 +49,17 @@
       source=~/.config/hypr/hyprland/rules.conf
       source=~/.config/hypr/hyprland/keybinds.conf
     '';
+  };
+
+  # Essential session variables for systemd
+  systemd.user.sessionVariables = {
+    WAYLAND_DISPLAY = "wayland-0";
+    XDG_SESSION_TYPE = "wayland";
+  };
+
+  # Home manager session variables
+  home.sessionVariables = {
+    QT_QPA_PLATFORM = "wayland-egl";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
   };
 }

@@ -34,13 +34,8 @@
       export PATH="$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:$PATH"
       export XDG_DATA_DIRS="$HOME/.nix-profile/share:/etc/profiles/per-user/$USER/share:/nix/var/nix/profiles/default/share:/run/current-system/sw/share:$XDG_DATA_DIRS"
       
-      # Start Quickshell if not already running
-      if ! pidof qs >/dev/null; then
-        echo "Starting Quickshell..."
-        qs &
-      else
-        echo "Quickshell is already running"
-      fi
+      # Quickshell is now managed by systemd - no need to start it manually
+      echo "Quickshell will be started automatically by systemd when Hyprland starts"
       
       echo "Quickshell initialization completed"
     '')

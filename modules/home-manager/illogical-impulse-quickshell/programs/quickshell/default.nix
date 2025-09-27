@@ -35,7 +35,10 @@
       Environment = [
         "QT_QUICK_CONTROLS_STYLE=Basic"
         "QT_QUICK_FLICKABLE_WHEEL_DECELERATION=10000"
-        "QT_QPA_PLATFORM=wayland"
+        "QT_QPA_PLATFORM=wayland-egl"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION=1"
+        "WAYLAND_DISPLAY=wayland-0"
+        "XDG_SESSION_TYPE=wayland"
         "PATH=${config.home.profileDirectory}/bin:/run/wrappers/bin:${config.home.homeDirectory}/.nix-profile/bin:/etc/profiles/per-user/${config.home.username}/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
         "XDG_DATA_DIRS=${config.home.profileDirectory}/share:${config.home.homeDirectory}/.nix-profile/share:/etc/profiles/per-user/${config.home.username}/share:/nix/var/nix/profiles/default/share:/run/current-system/sw/share"
       ];
