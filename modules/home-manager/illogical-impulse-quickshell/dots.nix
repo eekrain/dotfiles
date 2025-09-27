@@ -18,11 +18,28 @@
     # It copies from the reference dot files located ~/.config.example-quickshell as we already set above
     # Run it from cli "init-illogical-impulse-quickshell"
     (pkgs.writeShellScriptBin "init-illogical-impulse-quickshell" ''
-      mkdir -p ~/.config/hypr/hyprland && rsync -avz ~/.config.example-quickshell/hyprland ~/.config/hypr --chmod=Du=rwx,Dg=rx,D=rx,Fu=rwx,Fg=rx,Fo=rx
-      rsync -avz ~/.config.example-quickshell/quickshell ~/.config --chmod=Du=rwx,Dg=rx,D=rx,Fu=rwx,Fg=rx,Fo=rx
-      rsync -avz ~/.config.example-quickshell/applications ~/.config --chmod=Du=rwx,Dg=rx,D=rx,Fu=rwx,Fg=rx,Fo=rx
-      # Starting hyprland
-      pidof Hyprland || Hyprland
+      # Create necessary directories
+      mkdir -p ~/.config/quickshell
+      mkdir -p ~/.config/hypr/hyprland
+      
+      # Copy configuration files
+      rsync -avz ~/.config.example-quickshell/quickshell ~/.config/ --chmod=Du=rwx,Dg=rx,D=rx,Fu=rwx,Fg=rx,Fo=rx
+      rsync -avz ~/.config.example-quickshell/hyprland ~/.config/hypr/ --chmod=Du=rwx,Dg=rx,D=rx,Fu=rwx,Fg=rx,Fo=rx
+      rsync -avz ~/.config.example-quickshell/applications ~/.config/ --chmod=Du=rwx,Dg=rx,D=rx,Fu=rwx,Fg=rx,Fo=rx
+      
+      # Set up environment variables for Quickshell
+      export QT_QUICK_CONTROLS_STYLE=Basic
+      export QT_QUICK_FLICKABLE_WHEEL_DECELERATION=10000
+      
+      # Start Quickshell if not already running
+      if ! pidof qs >/dev/null; then
+        echo "Starting Quickshell..."
+        qs &
+      else
+        echo "Quickshell is already running"
+      fi
+      
+      echo "Quickshell initialization completed"
     '')
   ];
 }

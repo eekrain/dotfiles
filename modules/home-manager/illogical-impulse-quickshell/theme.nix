@@ -22,6 +22,11 @@
     noto-fonts-cjk-sans
     qogir-icon-theme
     adwaita-icon-theme
+    
+    # Quickshell dependencies
+    qt6.qtwayland
+    qt6.qtdeclarative
+    qt6.qtsvg
   ];
 
   # QT Theming settings
