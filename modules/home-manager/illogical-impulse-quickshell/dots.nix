@@ -31,6 +31,8 @@
       export QT_QUICK_CONTROLS_STYLE=Basic
       export QT_QUICK_FLICKABLE_WHEEL_DECELERATION=10000
       export QT_QPA_PLATFORM=wayland
+      export PATH="${HOME}/.nix-profile/bin:/etc/profiles/per-user/${USER}/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:$PATH"
+      export XDG_DATA_DIRS="${HOME}/.nix-profile/share:/etc/profiles/per-user/${USER}/share:/nix/var/nix/profiles/default/share:/run/current-system/sw/share:$XDG_DATA_DIRS"
       
       # Start Quickshell if not already running
       if ! pidof qs >/dev/null; then

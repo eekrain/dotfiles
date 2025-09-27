@@ -28,7 +28,7 @@
     systemd.enable = false;
 
     extraConfig = ''
-      exec-once = QT_QPA_PLATFORM=wayland qs &
+      exec-once = QT_QPA_PLATFORM=wayland QT_QUICK_CONTROLS_STYLE=Basic QT_QUICK_FLICKABLE_WHEEL_DECELERATION=10000 qs &
       exec-once = swww-daemon --format xrgb
       exec-once = ${pkgs.clipse}/bin/clipse -listen
       exec-once = ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular
