@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__nixos__nixos_flakes_search",
+      "WebFetch(domain:raw.githubusercontent.com)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
