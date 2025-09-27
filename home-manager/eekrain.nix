@@ -26,8 +26,8 @@
     outputs.homeManagerModules.cli
     outputs.homeManagerModules.programs
     outputs.homeManagerModules.addons
-    # Activating illogical impulse rice
-    # outputs.homeManagerModules.illogical-impulse
+    # Activating illogical impulse rice with Quickshell (end-4-flakes)
+    outputs.homeManagerModules.illogical-impulse-quickshell
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
