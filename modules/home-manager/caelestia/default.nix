@@ -46,7 +46,7 @@
 
       # NixOS specific
       export NIXOS_OZONE_WL="1"
-      export ELECTRON_OZONE_PLATFORM_HINT="auto"
+      export ELECTRON_OZONE_PLATFORM_HINT="wayland"
 
       # XDG specifications
       export XDG_SESSION_TYPE="wayland"
