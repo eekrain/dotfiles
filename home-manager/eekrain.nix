@@ -59,9 +59,6 @@
       wofi = true;
     };
     addons.enable = true;
-    
-    # Enable Caelestia desktop environment
-    caelestia.enable = true;
   };
 
   # Add stuff for your user as you see fit:

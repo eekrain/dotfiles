@@ -107,9 +107,9 @@ in {
     services.upower.enable = true;
     # Enable gnome keyring by default
     services.gnome.gnome-keyring.enable = true;
-    
+
     # Additional services needed for Caelestia
-    services.power-profiles-daemon.enable = true;
+    # services.power-profiles-daemon.enable = true;
 
     programs.hyprland = {
       enable = true;
@@ -119,13 +119,13 @@ in {
       xwayland.enable = true;
       withUWSM = true;
     };
-    
+
     programs.hyprlock.enable = true;
     programs.dconf.enable = true;
     # # FS tools for compatibility with desktop
     # services.envfs.enable = true;
     services.gvfs.enable = true;
-    
+
     # Enable SDDM display manager with Wayland support
     services.displayManager.sddm = {
       enable = true;
