@@ -43,6 +43,7 @@
       git = true;
       ide = true;
       zsh = true;
+      kitty = true;
     };
 
     programs = {
