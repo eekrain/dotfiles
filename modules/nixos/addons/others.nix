@@ -25,13 +25,14 @@ in {
 
     {
       environment.systemPackages = with pkgs;
-        []
+        [expressvpn]
         ++ lib.optionals (cfg.devenv) [
           devenv
           cachix
           appimage-run
           nload
         ];
+      services.expressvpn.enable = true;
     }
   ];
 }

@@ -29,7 +29,6 @@ in {
       bun
       ungoogled-chromium
       claude-code
-      expressvpn
 
       # winbox
       # responsivelyapp

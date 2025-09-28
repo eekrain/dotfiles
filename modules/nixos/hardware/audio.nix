@@ -72,8 +72,6 @@ in {
       bluez
       # SBC codec library with XQ support
       sbc
-      # Include the verification script
-      (writeScriptBin "verify-bluetooth-audio" (builtins.readFile ./verify-bluetooth-audio.sh))
     ];
   };
 }

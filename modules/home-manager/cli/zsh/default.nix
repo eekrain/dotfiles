@@ -89,6 +89,8 @@ in {
           eval "$(${starshipCmd} init zsh)"
         fi
 
+        source ''${ZDOTDIR}/.env
+
         nitch
       '';
 
