@@ -43,6 +43,40 @@
     '';
   };
 
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+  };
+
+  # Font configuration
+  fonts = {
+    packages = with pkgs; [
+      # Default fonts
+      rubik
+      dejavu_fonts
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
+      liberation_ttf
+      material-symbols
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.caskaydia-mono
+      nerd-fonts.caskaydia-cove
+      nerd-fonts.fira-code
+      nerd-fonts.geist-mono
+    ];
+
+    # Font configuration
+    fontconfig = {
+      defaultFonts = {
+        sansSerif = ["Rubik" "DejaVu Sans"];
+        serif = ["DejaVu Serif"];
+        monospace = ["JetBrainsMono Nerd Font" "DejaVu Sans Mono"];
+        emoji = ["Noto Color Emoji"];
+      };
+    };
+  };
+
   # Default nixpks settings
   nixpkgs = {
     # You can add overlays here

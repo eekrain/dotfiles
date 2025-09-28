@@ -66,11 +66,13 @@ in {
         in {
           "Space" = {
             id = "c6de089c-410d-4206-961d-ab11f988d40a";
+            icon = "🫆";
+            container = containers."Work".id;
             position = 1000;
           };
           "Work" = {
             id = "cdd10fab-4fc5-494b-9041-325e5759195b";
-            icon = "chrome://browser/skin/zen-icons/selectable/star-2.svg";
+            icon = "💼";
             container = containers."Work".id;
             position = 2000;
           };

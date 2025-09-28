@@ -11,7 +11,7 @@ in {
 
   config = mkIf cfg.audio {
     # Note: sound.enable is deprecated and removed - PipeWire handles ALSA integration
-    hardware.pulseaudio.enable = false; # Disable legacy PulseAudio
+    services.pulseaudio.enable = false; # Disable legacy PulseAudio
 
     environment.systemPackages = with pkgs; [
       alsa-utils
