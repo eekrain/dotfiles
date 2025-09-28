@@ -8,7 +8,7 @@
       anim.durations.scale = 0.7;
       transparency = {
         base = 0.6;
-        enabled = true;
+        enabled = false;
         layers = 0.4;
       };
       padding.scale = 1;

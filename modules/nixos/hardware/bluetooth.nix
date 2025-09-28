@@ -18,6 +18,10 @@ in {
         General = {
           # Sets the adapter to be easily discoverable and connectable
           FastConnectable = true;
+          # Enable experimental features for better codec support
+          Experimental = true;
+          # Enable multi-profile support
+          MultiProfile = true;
         };
         Policy = {
           # Crucial: Ensures the Bluetooth adapter is enabled and ready upon system start or connection
@@ -28,5 +32,10 @@ in {
 
     # Enable Blueman for GUI management
     services.blueman.enable = true;
+
+    # Add Bluetooth management tools
+    environment.systemPackages = with pkgs; [
+      bluez-tools # Additional Bluetooth utilities
+    ];
   };
 }

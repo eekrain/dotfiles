@@ -10,49 +10,70 @@ in {
   options.myModules.hardware.audio = mkEnableOption "Enable custom audio settings";
 
   config = mkIf cfg.audio {
-    # Note: sound.enable is deprecated and removed - PipeWire handles ALSA integration
-    services.pulseaudio.enable = false; # Disable legacy PulseAudio
-
-    environment.systemPackages = with pkgs; [
-      alsa-utils
-      pavucontrol
-    ];
-
-    # rtkit is optional but recommended
+    # 1. Establish a clean audio server baseline.
+    services.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
+      jack.enable = true;
+    };
 
-      # WirePlumber policy configuration for TWS headset support
-      wireplumber.extraConfig.bluetoothEnhancements = {
-        "monitor.bluez.properties" = {
-          # Critical fix: Define all required Bluetooth headset roles for profile switching
-          "bluez5.roles" = ["hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
-
-          # Enable hardware volume control synchronization
-          "bluez5.enable-hw-volume" = true;
-
-          # --- Explicitly enable all high-quality codecs ---
-          "bluez5.enable-sbc-xq" = true; # High-quality SBC
-          "bluez5.enable-msbc" = true; # Improved call quality
-          "bluez5.enable-aac" = true; # For Apple devices and others
-          "bluez5.enable-aptx" = true; # Common high-quality codec
-          "bluez5.enable-aptx-hd" = true; # Higher bitrate aptX
-          "bluez5.enable-ldac" = true; # Sony's Hi-Res codec
+    # 2. Configure the Bluetooth service.
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+          Experimental = true; # For battery reporting and other features.
         };
       };
-
-      # Optional: Disable automatic profile switching if unstable
-      # wireplumber.extraConfig."11-bluetooth-policy" = {
-      #   "wireplumber.settings" = {
-      #     "bluetooth.autoswitch-to-headset-profile" = false;
-      #   };
-      # };
     };
+
+    # 3. Fine-tune WirePlumber policy for stability and quality.
+    services.pipewire.wireplumber.extraConfig."51-bluez-policy" = {
+      # Ensure all high-quality codecs are explicitly enabled.
+      "monitor.bluez.properties" = {
+        "bluez5.enable-sbc-xq" = true;
+        "bluez5.enable-aac" = true;
+        "bluez5.enable-aptx" = true;
+        "bluez5.enable-aptx-hd" = true;
+        "bluez5.enable-ldac" = true;
+        "bluez5.enable-msbc" = true;
+        "bluez5.enable-hw-volume" = true;
+      };
+      # Prioritize A2DP sink on connection to avoid getting stuck in HSP/HFP.
+      "monitor.bluez.rules" = [
+        {
+          matches = [{"device.name" = "~bluez_card.*";}];
+          actions = {
+            "update-props" = {
+              "bluez5.reconnect-profiles" = ["a2dp_sink" "hsp_hs" "hfp_hf"];
+            };
+          };
+        }
+      ];
+      # Prevent applications from automatically forcing a switch to headset mode.
+      "wireplumber.settings" = {
+        "bluetooth.autoswitch-to-headset-profile" = false;
+      };
+    };
+
+    # 4. Install essential diagnostic and management tools.
+    environment.systemPackages = with pkgs; [
+      alsa-utils
+      pavucontrol
+      blueman
+      pulseaudio # For PulseAudio compatibility tools including pactl
+      pipewire
+      wireplumber
+      bluez
+      # SBC codec library with XQ support
+      sbc
+      # Include the verification script
+      (writeScriptBin "verify-bluetooth-audio" (builtins.readFile ./verify-bluetooth-audio.sh))
+    ];
   };
 }

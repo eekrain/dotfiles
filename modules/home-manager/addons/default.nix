@@ -28,6 +28,8 @@ in {
       nodejs_20
       bun
       ungoogled-chromium
+      claude-code
+      expressvpn
 
       # winbox
       # responsivelyapp
