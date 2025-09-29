@@ -30,7 +30,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
-    # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nixpkgs-2411.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
     # Also see the 'packages-2405' overlay at 'overlays/default.nix'.
@@ -76,6 +76,7 @@
     self,
     nixpkgs,
     home-manager,
+    chaotic,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -122,6 +123,7 @@
       eka-laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          chaotic.nixosModules.default
           # > Our main nixos configuration file <
           # FIXME replace with your system configuration
           ./nixos/vivobook-15/configuration.nix
@@ -131,6 +133,7 @@
       lenovo-kantor = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          chaotic.nixosModules.default
           # > Our main nixos configuration file <
           # FIXME replace with your system configuration
           ./nixos/lenovo-kantor/configuration.nix

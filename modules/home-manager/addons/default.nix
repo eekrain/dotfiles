@@ -27,7 +27,6 @@ in {
 
       nodejs_20
       bun
-      ungoogled-chromium
       claude-code
 
       # winbox

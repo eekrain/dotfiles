@@ -25,7 +25,6 @@
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-pc-laptop-ssd
-    # inputs.chaotic.nixosModules.default
     # You can also split up your configuration and import pieces of it here:
     ../eekrain.nix
   ];
@@ -76,7 +75,8 @@
   # use latest kernel
   # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+
   # chaotic.scx.enable = true;
   # chaotic.scx.scheduler = "scx_rusty";
 
@@ -84,6 +84,7 @@
   hardware.enableAllFirmware = true;
   # # use zramSwap
   zramSwap.enable = true;
+  zramSwap.memoryPercent = 75;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
