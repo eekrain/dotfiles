@@ -87,7 +87,7 @@
   # IF for some reason your system can't boot up cause of bluetooth issue, add this line to add all linux firmware
   hardware.enableAllFirmware = true;
   # # use zramSwap
-  # zramSwap.enable = true;
+  zramSwap.enable = true;
   # Spesific settings for ASUS Laptops
   services.asusd = {
     enable = true;
@@ -105,6 +105,23 @@
       # Force change myModules.hardware.gpu to be "nvidia"
       myModules.hardware.gpu = lib.mkForce "amd+nvidia";
     };
+  };
+
+  hardware.fancontrol = {
+    enable = true;
+    config = ''
+      INTERVAL=5
+      DEVPATH=hwmon5=devices/platform/k10temp hwmon6=devices/platform/asus
+      DEVNAME=hwmon5=k10temp hwmon6=asus
+
+      FCTEMPS=hwmon6/pwm1=hwmon5/temp1_input
+      FCFANS=hwmon6/pwm1=hwmon6/fan1_input
+
+      MINTEMP=hwmon6/pwm1=45
+      MAXTEMP=hwmon6/pwm1=85
+      MINSTART=hwmon6/pwm1=100
+      MINSTOP=hwmon6/pwm1=80
+    '';
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

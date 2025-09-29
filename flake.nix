@@ -47,7 +47,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
     # AGS for end4 dots
     ags.url = "github:Aylur/ags/v1";
     zen-browser = {
@@ -61,11 +60,11 @@
       url = github:vinceliuice/grub2-themes;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     # Caelestia desktop environment
     caelestia.url = "github:caelestia-dots/shell";
     caelestia.inputs.nixpkgs.follows = "nixpkgs";
-    
+
     # Additional dependencies for Caelestia
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
