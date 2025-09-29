@@ -68,7 +68,7 @@
   };
 
   # TODO: Set your hostname
-  networking.hostName = "eka-laptop";
+  networking.hostName = "lenovo-kantor";
   # TODO: Put your flake location dir here, for use with nh(nix helper tool)
   programs.nh.flake = lib.mkForce "/home/eekrain/dotfiles";
 
@@ -76,7 +76,7 @@
   # use latest kernel
   # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   # chaotic.scx.enable = true;
   # chaotic.scx.scheduler = "scx_rusty";
 
