@@ -106,6 +106,9 @@ in {
         lt = "ls --tree --level=2";
         # giteka = ''git config user.name "Ardian Eka Candra" && git config user.email "ardianoption@gmail.com"'';
         # gitplaton = ''git config user.name "Ardian Eka Candra" && git config user.email "fachri@platon.co.id"'';
+        cld = "claude";
+        clds = "claude --dangerously-skip-permissions";
+        cldsr = "claude --dangerously-skip-permissions --resume";
       };
     };
 
