@@ -8,4 +8,5 @@
   addons = import ./addons;
   services = import ./services;
   caelestia = import ./caelestia;
+  wayland-integration = import ./wayland-integration.nix;
 }

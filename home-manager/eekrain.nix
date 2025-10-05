@@ -29,6 +29,8 @@
     outputs.homeManagerModules.services
     # Caelestia desktop environment
     outputs.homeManagerModules.caelestia
+    # Wayland integration for Chromium-based applications
+    outputs.homeManagerModules.wayland-integration
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -60,6 +62,7 @@
       wofi = true;
     };
     addons.enable = true;
+    waylandIntegration.enable = true;
   };
 
   # Add stuff for your user as you see fit:

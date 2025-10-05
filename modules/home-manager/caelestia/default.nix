@@ -21,11 +21,10 @@
     };
   };
 
-
-  xdg.configFile."hypr" = {
-    source = ./hypr; # Assuming you have a directory named nvim in the same directory
-    recursive = true; # This is important for directories
-  };
+  # xdg.configFile."hypr" = {
+  #   source = ./hypr; # Assuming you have a directory named nvim in the same directory
+  #   recursive = true; # This is important for directories
+  # };
 
   # Integration with UWSM
   # xdg.configFile."uwsm/env" = {

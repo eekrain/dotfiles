@@ -18,91 +18,76 @@ with lib; let
     "--disable-features=UseChromeOSDirectVideoDecoder,WaylandFractionalScaleV1"
   ];
 
-  # Create wrapped versions of Chromium-based packages
-  wrappedPackages = {
-    vscode = pkgs.vscode.overrideAttrs (oldAttrs: {
-      nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [pkgs.makeWrapper];
-      postInstall =
-        (oldAttrs.postInstall or "")
-        + ''
-          wrapProgram $out/bin/code --add-flags "${builtins.concatStringsSep " " waylandFlags}"
-        '';
-    });
-
-    brave = pkgs.brave.overrideAttrs (oldAttrs: {
-      nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [pkgs.makeWrapper];
-      postInstall =
-        (oldAttrs.postInstall or "")
-        + ''
-          wrapProgram $out/bin/brave --add-flags "${builtins.concatStringsSep " " waylandFlags}"
-        '';
-    });
-
-    ungoogled-chromium = pkgs.ungoogled-chromium.overrideAttrs (oldAttrs: {
-      nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [pkgs.makeWrapper];
-      postInstall =
-        (oldAttrs.postInstall or "")
-        + ''
-          wrapProgram $out/bin/ungoogled-chromium --add-flags "${builtins.concatStringsSep " " waylandFlags}"
-        '';
-    });
-
-    vesktop = pkgs.vesktop.overrideAttrs (oldAttrs: {
-      nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [pkgs.makeWrapper];
-      postInstall =
-        (oldAttrs.postInstall or "")
-        + ''
-          wrapProgram $out/bin/vesktop --add-flags "${builtins.concatStringsSep " " waylandFlags}"
-        '';
-    });
-
-    ferdium = pkgs.ferdium.overrideAttrs (oldAttrs: {
-      nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [pkgs.makeWrapper];
-      postInstall =
-        (oldAttrs.postInstall or "")
-        + ''
-          wrapProgram $out/bin/ferdium --add-flags "${builtins.concatStringsSep " " waylandFlags}"
-        '';
-    });
-
-    zoom-us = pkgs.zoom-us.overrideAttrs (oldAttrs: {
-      nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [pkgs.makeWrapper];
-      postInstall =
-        (oldAttrs.postInstall or "")
-        + ''
-          wrapProgram $out/bin/zoom --add-flags "${builtins.concatStringsSep " " waylandFlags}"
-        '';
-    });
-  };
+  # Convert flags list to string for desktop entries
+  waylandFlagsStr = builtins.concatStringsSep " " waylandFlags;
 in {
   options.myHmModules.waylandIntegration = {
     enable = mkEnableOption "Enable Wayland integration for Chromium-based applications";
   };
 
   config = mkIf cfg.enable {
-    # Override the packages in Home Manager
-    home.packages = [
-      wrappedPackages.vscode
-      wrappedPackages.brave
-      wrappedPackages.ungoogled-chromium
-      wrappedPackages.vesktop
-      wrappedPackages.ferdium
-      wrappedPackages.zoom-us
+    # Install the original, unwrapped packages (uses binary cache!)
+    home.packages = with pkgs; [
+      vscode
+      vesktop
+      ferdium
+      zoom-us
     ];
 
-    # Fix Hyprland-specific geometry bug by managing Chromium Preferences
-    # This sets "Use system title bar and borders" which forces a geometry renegotiation
-    xdg.configFile = {
-      "chromium/Default/Preferences".source = let
-        managedPrefs = {
-          browser = {
-            # This is the equivalent of enabling "Use system title bar and borders"
-            # It forces a geometry renegotiation that fixes scaling on Hyprland
-            custom_chrome_frame = true;
-          };
-        };
-      in
-        (pkgs.formats.json {}).generate "managed-chromium-prefs.json" managedPrefs;
+    # Create overriding desktop entries that launch with Wayland flags
+    xdg.desktopEntries = {
+      # VSCode
+      "code" = {
+        name = "Visual Studio Code";
+        genericName = "Code Editor";
+        comment = "Code Editing. Redefined.";
+        exec = "code ${waylandFlagsStr} %F";
+        icon = "vscode";
+        type = "Application";
+        terminal = false;
+        categories = ["Development" "IDE"];
+        mimeType = ["text/plain" "inode/directory"];
+        startupNotify = true;
+      };
+
+      # Vesktop
+      "vesktop" = {
+        name = "Vesktop";
+        genericName = "Discord Client";
+        comment = "Discord client with Vencord";
+        exec = "vesktop ${waylandFlagsStr}";
+        icon = "discord";
+        type = "Application";
+        terminal = false;
+        categories = ["Network" "InstantMessaging"];
+        startupNotify = true;
+      };
+
+      # Ferdium
+      "ferdium" = {
+        name = "Ferdium";
+        genericName = "Messaging App";
+        comment = "All your services in one place";
+        exec = "ferdium ${waylandFlagsStr}";
+        icon = "ferdium";
+        type = "Application";
+        terminal = false;
+        categories = ["Network" "InstantMessaging"];
+        startupNotify = true;
+      };
+
+      # Zoom
+      "zoom" = {
+        name = "Zoom";
+        genericName = "Video Conferencing";
+        comment = "Zoom Video Conferencing";
+        exec = "zoom ${waylandFlagsStr}";
+        icon = "Zoom";
+        type = "Application";
+        terminal = false;
+        categories = ["Network" "VideoConference"];
+        startupNotify = true;
+      };
     };
   };
 }

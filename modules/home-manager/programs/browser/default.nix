@@ -16,7 +16,7 @@ in {
 
   config = mkIf cfg.browser {
     home.packages = [
-      pkgs.brave
+      pkgs.google-chrome
     ];
 
     programs.zen-browser = {
