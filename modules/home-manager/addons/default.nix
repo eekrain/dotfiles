@@ -20,7 +20,7 @@ in {
       wf-recorder
       bruno # alternative to postman
       insomnia
-      libreoffice
+      pkgs2505.libreoffice
       ferdium
       remmina
       zoom-us
@@ -28,6 +28,11 @@ in {
       nodejs_20
       bun
       claude-code
+      obsidian
+
+      psmisc
+      pnpm
+      # droid
 
       # winbox
       # responsivelyapp

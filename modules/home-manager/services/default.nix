@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  services.avizo.enable = true;
+  # services.avizo.enable = true;
   services.clipse = {
     enable = true;
     systemdTarget = "xdg-desktop-portal-hyprland.service";

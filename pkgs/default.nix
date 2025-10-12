@@ -9,4 +9,4 @@ pkgs: {
   my-icons = pkgs.callPackage ./my-icons {};
   responsivelyapp = pkgs.callPackage ./responsivelyapp.nix {};
   hiddify = pkgs.callPackage ./hiddify/default.nix {};
-}
+  }

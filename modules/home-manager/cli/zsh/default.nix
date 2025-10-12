@@ -115,6 +115,7 @@ in {
     # Addons variables
     home.sessionVariables = {
       NIXPKGS_ALLOW_UNFREE = "1";
+      PATH = "$HOME/.local/bin:$PATH";
     };
   };
 }

@@ -32,6 +32,7 @@ in {
       vesktop
       ferdium
       zoom-us
+      google-chrome
     ];
 
     # Create overriding desktop entries that launch with Wayland flags
@@ -86,6 +87,20 @@ in {
         type = "Application";
         terminal = false;
         categories = ["Network" "VideoConference"];
+        startupNotify = true;
+      };
+
+      # Google Chrome
+      "google-chrome" = {
+        name = "Google Chrome";
+        genericName = "Web Browser";
+        comment = "Access the Internet";
+        exec = "google-chrome-stable ${waylandFlagsStr} %U";
+        icon = "google-chrome";
+        type = "Application";
+        terminal = false;
+        categories = ["Network" "WebBrowser"];
+        mimeType = ["text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https" "x-scheme-handler/ftp"];
         startupNotify = true;
       };
     };

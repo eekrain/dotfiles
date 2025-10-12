@@ -15,10 +15,6 @@ in {
   options.myHmModules.programs.browser = mkEnableOption "Enable browser settings";
 
   config = mkIf cfg.browser {
-    home.packages = [
-      pkgs.google-chrome
-    ];
-
     programs.zen-browser = {
       enable = true;
       nativeMessagingHosts = [pkgs.firefoxpwa];

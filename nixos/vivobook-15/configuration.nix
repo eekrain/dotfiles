@@ -97,14 +97,14 @@
   # Specialisation settings
   # Default boot loader configuration name using AMD GPU
   boot.loader.grub.configurationName = "AMD GPU";
-  specialisation = {
-    nvidia_gpu.configuration = {
-      # Bootloader name for specialisation with NVIDIA GPU instead
-      boot.loader.grub.configurationName = lib.mkForce "NVIDIA GPU";
-      # Force change myModules.hardware.gpu to be "nvidia"
-      myModules.hardware.gpu = lib.mkForce "amd+nvidia";
-    };
-  };
+  # specialisation = {
+  #   nvidia_gpu.configuration = {
+  #     # Bootloader name for specialisation with NVIDIA GPU instead
+  #     boot.loader.grub.configurationName = lib.mkForce "NVIDIA GPU";
+  #     # Force change myModules.hardware.gpu to be "nvidia"
+  #     myModules.hardware.gpu = lib.mkForce "amd+nvidia";
+  #   };
+  # };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
