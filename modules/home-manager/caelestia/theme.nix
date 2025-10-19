@@ -2,44 +2,36 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
-  home.packages = [pkgs.rose-pine-hyprcursor pkgs.rose-pine-cursor];
+  imports = [
+    inputs.hyprcursor-phinger.homeManagerModules.default
+  ];
 
-  home.file = {
-    # Copy the entire hyprcursors directory
-    ".local/share/icons/rose-pine-hyprcursor/hyprcursors" = {
-      source = "${pkgs.rose-pine-hyprcursor}/share/icons/rose-pine-hyprcursor/hyprcursors";
-      recursive = true; # important for directories
-    };
+  # Enable hyprcursor-phinger from the flake
+  programs.hyprcursor-phinger.enable = true;
 
-    # Copy the manifest.hl file
-    ".local/share/icons/rose-pine-hyprcursor/manifest.hl" = {
-      source = "${pkgs.rose-pine-hyprcursor}/share/icons/rose-pine-hyprcursor/manifest.hl";
-    };
-
-    ".local/share/icons/rose-pine-cursor" = {
-      source = "${pkgs.rose-pine-cursor}/share/icons/BreezeX-RosePine-Linux";
-      recursive = true; # important for directories
-    };
-
-    # # Also create a symlink with the correct theme name that matches env.conf
-    # ".local/share/icons/BreezeX-RoséPine" = {
-    #   source = "${pkgs.rose-pine-cursor}/share/icons/BreezeX-RosePine-Linux";
-    #   recursive = true; # important for directories
-    # };
+  # Set Hyprcursor environment variables
+  home.sessionVariables = {
+    HYPRCURSOR_THEME = "phinger-cursors-dark";
+    HYPRCURSOR_SIZE = "24";
   };
-
+  # Set up the traditional Xcursor theme for GTK applications
   home.pointerCursor = {
+    package = pkgs.phinger-cursors;
+    name = "phinger-cursors-dark";
+    size = 24;
     gtk.enable = true;
-    # x11.enable = true;
-    package = pkgs.rose-pine-cursor;
-    name = "BreezeX-RoséPine";
-    size = 16;
   };
 
   gtk = {
     enable = true;
+
+    cursorTheme = {
+      name = "phinger-cursors-dark";
+      size = 24;
+    };
 
     theme = {
       package = pkgs.graphite-gtk-theme.override {
@@ -59,5 +51,19 @@
       package = pkgs.rubik;
       size = 11;
     };
+
+    gtk3.extraConfig = {
+      gtk-xft-antialias = 1;
+      gtk-xft-hinting = 1;
+      gtk-xft-hintstyle = "hintslight";
+      gtk-xft-rgba = "rgb";
+    };
+
+    gtk2.extraConfig = ''
+      gtk-xft-antialias=1
+      gtk-xft-hinting=1
+      gtk-xft-hintstyle="hintslight"
+      gtk-xft-rgba="rgb"
+    '';
   };
 }

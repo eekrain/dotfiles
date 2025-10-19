@@ -11,5 +11,6 @@
     ./mpv
     ./vscode
     ./wofi
+    ./screenshot
   ];
 }

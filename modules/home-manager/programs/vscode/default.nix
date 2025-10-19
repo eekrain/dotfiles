@@ -14,8 +14,8 @@ in {
       # nix formatter
       alejandra
       vscode
-      windsurf
-      code-cursor
+      # windsurf
+      # code-cursor
     ];
   };
 }

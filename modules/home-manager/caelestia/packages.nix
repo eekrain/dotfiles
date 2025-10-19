@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # Not sure if all these dependencies are necessary or not
     xdg-desktop-portal-hyprland

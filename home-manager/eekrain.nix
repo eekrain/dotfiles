@@ -60,6 +60,7 @@
       mpv = true;
       vscode = true;
       wofi = true;
+      screenshot = true;
     };
     addons.enable = true;
     waylandIntegration.enable = true;

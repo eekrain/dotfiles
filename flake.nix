@@ -65,6 +65,7 @@
     # Caelestia desktop environment
     caelestia.url = "github:caelestia-dots/shell";
     caelestia.inputs.nixpkgs.follows = "nixpkgs";
+    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
 
     # Additional dependencies for Caelestia
     quickshell = {
@@ -78,6 +79,7 @@
     nixpkgs,
     home-manager,
     chaotic,
+    hyprcursor-phinger,
     ...
   } @ inputs: let
     inherit (self) outputs;

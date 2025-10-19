@@ -20,7 +20,7 @@ in {
       wf-recorder
       bruno # alternative to postman
       insomnia
-      pkgs2505.libreoffice
+      # pkgs2505.libreoffice
       ferdium
       remmina
       zoom-us
@@ -28,6 +28,7 @@ in {
       nodejs_20
       bun
       claude-code
+      # opencode
       obsidian
 
       psmisc
