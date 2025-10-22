@@ -33,6 +33,7 @@ in {
 
       psmisc
       pnpm
+      filezilla
       # droid
 
       # winbox
