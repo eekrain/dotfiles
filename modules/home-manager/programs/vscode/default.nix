@@ -16,6 +16,7 @@ in {
       vscode
       # windsurf
       # code-cursor
+      zed-editor
     ];
   };
 }

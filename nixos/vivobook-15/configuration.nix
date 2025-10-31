@@ -26,6 +26,8 @@
     inputs.hardware.nixosModules.common-cpu-amd-pstate
     inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-pc-laptop-ssd
+    inputs.hardware.nixosModules.asus-battery
+
     # You can also split up your configuration and import pieces of it here:
     ../eekrain.nix
   ];
@@ -67,6 +69,7 @@
       docker = true;
       virtualbox = false;
       waydroid = false;
+      httpd.enable = true;
     };
   };
 
@@ -80,8 +83,11 @@
   # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelPackages = pkgs.linuxPackages_cachyos;
-  # chaotic.scx.enable = true;
-  # chaotic.scx.scheduler = "scx_rusty";
+  services.scx = {
+    enable = true;
+    scheduler = "scx_bpfland"; # or "scx_rusty" as alternative
+    extraArgs = ["-s" "5000" "-S" "500" "-l" "5000"]; # low-latency profile
+  };
 
   # IF for some reason your system can't boot up cause of bluetooth issue, add this line to add all linux firmware
   hardware.enableAllFirmware = true;

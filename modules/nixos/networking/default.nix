@@ -33,6 +33,8 @@ in {
       extraHosts = ''
         127.0.0.1 mydomain.com
         127.0.0.1 dashboard.mydomain.com
+        127.0.0.1 seller-mpp.localhost
+        127.0.0.1 buyer-mpp.localhost
       '';
 
       firewall = {
