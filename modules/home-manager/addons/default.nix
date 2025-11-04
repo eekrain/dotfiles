@@ -13,7 +13,7 @@ in {
     programs.obs-studio.enable = true;
 
     home.packages = with pkgs; [
-      nvtopPackages.nvidia
+      # nvtopPackages.nvidia
       vesktop
       amberol
       qview
@@ -28,12 +28,13 @@ in {
       nodejs_20
       bun
       claude-code
-      # opencode
+      opencode
       obsidian
 
       psmisc
       pnpm
       filezilla
+      tree
       # droid
 
       # winbox

@@ -14,8 +14,8 @@ in {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        vaapiVdpau
-        # libvdpau-va-gl
+        libva-vdpau-driver
+        libvdpau-va-gl
       ];
     };
     hardware.amdgpu.initrd.enable = true;

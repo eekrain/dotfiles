@@ -32,7 +32,8 @@ in {
       vesktop
       ferdium
       zoom-us
-      google-chrome
+      # google-chrome
+      helium
     ];
 
     # Create overriding desktop entries that launch with Wayland flags

@@ -36,6 +36,11 @@
     nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
     # Also see the 'packages-2405' overlay at 'overlays/default.nix'.
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

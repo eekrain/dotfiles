@@ -14,10 +14,8 @@
     homeDirectory = "/home/eekrain";
   };
   # FIXME: Set your git settings
-  programs.git = {
-    userName = "Ardian Eka Candra";
-    userEmail = "ardianoption@gmail.com";
-  };
+  programs.git.settings.user.name = "Ardian Eka Candra";
+  programs.git.settings.user.email = "ardianoption@gmail.com";
 
   # You can import other home-manager modules here
   imports = [

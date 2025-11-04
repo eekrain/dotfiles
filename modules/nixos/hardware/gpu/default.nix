@@ -30,7 +30,7 @@ in {
 
   config = mkIf (cfg.gpu != null) {
     environment.systemPackages = with pkgs; [
-      glxinfo
+      mesa-demos
       pciutils
       preferNvidia
     ];
