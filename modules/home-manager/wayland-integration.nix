@@ -34,6 +34,7 @@ in {
       zoom-us
       # google-chrome
       helium
+      bruno
     ];
 
     # Create overriding desktop entries that launch with Wayland flags
@@ -102,6 +103,19 @@ in {
         terminal = false;
         categories = ["Network" "WebBrowser"];
         mimeType = ["text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https" "x-scheme-handler/ftp"];
+        startupNotify = true;
+      };
+
+      # Bruno
+      "bruno" = {
+        name = "Bruno";
+        genericName = "API Client";
+        comment = "Opensource API Client for Exploring and Testing APIs";
+        exec = "bruno ${waylandFlagsStr} %U";
+        icon = "bruno";
+        type = "Application";
+        terminal = false;
+        categories = ["Development"];
         startupNotify = true;
       };
     };
