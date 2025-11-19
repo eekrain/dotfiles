@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -28,9 +29,12 @@ in {
       nodejs_20
       bun
       claude-code
-      opencode
-      obsidian
 
+      opencode
+
+      inputs.antigravity-nix.packages.x86_64-linux.default
+
+      obsidian
       psmisc
       pnpm
       filezilla

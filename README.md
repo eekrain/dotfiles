@@ -1,12 +1,11 @@
 # My Hyprland Dotfiles using NixOS with Flakes
- 
+
 https://github.com/user-attachments/assets/fb367d67-d5f1-4911-9687-698e174401aa
 
 <p align="center">Rice <a href="https://end-4.github.io/dots-hyprland-wiki/en/" target="_blank">illogical-impulse</a> by <a href="https://github.com/end-4" target="_blank">end-4</a></p>
 
 I am currently rocking end-4's illogical-impulse rice. So this is my attempt at porting it to NixOS.
 This is my personal nix flake configuration. If you want to use it, you may need to make some adjustments.
-
 
 ## Installation
 
@@ -37,11 +36,12 @@ I am using a simple script to set wallpaper with swww. I am only using this scri
 
 #### 7. Edit hyprland configuration
 
-To edit hyprland configuration, you can head over to modules/home-manager/illogical-impulse/dots/hyprland. Here you can edit keybinds, app startup, window rules, etc. 
+To edit hyprland configuration, you can head over to modules/home-manager/illogical-impulse/dots/hyprland. Here you can edit keybinds, app startup, window rules, etc.
 
 #### 8. Install to your system
 
 After all configuration above you can try to install your modified flake to your system. Make sure you have followed the guide [here](https://nixos.wiki/wiki/NixOS_Installation_Guide) and have been mounting target disk installation. Then run:
+
 ```bash
 sudo nixos-install --flake ./path/to/flake/dotfiles#your-machine-hostname
 ```
@@ -55,10 +55,3 @@ init-illogical-impulse
 ```
 
 And then if everything is working, Hyprland instance will ran.
-
-
-## Thank's to
-
-- [@end-4](https://github.com/end-4) for making good looking yet functional rice
-- [@Aylur](https://github.com/Aylur) for amazing widget system
-- [@Misterio77](https://github.com/Misterio77) for minimal and easy to use flake starter config
