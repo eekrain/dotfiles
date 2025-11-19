@@ -73,9 +73,9 @@
 
   # FIXME: Add the rest of your current configuration
   # use latest kernel
-  # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_cachyos;
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # chaotic.scx.enable = true;
   # chaotic.scx.scheduler = "scx_rusty";
