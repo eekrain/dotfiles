@@ -8,6 +8,9 @@
   pkgs,
   ...
 }: {
+  # Disable Nixpkgs release check for version compatibility
+  home.enableNixpkgsReleaseCheck = false;
+
   # FIXME: Set your username
   home = {
     username = "eekrain";
@@ -41,7 +44,7 @@
   myHmModules = {
     cli = {
       git = true;
-      ide = true;
+      ide = false;
       zsh = true;
       kitty = true;
     };
@@ -69,5 +72,5 @@
   # home.packages = with pkgs; [ steam ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.11";
 }

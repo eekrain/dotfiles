@@ -20,6 +20,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
@@ -28,8 +29,10 @@
     nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
     # Also see the 'packages-2405' overlay at 'overlays/default.nix'.
 
-    nur = {
-      url = "github:nix-community/NUR";
+    # Caelestia desktop environment
+    hyprland.url = "github:hyprwm/Hyprland";
+    caelestia = {
+      url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -57,16 +60,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Caelestia desktop environment
-    caelestia.url = "github:caelestia-dots/shell";
-    caelestia.inputs.nixpkgs.follows = "nixpkgs";
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
-
-    # Additional dependencies for Caelestia
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";

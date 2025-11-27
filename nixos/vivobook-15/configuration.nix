@@ -80,9 +80,8 @@
 
   # FIXME: Add the rest of your current configuration
   # use latest kernel
-  # boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
   services.scx = {
     enable = true;
     scheduler = "scx_bpfland"; # or "scx_rusty" as alternative
@@ -113,5 +112,5 @@
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.11";
 }
