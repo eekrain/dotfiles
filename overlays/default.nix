@@ -7,15 +7,6 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
-    # Apply the wayland integration overlay directly
-    # vscode = (import ./wayland-integration.nix final prev).vscode;
-    # windsurf = (import ./wayland-integration.nix final prev).windsurf;
-    # code-cursor = (import ./wayland-integration.nix final prev).code-cursor;
-    # brave = (import ./wayland-integration.nix final prev).brave;
-    # ungoogled-chromium = (import ./wayland-integration.nix final prev).ungoogled-chromium;
-    # vesktop = (import ./wayland-integration.nix final prev).vesktop;
-    # ferdium = (import ./wayland-integration.nix final prev).ferdium;
-    # zoom-us = (import ./wayland-integration.nix final prev).zoom-us;
   };
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will

@@ -9,7 +9,7 @@ with lib; let
 in {
   options.myHmModules.cli.ide = mkEnableOption "Enable ide settings";
   config = mkIf cfg.git {
-    home.packages = [pkgs.helix];
+    # home.packages = [pkgs.helix];
 
     # programs.zellij = {
     #   enable = true;

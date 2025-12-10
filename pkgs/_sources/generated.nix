@@ -3,10 +3,10 @@
 {
   helium = {
     pname = "helium";
-    version = "0.6.4.1";
+    version = "0.7.1.1";
     src = fetchurl {
-      url = "https://github.com/imputnet/helium-linux/releases/download/0.6.4.1/helium-0.6.4.1-x86_64.AppImage";
-      sha256 = "sha256-DlEFuFwx2Qjr9eb6uiSYzM/F3r2hdtkMW5drJyJt/YE=";
+      url = "https://github.com/imputnet/helium-linux/releases/download/0.7.1.1/helium-0.7.1.1-x86_64.AppImage";
+      sha256 = "sha256-spUogmjv+RNjtuDs5tY7vXFgKR62qUb85Gj/bERCza4=";
     };
   };
   materialyoucolor = {

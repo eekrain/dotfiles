@@ -11,11 +11,9 @@ with lib; let
   # Define the same set of Wayland flags as in the system-wide overlay
   # Critical fix: --disable-features=WaylandFractionalScaleV1 resolves scaling blurriness
   waylandFlags = [
-    "--ozone-platform=wayland"
-    "--enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer,UseOzonePlatform"
-    "--gtk-version=4"
-    "--enable-wayland-ime"
-    "--disable-features=UseChromeOSDirectVideoDecoder,WaylandFractionalScaleV1"
+    "--ozone-platform-hint=auto"
+    "--ignore-gpu-blocklist"
+    "--disable-features=WaylandFractionalScaleV1"
   ];
 
   # Convert flags list to string for desktop entries
@@ -33,7 +31,6 @@ in {
       ferdium
       zoom-us
       # google-chrome
-      helium
       bruno
     ];
 
@@ -93,18 +90,18 @@ in {
       };
 
       # Google Chrome
-      "google-chrome" = {
-        name = "Google Chrome";
-        genericName = "Web Browser";
-        comment = "Access the Internet";
-        exec = "google-chrome-stable ${waylandFlagsStr} %U";
-        icon = "google-chrome";
-        type = "Application";
-        terminal = false;
-        categories = ["Network" "WebBrowser"];
-        mimeType = ["text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https" "x-scheme-handler/ftp"];
-        startupNotify = true;
-      };
+      # "google-chrome" = {
+      #   name = "Google Chrome";
+      #   genericName = "Web Browser";
+      #   comment = "Access the Internet";
+      #   exec = "google-chrome-stable ${waylandFlagsStr} %U";
+      #   icon = "google-chrome";
+      #   type = "Application";
+      #   terminal = false;
+      #   categories = ["Network" "WebBrowser"];
+      #   mimeType = ["text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https" "x-scheme-handler/ftp"];
+      #   startupNotify = true;
+      # };
 
       # Bruno
       "bruno" = {

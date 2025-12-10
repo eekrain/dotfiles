@@ -40,6 +40,8 @@ in {
       filezilla
       tree
       # droid
+      helium
+      # google-chrome
 
       # winbox
       # responsivelyapp
