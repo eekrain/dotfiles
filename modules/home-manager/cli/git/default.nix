@@ -13,7 +13,7 @@ in {
     programs = {
       git = {
         enable = true;
-        extraConfig = {
+        settings = {
           pull.rebase = false;
           # # Follows gitCredentialHelper from home-manager gh module
           # credential."https://github.com" = {

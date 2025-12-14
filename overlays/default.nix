@@ -13,14 +13,14 @@
   # be accessible through 'pkgs.pkgs2311'
   packages-2505 = final: _prev: {
     pkgs2505 = import inputs.nixpkgs-2505 {
-      system = final.system;
+      system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
   };
 
   packages-2411 = final: _prev: {
     pkgs2411 = import inputs.nixpkgs-2411 {
-      system = final.system;
+      system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
   };
@@ -29,7 +29,7 @@
   # be accessible through 'pkgs.pkgs2411'
   packages-2405 = final: _prev: {
     pkgs2411 = import inputs.nixpkgs-2405 {
-      system = final.system;
+      system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
   };

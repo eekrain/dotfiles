@@ -41,7 +41,7 @@ in {
       tree
       # droid
       helium
-      # google-chrome
+      google-chrome
 
       # winbox
       # responsivelyapp

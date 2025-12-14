@@ -12,7 +12,7 @@ in
       contents = appimageTools.extract {inherit pname version src;};
     in ''
       install -m 444 -D ${contents}/${pname}.desktop -t $out/share/applications
-      substituteInPlace $out/share/applications/${pname}.desktop --replace 'Exec=AppRun' 'Exec=${meta.mainProgram} --ozone-platform-hint=auto'
+      substituteInPlace $out/share/applications/${pname}.desktop --replace-fail 'Exec=AppRun' 'Exec=${meta.mainProgram} --ozone-platform=wayland'
 
       cp -r ${contents}/usr/share/* $out/share/
 

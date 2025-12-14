@@ -11,7 +11,7 @@ with lib; let
   # Define the same set of Wayland flags as in the system-wide overlay
   # Critical fix: --disable-features=WaylandFractionalScaleV1 resolves scaling blurriness
   waylandFlags = [
-    "--ozone-platform-hint=auto"
+    "--ozone-platform=wayland"
     "--ignore-gpu-blocklist"
     "--disable-features=WaylandFractionalScaleV1"
   ];
@@ -30,7 +30,7 @@ in {
       vesktop
       ferdium
       zoom-us
-      # google-chrome
+      google-chrome
       bruno
     ];
 
