@@ -98,7 +98,7 @@ in {
         c = "clear";
         rb = "reboot";
         sd = "shutdown now";
-        cd = "z";
+        cd = "zoxide";
         wifirescan = "nmcli device wifi rescan";
         ls = "eza --icons";
         ll = "ls -lbF --git";

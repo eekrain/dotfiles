@@ -49,7 +49,18 @@ in {
         mimeType = ["text/plain" "inode/directory"];
         startupNotify = true;
       };
-
+      "antigravity" = {
+        name = "Google Antigravity";
+        genericName = "Google Antigravity";
+        comment = "Next-generation agentic IDE";
+        exec = "antigravity ${waylandFlagsStr} %F";
+        icon = "antigravity";
+        type = "Application";
+        terminal = false;
+        categories = ["Development" "IDE"];
+        mimeType = ["text/plain" "inode/directory" "x-scheme-handler/antigravity"];
+        startupNotify = true;
+      };
       # Vesktop
       "vesktop" = {
         name = "Vesktop";
