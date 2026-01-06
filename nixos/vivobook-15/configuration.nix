@@ -47,7 +47,8 @@
     networking = {
       enable = true;
       cloudflared = true;
-      cloudflare-warp = true;
+      dnscrypt = false;
+      cloudflare-warp = false;
       clash = false;
       # redsocks = true;
     };
@@ -81,11 +82,14 @@
   # FIXME: Add the rest of your current configuration
   # use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_cachyos;
+
+  # DNS tools for testing
+  environment.systemPackages = with pkgs; [dnsutils];
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   services.scx = {
     enable = true;
-    scheduler = "scx_bpfland"; # or "scx_rusty" as alternative
-    extraArgs = ["-s" "5000" "-S" "500" "-l" "5000"]; # low-latency profile
+    scheduler = "scx_rusty"; # or "scx_rusty" as alternative
+    # extraArgs = ["-s" "5000" "-S" "500" "-l" "5000"]; # low-latency profile
   };
 
   # IF for some reason your system can't boot up cause of bluetooth issue, add this line to add all linux firmware

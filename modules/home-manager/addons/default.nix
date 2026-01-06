@@ -21,16 +21,17 @@ in {
       wf-recorder
       bruno # alternative to postman
       insomnia
+      postman
       # pkgs2505.libreoffice
       ferdium
       remmina
       zoom-us
 
-      nodejs_20
       bun
-      claude-code
 
+      claude-code
       opencode
+      goose-cli
 
       inputs.antigravity-nix.packages.x86_64-linux.default
 

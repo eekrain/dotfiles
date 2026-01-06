@@ -8,6 +8,7 @@ with lib; let
   cfg = config.myModules.networking;
 in {
   imports = [
+    ./dnscrypt.nix
     ./redsocks.nix
     ./clash.nix
     ./cloudflare-warp
@@ -30,6 +31,9 @@ in {
     networking = {
       networkmanager.enable = true;
 
+      # DNS nameservers (when dnscrypt is disabled)
+      nameservers = ["1.1.1.1" "1.0.0.1"];
+
       extraHosts = ''
         127.0.0.1 mydomain.com
         127.0.0.1 dashboard.mydomain.com
@@ -38,19 +42,8 @@ in {
       '';
 
       firewall = {
-        enable = lib.mkDefault true;
-        allowedTCPPortRanges = [
-          {
-            from = 0;
-            to = 65535;
-          }
-        ];
-        allowedUDPPortRanges = [
-          {
-            from = 0;
-            to = 65535;
-          }
-        ];
+        enable = true;
+        allowedTCPPorts = [3000];
       };
     };
   };

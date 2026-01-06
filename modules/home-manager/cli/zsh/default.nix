@@ -21,6 +21,12 @@ in {
       eza
       fzf
       jq
+      xsel
+
+      nodejs_22 # Or your preferred Node version
+      # Optional: extra Cypress deps if needed
+      glib
+      gtk3
     ];
 
     # Enable starship promt styling
@@ -98,7 +104,7 @@ in {
         c = "clear";
         rb = "reboot";
         sd = "shutdown now";
-        cd = "zoxide";
+        cd = "z";
         wifirescan = "nmcli device wifi rescan";
         ls = "eza --icons";
         ll = "ls -lbF --git";
@@ -115,7 +121,7 @@ in {
     # Addons variables
     home.sessionVariables = {
       NIXPKGS_ALLOW_UNFREE = "1";
-      PATH = "$HOME/.local/bin:$PATH";
+      PATH = "$HOME/.bun/bin:$HOME/.local/bin:$PATH";
     };
   };
 }
