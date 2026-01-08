@@ -8,7 +8,7 @@ with lib; let
   cfg = config.myModules.networking;
 in {
   imports = [
-    ./dnscrypt.nix
+    ./unbound.nix
     ./redsocks.nix
     ./clash.nix
     ./cloudflare-warp
@@ -29,9 +29,12 @@ in {
       ];
 
     networking = {
-      networkmanager.enable = true;
+      networkmanager = {
+        enable = true;
+        dns = "none";
+      };
 
-      # DNS nameservers (when dnscrypt is disabled)
+      # DNS nameservers (fallback when unbound is disabled)
       nameservers = ["1.1.1.1" "1.0.0.1"];
 
       extraHosts = ''

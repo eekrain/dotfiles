@@ -47,7 +47,7 @@
     networking = {
       enable = true;
       cloudflared = true;
-      dnscrypt = false;
+      unbound = true;
       cloudflare-warp = false;
       clash = false;
       # redsocks = true;
