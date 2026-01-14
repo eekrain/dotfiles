@@ -29,6 +29,9 @@ in {
 
     services.unbound = {
       enable = true;
+      # package = pkgs.unbound.override {
+      #   withDoH = true;
+      # };
 
       settings = {
         server = {
@@ -79,9 +82,8 @@ in {
             name = ".";
             forward-tls-upstream = "yes";
             forward-addr = [
+              # "174.138.29.175@443#doh.tiar.app"
               "174.138.29.175@853#dot.tiar.app"
-              "1.1.1.1@853#cloudflare-dns.com"
-              "1.0.0.1@853#cloudflare-dns.com"
             ];
           }
         ];
