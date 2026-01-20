@@ -27,6 +27,7 @@ in {
       # Optional: extra Cypress deps if needed
       glib
       gtk3
+      tmux
     ];
 
     # Enable starship promt styling
