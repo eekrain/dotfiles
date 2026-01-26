@@ -6,14 +6,14 @@
     extra-substituters = [
       "https://cache.nixos.org/"
       "https://nix-community.cachix.org/"
-      "https://chaotic-nyx.cachix.org/"
+      "https://attic.xuyh0120.win/lantian"
       "https://hyprland.cachix.org/"
       "https://claude-code.cachix.org"
     ];
     extra-trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "claude-code.cachix.org-1:YeXf2aNu7UTX8Vwrze0za1WEDS+4DuI2kVeWEE4fsRk="
     ];
@@ -25,7 +25,6 @@
 
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nixpkgs-2505.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-2411.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
@@ -64,6 +63,10 @@
 
     hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
 
+    nix-cachyos-kernel = {
+      url = "github:xddxdd/nix-cachyos-kernel/release";
+    };
+
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,7 +78,7 @@
     self,
     nixpkgs,
     home-manager,
-    chaotic,
+    nix-cachyos-kernel,
     hyprcursor-phinger,
     ...
   } @ inputs: let
@@ -123,7 +126,11 @@
       eka-laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          chaotic.nixosModules.default
+          (
+            { pkgs, ... }: {
+              nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
+            }
+          )
           # > Our main nixos configuration file <
           # FIXME replace with your system configuration
           ./nixos/vivobook-15/configuration.nix
@@ -133,7 +140,11 @@
       lenovo-kantor = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          chaotic.nixosModules.default
+          (
+            { pkgs, ... }: {
+              nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
+            }
+          )
           # > Our main nixos configuration file <
           # FIXME replace with your system configuration
           ./nixos/lenovo-kantor/configuration.nix

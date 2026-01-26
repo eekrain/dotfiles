@@ -31,6 +31,7 @@ in {
 
       claude-code
       opencode
+      codex
       goose-cli
 
       inputs.antigravity-nix.packages.x86_64-linux.default

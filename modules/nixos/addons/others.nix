@@ -16,7 +16,12 @@ in {
 
   config = mkMerge [
     (mkIf cfg.nix-ld {
-      programs.nix-ld.enable = true;
+      programs.nix-ld = {
+        enable = true;
+        libraries = with pkgs; [
+          vips # sharp npm package
+        ];
+      };
     })
 
     (mkIf cfg.flatpak {

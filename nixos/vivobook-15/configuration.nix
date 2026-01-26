@@ -81,7 +81,7 @@
 
   # FIXME: Add the rest of your current configuration
   # use latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
 
   # DNS tools for testing
   environment.systemPackages = with pkgs; [dnsutils];
