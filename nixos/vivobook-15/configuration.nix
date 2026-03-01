@@ -48,7 +48,7 @@
       enable = true;
       cloudflared = true;
       unbound = true;
-      cloudflare-warp = false;
+      cloudflare-warp = true;
       clash = false;
       # redsocks = true;
     };
@@ -99,7 +99,6 @@
   # Spesific settings for ASUS Laptops
   services.asusd = {
     enable = true;
-    enableUserService = true;
   };
   services.supergfxd.enable = true;
 

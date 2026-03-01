@@ -117,6 +117,7 @@ in {
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
+      # UWSM disabled - using standard Hyprland session per official docs
       # withUWSM = true;
     };
 
@@ -138,15 +139,37 @@ in {
       variant = "";
     };
 
-    # Testing portal stuff
+    # XDG Portal configuration for screen sharing and file opening
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
-      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+      ];
+      config.hyprland = {
+        default = ["hyprland" "gtk"];
+        "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+        # Explicitly set ScreenCast to hyprland for Firefox/Zen browser screen sharing
+        "org.freedesktop.impl.portal.ScreenCast" = ["hyprland"];
+      };
     };
 
     # Polkit stuff
     security.polkit.enable = true;
     programs.gnupg.agent.enable = true;
+
+    # Import XDG session variables into systemd user environment
+    systemd.user.services.xdg-desktop-portal.environment = {
+      XDG_CURRENT_DESKTOP = "Hyprland";
+      XDG_SESSION_TYPE = "wayland";
+      XDG_SESSION_DESKTOP = "Hyprland";
+    };
+
+    systemd.user.services.xdg-desktop-portal-hyprland.environment = {
+      XDG_CURRENT_DESKTOP = "Hyprland";
+      XDG_SESSION_TYPE = "wayland";
+      XDG_SESSION_DESKTOP = "Hyprland";
+    };
   };
 }

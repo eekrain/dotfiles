@@ -10,10 +10,12 @@ with lib; let
 
   # Define the same set of Wayland flags as in the system-wide overlay
   # Critical fix: --disable-features=WaylandFractionalScaleV1 resolves scaling blurriness
+  # WebRTCPipeWireCapturer enables screen sharing via PipeWire on Wayland
   waylandFlags = [
     "--ozone-platform=wayland"
     "--ignore-gpu-blocklist"
     "--disable-features=WaylandFractionalScaleV1"
+    "--enable-features=WebRTCPipeWireCapturer"
   ];
 
   # Convert flags list to string for desktop entries

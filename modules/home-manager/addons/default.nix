@@ -29,9 +29,10 @@ in {
 
       bun
 
-      claude-code
-      opencode
-      codex
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.kilocode-cli
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex
       goose-cli
 
       inputs.antigravity-nix.packages.x86_64-linux.default

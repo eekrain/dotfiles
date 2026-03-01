@@ -20,7 +20,6 @@
   programs.git.settings.user.name = "Ardian Eka Candra";
   programs.git.settings.user.email = "ardianoption@gmail.com";
 
-  nixpkgs.overlays = [inputs.claude-code.overlays.default];
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):

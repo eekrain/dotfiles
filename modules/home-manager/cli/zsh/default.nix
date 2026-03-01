@@ -22,6 +22,7 @@ in {
       fzf
       jq
       xsel
+      ripgrep
 
       nodejs_22 # Or your preferred Node version
       # Optional: extra Cypress deps if needed
