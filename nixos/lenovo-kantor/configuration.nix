@@ -59,7 +59,7 @@
       nix-ld = true;
       devenv = true;
       flatpak = false;
-      androidAdb = false;
+      android = true;
       docker = true;
       virtualbox = false;
       waydroid = false;

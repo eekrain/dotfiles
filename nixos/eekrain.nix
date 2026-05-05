@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # Add home manager settings to rebuild together with nixos-rebuild
   home-manager.users.eekrain = import ../home-manager/eekrain.nix;
 
@@ -18,7 +19,19 @@
       # Be sure to change it (using passwd) after rebooting!
       initialPassword = "eka";
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["wheel" "redsocks" "audio" "adbusers" "libvirtd" "networkmanager" "video" "docker" "warp"];
+      extraGroups = [
+        "wheel"
+        "redsocks"
+        "audio"
+        "libvirtd"
+        "networkmanager"
+        "docker"
+        "warp"
+        "adbusers"
+        "kvm"
+        "video"
+        "render"
+      ];
       # Setting zsh as default shell
       shell = pkgs.zsh;
     };

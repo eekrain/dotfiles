@@ -4,12 +4,12 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.myModules.hardware;
-in {
+in
+{
   config = mkIf (cfg.gpu == "amd+nvidia") {
-    services.xserver.videoDrivers = ["nvidia"];
-
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
@@ -20,8 +20,15 @@ in {
     };
     hardware.amdgpu.initrd.enable = true;
 
-    boot.blacklistedKernelModules = ["nouveau"];
-    boot.kernelParams = ["nvidia-drm.fbdev=1"];
+    boot.initrd.kernelModules = [
+      "nvidia"
+      "nvidia_modeset"
+      "nvidia_uvm"
+      "nvidia_drm"
+    ];
+
+    boot.blacklistedKernelModules = [ "nouveau" ];
+    boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
     hardware.nvidia = {
       # Using beta driver
       package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -47,16 +54,17 @@ in {
         nvidiaBusId = "PCI:1:0:0";
       };
     };
+    # 1. This is the big one that usually satisfies the check
+    services.xserver.videoDrivers = [ "nvidia" ];
 
-    # # If it's using nvidia, implement spesific sessionVariables
-    # environment.sessionVariables = {
-    #   GBM_BACKEND = "nvidia-drm"; #on my laptop, wayland crashed using this env
-    #   LIBVA_DRIVER_NAME = "nvidia"; # hardware acceleration
-    #   # WLR_RENDERER = "vulkan";
-    #   __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    #   __GL_VRR_ALLOWED = "0";
-    #   WLR_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
-    #   WLR_NO_HARDWARE_CURSORS = "1"; # if no cursor,uncomment this line
-    # };
+    # 2. You already have this, but keep it
+    hardware.nvidia-container-toolkit.enable = true;
+
+    # 3. This is the "emergency bypass" that overrides the error you're seeing
+    hardware.nvidia-container-toolkit.suppressNvidiaDriverAssertion = true;
+
+    environment.sessionVariables = {
+      AQ_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0";
+    };
   };
 }

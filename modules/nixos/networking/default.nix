@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.myModules.networking;
-in {
+in
+{
   imports = [
     ./unbound.nix
     ./redsocks.nix
@@ -22,8 +24,9 @@ in {
     time.timeZone = "Asia/Jakarta";
     services.ntp.enable = true;
 
-    environment.systemPackages = with pkgs;
-      []
+    environment.systemPackages =
+      with pkgs;
+      [ ]
       ++ lib.optionals (cfg.cloudflared) [
         pkgs2411.cloudflared
       ];
@@ -35,7 +38,10 @@ in {
       };
 
       # DNS nameservers (fallback when unbound is disabled)
-      nameservers = ["1.1.1.1" "1.0.0.1"];
+      nameservers = [
+        "1.1.1.1"
+        "1.0.0.1"
+      ];
 
       extraHosts = ''
         127.0.0.1 mydomain.com
@@ -46,7 +52,16 @@ in {
 
       firewall = {
         enable = true;
-        allowedTCPPorts = [3000];
+        allowedTCPPortRanges = [
+          {
+            from = 3000;
+            to = 3005;
+          }
+          {
+            from = 1420;
+            to = 1425;
+          }
+        ];
       };
     };
   };

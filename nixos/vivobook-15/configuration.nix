@@ -7,7 +7,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # You can import other NixOS modules here
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
@@ -66,10 +67,10 @@
       nix-ld = true;
       devenv = true;
       flatpak = false;
-      androidAdb = false;
+      android = true;
       docker = true;
       virtualbox = false;
-      waydroid = false;
+      waydroid = true;
       httpd.enable = true;
     };
   };
@@ -84,7 +85,7 @@
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
 
   # DNS tools for testing
-  environment.systemPackages = with pkgs; [dnsutils];
+  environment.systemPackages = with pkgs; [ dnsutils ];
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   services.scx = {
     enable = true;
@@ -100,7 +101,6 @@
   services.asusd = {
     enable = true;
   };
-  services.supergfxd.enable = true;
 
   # Specialisation settings
   # Default boot loader configuration name using AMD GPU
