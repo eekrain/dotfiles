@@ -4,10 +4,12 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.myHmModules.cli;
   starshipCmd = "${config.home.profileDirectory}/bin/starship";
-in {
+in
+{
   options.myHmModules.cli.zsh = mkEnableOption "Enable zsh settings";
 
   config = mkIf cfg.zsh {
@@ -17,6 +19,7 @@ in {
       pkgs2411.awscli2
       nitch
       krabby
+      sqld
       turso-cli
       eza
       fzf

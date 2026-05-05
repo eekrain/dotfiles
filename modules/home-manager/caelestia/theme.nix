@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.hyprcursor-phinger.homeManagerModules.default
   ];
@@ -35,8 +36,8 @@
 
     theme = {
       package = pkgs.graphite-gtk-theme.override {
-        themeVariants = ["purple"];
-        colorVariants = ["dark"];
+        themeVariants = [ "purple" ];
+        colorVariants = [ "dark" ];
       };
       name = "Graphite-purple-dark"; # folder inside share/themes
     };
@@ -51,6 +52,8 @@
       package = pkgs.rubik;
       size = 11;
     };
+
+    gtk4.theme = config.gtk.theme;
 
     gtk3.extraConfig = {
       gtk-xft-antialias = 1;

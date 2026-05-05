@@ -13,6 +13,7 @@ in {
     home.packages = with pkgs; [
       # nix formatter
       alejandra
+      nixfmt
       vscode
       # windsurf
       # code-cursor

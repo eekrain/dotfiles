@@ -33,7 +33,7 @@ in {
       inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
       inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.kilocode-cli
       inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex
-      goose-cli
+      # goose-cli
 
       inputs.antigravity-nix.packages.x86_64-linux.default
 

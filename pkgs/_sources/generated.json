@@ -1,6 +1,6 @@
 {
     "helium": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": null,
         "extract": null,
         "name": "helium",
@@ -8,14 +8,14 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-abNHp4WaR2MqidG42TErJZBR1PcUVtRpBYFiKCmadW8=",
+            "sha256": "sha256-Ni7IZ9UBafr+ss0BcQaRKqmlmJI4IV1jRAJ8jhcodlg=",
             "type": "url",
-            "url": "https://github.com/imputnet/helium-linux/releases/download/0.8.2.1/helium-0.8.2.1-x86_64.AppImage"
+            "url": "https://github.com/imputnet/helium-linux/releases/download/0.11.5.1/helium-0.11.5.1-x86_64.AppImage"
         },
-        "version": "0.8.2.1"
+        "version": "0.11.5.1"
     },
     "materialyoucolor": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": null,
         "extract": null,
         "name": "materialyoucolor",
@@ -23,14 +23,14 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-MbTUB7mk/UtUswVZsNAxP21tofnRm3VUbtZdpSZx6nY=",
+            "sha256": "sha256-4siSriPcBzLDIwdoIAKIRhaigt5aNQCIqswjzfiF6CI=",
             "type": "url",
-            "url": "https://pypi.org/packages/source/m/materialyoucolor/materialyoucolor-2.0.10.tar.gz"
+            "url": "https://pypi.org/packages/source/m/materialyoucolor/materialyoucolor-3.0.2.tar.gz"
         },
-        "version": "2.0.10"
+        "version": "3.0.2"
     },
     "my-custom-fonts": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": null,
         "extract": null,
         "name": "my-custom-fonts",
@@ -45,7 +45,7 @@
         "version": "1.0"
     },
     "sddm-sugar-candy": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2020-02-01",
         "extract": null,
         "name": "sddm-sugar-candy",
@@ -66,7 +66,7 @@
         "version": "a1fae5159c8f7e44f0d8de124b14bae583edb5b8"
     },
     "waybar-mpris": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2022-01-27",
         "extract": null,
         "name": "waybar-mpris",
