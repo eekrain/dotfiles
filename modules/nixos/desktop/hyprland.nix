@@ -5,7 +5,8 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.myModules.desktop.hyprland;
   touchpadtoggle = pkgs.writeShellScriptBin "touchpadtoggle" ''
     if [ -z "$XDG_RUNTIME_DIR" ]; then
@@ -35,13 +36,18 @@ with lib; let
         disable_touchpad
     fi
   '';
-in {
+in
+{
   options.myModules.desktop.hyprland = {
     enable = mkEnableOption "Enable basic hyprland installation";
 
     brightnessController = mkOption {
       description = "GPU driver to use";
-      type = types.enum ["light" "brightnessctl" "ddcutil"];
+      type = types.enum [
+        "light"
+        "brightnessctl"
+        "ddcutil"
+      ];
       default = "light";
     };
   };
@@ -49,12 +55,9 @@ in {
   config = mkIf cfg.enable {
     # Brightness controller settings
     hardware.i2c.enable = true;
-    programs.light.enable =
-      if (cfg.brightnessController == "light")
-      then true
-      else false;
 
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       [
         grim # screenshot functionality
         slurp # screenshot functionality
@@ -62,10 +65,10 @@ in {
         egl-wayland
         #other pkgs
         xdg-utils # for opening default programs when clicking links
-        swww # wallpaper daemon
+        awww # wallpaper daemon
         gtk3 # needed for gtk-launch command
         libnotify # for sending notification
-        touchpadtoggle #script for touchpad toggler
+        touchpadtoggle # script for touchpad toggler
         hyprpolkitagent
         # Caelestia desktop environment
         inputs.caelestia.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -97,8 +100,8 @@ in {
         libsForQt5.qt5ct
         nerd-fonts.jetbrains-mono
       ]
-      ++ optionals (cfg.brightnessController == "ddcutil") [ddcutil] #install ddcutil if ddcutil selected as brightnessController
-      ++ optionals (cfg.brightnessController == "brightnessctl") [brightnessctl]; #install brightnessctl if brightnessctl selected as brightnessController
+      ++ optionals (cfg.brightnessController == "ddcutil") [ ddcutil ] # install ddcutil if ddcutil selected as brightnessController
+      ++ optionals (cfg.brightnessController == "brightnessctl") [ brightnessctl ]; # install brightnessctl if brightnessctl selected as brightnessController
     # Enable Location.
     # Used for night light mode
     services.geoclue2.enable = true;
@@ -113,9 +116,9 @@ in {
 
     programs.hyprland = {
       enable = true;
-      # Use the system package from nixos-unstable instead of external flake
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # Use packages from nixos-unstable instead of external flake
+      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
       # UWSM disabled - using standard Hyprland session per official docs
       # withUWSM = true;
@@ -145,13 +148,17 @@ in {
       xdgOpenUsePortal = true;
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-hyprland
+        # inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
       ];
       config.hyprland = {
-        default = ["hyprland" "gtk"];
-        "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
         # Explicitly set ScreenCast to hyprland for Firefox/Zen browser screen sharing
-        "org.freedesktop.impl.portal.ScreenCast" = ["hyprland"];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
       };
     };
 

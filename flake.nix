@@ -8,7 +8,7 @@
       "https://nix-community.cachix.org/"
       "https://cache.numtide.com"
       "https://attic.xuyh0120.win/lantian"
-      "https://hyprland.cachix.org/"
+      # "https://hyprland.cachix.org/"
       "https://claude-code.cachix.org"
       "https://codex-cli.cachix.org"
     ];
@@ -17,7 +17,7 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "claude-code.cachix.org-1:YeXf2aNu7UTX8Vwrze0za1WEDS+4DuI2kVeWEE4fsRk="
       "codex-cli.cachix.org-1:2+p+8sPX+pH5F1lC6qvAYAUL6SOFD1PTuvTAfD7nmP0="
     ];
@@ -35,9 +35,9 @@
     # Also see the 'packages-2405' overlay at 'overlays/default.nix'.
 
     # Caelestia desktop environment
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
     caelestia = {
-      url = "github:caelestia-dots/shell";
+      url = "github:caelestia-dots/shell/20d36088a4698e2f647554794951ed1744d37669";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
