@@ -81,17 +81,21 @@
   programs.nh.flake = lib.mkForce "/home/eekrain/dotfiles";
 
   # FIXME: Add the rest of your current configuration
-  # use latest kernel
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+  # boot.kernelPackages = pkgs.linuxPackages;
+
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
+  services.scx = {
+    enable = true;
+    scheduler = "scx_bpfland";
+    extraArgs = [
+      "-m"
+      "performance"
+      "-w"
+    ];
+  };
 
   # DNS tools for testing
   environment.systemPackages = with pkgs; [ dnsutils ];
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  services.scx = {
-    enable = true;
-    scheduler = "scx_rusty"; # or "scx_rusty" as alternative
-    # extraArgs = ["-s" "5000" "-S" "500" "-l" "5000"]; # low-latency profile
-  };
 
   # IF for some reason your system can't boot up cause of bluetooth issue, add this line to add all linux firmware
   hardware.enableAllFirmware = true;

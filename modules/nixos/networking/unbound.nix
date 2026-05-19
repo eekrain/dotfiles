@@ -20,15 +20,6 @@ in {
 
     networking.nameservers = ["127.0.0.1"];
 
-    environment.etc."resolv.conf" = {
-      text = ''
-        nameserver 127.0.0.1
-        options edns0
-      '';
-      # Make immutable to prevent ExpressVPN or other services from overwriting
-      mode = "0444";
-    };
-
     ##### UNBOUND #####
 
     services.unbound = {
@@ -104,7 +95,7 @@ in {
 
     ##### PROTECT RESOLV.CONF FROM VPN OVERRIDES #####
 
-    # Systemd service to restore resolv.conf if VPN (ExpressVPN) overwrites it
+    # Systemd service to restore resolv.conf if VPN (ExpressVPN/WARP) overwrites it.
     systemd.services.protect-resolv-conf = {
       description = "Protect resolv.conf from VPN overrides";
       wantedBy = ["multi-user.target"];
@@ -113,13 +104,14 @@ in {
         Type = "oneshot";
         RemainAfterExit = true;
         ExecStart = "${pkgs.writeShellScript "protect-resolv-conf" ''
-          # Restore resolv.conf to point to local Unbound
-          echo "nameserver 127.0.0.1" > /etc/resolv.conf
-          echo "options edns0" >> /etc/resolv.conf
-          # Make it immutable if not running in a container/sandbox
-          if [ -e /usr/bin/chattr ]; then
-            chattr +i /etc/resolv.conf 2>/dev/null || true
-          fi
+          set -eu
+
+          ${pkgs.e2fsprogs}/bin/chattr -i /etc/resolv.conf 2>/dev/null || true
+          rm -f /etc/resolv.conf
+          ${pkgs.coreutils}/bin/install -m 0644 /dev/stdin /etc/resolv.conf <<'EOF'
+          nameserver 127.0.0.1
+          options edns0
+          EOF
         ''}";
       };
     };

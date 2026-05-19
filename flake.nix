@@ -75,6 +75,7 @@
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    codex-manager.url = "github:eekrain/codex-manager";
     llm-agents.url = "github:numtide/llm-agents.nix";
   };
 

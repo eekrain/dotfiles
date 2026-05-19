@@ -1,4 +1,5 @@
 {
+  inputs,
   lib,
   config,
   pkgs,
@@ -27,11 +28,12 @@ in
       xsel
       ripgrep
 
-      nodejs_22 # Or your preferred Node version
-      # Optional: extra Cypress deps if needed
+      nodejs_22
       glib
       gtk3
       tmux
+
+      (inputs.codex-manager.packages.${pkgs.system}.default)
     ];
 
     # Enable starship promt styling
@@ -65,7 +67,7 @@ in
       };
 
       initContent = ''
-        setopt INC_APPEND_HISTORY
+        setopt APPEND_HISTORY
         setopt HIST_SAVE_NO_DUPS
         setopt HIST_FIND_NO_DUPS
 

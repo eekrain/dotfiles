@@ -5,9 +5,11 @@
   lib,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.myHmModules.addons;
-in {
+in
+{
   options.myHmModules.addons.enable = mkEnableOption "Enable addons settings";
 
   config = mkIf cfg.enable {
@@ -33,6 +35,7 @@ in {
       inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
       inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.kilocode-cli
       inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.rtk
       # goose-cli
 
       inputs.antigravity-nix.packages.x86_64-linux.default

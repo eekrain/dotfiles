@@ -18,18 +18,24 @@ in {
 
       # --- The Screenshot Tool Script (Using grimblast) ---
       (writeShellScriptBin "screenshot" ''
+        mkdir -p ~/Pictures/Screenshots
+
         case "$1" in
           full)
-            # Mode 1: Freeze the screen, capture full output, then open in satty.
             echo "🖼️ Freezing screen for full capture and edit..."
-            # Capture the full output and pipe directly to satty.
-            grimblast -f -c save screen - | satty -f -
+            grimblast -f -c save screen - | satty -f - \
+              -o ~/Pictures/Screenshots/screenshot_%Y%m%d_%H%M%S.png \
+              --actions-on-enter save-to-file,exit \
+              --actions-on-escape exit \
+              --actions-on-right-click save-to-clipboard
             ;;
           region)
-            # Mode 2: Freeze the screen, let user select a region, then open in satty.
             echo "✂️ Freezing screen for region capture and edit..."
-            # Freeze the screen, let user select a region, and pipe directly to satty.
-            grimblast -f save area - | satty -f -
+            grimblast -f save area - | satty -f - \
+              -o ~/Pictures/Screenshots/screenshot_%Y%m%d_%H%M%S.png \
+              --actions-on-enter save-to-file,exit \
+              --actions-on-escape exit \
+              --actions-on-right-click save-to-clipboard
             ;;
           copy)
             # Mode 3: Freeze the screen, let user select a region, and copy to clipboard.
