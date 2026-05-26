@@ -63,7 +63,10 @@
       wofi = true;
       screenshot = true;
     };
-    addons.enable = true;
+    addons = {
+      enable = true;
+      ruby = true;
+    };
     waylandIntegration.enable = true;
   };
 

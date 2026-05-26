@@ -10,6 +10,8 @@ let
   cfg = config.myHmModules.addons;
 in
 {
+  imports = [ ./ruby.nix ];
+
   options.myHmModules.addons.enable = mkEnableOption "Enable addons settings";
 
   config = mkIf cfg.enable {
@@ -48,6 +50,7 @@ in
       # droid
       helium
       google-chrome
+      drawio
 
       # winbox
       # responsivelyapp
