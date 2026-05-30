@@ -5,9 +5,11 @@
   lib,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.myModules.addons;
-in {
+in
+{
   options.myModules.addons = {
     nix-ld = mkEnableOption "Enable nix-ld";
     devenv = mkEnableOption "Enable devenv";
@@ -30,14 +32,12 @@ in {
 
     {
       environment.systemPackages = with pkgs;
-        [expressvpn]
-        ++ lib.optionals (cfg.devenv) [
+        lib.optionals (cfg.devenv) [
           devenv
           cachix
           appimage-run
           nload
         ];
-      services.expressvpn.enable = true;
     }
   ];
 }

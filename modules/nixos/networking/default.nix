@@ -62,6 +62,7 @@ in
             to = 1425;
           }
         ];
+        trustedInterfaces = [ "wlp2s0" ];
       };
     };
   };

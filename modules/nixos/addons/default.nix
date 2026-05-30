@@ -9,5 +9,6 @@ with lib; {
     ./virtualization.nix
     ./others.nix
     ./httpd.nix
+    ./streaming.nix
   ];
 }

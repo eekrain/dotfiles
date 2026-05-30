@@ -71,6 +71,7 @@
       docker = true;
       virtualbox = false;
       waydroid = true;
+      streaming = true;
       httpd.enable = true;
     };
   };

@@ -11,6 +11,7 @@
       # "https://hyprland.cachix.org/"
       "https://claude-code.cachix.org"
       "https://codex-cli.cachix.org"
+      "https://install.determinate.systems"
     ];
     extra-trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
@@ -20,6 +21,7 @@
       # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "claude-code.cachix.org-1:YeXf2aNu7UTX8Vwrze0za1WEDS+4DuI2kVeWEE4fsRk="
       "codex-cli.cachix.org-1:2+p+8sPX+pH5F1lC6qvAYAUL6SOFD1PTuvTAfD7nmP0="
+      "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
     ];
   };
 
@@ -33,6 +35,9 @@
     nixpkgs-2411.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
     # Also see the 'packages-2405' overlay at 'overlays/default.nix'.
+
+    # Determinate Nix
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
     # Caelestia desktop environment
     # hyprland.url = "github:hyprwm/Hyprland";
@@ -85,6 +90,7 @@
     home-manager,
     nix-cachyos-kernel,
     hyprcursor-phinger,
+    determinate,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -131,6 +137,7 @@
       eka-laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          determinate.nixosModules.default
           (
             { pkgs, ... }: {
               nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
@@ -145,6 +152,7 @@
       lenovo-kantor = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          determinate.nixosModules.default
           (
             { pkgs, ... }: {
               nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];

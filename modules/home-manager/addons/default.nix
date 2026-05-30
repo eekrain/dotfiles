@@ -52,7 +52,7 @@ in
       google-chrome
       drawio
       beekeeper-studio
-
+      vlc
       # winbox
       # responsivelyapp
       # redisinsight
