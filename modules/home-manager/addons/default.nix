@@ -51,6 +51,7 @@ in
       helium
       google-chrome
       drawio
+      beekeeper-studio
 
       # winbox
       # responsivelyapp
