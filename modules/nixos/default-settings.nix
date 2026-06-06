@@ -143,4 +143,7 @@
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
+
+  # Keep shutdown from sitting on the Nix daemon for too long.
+  systemd.services.nix-daemon.serviceConfig.TimeoutStopSec = "10s";
 }

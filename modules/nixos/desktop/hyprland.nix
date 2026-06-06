@@ -99,6 +99,7 @@ in
         kdePackages.qt6ct
         libsForQt5.qt5ct
         nerd-fonts.jetbrains-mono
+        unzip
       ]
       ++ optionals (cfg.brightnessController == "ddcutil") [ ddcutil ] # install ddcutil if ddcutil selected as brightnessController
       ++ optionals (cfg.brightnessController == "brightnessctl") [ brightnessctl ]; # install brightnessctl if brightnessctl selected as brightnessController

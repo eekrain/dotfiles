@@ -60,8 +60,10 @@
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
-      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
-      # to have it up-to-date or simply don't specify the nixpkgs input
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    qylock = {
+      url = "git+https://github.com/Darkkal44/qylock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Common Grub2 themes

@@ -19,16 +19,6 @@ with lib; let
             })
             subt);
       in [
-        # Zen Browser
-        {"text/xml" = "zen-twilight.desktop";}
-        {"text/html" = "zen-twilight.desktop";}
-        (subtypes "x-scheme-handler" "zen-twilight.desktop"
-          ["unknown" "mailto" "chrome" "about" "https" "http"])
-        (
-          subtypes "application" "zen-twilight.desktop"
-          ["pdf" "rdf+xml" "rss+xml" "xhtml+xml" "xhtml_xml" "xml" "x-xpinstall" "xhtml+xml" "x-extension-xhtml" "x-extension-xht" "x-extension-htm" "x-extension-html" "x-extension-shtml"]
-        )
-
         # Vscode
         (subtypes "text" "code.desktop"
           ["plain"])
@@ -41,9 +31,8 @@ with lib; let
         {"audio/*" = "io.bassi.Amberol.desktop";}
 
         # Images
-        {"image/*" = "com.interversehq.qView.desktop";}
-        (subtypes "application" "com.interversehq.qView.desktop"
-          ["x-navi-animation" "x-krita" "x-photoshop" "photoshop" "psd"])
+        (subtypes "image" "com.interversehq.qView.desktop"
+          ["avif" "bmp" "gif" "heif" "jpeg" "jxl" "png" "qoi" "svg+xml" "tiff" "vnd.adobe.photoshop" "webp" "x-dds" "x-exr" "x-pfm" "x-pxr" "x-sct"])
 
         # Archive
         {"inode/directory" = "org.gnome.Nautilus.desktop";}

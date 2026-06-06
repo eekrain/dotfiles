@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -7,6 +8,10 @@
 with lib; let
   cfg = config.myModules.desktop;
 in {
+  imports = [
+    inputs.qylock.nixosModules.default
+  ];
+
   options.myModules.desktop = {
     sddm = {
       enable = mkEnableOption "Enable sddm display manager";
@@ -25,7 +30,13 @@ in {
       displayManager.defaultSession = cfg.sddm.defaultSession;
       displayManager.sddm.enable = true;
       displayManager.sddm.enableHidpi = true;
-      displayManager.sddm.theme = "sugar-candy";
+    };
+
+    programs.qylock = {
+      enable = true;
+      theme = "pixel-cyberpunk";
+      sddm.enable = true;
+      quickshell.enable = false;
     };
 
     # Enabling gnome keyring
@@ -35,13 +46,7 @@ in {
 
     # limit timeout, cus using sddm while executing shutdown via command
     # (without exiting hyprland first) took so long idk why
-    systemd.extraConfig = ''
-      DefaultTimeoutStopSec=10s
-    '';
+    systemd.settings.Manager.DefaultTimeoutStopSec = "10s";
 
-    environment.systemPackages = with pkgs; [
-      libsForQt5.qt5.qtgraphicaleffects # for sddm theme
-      sddm-sugar-candy
-    ];
   };
 }

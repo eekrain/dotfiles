@@ -54,9 +54,8 @@
       # redsocks = true;
     };
     desktop = {
-      # sddm.enable = true;
-      # sddm.defaultSession = "hyprland-uwsm";
-      greetd.enable = true;
+      sddm.enable = true;
+      greetd.enable = false;
       hyprland = {
         enable = true;
         brightnessController = "brightnessctl";
@@ -102,11 +101,6 @@
   hardware.enableAllFirmware = true;
   # # use zramSwap
   zramSwap.enable = true;
-  # Spesific settings for ASUS Laptops
-  services.asusd = {
-    enable = true;
-  };
-
   # Specialisation settings
   # Default boot loader configuration name using AMD GPU
   boot.loader.grub.configurationName = "AMD GPU";

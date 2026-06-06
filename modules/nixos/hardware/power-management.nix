@@ -15,13 +15,12 @@ in {
     environment.systemPackages = [pkgs.dmidecode];
     programs.auto-cpufreq.enable = true;
 
-    hardware.asus.battery.chargeUpto = 60;
-    # services.tlp = {
-    #   enable = true;
-    #   settings = {
-    #     START_CHARGE_THRESH_BAT0 = 40;
-    #     STOP_CHARGE_THRESH_BAT0 = 60;
-    #   };
-    # };
+    services.tlp = {
+      enable = true;
+      settings = {
+        START_CHARGE_THRESH_BAT0 = 40;
+        STOP_CHARGE_THRESH_BAT0 = 60;
+      };
+    };
   };
 }

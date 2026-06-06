@@ -53,6 +53,7 @@ in
       drawio
       beekeeper-studio
       vlc
+      inkscape
       # winbox
       # responsivelyapp
       # redisinsight
