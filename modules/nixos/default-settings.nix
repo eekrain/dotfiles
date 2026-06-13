@@ -145,5 +145,30 @@
   };
 
   # Keep shutdown from sitting on the Nix daemon for too long.
+  # Kernel tuning for dev workloads
+  boot.kernel.sysctl = {
+    # Inotify — high ceilings for file watchers (IDEs, hot-reload, etc.)
+    "fs.inotify.max_user_watches" = 2147483647;
+    "fs.inotify.max_user_instances" = 8192;
+
+    # Network — wider ephemeral port range + larger TCP buffers
+    "net.ipv4.ip_local_port_range" = "1024 65535";
+    "net.core.rmem_max" = 16777216;
+    "net.core.wmem_max" = 16777216;
+    "net.ipv4.tcp_rmem" = "4096 87380 16777216";
+    "net.ipv4.tcp_wmem" = "4096 65536 16777216";
+
+    # VM — memory map areas (large JS bundles, Tauri, Rust compilation)
+    "vm.max_map_count" = 262144;
+    # Faster dirty-page flushing keeps I/O responsive under load
+    "vm.dirty_ratio" = 10;
+    "vm.dirty_background_ratio" = 5;
+  };
+
+  # PAM limits — let user sessions actually use the kernel headroom
+  security.pam.loginLimits = [
+    { domain = "*"; type = "soft"; item = "nofile"; value = "524288"; }
+    { domain = "*"; type = "hard"; item = "nofile"; value = "1048576"; }
+  ];
   systemd.services.nix-daemon.serviceConfig.TimeoutStopSec = "10s";
 }

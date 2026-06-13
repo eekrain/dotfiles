@@ -24,28 +24,25 @@ in
       with pkgs;
       [
         ruby
-        nodejs_22
+        nodejs
         yarn
       ]
       ++ buildDeps;
 
-    home.sessionVariables =
-      {
-        GEM_HOME = "$HOME/.gem";
-        GEM_PATH = "$HOME/.gem";
-      }
-      // lib.optionalAttrs (pkgs.stdenv.isLinux) {
-        NIX_CC = "${pkgs.stdenv.cc}";
-        NIX_CFLAGS_COMPILE = builtins.concatStringsSep " " (
-          map (dep: "-I${lib.getDev dep}/include") buildDeps
-        );
-        NIX_LDFLAGS = builtins.concatStringsSep " " (
-          map (dep: "-L${lib.getLib dep}/lib") buildDeps
-        );
-        PKG_CONFIG_PATH = builtins.concatStringsSep ":" (
-          map (dep: "${lib.getDev dep}/lib/pkgconfig") buildDeps
-        );
-      };
+    home.sessionVariables = {
+      GEM_HOME = "$HOME/.gem";
+      GEM_PATH = "$HOME/.gem";
+    }
+    // lib.optionalAttrs (pkgs.stdenv.isLinux) {
+      NIX_CC = "${pkgs.stdenv.cc}";
+      NIX_CFLAGS_COMPILE = builtins.concatStringsSep " " (
+        map (dep: "-I${lib.getDev dep}/include") buildDeps
+      );
+      NIX_LDFLAGS = builtins.concatStringsSep " " (map (dep: "-L${lib.getLib dep}/lib") buildDeps);
+      PKG_CONFIG_PATH = builtins.concatStringsSep ":" (
+        map (dep: "${lib.getDev dep}/lib/pkgconfig") buildDeps
+      );
+    };
 
     home.sessionPath = [ "$HOME/.gem/bin" ];
   };

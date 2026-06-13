@@ -7,7 +7,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # Disable Nixpkgs release check for version compatibility
   home.enableNixpkgsReleaseCheck = false;
 

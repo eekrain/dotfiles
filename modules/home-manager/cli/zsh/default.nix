@@ -28,7 +28,7 @@ in
       xsel
       ripgrep
 
-      nodejs_22
+      nodejs
       glib
       gtk3
       tmux

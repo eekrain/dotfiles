@@ -84,6 +84,7 @@
     };
     codex-manager.url = "github:eekrain/codex-manager";
     llm-agents.url = "github:numtide/llm-agents.nix";
+    open-design.url = "github:nexu-io/open-design";
   };
 
   outputs = {
