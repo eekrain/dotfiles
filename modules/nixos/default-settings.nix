@@ -171,6 +171,11 @@
     { domain = "*"; type = "hard"; item = "nofile"; value = "1048576"; }
   ];
   systemd.services.nix-daemon.serviceConfig.TimeoutStopSec = "10s";
-  systemd.services."user@1000".serviceConfig.TimeoutStopSec = "10s";
+  # NOTE: target the TEMPLATE ("user@"), not a concrete instance like
+  # "user@1000". A concrete user@1000.service shadows the real template and
+  # ships without ExecStart=, which prevents the user manager from starting —
+  # breaking pam_systemd session creation, XDG_RUNTIME_DIR export, and thus
+  # SDDM/TTY login into Hyprland.
+  systemd.services."user@".serviceConfig.TimeoutStopSec = "10s";
   systemd.user.settings.Manager.DefaultTimeoutStopSec = "10s";
 }
