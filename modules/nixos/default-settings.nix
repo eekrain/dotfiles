@@ -171,4 +171,6 @@
     { domain = "*"; type = "hard"; item = "nofile"; value = "1048576"; }
   ];
   systemd.services.nix-daemon.serviceConfig.TimeoutStopSec = "10s";
+  systemd.services."user@1000".serviceConfig.TimeoutStopSec = "10s";
+  systemd.user.settings.Manager.DefaultTimeoutStopSec = "10s";
 }
