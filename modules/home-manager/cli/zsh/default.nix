@@ -128,7 +128,9 @@ in
     # Addons variables
     home.sessionVariables = {
       NIXPKGS_ALLOW_UNFREE = "1";
-      PATH = "$HOME/.bun/bin:$HOME/.local/bin:$PATH";
     };
+
+    # Bun global binaries (e.g. dev-browser)
+    home.sessionPath = [ "$HOME/.bun/bin" ];
   };
 }
