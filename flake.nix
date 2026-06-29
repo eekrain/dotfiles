@@ -90,6 +90,14 @@
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
     open-design.url = "github:nexu-io/open-design";
+    codebase-memory-mcp = {
+      url = "github:DeusData/codebase-memory-mcp";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-vite-plus = {
+      url = "github:ryoppippi/nix-vite-plus";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

@@ -199,6 +199,26 @@
         "type": "github"
       }
     },
+    "codebase-memory-mcp": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782677337,
+        "narHash": "sha256-riK+850ccRU7VTBtkoXlSlUkf3AhrvlNG9p0fmVqFQQ=",
+        "owner": "DeusData",
+        "repo": "codebase-memory-mcp",
+        "rev": "4ab00df63fcea4d8e06f0790ee4880a102256c5c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DeusData",
+        "repo": "codebase-memory-mcp",
+        "type": "github"
+      }
+    },
     "codex-manager": {
       "inputs": {
         "crane": "crane",
@@ -724,6 +744,26 @@
         "type": "github"
       }
     },
+    "nix-vite-plus": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781875589,
+        "narHash": "sha256-8CWrloMR++Ug6luDkGiicm5NtOWYc9n79e8cym8yop8=",
+        "owner": "ryoppippi",
+        "repo": "nix-vite-plus",
+        "rev": "913c3cee4cb595d133678fb8438ca08f7286e23e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryoppippi",
+        "repo": "nix-vite-plus",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1777954456,
@@ -1087,6 +1127,7 @@
         "auto-cpufreq": "auto-cpufreq",
         "bunnix": "bunnix",
         "caelestia": "caelestia",
+        "codebase-memory-mcp": "codebase-memory-mcp",
         "codex-manager": "codex-manager",
         "determinate": "determinate",
         "grub2-themes": "grub2-themes",
@@ -1095,6 +1136,7 @@
         "hyprcursor-phinger": "hyprcursor-phinger",
         "llm-agents": "llm-agents",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
+        "nix-vite-plus": "nix-vite-plus",
         "nixpkgs": "nixpkgs_8",
         "nixpkgs-2405": "nixpkgs-2405",
         "nixpkgs-2411": "nixpkgs-2411",

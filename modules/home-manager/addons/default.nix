@@ -34,8 +34,6 @@ in
       inputs.bunnix.packages.${pkgs.stdenv.hostPlatform.system}.default
 
       inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
-      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
-      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.kilocode-cli
       inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex
       # goose-cli
 
@@ -49,6 +47,7 @@ in
       # droid
       helium
       zcode
+      athas
       google-chrome
       drawio
       beekeeper-studio
@@ -75,6 +74,7 @@ in
     # package's read-only store copy: the app's clobber attempt hits EACCES on
     # the store target and is caught/handled, leaving this working entry in
     # place. See pkgs/zcode.nix for the matching LD_LIBRARY_PATH wrapper.
-    home.file.".local/share/applications/zcode.desktop".source = "${pkgs.zcode}/share/applications/zcode.desktop";
+    home.file.".local/share/applications/zcode.desktop".source =
+      "${pkgs.zcode}/share/applications/zcode.desktop";
   };
 }

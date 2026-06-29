@@ -34,6 +34,8 @@ in
       tmux
 
       (inputs.codex-manager.packages.${pkgs.system}.default)
+      (inputs.codebase-memory-mcp.packages.${pkgs.system}.default)
+      (inputs.nix-vite-plus.packages.${pkgs.system}.vp)
     ];
 
     # Enable starship promt styling
@@ -131,6 +133,9 @@ in
     };
 
     # Bun global binaries (e.g. dev-browser)
-    home.sessionPath = [ "$HOME/.bun/bin" ];
+    home.sessionPath = [
+      "$HOME/.bun/bin"
+      "$HOME/.nub/bin"
+    ];
   };
 }
