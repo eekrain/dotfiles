@@ -17,7 +17,6 @@ in
     # Addons cli packages
     home.packages = with pkgs; [
       zoxide
-      pkgs2411.awscli2
       nitch
       krabby
       sqld

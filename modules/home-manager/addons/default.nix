@@ -26,7 +26,6 @@ in
       bruno # alternative to postman
       insomnia
       postman
-      # pkgs2505.libreoffice
       ferdium
       remmina
       zoom-us

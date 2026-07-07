@@ -12,7 +12,7 @@ in {
   config = mkIf cfg.easyeffect-audio {
     services.easyeffects = {
       enable = true;
-      package = pkgs.pkgs2411.easyeffects;
+      package = pkgs.pkgs2605.easyeffects;
     };
 
     xdg.configFile."easyeffects/output".source = ./presets;

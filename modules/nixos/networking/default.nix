@@ -28,7 +28,7 @@ in
       with pkgs;
       [ ]
       ++ lib.optionals (cfg.cloudflared) [
-        pkgs2411.cloudflared
+        pkgs2605.cloudflared
       ];
 
     networking = {

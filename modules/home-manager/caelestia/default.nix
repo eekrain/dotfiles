@@ -27,42 +27,14 @@
     enable = true;
     package = null;
     portalPackage = null;
+    configType = "lua";
     # Export all environment variables to systemd user services
     # This fixes the common issue where programs work in terminal but not in systemd services
     systemd.variables = ["--all"];
-    # Caelestia manages its own hyprland.conf, so we use extraConfig as a placeholder
-    # to prevent the HM warning about empty settings
-    extraConfig = ''
-      $hypr = ~/.config/hypr
-      $hl = $hypr/hyprland
-      $cConf = ~/.config/caelestia
-
-      # Variables (colours + other vars)
-      exec = cp -L --no-preserve=mode --update=none $hypr/scheme/default.conf $hypr/scheme/current.conf
-      source = $hypr/scheme/current.conf
-      source = $hypr/variables.conf
-
-      # User variables
-      exec = mkdir -p $cConf && touch -a $cConf/hypr-vars.conf
-      source = $cConf/hypr-vars.conf
-
-      # Configs
-      source = $hl/env.conf
-      source = $hl/general.conf
-      source = $hl/input.conf
-      source = $hl/misc.conf
-      source = $hl/animations.conf
-      source = $hl/decoration.conf
-      source = $hl/group.conf
-      source = $hl/execs.conf
-      source = $hl/rules.conf
-      source = $hl/gestures.conf
-      source = $hl/keybinds.conf
-
-      # User configs
-      exec = mkdir -p $cConf && touch -a $cConf/hypr-user.conf
-      source = $cConf/hypr-user.conf
-    '';
+    # HM manages only the master entrypoint (hyprland.lua). The leaf modules
+    # (variables.lua, hyprland/*.lua, scheme/*.lua) live as plain editable files
+    # in ~/.config/hypr/ so they can be tweaked without a rebuild.
+    extraConfig = builtins.readFile ./hyprland.lua;
   };
 
   # xdg.configFile."hypr" = {
