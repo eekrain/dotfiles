@@ -35,7 +35,6 @@ in {
           gst-plugins-ugly
 
           gst-libav
-          gst-vaapi
         ]);
       };
     };
