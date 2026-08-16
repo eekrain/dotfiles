@@ -10,5 +10,6 @@ with lib; {
     ./others.nix
     ./httpd.nix
     ./streaming.nix
+    ./gaming.nix
   ];
 }

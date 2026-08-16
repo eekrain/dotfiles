@@ -72,6 +72,7 @@
       waydroid = true;
       streaming = true;
       httpd.enable = true;
+      gaming = true;
     };
   };
 

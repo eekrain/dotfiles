@@ -51,8 +51,13 @@ stdenv.mkDerivation {
 
   installPhase = ''
     runHook preInstall
-    install -Dm755 usr/local/bin/cage_xtmapper     $out/bin/cage_xtmapper
-    install -Dm755 usr/local/bin/cage_xtmapper.sh  $out/bin/cage_xtmapper.sh
+    # Install the patched cage binary from the upstream tarball…
+    install -Dm755 usr/local/bin/cage_xtmapper $out/bin/cage_xtmapper
+    # …but install OUR cage_xtmapper.sh (sibling file), not upstream's.
+    # Our version is doas-native, has a cleanup trap, a systemd health check
+    # for waydroid-container.service, and a boot-wait timeout. See the header
+    # of pkgs/cage_xtmapper.sh for the full rationale.
+    install -Dm755 ${./cage_xtmapper.sh} $out/bin/cage_xtmapper.sh
     runHook postInstall
   '';
 
