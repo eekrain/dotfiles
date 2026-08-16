@@ -13,5 +13,4 @@ pkgs: {
   zcode = pkgs.callPackage ./zcode.nix {};
   athas = pkgs.callPackage ./athas.nix {};
   wsu = pkgs.callPackage ./wsu.nix { _sources = import ./_sources/generated.nix { inherit (pkgs) fetchgit fetchurl fetchFromGitHub dockerTools; }; };
-  cage-xtmapper = pkgs.callPackage ./cage-xtmapper.nix {};
 }

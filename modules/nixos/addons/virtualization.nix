@@ -54,105 +54,122 @@ in
       # mapper (transparent overlay, F1 to toggle edit/mapping mode). Drawn
       # as an overlay, so under Hyprland it must be floated (see windowrule).
       #
-      # cage-xtmapper: patched cage kiosk compositor that pipes host keyboard/
-      # mouse events to XtMapper (Android-side mapper) for fullscreen Waydroid
-      # gaming. Runs NESTED under Hyprland (Wayland backend) as the regular
-      # user; the cage window is fullscreened to get the kiosk effect. Requires
-      # the XtMapper APK (xtr.keymapper) installed inside Waydroid.
-      #
-      # The upstream cage_xtmapper.sh is intricate (Android app_process boot +
-      # BOOTCLASSPATH + key-event pipe), so we ship it verbatim from the package
-      # and expose a clean `cage-xtmapper` launcher via writeShellScriptBin that
-      # only sets PATH (waydroid + cage_xtmapper binary) and execs it.
+      # cage-waydroid: launches vanilla cage (kiosk compositor) wrapping
+      # `waydroid show-full-ui` fullscreen. Android sees the mouse as its
+      # native pointer, so press-drag controls game joysticks directly —
+      # no XtMapper needed. The old cage-xtmapper fork existed only to pipe
+      # host input to XtMapper's RemoteServiceShell; it was removed after
+      # WASD mapping proved unusable and its overlay was the only cursor
+      # source (broken on Android multi-user). See
+      # docs/plans/cage-xtmapper-debugging-history.md.
       environment.systemPackages = with pkgs; [
         wsu
         waydroid-helper
-        cage-xtmapper
-        # Unified launcher/killer with subcommand dispatch:
+        # Unified launcher with subcommand dispatch:
         #
-        #   cage-xtmapper                       Launch (default subcommand)
-        #   cage-xtmapper run [args...]         Launch, forwarding args to script
-        #   cage-xtmapper kill                  Forcefully tear down a hung session
-        #   cage-xtmapper status                Show what's running
-        #   cage-xtmapper help                  Usage
+        #   cage-waydroid                       Launch (default subcommand)
+        #   cage-waydroid run                   Same as default (compat)
+        #   cage-waydroid kill                  Forcefully tear down a hung session
+        #   cage-waydroid status                Show what's running
+        #   cage-waydroid help                  Usage
         #
-        # The wrapper is defensive about the log file because past `doas
-        # cage-xtmapper` invocations left it root-owned (mode 0600), which made
-        # the >> redirection fail silently and broke all subsequent appRunner
-        # launches (the cage window never appeared).
-        (writeShellScriptBin "cage-xtmapper" ''
+        # Deliberately NO set -e in the launch path: waydroid emits
+        # non-fatal non-zero returns (EGL warnings, "session is stopped")
+        # that would abort the script and force-close the cage window —
+        # regression documented in cage-xtmapper-debugging-history.md.
+        # Also no `exec cage ...`: exec replaces the shell image, so the
+        # EXIT trap stopping the waydroid session would never fire; cage
+        # runs as the last foreground command instead.
+        #
+        # The wrapper is defensive about the log file because past `doas`
+        # invocations left it root-owned (mode 0600), which made the >>
+        # redirection fail silently and broke appRunner launches.
+        (writeShellScriptBin "cage-waydroid" ''
           set -uo pipefail
 
           # Refuse root. Running this as root is what polluted the log file
           # ownership in the first place; doas inside the script only escalates
           # individual waydroid calls, not the wrapper itself.
           if [ "$(id -u)" -eq 0 ]; then
-            echo "cage-xtmapper must run as your normal user, not root." >&2
+            echo "cage-waydroid must run as your normal user, not root." >&2
             exit 1
           fi
 
-          export PATH="${lib.makeBinPath [ waydroid pkgs."cage-xtmapper" ]}:$PATH"
-          LAUNCHER="${pkgs."cage-xtmapper"}/bin/cage_xtmapper.sh"
-          LOGFILE="''${XDG_STATE_HOME:-$HOME/.local/state}/cage-xtmapper.log"
+          export PATH="${lib.makeBinPath [ waydroid pkgs.cage ]}:$PATH"
+          LOGFILE="''${XDG_STATE_HOME:-$HOME/.local/state}/cage-waydroid.log"
 
           usage() {
             cat <<'EOF'
-cage-xtmapper — launch or kill the cage + Waydroid + XtMapper session
+cage-waydroid — launch or kill the cage + Waydroid fullscreen session
 
 Usage:
-  cage-xtmapper                 Launch (default subcommand, uses cage)
-  cage-xtmapper run [args...]   Launch with cage, forwarding args to cage_xtmapper.sh
-                                (e.g. --window-width 1920 --window-height 1080)
-  cage-xtmapper kill            Forcefully tear down a hung session
-  cage-xtmapper status          Show what's currently running
-  cage-xtmapper help            This message
+  cage-waydroid        Launch fullscreen Waydroid inside cage (default)
+  cage-waydroid run    Same as default (compat subcommand)
+  cage-waydroid kill   Forcefully tear down a hung session
+  cage-waydroid status Show what's currently running
+  cage-waydroid help   This message
 EOF
           }
 
           do_run() {
-            if [ -t 1 ]; then
-              # Terminal: stream directly so you see live output.
-              exec "$LAUNCHER" "$@"
-            else
-              # No TTY (appRunner, systemd, etc.): write to a fresh log per launch.
-              mkdir -p "$(dirname "$LOGFILE")"
-              # Defensive cleanup: if a prior root invocation left the log
-              # unwritable, remove it. The parent dir is user-owned, so a
-              # normal user can delete root-owned files inside it (no sticky bit).
-              if [ -e "$LOGFILE" ] && [ ! -w "$LOGFILE" ]; then
-                rm -f "$LOGFILE"
-              fi
-              # Truncate (>) not append (>>) — one launch's output per file,
-              # easier to read than an ever-growing mix of sessions.
-              exec "$LAUNCHER" "$@" > "$LOGFILE" 2>&1
+            # Pre-launch systemd health check. After a hard cage crash,
+            # waydroid-container.service can sit in 'failed' state where the
+            # daemon never re-registers on D-Bus and `waydroid container
+            # start` hangs forever. Detect and recover.
+            if ! systemctl is-active --quiet waydroid-container.service 2>/dev/null; then
+              echo "[cage-waydroid] waydroid-container.service not active; resetting + restarting..." >&2
+              doas systemctl reset-failed waydroid-container.service 2>/dev/null || true
+              doas systemctl restart waydroid-container.service || true
+              for _ in 1 2 3 4 5 6 7 8 9 10; do
+                systemctl is-active --quiet waydroid-container.service && break
+                sleep 1
+              done
             fi
+
+            # Stop any stale user session from a previous run (idempotent).
+            echo "[cage-waydroid] stopping any stale waydroid user session..." >&2
+            waydroid session stop >/dev/null 2>&1 || true
+
+            # Cleanup trap: when cage exits (window closed, crash, Ctrl-C,
+            # SIGTERM), stop the waydroid user session so the NEXT launch
+            # starts clean. We deliberately do NOT touch
+            # waydroid-container.service here — that's systemd-managed.
+            cleanup() {
+              echo "[cage-waydroid] cleaning up waydroid user session..." >&2
+              waydroid session stop >/dev/null 2>&1 || true
+            }
+            trap cleanup EXIT INT TERM
+
+            # Ensure the container is running (idempotent — safe if up).
+            echo "[cage-waydroid] ensuring waydroid container is running..." >&2
+            doas waydroid container start >/dev/null 2>&1 || true
+
+            # Foreground (NOT exec — the EXIT trap must survive to fire).
+            echo "[cage-waydroid] launching cage..." >&2
+            cage waydroid show-full-ui
           }
 
           do_status() {
-            echo "[status] cage-xtmapper processes:"
-            REMAINING=$(ps -eo pid,user,cmd | grep -iE 'cage_xtmapper|RemoteServiceShell|waydroid show-full-ui|doas waydroid shell' | grep -v grep || true)
+            echo "[status] cage-waydroid processes:"
+            REMAINING=$(ps -eo pid,user,cmd | grep -E 'waydroid show-full-ui|/cage( |$)|waydroid.py-wrapped session' | grep -v grep || true)
             if [ -n "$REMAINING" ]; then
               echo "$REMAINING" | sed 's/^/  /'
             else
-              echo "  (clean — no cage/xtmapper processes running)"
+              echo "  (clean — no cage/waydroid processes running)"
             fi
             echo
             echo "[status] waydroid-container.service: $(systemctl is-active waydroid-container.service 2>/dev/null || echo unknown)"
           }
 
           do_kill() {
-            echo "[kill] finding cage-xtmapper processes (excluding systemd container daemon)..."
-            # Match cage_xtmapper.sh, the cage_xtmapper binary, the doas waydroid
-            # shell wrapper for RemoteServiceShell, and the waydroid show-full-ui
-            # subprocess started by cage. EXCLUDE the line that contains
-            # `container start` — that's the systemd-managed daemon we must NOT
-            # kill. The wrapper itself is named cage-xtmapper (hyphen) so it
-            # doesn't match the cage_xtmapper (underscore) pattern — safe.
+            echo "[kill] finding cage-waydroid processes (excluding systemd container daemon)..."
+            # Match the cage binary (/cage followed by space or end of line —
+            # avoids substring hits like "encaged") and the waydroid
+            # show-full-ui subprocess cage started. EXCLUDE the line that
+            # contains `container start` — that's the systemd-managed daemon
+            # we must NOT kill.
             PIDS=$(ps -eo pid,cmd | awk '
-              /cage_xtmapper/ ||
-              /doas waydroid shell/ ||
-              /RemoteServiceShell/ ||
-              /waydroid show-full-ui/ {
+              /waydroid show-full-ui/ || /\/cage( |$)/ {
                 if ($0 ~ /container start/) next
                 if ($0 ~ /awk/) next
                 print $1
@@ -160,7 +177,7 @@ EOF
             ')
 
             if [ -z "$PIDS" ]; then
-              echo "[kill] no cage-xtmapper processes found."
+              echo "[kill] no cage-waydroid processes found."
             else
               echo "[kill] tearing down..."
               echo "$PIDS" | while read -r pid; do
@@ -182,9 +199,9 @@ EOF
               pkill -KILL -f 'waydroid.py-wrapped session' 2>/dev/null || true
             fi
 
-            # If the systemd service is in 'failed' state (typical after the
-            # crashes that led you to run this), reset-failed + restart it so
-            # the NEXT cage-xtmapper launch works.
+            # If the systemd service is in 'failed' state (typical after a
+            # hard cage exit), reset-failed + restart it so the NEXT
+            # cage-waydroid launch works.
             SERVICE_STATE=$(systemctl is-active waydroid-container.service 2>/dev/null || true)
             if [ "$SERVICE_STATE" != "active" ]; then
               echo "[kill] waydroid-container.service is $SERVICE_STATE; resetting + restarting..."
@@ -205,9 +222,23 @@ EOF
           subcommand="''${1:-run}"
           case "$subcommand" in
             run)
-              # Drop the explicit "run" if present, then forward remaining args.
               [ "''${1:-}" = "run" ] && shift
-              do_run "$@"
+              if [ -t 1 ]; then
+                # Terminal: stream directly so you see live output.
+                do_run
+              else
+                # No TTY (appRunner, systemd, etc.): write to a fresh log
+                # per launch.
+                mkdir -p "$(dirname "$LOGFILE")"
+                # Defensive cleanup: if a prior root invocation left the
+                # log unwritable, remove it. The parent dir is user-owned,
+                # so a normal user can delete root-owned files inside it.
+                if [ -e "$LOGFILE" ] && [ ! -w "$LOGFILE" ]; then
+                  rm -f "$LOGFILE"
+                fi
+                # Truncate (>) not append (>>) — one launch's output per file.
+                do_run > "$LOGFILE" 2>&1
+              fi
               ;;
             kill)
               do_kill
@@ -218,13 +249,8 @@ EOF
             help|-h|--help)
               usage
               ;;
-            -*)
-              # Implicit run with flags (e.g. `cage-xtmapper --window-width 1920`)
-              # for backward compatibility with upstream's CLI.
-              do_run "$@"
-              ;;
             *)
-              echo "cage-xtmapper: unknown subcommand '$subcommand'" >&2
+              echo "cage-waydroid: unknown subcommand '$subcommand'" >&2
               echo >&2
               usage >&2
               exit 1
@@ -233,11 +259,11 @@ EOF
         '')
         # App-launcher entry so it can be started with no terminal.
         (makeDesktopItem {
-          name = "cage-xtmapper";
-          desktopName = "Cage XtMapper";
-          genericName = "Waydroid fullscreen key mapper";
-          comment = "Fullscreen Waydroid with XtMapper keyboard/mouse mapping";
-          exec = "cage-xtmapper";
+          name = "cage-waydroid";
+          desktopName = "Waydroid (Cage Fullscreen)";
+          genericName = "Waydroid fullscreen gaming";
+          comment = "Fullscreen Waydroid in a cage kiosk compositor; mouse drives Android pointer";
+          exec = "cage-waydroid";
           terminal = false;
           categories = [
             "Game"
@@ -246,13 +272,6 @@ EOF
           icon = "input-gaming";
         })
       ];
-
-      # cage_xtmapper.sh ships as our own script (pkgs/cage_xtmapper.sh),
-      # installed by pkgs/cage-xtmapper.nix instead of upstream's. It uses
-      # `doas waydroid ...` natively — no sudoers rule needed: doas's global
-      # `permit nopass :wheel` (see default-settings.nix) grants eekrain
-      # passwordless waydroid access in any context, including cage's nested
-      # Wayland session where sudo's NOPASSWD rule was failing.
   })
   ];
 }
