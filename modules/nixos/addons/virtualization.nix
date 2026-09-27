@@ -45,6 +45,51 @@ in
     (mkIf cfg.waydroid {
       virtualisation.waydroid.enable = true;
 
+      # Host↔Waydroid shared folder (~/WaydroidShared ↔ /sdcard/HostShare).
+      # NO mounts involved: the container's /data IS the host dir
+      # ~/.local/share/waydroid/data (rbind via config_session), so a real
+      # directory at data/media/0/HostShare shows in Android as
+      # /sdcard/HostShare automatically. ~/WaydroidShared is a symlink to
+      # it for host convenience.
+      #
+      # Why not mounts: host-side fstab binds never propagate into the LXC
+      # namespace, and lxc.mount.entry lines get wiped because waydroid
+      # regenerates config_session at every session start (verified
+      # empirically). Host-side access uses the media_rw group (below).
+      # Host access to the share: /data/media is 1023:1023 (media_rw)
+      # drwxrwx--- and Android's permission normalizer ACTIVELY resets any
+      # chmod we do on those dirs (o+x got wiped within minutes, twice).
+      # The stable route is group membership: add the host user to gid 1023
+      # so traversal uses Android's own canonical group perms, which are
+      # never reset. Requires a re-login to take effect in the session.
+      users.groups.media_rw = {
+        gid = 1023;
+        members = [ "eekrain" ];
+      };
+
+      systemd.services."waydroid-hostshare" = {
+        description = "Ensure Waydroid HostShare shared directory exists";
+        wantedBy = [ "multi-user.target" ];
+        before = [ "waydroid-container.service" ];
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+        };
+        path = [
+          pkgs.coreutils
+        ];
+        script = ''
+          DATA=/home/eekrain/.local/share/waydroid/data/media/0
+          # Skip silently if waydroid hasn't been initialized yet
+          [ -d "$DATA" ] || exit 0
+          # Real directory inside Android's /sdcard, writable by the user
+          install -d -o eekrain -g users -m 2775 "$DATA/HostShare"
+          # Host-side convenience symlink (ln runs as root; fix ownership)
+          ln -sfn "$DATA/HostShare" /home/eekrain/WaydroidShared
+          chown -h eekrain:users /home/eekrain/WaydroidShared
+        '';
+      };
+
       # WaydroidSU: CLI Magisk manager/installer for Waydroid.
       # Runtime host tools (lxc-attach, e2fsck, resize2fs, mount/umount)
       # are already injected into wsu's PATH via its wrapper, so only the
