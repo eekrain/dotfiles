@@ -91,7 +91,9 @@ in {
 
     ##### TLS CERTS FOR DOT #####
 
-    environment.etc."ssl/certs/ca-certificates.crt".source = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+    # CA bundle is now provided unconditionally by nixos/modules/security/ca.nix,
+    # so setting environment.etc."ssl/certs/ca-certificates.crt".source here
+    # conflicts with it (nixpkgs 2026-10)
 
     ##### PROTECT RESOLV.CONF FROM VPN OVERRIDES #####
 

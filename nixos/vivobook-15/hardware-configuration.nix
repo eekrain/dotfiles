@@ -13,7 +13,8 @@
   # Encryption settings with luks
   boot.initrd.luks.devices.root = {
     device = "/dev/disk/by-partlabel/root";
-    preLVM = true;
+    # preLVM removed: scripted stage 1 was dropped from nixpkgs; systemd
+    # stage 1 unlocks this device before /etc/crypttab is needed
     allowDiscards = true;
   };
 

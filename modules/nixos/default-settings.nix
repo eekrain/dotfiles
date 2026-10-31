@@ -102,13 +102,22 @@
     };
   };
 
+  # nixos-rebuild-ng fails its test suite under Determinate Nix's long
+  # build-dir paths; we switch with nh instead
+  system.tools.nixos-rebuild.enable = false;
+
   # Default nix settings
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    # Opinionated: make flake registry and nix path match flake inputs
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   in {
     settings = {
       # Enable flakes and new 'nix' command
-      experimental-features = "nix-command flakes";
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
       # For using cachix should set trusted user
@@ -118,27 +127,33 @@
       substituters = [
         "https://cache.nixos.org/"
         "https://nix-community.cachix.org/"
-        "https://attic.xuyh0120.win/lantian"
-        # "https://hyprland.cachix.org/"
+        # nix-cachyos-kernel cache; new URL + key after the Oct 2026
+        # compromise, see https://github.com/xddxdd/nix-cachyos-kernel/issues/110
+        "https://cache.lantian.pub/lantian"
+        # Official Quickshell cache
+        "https://quickshell.cachix.org"
+        # Official Hyprland cache
+        "https://hyprland.cachix.org"
       ];
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-        # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ="
+        "quickshell.cachix.org-1:1xP1N/G6yWOD6U6vLscZ1F4d62GisE/qez22DUBn2eE="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
       sandbox = false;
       # Opinionated: disable global registry
       flake-registry = "";
-      # Workaround for https://github.com/NixOS/nix/issues/9574
-      nix-path = config.nix.nixPath;
+      # nix.nixPath is now an alias of this option, so it must be set
+      # directly instead of referencing config.nix.nixPath (infinite recursion)
+      nix-path = nixPath;
     };
     # Opinionated: disable channels
     channel.enable = false;
 
-    # Opinionated: make flake registry and nix path match flake inputs
+    # Opinionated: make flake registry match flake inputs
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
   # Keep shutdown from sitting on the Nix daemon for too long.

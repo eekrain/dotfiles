@@ -12,6 +12,13 @@ in {
   options.myModules.networking.cloudflare-warp = mkEnableOption (lib.mdDoc "cloudflare-warp, a service that replaces the connection between your device and the Internet with a modern, optimized, protocol");
 
   config = mkIf cfg.cloudflare-warp {
+    # warp-svc 2026.x execs nft/ip at hardcoded /usr/sbin paths, which do not
+    # exist on NixOS; provide symlinks so firewall rules can be applied
+    systemd.tmpfiles.rules = [
+      "L+ /usr/sbin/nft - - - - ${lib.getBin pkgs.nftables}/bin/nft"
+      "L+ /usr/sbin/ip - - - - ${lib.getBin pkgs.iproute2}/bin/ip"
+    ];
+
     environment.systemPackages = [
       pkgs.cloudflare-warp # for warp-svc
       (pkgs.writeShellApplication {
@@ -27,10 +34,11 @@ in {
 
           resolv_conf=/etc/resolv.conf
 
-          require_root() {
+          # Self-elevate via doas (nopass for :wheel) so the user never
+          # needs to type sudo manually
+          elevate_if_needed() {
             if [ "$(id -u)" -ne 0 ]; then
-              echo "Run as root: sudo warp-full $*" >&2
-              exit 1
+              exec doas "$0" "$@"
             fi
           }
 
@@ -60,14 +68,17 @@ in {
 
           case "''${1:-}" in
             on)
-              require_root "$@"
+              elevate_if_needed "$@"
               systemctl stop protect-resolv-conf.service 2>/dev/null || true
               make_resolv_conf_editable
               warp-cli mode warp
+              # Reset the daemon state first: after a failed connect the
+              # settings stay "on" and a plain connect becomes a no-op
+              warp-cli disconnect >/dev/null 2>&1 || true
               warp-cli connect
               ;;
             off)
-              require_root "$@"
+              elevate_if_needed "$@"
               warp-cli disconnect || true
               restore_unbound_dns
               systemctl restart unbound.service
@@ -78,6 +89,7 @@ in {
               ;;
             *)
               echo "Usage: warp-full {on|off|status}" >&2
+              echo "on/off elevate themselves via doas" >&2
               exit 2
               ;;
           esac

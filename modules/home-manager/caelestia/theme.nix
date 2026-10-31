@@ -20,6 +20,7 @@
   };
   # Set up the traditional Xcursor theme for GTK applications
   home.pointerCursor = {
+    enable = true;
     package = pkgs.phinger-cursors;
     name = "phinger-cursors-dark";
     size = 24;
@@ -35,11 +36,11 @@
     };
 
     theme = {
-      package = pkgs.graphite-gtk-theme.override {
+      package = pkgs.colloid-gtk-theme.override {
         themeVariants = [ "purple" ];
         colorVariants = [ "dark" ];
       };
-      name = "Graphite-purple-dark"; # folder inside share/themes
+      name = "Colloid-Purple-Dark"; # folder inside share/themes
     };
 
     iconTheme = {

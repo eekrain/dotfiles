@@ -7,8 +7,13 @@
       "https://cache.nixos.org/"
       "https://nix-community.cachix.org/"
       "https://cache.numtide.com"
-      "https://attic.xuyh0120.win/lantian"
-      # "https://hyprland.cachix.org/"
+      # lantian cache for nix-cachyos-kernel; new URL + key after the
+      # Oct 2026 compromise, see issue #110
+      "https://cache.lantian.pub/lantian"
+      # Official Quickshell cache
+      "https://quickshell.cachix.org"
+      # Official Hyprland cache
+      "https://hyprland.cachix.org"
       "https://claude-code.cachix.org"
       "https://codex-cli.cachix.org"
       "https://install.determinate.systems"
@@ -17,7 +22,9 @@
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
-      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+      "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ="
+      "quickshell.cachix.org-1:1xP1N/G6yWOD6U6vLscZ1F4d62GisE/qez22DUBn2eE="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "claude-code.cachix.org-1:YeXf2aNu7UTX8Vwrze0za1WEDS+4DuI2kVeWEE4fsRk="
       "codex-cli.cachix.org-1:2+p+8sPX+pH5F1lC6qvAYAUL6SOFD1PTuvTAfD7nmP0="
@@ -37,11 +44,20 @@
     # Determinate Nix
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
+    # Hyprland flake: day-one releases + hyprland.cachix.org binaries;
+    # deliberately NOT following our nixpkgs (cache match requires its own),
+    # see https://wiki.hypr.land/nix/cachix/
+    hyprland.url = "github:hyprwm/Hyprland";
+
     # Caelestia desktop environment
-    # hyprland.url = "github:hyprwm/Hyprland";
     caelestia = {
-      url = "github:caelestia-dots/shell/20d36088a4698e2f647554794951ed1744d37669";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # Unpinned: tracks latest so shell + quickshell stay compatible with
+      # current Hyprland (Lua-config dispatch API changed in Hyprland 0.5x)
+      # NOTE: deliberately NOT following our nixpkgs — caelestia must build
+      # against its own locked nixpkgs (as upstream CI does); our unstable
+      # broke its cli build (setuptools-scm 9 ignores the unsuffixed
+      # SETUPTOOLS_SCM_PRETEND_VERSION the cli package sets)
+      url = "github:caelestia-dots/shell";
     };
 
     # Home manager

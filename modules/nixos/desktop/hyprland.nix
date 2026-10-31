@@ -117,9 +117,10 @@ in
 
     programs.hyprland = {
       enable = true;
-      # Use packages from nixos-unstable instead of external flake
-      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # Use packages from the Hyprland flake for day-one releases and
+      # hyprland.cachix.org binaries (keep portal in sync with compositor)
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
       # UWSM disabled - using standard Hyprland session per official docs
       # withUWSM = true;
@@ -149,8 +150,8 @@ in
       xdgOpenUsePortal = true;
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk
-        pkgs.xdg-desktop-portal-hyprland
-        # inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+        # hyprland portal comes from programs.hyprland.portalPackage (flake),
+        # which the module injects automatically — do not add the nixpkgs one
       ];
       config.hyprland = {
         default = [

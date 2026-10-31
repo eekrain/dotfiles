@@ -32,8 +32,8 @@ in
       gtk3
       tmux
 
-      (inputs.codex-manager.packages.${pkgs.system}.default)
-      (inputs.codebase-memory-mcp.packages.${pkgs.system}.default)
+      # (inputs.codex-manager.packages.${pkgs.system}.default)
+      # (inputs.codebase-memory-mcp.packages.${pkgs.system}.default)
       (inputs.nix-vite-plus.packages.${pkgs.system}.vp)
     ];
 

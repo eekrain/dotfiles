@@ -32,8 +32,11 @@ in
 
       inputs.bunnix.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
-      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex
+      # inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
+      # inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.hermes-desktop
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.zcode
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codegraph
       # goose-cli
 
       inputs.antigravity-nix.packages.x86_64-linux.default
@@ -45,11 +48,10 @@ in
       tree
       # droid
       helium
-      zcode
       athas
       google-chrome
       drawio
-      beekeeper-studio
+      # beekeeper-studio # insecure: EOL Electron 39, re-enable when upstream updates
       vlc
       inkscape
       # winbox
@@ -65,15 +67,5 @@ in
 
     home.file."Pictures/wallpapers".source = ./wallpapers;
     home.file."Pictures/wallpapers".recursive = true;
-
-    # ZCode self-registers ~/.local/share/applications/zcode.desktop on every
-    # launch, but points Exec at the raw extracted binary, which only works
-    # inside the FHS sandbox — so the desktop entry dies instantly (looks
-    # "stuck"). Pin the correct .desktop at XDG_DATA_HOME as a symlink to the
-    # package's read-only store copy: the app's clobber attempt hits EACCES on
-    # the store target and is caught/handled, leaving this working entry in
-    # place. See pkgs/zcode.nix for the matching LD_LIBRARY_PATH wrapper.
-    home.file.".local/share/applications/zcode.desktop".source =
-      "${pkgs.zcode}/share/applications/zcode.desktop";
   };
 }
