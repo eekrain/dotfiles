@@ -18,7 +18,8 @@ in {
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      jack.enable = true;
+      # jack.enable removed: deprecated (global LD_LIBRARY_PATH impurity).
+      # For JACK-native apps, wrap them with `pw-jack` instead.
     };
 
     # 2. Configure the Bluetooth service.

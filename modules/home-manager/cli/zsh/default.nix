@@ -34,7 +34,7 @@ in
 
       # (inputs.codex-manager.packages.${pkgs.system}.default)
       # (inputs.codebase-memory-mcp.packages.${pkgs.system}.default)
-      (inputs.nix-vite-plus.packages.${pkgs.system}.vp)
+      (inputs.nix-vite-plus.packages.${pkgs.stdenv.hostPlatform.system}.vp)
     ];
 
     # Enable starship promt styling

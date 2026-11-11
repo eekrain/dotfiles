@@ -90,11 +90,6 @@ in
         '';
       };
 
-      # WaydroidSU: CLI Magisk manager/installer for Waydroid.
-      # Runtime host tools (lxc-attach, e2fsck, resize2fs, mount/umount)
-      # are already injected into wsu's PATH via its wrapper, so only the
-      # wsu package itself needs to land on the system here.
-      #
       # waydroid-helper: GUI for configuring Waydroid + host-side key/mouse
       # mapper (transparent overlay, F1 to toggle edit/mapping mode). Drawn
       # as an overlay, so under Hyprland it must be floated (see windowrule).
@@ -108,7 +103,6 @@ in
       # source (broken on Android multi-user). See
       # docs/plans/cage-xtmapper-debugging-history.md.
       environment.systemPackages = with pkgs; [
-        wsu
         waydroid-helper
         # Unified launcher with subcommand dispatch:
         #

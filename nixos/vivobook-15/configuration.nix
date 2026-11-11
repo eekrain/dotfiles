@@ -85,14 +85,26 @@
   # boot.kernelPackages = pkgs.linuxPackages;
 
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
-  services.scx = {
+  # snd_hda_intel position_fix=2: with position_fix=auto (default), the HDA
+  # controller's DMA position reads glitch every few seconds on this Cezanne
+  # + ALC294 laptop -> periodic audio underruns ("crackle"), which in
+  # Chromium/Firefox freezes the media clock (audio-driven) and stalls/pauses
+  # video playback on fully-buffered streams. Forcing DMA position-buffer
+  # reads (2) fixes both. Found 2026-11-11; if a future kernel update
+  # changes behavior, also try position_fix=4 (direct LPIB reads).
+  boot.extraModprobeConfig = ''
+    options snd_hda_intel position_fix=2
+  '';
+  services.scx-loader = {
     enable = true;
-    scheduler = "scx_bpfland";
-    extraArgs = [
-      "-m"
-      "performance"
-      "-w"
-    ];
+    config = {
+      default_sched = "scx_bpfland";
+      scheds.scx_bpfland.auto_mode = [
+        "-m"
+        "performance"
+        "-w"
+      ];
+    };
   };
 
   # DNS tools for testing

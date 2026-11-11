@@ -12,5 +12,4 @@ pkgs: {
   helium = pkgs.callPackage ./helium.nix { _sources = import ./_sources/generated.nix { inherit (pkgs) fetchgit fetchurl fetchFromGitHub dockerTools; }; };
   zcode = pkgs.callPackage ./zcode.nix {};
   athas = pkgs.callPackage ./athas.nix {};
-  wsu = pkgs.callPackage ./wsu.nix { _sources = import ./_sources/generated.nix { inherit (pkgs) fetchgit fetchurl fetchFromGitHub dockerTools; }; };
 }

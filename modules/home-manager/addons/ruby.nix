@@ -33,7 +33,7 @@ in
       GEM_HOME = "$HOME/.gem";
       GEM_PATH = "$HOME/.gem";
     }
-    // lib.optionalAttrs (pkgs.stdenv.isLinux) {
+    // lib.optionalAttrs (pkgs.stdenv.hostPlatform.isLinux) {
       NIX_CC = "${pkgs.stdenv.cc}";
       NIX_CFLAGS_COMPILE = builtins.concatStringsSep " " (
         map (dep: "-I${lib.getDev dep}/include") buildDeps

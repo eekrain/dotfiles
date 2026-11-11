@@ -56,16 +56,4 @@
     };
     date = "2022-01-27";
   };
-  waydroidsu = {
-    pname = "waydroidsu";
-    version = "b5e66aa79c3d8c101de857f4161e89de94d5eda1";
-    src = fetchFromGitHub {
-      owner = "mistrmochov";
-      repo = "WaydroidSU";
-      rev = "b5e66aa79c3d8c101de857f4161e89de94d5eda1";
-      fetchSubmodules = false;
-      sha256 = "sha256-ICC/lTUSUpeg/RZOfLJzplt3aQBXlNg1ng8yANGVMgA=";
-    };
-    date = "2025-09-26";
-  };
 }

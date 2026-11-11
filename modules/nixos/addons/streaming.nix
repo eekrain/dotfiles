@@ -23,9 +23,12 @@ in
     services.avahi = {
       enable = true;
       nssmdns4 = true;
-      publish = {
-        enable = true;
-        userServices = true;
+      # Publishing enabled + user services + addresses (replaces the
+      # removed services.avahi.publish.* options)
+      settings.publish = {
+        "disable-publishing" = false;
+        "disable-user-service-publishing" = false;
+        "publish-addresses" = true;
       };
     };
 

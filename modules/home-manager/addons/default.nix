@@ -63,6 +63,7 @@ in
       # whatsapp-for-linux
       # distrobox
       # boxbuddy
+      winbox
     ];
 
     home.file."Pictures/wallpapers".source = ./wallpapers;

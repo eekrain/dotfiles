@@ -3,11 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.myModules.networking;
-in {
-  options.myModules.networking.unbound =
-    lib.mkEnableOption "Enable hardened Unbound DNS resolver";
+in
+{
+  options.myModules.networking.unbound = lib.mkEnableOption "Enable hardened Unbound DNS resolver";
 
   config = lib.mkIf cfg.unbound {
     ##### DNS OWNERSHIP #####
@@ -18,7 +19,7 @@ in {
 
     networking.enableIPv6 = false;
 
-    networking.nameservers = ["127.0.0.1"];
+    networking.nameservers = [ "127.0.0.1" ];
 
     ##### UNBOUND #####
 
@@ -30,7 +31,7 @@ in {
 
       settings = {
         server = {
-          interface = ["127.0.0.1"];
+          interface = [ "127.0.0.1" ];
           port = 53;
 
           # Access control
@@ -76,13 +77,15 @@ in {
           {
             name = ".";
             forward-tls-upstream = "yes";
+            # On forwarder failure (e.g. port 853 blocked), fall back to
+            # unbound's own recursive resolution on port 53. Unbound cannot
+            # mix TLS and plain forwarders for one zone (TLS is zone-level;
+            # duplicate forward-zone sections are discarded), so recursion
+            # is the only supported port-53 fallback.
+            forward-first = "yes";
             forward-addr = [
-              # "174.138.29.175@443#doh.tiar.app"
-              # "174.138.29.175@853#dot.tiar.app"
               "1.1.1.1@853#cloudflare-dns.com"
               "1.0.0.1@853#cloudflare-dns.com"
-              "8.8.8.8@853#dns.google"
-              "8.8.4.4@853#dns.google"
             ];
           }
         ];
@@ -100,8 +103,11 @@ in {
     # Systemd service to restore resolv.conf if VPN (ExpressVPN/WARP) overwrites it.
     systemd.services.protect-resolv-conf = {
       description = "Protect resolv.conf from VPN overrides";
-      wantedBy = ["multi-user.target"];
-      after = ["network.target" "unbound.service"];
+      wantedBy = [ "multi-user.target" ];
+      after = [
+        "network.target"
+        "unbound.service"
+      ];
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;
